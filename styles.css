@@ -1,68 +1,110 @@
+/* Reset Styles */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  
-  body {
-    font-family: 'Segoe UI', sans-serif;
-    background-color: #f4f8fb;
-    color: #333;
-    text-align: center;
-    padding: 2rem;
-  }
-  
-  header {
-    margin-bottom: 2rem;
-  }
-  
-  .logo {
-    width: 100px;
-    margin-bottom: 1rem;
-  }
-  
-  h1 {
-    color: #0077cc;
-    font-size: 2.5rem;
-    margin-bottom: 0.5rem;
-  }
-  
-  .tagline {
-    font-size: 1.2rem;
-    color: #666;
-  }
-  
-  .description {
-    font-size: 1.1rem;
-    max-width: 600px;
-    margin: 1.5rem auto;
-    line-height: 1.6;
-  }
-  
-  .download-btn {
-    display: inline-block;
-    background-color: #0077cc;
-    color: white;
-    padding: 0.8rem 1.5rem;
-    font-size: 1rem;
-    border-radius: 8px;
-    text-decoration: none;
-    transition: background-color 0.3s;
-  }
-  
-  .download-btn:hover {
-    background-color: #005fa3;
-  }
-  
-  .coming-soon {
-    margin-top: 1rem;
-    color: #555;
-    font-style: italic;
-  }
-  
-  footer {
-    margin-top: 3rem;
-    font-size: 0.9rem;
-    color: #888;
-  }
-  
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #f4f8fb;
+  color: #333;
+  line-height: 1.6;
+}
+
+/* Hero Section */
+.hero {
+  background: linear-gradient(135deg, #0077cc, #005fa3);
+  color: #fff;
+  padding: 4rem 2rem;
+  text-align: center;
+}
+
+.hero .container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.hero .logo {
+  width: 100px;
+  margin-bottom: 1rem;
+}
+
+.hero-title {
+  font-size: 3rem;
+  margin: 1rem 0;
+}
+
+.hero-tagline {
+  font-size: 1.25rem;
+  margin-bottom: 1.5rem;
+}
+
+.cta-btn {
+  display: inline-block;
+  background-color: #ff8c00;
+  color: #fff;
+  padding: 1rem 2rem;
+  font-size: 1.25rem;
+  text-decoration: none;
+  border-radius: 8px;
+  transition: background-color 0.3s;
+}
+
+.cta-btn:hover {
+  background-color: #e77c00;
+}
+
+/* Features Section */
+.features {
+  background-color: #ffffff;
+  padding: 4rem 2rem;
+  text-align: center;
+}
+
+.features h2 {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+}
+
+.feature-list {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.feature {
+  width: 30%;
+  margin: 1rem 0;
+  padding: 2rem;
+  background-color: #f4f8fb;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.feature h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.feature p {
+  font-size: 1rem;
+  color: #555;
+}
+
+/* Coming Soon Section */
+.coming-soon {
+  background-color: #005fa3;
+  color: #fff;
+  padding: 2rem;
+  text-align: center;
+}
+
+/* Footer */
+footer {
+  background-color: #333;
+  color: #fff;
+  padding: 1rem 0;
+  text-align: center;
+}
