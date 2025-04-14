@@ -6,9 +6,11 @@
     <title>Recitefy – Transform Your Quran Journey</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Previous head content remains the same -->
     <style>
-        /* CSS */
-        :root {
+        /* Add these new styles under existing CSS */
+         /* CSS */
+         :root {
             --primary: #2575fc;
             --secondary: #6a11cb;
             --accent: #ff6b6b;
@@ -194,72 +196,229 @@
             0% { background-position-x: 0; }
             100% { background-position-x: 1000px; }
         }
+        /* Hero Graphic */
+        .hero-visual {
+            position: relative;
+            margin-top: 4rem;
+            z-index: 2;
+        }
+
+        .hero-mockup {
+            width: 80%;
+            max-width: 900px;
+            margin: 0 auto;
+            border-radius: 40px;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.2);
+            transform: perspective(1000px) rotateY(-10deg);
+        }
+
+        .reciter-badges {
+            position: absolute;
+            bottom: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 1rem;
+            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1));
+        }
+
+        .reciter-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            border: 3px solid white;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            transition: transform 0.3s;
+        }
+
+        .reciter-icon:hover {
+            transform: scale(1.1);
+        }
+
+        /* Feature Graphics Section */
+        .feature-graphic-section {
+            padding: 6rem 2rem;
+            background: white;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-top: 4rem;
+        }
+
+        .graphic-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+
+        .graphic-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+        }
+
+        .graphic-card img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-bottom: 4px solid var(--primary);
+        }
+
+        .graphic-card h3 {
+            font-size: 1.5rem;
+            color: var(--text);
+            margin: 1.5rem 0 1rem;
+            padding: 0 2rem;
+        }
+
+        .graphic-card p {
+            color: #666;
+            padding: 0 2rem 2rem;
+        }
+
+        /* Method Section */
+        .method-section {
+            padding: 6rem 2rem;
+            background: var(--light);
+            text-align: center;
+        }
+
+        .method-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .method-graphic {
+            width: 100%;
+            max-width: 800px;
+            margin: 3rem auto;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+
+        .method-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .step {
+            padding: 2.5rem;
+            background: white;
+            border-radius: 15px;
+            transition: transform 0.3s;
+        }
+
+        .step:hover {
+            transform: translateY(-5px);
+        }
+
+        .step-number {
+            width: 50px;
+            height: 50px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-weight: 600;
+            font-size: 1.2rem;
+        }
+
+        @media (max-width: 768px) {
+            .hero-mockup {
+                width: 90%;
+                transform: none;
+            }
+            
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .graphic-card img {
+                height: 250px;
+            }
+        }
     </style>
 </head>
 <body>
+    <!-- Existing Hero Section -->
     <section class="hero">
         <div class="container">
             <img src="logo.png" alt="Recitefy" class="logo">
             <div class="hero-content">
-             <h1 class="hero-title">Memorize the Quran and Revise with your fav Reciters</h1>
-             <p class="hero-tagline">Unlock personalized recitation journeys, interactive duets, and gamified progress to inspire your memorization</p>
-
+                <h1 class="hero-title">Memorize the Quran and Revise with your fav Reciters</h1>
+                <p class="hero-tagline">Unlock personalized recitation journeys, interactive duets, and gamified progress to inspire your memorization</p>
                 <a href="#" class="cta-btn">
                     Download App
                     <i class="fas fa-arrow-right" style="margin-left: 10px;"></i>
                 </a>
+                
+                <!-- Add Hero Visual Here -->
+                <div class="hero-visual">
+                    <img src="hero-mockup.png" alt="App Preview" class="hero-mockup">
+                    <div class="reciter-badges">
+                        <img src="reciter1.png" alt="Mishary Rashid" class="reciter-icon">
+                        <img src="reciter2.png" alt="Maher Al Muaiqly" class="reciter-icon">
+                        <img src="reciter3.png" alt="Abdul Basit" class="reciter-icon">
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <section class="feature-section">
+    <!-- Existing Feature Section Remains -->
+
+    <!-- Add Feature Graphics Section -->
+    <section class="feature-graphic-section">
         <div class="container">
-            <h2 style="text-align: center; font-size: 2.5rem; margin-bottom: 1rem;">Why Recitefy?</h2>
-            <p style="text-align: center; max-width: 600px; margin: 0 auto 3rem; color: #666;">
-                Designed with love by Quran lovers and tech experts
-            </p>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <i class="fas fa-microphone-alt feature-icon"></i>
-<h3>Interactive Recitation</h3>
-    <p>Engage in duets and personalized learning modes to enhance your Quranic recitation skills</p>
-</div>
-              
-<div class="feature-card">
-    <i class="fas fa-comments feature-icon"></i>
-    <h3>Explore Recitations</h3>
-    <p>Scroll through a feed of inspiring recitations from renowned reciters, with tafsir insights</p>
-</div>
-                <div class="feature-card">
-    <i class="fas fa-chart-line feature-icon"></i>
-    <h3>Track Your Revision</h3>
-    <p>Monitor your Muraja'ah progress and stay on top of your Quranic revision goals</p>
-</div>
-
-
+            <div class="feature-grid">
+                <div class="graphic-card">
+                    <img src="duet-mode.gif" alt="Duet Mode Preview">
+                    <h3>Interactive Duet Mode</h3>
+                    <p>Recite alongside your favorite Qaris with real-time feedback</p>
+                </div>
+                <div class="graphic-card">
+                    <img src="progress-tracker.png" alt="Progress Tracking">
+                    <h3>Visual Progress Map</h3>
+                    <p>Track memorization streaks and revision cycles</p>
+                </div>
             </div>
         </div>
     </section>
 
-    <section class="screenshot-section">
+    <!-- Existing Screenshot Section -->
+
+    <!-- Existing Stats Section -->
+
+    <!-- Add Method Section Before Footer -->
+    <section class="method-section">
         <div class="container">
-            <img src="logo.png" alt="App Interface" class="app-screenshot">
-        </div>
-    </section>
-
-    <section class="stats-section">
-        <div class="stats-grid">
-            <div class="stat-item">
-                <div class="stat-number">500k+</div>
-                <div>Verses Memorized</div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-number">98%</div>
-                <div>Satisfaction Rate</div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-number">4.9★</div>
-                <div>App Rating</div>
+            <h2>The Tikrar Method</h2>
+            <img src="tikrar-flowchart.svg" alt="Memorization Process" class="method-graphic">
+            <div class="method-steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h4>Listen & Repeat</h4>
+                    <p>Master pronunciation with native Arab Qaris</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h4>Spaced Repetition</h4>
+                    <p>AI-powered revision scheduling</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h4>Perfect Recall</h4>
+                    <p>Test yourself with randomized challenges</p>
+                </div>
             </div>
         </div>
     </section>
