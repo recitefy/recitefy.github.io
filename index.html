@@ -238,13 +238,12 @@
         .reciter-icon:hover {
             transform: scale(1.1);
         }
-
 /* Feature Graphics Section */
 .feature-graphic-section {
     padding: 8rem 2rem;
-    background: #f8fafc;
     position: relative;
     overflow: hidden;
+    background: transparent; /* Remove background to merge with the main background */
 }
 
 .feature-grid {
@@ -257,7 +256,7 @@
 }
 
 .graphic-card {
-    background: white;
+    background: white; /* White background for individual cards */
     border-radius: 24px;
     overflow: hidden;
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
@@ -274,7 +273,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: var(--gradient);
+    background: var(--gradient); /* Retain gradient if you still want it on hover */
     opacity: 0;
     transition: opacity 0.3s ease;
     z-index: 1;
@@ -385,7 +384,6 @@
         padding: 1.5rem; /* Adjust padding for mobile */
     }
 }
-
 
 /* Add floating animation to cards */
 @keyframes float {
