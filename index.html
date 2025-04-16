@@ -239,7 +239,6 @@
             transform: scale(1.1);
         }
 
-
 /* Feature Graphics Section */
 .feature-graphic-section {
     padding: 8rem 2rem;
@@ -304,10 +303,11 @@
 }
 
 .graphic-card-content {
-    padding: 2rem;
+    padding: 2rem 1.5rem; /* Increased left/right padding */
     position: relative;
     background: white;
     overflow: hidden; /* Ensure no overflow of content */
+    word-wrap: break-word; /* Handle long text properly */
 }
 
 .graphic-card h3 {
@@ -377,10 +377,15 @@
         margin: 0 1rem;
     }
     
-     .graphic-card img {
+    .graphic-card img {
         height: auto;
     }
+
+    .graphic-card-content {
+        padding: 1.5rem; /* Adjust padding for mobile */
+    }
 }
+
 
 /* Add floating animation to cards */
 @keyframes float {
