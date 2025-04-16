@@ -239,51 +239,165 @@
             transform: scale(1.1);
         }
 
-        /* Feature Graphics Section */
-        .feature-graphic-section {
-            padding: 6rem 2rem;
-            background: white;
-        }
 
-        .feature-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            margin-top: 4rem;
-        }
 
-        .graphic-card {
-            background: white;
-            border-radius: 20px;
-            overflow: hidden;
-            transition: transform 0.3s, box-shadow 0.3s;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-        }
+/* Feature Graphics Section */
+.feature-graphic-section {
+    padding: 8rem 2rem;
+    background: #f8fafc;
+    position: relative;
+    overflow: hidden;
+}
 
-        .graphic-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
-        }
+.feature-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 4rem;
+    margin-top: 6rem;
+    position: relative;
+    z-index: 2;
+}
 
-        .graphic-card img {
-            width: 100%;
-            height: auto;
-            object-fit: cover;
-            border-bottom: 4px solid var(--primary);
-        }
+.graphic-card {
+    background: white;
+    border-radius: 24px;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    border: 1px solid #e2e8f0;
+    transform-style: preserve-3d;
+}
 
-        .graphic-card h3 {
-            font-size: 1.5rem;
-            color: var(--text);
-            margin: 1.5rem 0 1rem;
-            padding: 0 2rem;
-        }
+.graphic-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--gradient);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 1;
+}
 
-        .graphic-card p {
-            color: #666;
-            padding: 0 2rem 2rem;
-        }
+.graphic-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+}
 
+.graphic-card:hover::before {
+    opacity: 0.03;
+}
+
+.graphic-card img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-bottom: 4px solid var(--primary);
+    position: relative;
+    transition: transform 0.3s ease;
+}
+
+.graphic-card:hover img {
+    transform: scale(1.05);
+}
+
+.graphic-card-content {
+    padding: 2rem;
+    position: relative;
+    background: white;
+}
+
+.graphic-card h3 {
+    font-size: 1.75rem;
+    color: var(--text);
+    margin: 1rem 0;
+    position: relative;
+    display: inline-block;
+    font-weight: 700;
+}
+
+.graphic-card h3::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    width: 50px;
+    height: 3px;
+    background: var(--primary);
+    transition: width 0.3s ease;
+}
+
+.graphic-card:hover h3::after {
+    width: 80px;
+}
+
+.graphic-card p {
+    color: #64748b;
+    line-height: 1.7;
+    margin: 1.5rem 0;
+    font-size: 1.1rem;
+}
+
+/* Decorative Elements */
+.feature-graphic-section::before {
+    content: '';
+    position: absolute;
+    top: -200px;
+    right: -200px;
+    width: 600px;
+    height: 600px;
+    background: var(--accent);
+    opacity: 0.1;
+    border-radius: 50%;
+}
+
+.feature-graphic-section::after {
+    content: '';
+    position: absolute;
+    bottom: -300px;
+    left: -200px;
+    width: 600px;
+    height: 600px;
+    background: var(--accent);
+    opacity: 0.1;
+    border-radius: 50%;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .feature-grid {
+        gap: 2rem;
+        margin-top: 4rem;
+    }
+    
+    .graphic-card {
+        margin: 0 1rem;
+    }
+    
+    .graphic-card img {
+        height: 220px;
+    }
+}
+
+/* Add floating animation to cards */
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+}
+
+.graphic-card {
+    animation: float 6s ease-in-out infinite;
+}
+
+.graphic-card:nth-child(2) {
+    animation-delay: 1s;
+}
+
+.graphic-card:nth-child(3) {
+    animation-delay: 2s;
+}
         /* Method Section */
         .method-section {
             padding: 6rem 2rem;
@@ -415,26 +529,6 @@
   </div>
 </section>
 
-    <!-- Existing Feature Section Remains -->
-
-    <!-- Add Feature Graphics Section -->
-    <section class="feature-graphic-section">
-        <div class="container">
-            <div class="feature-grid">
-                <div class="graphic-card">
-                    <img src="duet-mode.png" alt="Duet Mode Preview">
-                    <h3>Interactive Duet Mode</h3>
-                    <p>Recite alongside your favorite Qaris with real-time feedback</p>
-                </div>
-                <div class="graphic-card">
-                    <img src="progress-tracker[1].png" alt="Progress Tracking">
-                    <h3>Visual Progress Map</h3>
-                    <p>Track memorization streaks and revision cycles</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- Existing Screenshot Section -->
 
     <!-- Existing Stats Section -->
@@ -450,15 +544,17 @@
                 <p>Feel like you're in the same room with your favorite reciters. Our real-time duet system lets you echo or alternate verses with Qaris like Mishary Rashid or Abdul Basit. It’s more than listening — it’s interactive training with voice guidance and intelligent feedback that helps you improve tone, rhythm, and accuracy.</p>
             </div>
             <div class="graphic-card">
-                <img src="progress-tracker[1].png" alt="Progress Tracking">
+                <img src="tikrar[1].png" alt="Progress Tracking">
                 <h3>Visual Progress Map</h3>
                 <p>See your Hifdh journey at a glance. Our visual tracker lights up every verse you complete and highlights areas for revision. Whether you’re on a 1-juz, 5-juz, or full Quran track, you’ll always know where you stand — and what to review.</p>
             </div>
             <div class="graphic-card">
-                <img src="tikrar[1].png" alt="Tikrar Method">
-                <h3>The Tikrar Method</h3>
-                <p>Based on traditional and modern memorization science, this method combines Listen & Repeat, Spaced Repetition, and Random Challenge Tests. It’s how top memorizers lock in long-term retention — and now, it's built into your daily flow with Recitefy.</p>
-            </div>
+    <img src="revisionplanner.png" alt="Revision Planner">
+    <h3>Smart Revision Planner</h3>
+    <p>Never forget what to revise or when. Our AI-assisted revision planner automatically schedules your reviews based on how long ago you memorized a verse, how often you've recited it, and where you last struggled. Stay sharp, effortlessly.</p>
+</div>
+
+          
         </div>
     </div>
 </section>
