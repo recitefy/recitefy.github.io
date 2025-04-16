@@ -238,12 +238,14 @@
         .reciter-icon:hover {
             transform: scale(1.1);
         }
-/* Feature Graphics Section */
+   /* Feature Graphics Section */
 .feature-graphic-section {
     padding: 8rem 2rem;
     position: relative;
     overflow: hidden;
-    background: transparent; /* Remove background to merge with the main background */
+    background: transparent; /* Make the section background transparent */
+    border: none; /* Remove any borders */
+    box-shadow: none; /* Remove any box shadow */
 }
 
 .feature-grid {
@@ -261,9 +263,10 @@
     overflow: hidden;
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
-    border: 1px solid #e2e8f0;
+    border: 1px solid #e2e8f0; /* This creates the border around each card */
     transform-style: preserve-3d;
     padding: 0; /* Ensure no padding is causing overflow */
+    box-shadow: none; /* Remove any shadow from the cards */
 }
 
 .graphic-card::before {
@@ -281,7 +284,7 @@
 
 .graphic-card:hover {
     transform: translateY(-10px) scale(1.02);
-    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15); /* You may want to adjust this or remove it */
 }
 
 .graphic-card:hover::before {
