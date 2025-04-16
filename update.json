@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "build": 2,
+  "build": 1,
   "release_notes": "This update includes bug fixes and performance improvements.",
   "download_link": "https://www.recitefy.com.ng/download",
   "mandatory": false
