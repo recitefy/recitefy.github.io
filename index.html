@@ -3,261 +3,602 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Recitefy</title>
-    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+    <meta name="description" content="Recitefy – Your interactive Quran recitation companion. Duets, memorization, streaks, and more.">
+    <meta name="robots" content="index, follow">
+
+    <title>Recitefy – Transform Your Hifdh Journey</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Previous head content remains the same -->
     <style>
-        /* Basic Styling */
-        body {
-            font-family: Arial, sans-serif;
+        /* Add these new styles under existing CSS */
+         /* CSS */
+         :root {
+            --primary: #2575fc;
+            --secondary: #6a11cb;
+            --accent: #ff6b6b;
+            --text: #2c3e50;
+            --light: #f8f9fa;
+        }
+
+        * {
             margin: 0;
             padding: 0;
-            background-color: #f4f4f4;
-            color: #333;
+            box-sizing: border-box;
         }
 
-        h1, h2, h3 {
-            color: #007BFF;
-        }
-
-        .container {
-            width: 90%;
-            margin: 0 auto;
-            max-width: 1200px;
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--text);
+            line-height: 1.7;
+            overflow-x: hidden;
         }
 
         .hero {
-            background: #007BFF;
-            color: white;
-            padding: 5rem 0;
-            text-align: center;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            min-height: 100vh;
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
         }
 
-        .hero .logo {
-            width: 150px;
-            margin-bottom: 1rem;
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 150px;
+            background: url('wave.svg') repeat-x;
+            animation: wave 12s linear infinite;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .logo {
+            width: 80px;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+        }
+
+        .hero-content {
+            text-align: center;
+            padding: 6rem 0 8rem;
+            max-width: 800px;
+            margin: 0 auto;
         }
 
         .hero-title {
-            font-size: 3rem;
-            margin-bottom: 1rem;
+            font-size: 3.5rem;
+            color: white;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+            text-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
 
         .hero-tagline {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
+            font-size: 1.25rem;
+            color: rgba(255,255,255,0.9);
+            margin-bottom: 2.5rem;
         }
 
         .cta-btn {
-            display: inline-block;
-            background-color: #fff;
-            color: #007BFF;
-            padding: 0.8rem 2rem;
-            font-size: 1rem;
-            border-radius: 30px;
+            display: inline-flex;
+            align-items: center;
+            background: var(--accent);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 50px;
             text-decoration: none;
-            margin-top: 2rem;
+            font-weight: 600;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 8px 20px rgba(255,107,107,0.3);
         }
 
         .cta-btn:hover {
-            background-color: #007BFF;
-            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 12px 25px rgba(255,107,107,0.4);
         }
 
-        .feature-graphic-section {
-            background-color: #fff;
-            padding: 4rem 0;
+        .feature-section {
+            padding: 6rem 2rem;
+            background: var(--light);
         }
 
-        .feature-grid {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 2rem;
+            margin-top: 3rem;
         }
 
-        .graphic-card {
-            background: #f8f9fa;
-            border-radius: 8px;
-            padding: 2rem;
-            width: 30%;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        .feature-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
             transition: transform 0.3s;
-        }
-
-        .graphic-card img {
-            width: 100%;
-            border-radius: 8px;
-        }
-
-        .graphic-card h3 {
-            margin-top: 1rem;
-            font-size: 1.5rem;
-        }
-
-        .graphic-card p {
-            font-size: 1rem;
-            color: #555;
-            margin-top: 0.5rem;
-        }
-
-        .graphic-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .beta-signup-section {
-            padding: 3rem 1rem;
-            background-color: #f8f9fa;
             text-align: center;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .screenshot-section {
+            padding: 6rem 2rem;
+            background: white;
+        }
+
+        .app-screenshot {
+            max-width: 800px;
+            margin: 0 auto;
+            border-radius: 30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        .stats-section {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .stat-item {
+            padding: 2rem;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
         }
 
         footer {
-            background-color: #333;
+            background: var(--text);
             color: white;
-            padding: 2rem 0;
+            padding: 4rem 2rem;
             text-align: center;
         }
 
-        footer a {
-            color: white;
-            margin: 0 1rem;
-            font-size: 1.5rem;
-            text-decoration: none;
-        }
-
-        footer a:hover {
-            color: #007BFF;
-        }
-
-        footer p {
-            font-size: 0.95rem;
-            color: #ddd;
-        }
-
-        /* Media Queries */
         @media (max-width: 768px) {
-            .feature-grid {
-                flex-direction: column;
-                align-items: center;
+            .hero-title {
+                font-size: 2.5rem;
             }
-
-            .graphic-card {
-                width: 80%;
-                margin-bottom: 2rem;
+            
+            .hero-content {
+                padding: 4rem 0 6rem;
             }
         }
+
+        @keyframes wave {
+            0% { background-position-x: 0; }
+            100% { background-position-x: 1000px; }
+        }
+        /* Hero Graphic */
+        .hero-visual {
+            position: relative;
+            margin-top: 4rem;
+            z-index: 2;
+        }
+
+        .hero-mockup {
+            width: 80%;
+            max-width: 900px;
+            margin: 0 auto;
+            border-radius: 40px;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.2);
+            transform: perspective(1000px) rotateY(-10deg);
+        }
+
+        .reciter-badges {
+            position: absolute;
+            bottom: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 1rem;
+            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1));
+        }
+
+        .reciter-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            border: 3px solid white;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            transition: transform 0.3s;
+        }
+
+        .reciter-icon:hover {
+            transform: scale(1.1);
+        }
+
+        /* Feature Graphics Section - Borderless Design */
+.feature-graphic-section {
+    padding: 8rem 2rem;
+    position: relative;
+    overflow: hidden;
+    background: transparent;
+}
+
+.feature-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 5rem;
+    margin-top: 4rem;
+    position: relative;
+    z-index: 2;
+}
+
+.graphic-card {
+    background: transparent;
+    border-radius: 0;
+    overflow: visible;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+    border: none;
+    box-shadow: none;
+    padding: 0;
+}
+
+.graphic-card-content {
+    padding: 0;
+    position: relative;
+    background: transparent;
+}
+
+.graphic-card img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 16px;
+    transition: all 0.5s ease;
+    box-shadow: none;
+    border: none;
+    filter: drop-shadow(0 15px 30px rgba(41, 99, 235, 0.15));
+}
+
+.graphic-card:hover img {
+    transform: scale(1.03);
+    filter: drop-shadow(0 20px 40px rgba(41, 99, 235, 0.25));
+}
+
+.graphic-card h3 {
+    font-size: 1.8rem;
+    color: var(--text);
+    margin: 2rem 0 1rem;
+    font-weight: 700;
+    position: relative;
+    background: linear-gradient(90deg, var(--primary), #3b82f6);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    display: inline-block;
+}
+
+.graphic-card p {
+    color: #64748b;
+    line-height: 1.8;
+    font-size: 1.1rem;
+    margin: 1rem 0 0;
+    padding: 0;
+}
+
+/* Floating Animation */
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-15px); }
+}
+
+.graphic-card {
+    animation: float 8s ease-in-out infinite;
+}
+
+.graphic-card:nth-child(2) {
+    animation-delay: 1.5s;
+}
+
+.graphic-card:nth-child(3) {
+    animation-delay: 2.5s;
+}
+
+/* Background Elements */
+.feature-graphic-section::before {
+    content: '';
+    position: absolute;
+    top: 20%;
+    left: -10%;
+    width: 40%;
+    height: 60%;
+    background: radial-gradient(circle, rgba(147, 197, 253, 0.15) 0%, rgba(255,255,255,0) 70%);
+    z-index: 1;
+}
+
+.feature-graphic-section::after {
+    content: '';
+    position: absolute;
+    bottom: 10%;
+    right: -10%;
+    width: 40%;
+    height: 60%;
+    background: radial-gradient(circle, rgba(147, 197, 253, 0.15) 0%, rgba(255,255,255,0) 70%);
+    z-index: 1;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .feature-grid {
+        gap: 4rem;
+    }
+    
+    .graphic-card h3 {
+        font-size: 1.6rem;
+        margin: 1.5rem 0 0.5rem;
+    }
+    
+    .graphic-card p {
+        font-size: 1rem;
+    }
+}
+
+/* Add floating animation to cards */
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+}
+
+.graphic-card {
+    animation: float 6s ease-in-out infinite;
+}
+
+.graphic-card:nth-child(2) {
+    animation-delay: 1s;
+}
+
+.graphic-card:nth-child(3) {
+    animation-delay: 2s;
+}
+        /* Method Section */
+        .method-section {
+            padding: 6rem 2rem;
+            background: var(--light);
+            text-align: center;
+        }
+
+        .method-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .method-graphic {
+            width: 100%;
+            max-width: 800px;
+            margin: 3rem auto;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+
+        .method-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .step {
+            padding: 2.5rem;
+            background: white;
+            border-radius: 15px;
+            transition: transform 0.3s;
+        }
+
+        .step:hover {
+            transform: translateY(-5px);
+        }
+
+        .step-number {
+            width: 50px;
+            height: 50px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-weight: 600;
+            font-size: 1.2rem;
+        }
+
+        @media (max-width: 768px) {
+            .hero-mockup {
+                width: 90%;
+                transform: none;
+            }
+            
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .graphic-card img {
+                height: auto;
+            }
+          
+        }
+
+.hero-description p {
+    font-size: 1.5rem;
+    color: white; /* Changed from var(--text) to white */
+    margin-bottom: 0.5rem;
+}
+
+.hero-description p {
+    color: #f8f9fa; /* Lighter text color for better contrast */
+    max-width: 500px;
+}
+
+
     </style>
 </head>
-<body>
-
-    <!-- Hero Section -->
-    <section class="hero">
+   
+ <body>
+    <!-- Existing Hero Section -->
+     <section class="hero">
         <div class="container">
             <img src="logo.png" alt="Recitefy" class="logo">
             <div class="hero-content">
                 <h1 class="hero-title">Your Hifdh Journey Just Got Better</h1>
-                <p class="hero-tagline">Train with your favorite reciters, Duet with world-famous voices, and level up your memorization — the Recitefy way.</p>
+<p class="hero-tagline">Train with your favorite reciters, Duet with world-famous voices, and level up your memorization — the Recitefy way.</p>
+
                 <a href="#" class="cta-btn">
                     Coming Soon
                     <i class="fas fa-arrow-right" style="margin-left: 10px;"></i>
                 </a>
+               
+ <section class="hero-extra-section">
+  <div class="container">
+    <!-- Recall Visual -->
+    <div class="hero-visual">
+      <img src="hero-mockup.png" alt="App Preview" class="hero-mockup">
+      <div class="hero-description" style="margin-top: 2rem; color: white;">
+   
+        <p style="font-size: 1.5rem; color: white; margin-bottom: 0.5rem;">
+          Strengthen your Hifdh, your way. Pick Surah, choose a mode — Duet, Learn, or Challenge — and recite out loud. No pressure, just a powerful space to build confidence and fluency with every session.
+        </p>
+      </div>
+    </div> -->
+
+<   Tadbeer Feed Visual 
+    <div class="hero-visual">
+      <img src="tadbeerfeed.png" alt="Tadbeer Feed" class="hero-mockup">
+      <div class="hero-description" style="margin-top: 2rem; color: white;">
+
+        <p style="font-size: 1.5rem; color: white; margin-bottom: 0.5rem;">
+          Scroll through powerful verses and reflections like a spiritual feed. Whether it’s a timeless reminder or a verse that hits home today, this feed connects your heart to the Quran — effortlessly.
+        </p>
+      </div>
+    </div> -->
+  </div>
+</section>
+
+
+ 
             </div>
         </div>
-    </section>
+    </section> --> -->
 
-    <!-- Features Section -->
+
     <section class="feature-graphic-section">
-        <div class="container">
-            <div class="feature-grid">
-                <!-- Musaffah (Duet) Mode -->
-                <div class="graphic-card" data-aos="fade-up">
-                    <img src="duet-mode.png" alt="Duet Mode Preview">
-                    <h3>Musaffah (Duet) Mode</h3>
-                    <p>Feel like you're in the same room with your favorite reciters. Our real-time duet system lets you alternate verses with Qaris like Mishary Rashid or Minshawy. In Duet Mode, you take turns with your chosen reciter — one verse you, one verse them. It trains your ear, builds confidence, and helps you stay in rhythm. It's a powerful way to stay engaged and make memorization more immersive and motivating.</p>
-                </div>
-
-                <!-- Learn Mode -->
-                <div class="graphic-card" data-aos="fade-up" data-aos-delay="200">
-                    <img src="duet-mode.png" alt="Learn Mode Preview">
-                    <h3>Learn Mode</h3>
-                    <p>Ease into memorization with a stress-free flow. In Learn Mode, you listen and repeat along with reciters in a structured loop — no pressure, no grading. It's a chill practice zone that gets the verses stuck in your head before you try reciting solo. While it's not a substitute for a qualified teacher, it’s the perfect warm-up to make your actual learning stick.</p>
-                </div>
-
-                <!-- Tahaddi (Challenge) Mode -->
-                <div class="graphic-card" data-aos="fade-up" data-aos-delay="400">
-                    <img src="challengemode.png" alt="Challenge Mode">
-                    <h3>Tahaddi (Challenge Mode)</h3>
-                    <p>Gamify your Hifdh journey with timed challenges, Ayah flashbacks, and recall battles. Earn points as you test your memory — perfect for revision or just pure motivation.</p>
-                </div>
-
-                <!-- Quran View -->
-                <div class="graphic-card" data-aos="fade-up" data-aos-delay="600">
-                    <img src="quranview.png" alt="Quran View">
-                    <h3>Crystal-Clear Quran View</h3>
-                    <p>Experience a distraction-free interface designed for deep focus. Our beautifully rendered Mushaf view supports verse-by-verse playback.</p>
-                </div>
-
-                <!-- Tafseer Page -->
-                <div class="graphic-card" data-aos="fade-up" data-aos-delay="800">
-                    <img src="tafseerpage.png" alt="Tafseer Page">
-                    <h3>Tafseer Page</h3>
-                    <p>Tap the comments button to instantly unlock rich Tafseer insights. Understand context, meaning, and interpretation from trusted classical and contemporary scholars — right when and where you need it most.</p>
-                </div>
+    <div class="container">
+        <div class="feature-grid">
+            <div class="graphic-card">
+                <img src="duet-mode.png" alt="Duet Mode Preview">
+                <h3>Musaffah (Duet) Mode</h3>
+                <p>Feel like you're in the same room with your favorite reciters. Our real-time duet system lets you alternate verses with Qaris like Mishary Rashid or Minshawy. In Duet Mode, you take turns with your chosen reciter — one verse you, one verse them. It trains your ear, builds confidence, and helps you stay in rhythm. It's a powerful way to stay engaged and make memorization more immersive and motivating.</p>
             </div>
+<div class="graphic-card">
+    <img src="duet-mode.png" alt="Learn Mode Preview">
+    <h3>Learn Mode</h3>
+    <p>Ease into memorization with a stress-free flow. In Learn Mode, you listen and repeat along with reciters in a structured loop — no pressure, no grading. It's a chill practice zone that gets the verses stuck in your head before you try reciting solo. While it's not a substitute for a qualified teacher, it’s the perfect warm-up to make your actual learning stick.</p>
+</div>
+
+
+                  <div class="graphic-card">
+        <img src="challengemode.png" alt="Challenge Mode">
+        <h3>Tahaddi(Challenge Mode)</h3>
+        <p>Gamify your Hifdh journey with timed challenges, Ayah flashbacks, and recall battles. Earn points as you test your memory — perfect for revision or just pure motivation.</p>
+      </div>
+                <div class="graphic-card">
+        <img src="quranview.png" alt="Quran View">
+        <h3>Crystal-Clear Quran View</h3>
+        <p>Experience a distraction-free interface designed for deep focus. Our beautifully rendered Mushaf view supports verse-by-verse playback.</p>
+      </div>
+         
+      <div class="graphic-card">
+        <img src="tafseerpage.png" alt="Tafseer Page">
+        <h3>Tafseer Page</h3>
+        <p>Tap the comments button instantly unlock rich Tafseer insights. Understand context, meaning, and interpretation from trusted classical and contemporary scholars — right when and where you need it most.</p>
+      </div> --> -->
+
+          
         </div>
-    </section>
-
-    <!-- Progress Tracking Section -->
-    <section class="feature-graphic-section">
-        <div class="container">
-            <div class="feature-grid">
-                <!-- Visual Progress Map -->
-                <div class="graphic-card" data-aos="fade-up">
-                    <img src="tikrar[1].png" alt="Progress Tracking">
-                    <h3>Visual Progress Map</h3>
-                    <p>See your Hifdh journey at a glance. Our visual tracker lights up every verse you complete and highlights areas for revision. Whether you’re on a 1-juz, 5-juz, or full Quran track, you’ll always know where you stand — and what to review.</p>
-                </div>
-
-                <!-- Smart Revision Planner -->
-                <div class="graphic-card" data-aos="fade-up" data-aos-delay="200">
-                    <img src="revisionplanner.png" alt="Revision Planner">
-                    <h3>Smart Revision Planner</h3>
-                    <p>Never forget what to revise or when. Our AI-assisted revision planner automatically schedules your reviews based on how long ago you memorized a verse, how often you've recited it, and where you last struggled. Stay sharp, effortlessly.</p>
-                </div>
+    </div>
+</section>
+ <section class="feature-graphic-section">
+    <div class="container">
+        <div class="feature-grid">
+           
+            
+            <div class="graphic-card">
+                <img src="tikrar[1].png" alt="Progress Tracking">
+                <h3>Visual Progress Map</h3>
+                <p>See your Hifdh journey at a glance. Our visual tracker lights up every verse you complete and highlights areas for revision. Whether you’re on a 1-juz, 5-juz, or full Quran track, you’ll always know where you stand — and what to review.</p>
             </div>
+            <div class="graphic-card">
+    <img src="revisionplanner.png" alt="Revision Planner">
+    <h3>Smart Revision Planner</h3>
+    <p>Never forget what to revise or when. Our AI-assisted revision planner automatically schedules your reviews based on how long ago you memorized a verse, how often you've recited it, and where you last struggled. Stay sharp, effortlessly.</p>
+</div>
+
+          
         </div>
-    </section>
+    </div>
+</section>
+
 
     <!-- Beta Sign-Up and Feedback Section -->
-    <section class="beta-signup-section" style="padding: 3rem 1rem; background-color: #f8f9fa; text-align: center;">
-        <div class="container">
-            <h2 style="color: #007BFF; margin-bottom: 1rem;">Join the Beta Program</h2>
-            <p style="font-size: 1.1rem; max-width: 600px; margin: 0 auto 1.5rem;">
-                Be among the first to experience Recitefy and help shape the future of Quran recitation. It's early, but together we'll make it amazing!
-            </p>
+<section class="beta-signup-section" style="padding: 3rem 1rem; background-color: #f8f9fa; text-align: center;">
+  <div class="container">
+    <h2 style="color: #007BFF; margin-bottom: 1rem;">Join the Beta Program</h2>
+    <p style="font-size: 1.1rem; max-width: 600px; margin: 0 auto 1.5rem;">
+      Be among the first to experience Recitefy and help shape the future of Quran recitation. It's early, but together we'll make it amazing!
+    </p>
 
-            <p style="font-size: 0.95rem; color: #555;">
-                Already using Recitefy? Give us feedback to help improve.
-            </p>
-        </div>
-    </section>
+    <p style="font-size: 0.95rem; color: #555;">
+      Already using Recitefy? Give us feedback to help improve.
+    </p>
+  </div>
+</section>
 
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <img src="logo.png" alt="Recitefy" style="width: 100px; margin-bottom: 2rem;" />
-            <div style="margin-bottom: 2rem;">
-                <a href="https://t.me/recitefy" target="blank" aria-label="Telegram" style="color: white; margin: 0 1rem; font-size: 1.5rem;"><i class="fab fa-telegram-plane"></i></a>
-                <a href="https://www.facebook.com/profile.php?id=61565472024122" target="blank" aria-label="Facebook" style="color: white; margin: 0 1rem; font-size: 1.5rem;"><i class="fab fa-facebook-f"></i></a>
-                <a href="https://twitter.com/recitefy" target="blank" aria-label="Twitter" style="color: white; margin: 0 1rem; font-size: 1.5rem;"><i class="fab fa-twitter"></i></a>
-                <a href="https://instagram.com/recitefy" target="blank" aria-label="Instagram" style="color: white; margin: 0 1rem; font-size: 1.5rem;"><i class="fab fa-instagram"></i></a>
-            </div>
-            <p style="color: #ddd; font-size: 0.95rem;">&copy; 2025 Recitefy. All Rights Reserved.</p>
-        </div>
-    </footer>
+    
+<footer>
+  <div class="container">
+    <img src="logo.png" alt="Recitefy" style="width: 100px; margin-bottom: 2rem;" />
 
-    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
-    <script>
-        AOS.init();
-    </script>
-</body>
+  <div style="margin-bottom: 2rem;">
+  <a href="https://t.me/recitefy" target="blank" aria-label="Telegram" style="color: white; margin: 0 1rem; font-size: 1.5rem;"><i class="fab fa-telegram-plane"></i></a><a href="https://www.facebook.com/profile.php?id=61565472024122" target="blank" aria-label="Facebook" style="color: white; margin: 0 1rem; font-size: 1.5rem;"><i class="fab fa-facebook-f"></i></a><a href="https://twitter.com/recitefy" target="blank" aria-label="Twitter" style="color: white; margin: 0 1rem; font-size: 1.5rem;"><i class="fab fa-twitter"></i></a><a href="https://instagram.com/recitefy" target="blank" aria-label="Instagram" style="color: white; margin: 0 1rem; font-size: 1.5rem;"><i class="fab fa-instagram"></i></a>
+</div>
+    <p style="color: #ddd; font-size: 0.95rem;">
+      &copy; 2025 Recitefy. Committed to making Quran memorization easy, enjoyable, and effective.
+    </p>
+  </div>
+</footer>
+
+</body> 
 </html>
