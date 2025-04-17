@@ -462,108 +462,6 @@ b<!DOCTYPE html>
     color: #f8f9fa; /* Lighter text color for better contrast */
     max-width: 500px;
 }
-/* .tab-buttons {
-  display: flex;
-  justify-content: center;
-  gap: 0.75rem;
-  margin-bottom: 2rem;
-  flex-wrap: wrap;
-  padding: 0 1rem;
-}
-
-.tab-btn {
-  background: #007BFF;
-  color: white;
-  border: none;
-  padding: 0.6rem 1rem;
-  border-radius: 8px;
-  cursor: pointer;
-  font-weight: 600;
-  font-size: 1rem;
-  transition: background 0.3s, transform 0.2s;
-  flex-shrink: 0;
-}
-
-.tab-btn.active {
-  background: #0056b3;
-}
-
-.tab-btn:active {
-  transform: scale(0.97);
-}
-
-.tab-content {
-  opacity: 0;
-  position: absolute; /* Or you can use relative, but absolute ensures the layout isn't affected */
-/*   pointer-events: none; /* Prevent clicks on hidden sections */
-/*   transition: opacity 0.3s ease-in-out;
-  z-index: -1; /* Ensure inactive tabs are behind */ 
-/* } 
-
-/* .tab-content.active {
-  opacity: 1;
-  pointer-events: auto;
-  z-index: 1; /* Ensure the active tab is on top */
-/* } */
-/* 
-.tab-content img {
-  width: 100%;
-  max-width: 400px;
-  height: auto;
-  margin-bottom: 1rem;
-  border-radius: 12px;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.1);
-}
-
-.tab-content h3 {
-  font-size: 1.5rem;
-  color: #007BFF;
-  margin-bottom: 0.5rem;
-}
-
-.tab-content p {
-  font-size: 1rem;
-  color: #333;
-  line-height: 1.6;
-}
-
-@media (max-width: 600px) {
-  .tab-btn {
-    font-size: 0.9rem;
-    padding: 0.5rem 0.8rem;
-  }
-
-  .tab-content h3 {
-    font-size: 1.3rem;
-  }
-
-  .tab-content p {
-    font-size: 0.95rem;
-  } */
-/* } */
-
-
-
-/* 
-.slider-container {
-  position: relative;
-  overflow: hidden;
-  margin: 0 auto;
-}
-
-.feature-slides {
-  display: flex;
-  transition: transform 0.3s ease-in-out;
-}
- */
-/* .feature-slide {
-  flex: 0 0 100%;
-  min-width: 100%;
-  padding: 20px;
-  text-align: center; */
-/* }   */
-
-/* Enhanced Slider CSS */
 .feature-slides {
   display: flex;
   transition: transform 0.3s ease-in-out;
@@ -711,47 +609,60 @@ b<!DOCTYPE html>
             
             <div class="feature-slides">
               <!-- Slides -->
-              <div class="feature-slide active">
-                <img src="hero-mockup.png" alt="App Preview" class="hero-mockup">
-                <div class="hero-description">
-                  <p style="font-size: 1.5rem; color: white; margin-bottom: 0.5rem;">
-                  Strengthen your Hifdh, your way. Pick Surah, choose a mode — Duet, Learn, or Challenge — and recite out loud. No pressure, just a powerful space to build confidence and fluency with every session.
-                </p>
-                </div>
-              </div>
+             <div class="feature-slide active">
+  <img src="hero-mockup.png" alt="App Preview" class="hero-mockup">
+  <div class="hero-description" style="margin-top: 2rem; color: white;">
+    <p style="font-size: 1.5rem; color: white; margin-bottom: 0.5rem;">
+      Strengthen your Hifdh, your way. Pick Surah, choose a mode — Duet, Learn, or Challenge — and recite out loud. No pressure, just a powerful space to build confidence and fluency with every session.
+    </p>
+  </div>
+</div>
 
-                  <div class="feature-slide">
-              <img src="tadbeerfeed.png" alt="Tadbeer Feed" class="hero-mockup">
-              <div class="hero-description" style="margin-top: 2rem; color: white;">
-                <p style="font-size: 1.5rem; color: white; margin-bottom: 0.5rem;">
-                  Scroll through powerful verses and reflections like a spiritual feed. Whether it’s a timeless reminder or a verse that hits home today, this feed connects your heart to the Quran — effortlessly.
-                </p>
-              </div>
-            </div>
+<div class="feature-slide">
+  <img src="tadbeerfeed.png" alt="Tadbeer Feed" class="hero-mockup">
+  <div class="hero-description" style="margin-top: 2rem; color: white;">
+    <p style="font-size: 1.5rem; color: white; margin-bottom: 0.5rem;">
+      Scroll through powerful verses and reflections like a spiritual feed. Whether it’s a timeless reminder or a verse that hits home today, this feed connects your heart to the Quran — effortlessly.
+    </p>
+  </div>
+</div>
 
-            <div class="feature-slide">
-              <img src="revisionplanner.png" alt="Revision Planner" class="hero-mockup">
-              <h3>Smart Revision Planner</h3>
-              <p>Never forget what to revise or when. Our AI-assisted revision planner automatically schedules your reviews based on how long ago you memorized a verse, how often you've recited it, and where you last struggled. Stay sharp, effortlessly.</p>
-            </div>
+<div class="feature-slide">
+  <img src="revisionplanner.png" alt="Revision Planner" class="hero-mockup">
+  <div class="hero-description" style="margin-top: 2rem; color: white;">
+    <p style="font-size: 1.5rem; color: white; margin-bottom: 0.5rem;">
+      Never forget what to revise or when. Our AI-assisted revision planner automatically schedules your reviews based on how long ago you memorized a verse, how often you've recited it, and where you last struggled. Stay sharp, effortlessly.
+    </p>
+  </div>
+</div>
 
-            <div class="feature-slide">
-              <img src="tikrar[1].png" alt="Progress Tracking" class="hero-mockup">
-              <h3>Visual Progress Map</h3>
-              <p>See your Hifdh journey at a glance. Our visual tracker lights up every verse you complete and highlights areas for revision. Whether you’re on a 1-juz, 5-juz, or full Quran track, you’ll always know where you stand — and what to review.</p>
-            </div>
+<div class="feature-slide">
+  <img src="tikrar[1].png" alt="Progress Tracking" class="hero-mockup">
+  <div class="hero-description" style="margin-top: 2rem; color: white;">
+    <p style="font-size: 1.5rem; color: white; margin-bottom: 0.5rem;">
+      See your Hifdh journey at a glance. Our visual tracker lights up every verse you complete and highlights areas for revision. Whether you’re on a 1-juz, 5-juz, or full Quran track, you’ll always know where you stand — and what to review.
+    </p>
+  </div>
+</div>
 
-            <div class="feature-slide">
-              <img src="quranview.png" alt="Quran View" class="hero-mockup">
-              <h3>Crystal-Clear Quran View</h3>
-              <p>Experience a distraction-free interface designed for deep focus. Our beautifully rendered Mushaf view supports verse-by-verse playback.</p>
-            </div>
+<div class="feature-slide">
+  <img src="quranview.png" alt="Quran View" class="hero-mockup">
+  <div class="hero-description" style="margin-top: 2rem; color: white;">
+    <p style="font-size: 1.5rem; color: white; margin-bottom: 0.5rem;">
+      Experience a distraction-free interface designed for deep focus. Our beautifully rendered Mushaf view supports verse-by-verse playback.
+    </p>
+  </div>
+</div>
 
-            <div class="feature-slide">
-              <img src="tafseerpage.png" alt="Tafseer Page" class="hero-mockup">
-              <h3>Tafseer Page</h3>
-              <p>Tap the comments button to instantly unlock rich Tafseer insights. Understand context, meaning, and interpretation from trusted scholars — right when and where you need it most.</p>
-            </div>
+<div class="feature-slide">
+  <img src="tafseerpage.png" alt="Tafseer Page" class="hero-mockup">
+  <div class="hero-description" style="margin-top: 2rem; color: white;">
+    <p style="font-size: 1.5rem; color: white; margin-bottom: 0.5rem;">
+      Tap the comments button to instantly unlock rich Tafseer insights. Understand context, meaning, and interpretation from trusted scholars — right when and where you need it most.
+    </p>
+  </div>
+</div>
+
 
               <!-- Add other slides following the same structure -->
             </div>
