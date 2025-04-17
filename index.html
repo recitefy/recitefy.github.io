@@ -779,50 +779,50 @@
   }
 }
 
-
-
-
-/* Mobile Optimization */
+/* Mobile Optimization - No Scroll Layout */
 @media (max-width: 768px) {
-  .feature-slide {
+  .feature-slides {
+    display: flex;
     flex-direction: column;
-    min-height: 0; /* Remove fixed height */
-    padding: 1rem;
-    gap: 1.5rem;
-    scroll-snap-align: start; /* Only if using horizontal scroll */
+    height: 100vh;
+    overflow: hidden;
+  }
+
+  .feature-slide {
+    height: 100vh;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-sizing: border-box;
   }
 
   .hero-mockup {
-    max-width: 85% !important;
-    max-height: 50vh; /* Prevent image domination */
-    margin: 0 auto;
+    height: 40vh !important;
+    width: auto !important;
+    max-width: 90% !important;
+    margin: 10px auto 0;
+    object-fit: contain;
   }
 
   .hero-description {
-    max-width: 90% !important;
-    padding: 0 0.5rem;
+    height: calc(50vh - 60px);
+    max-width: 100% !important;
+    padding: 15px;
     margin: 0 auto;
+    overflow-y: auto;
   }
 
   .hero-description p {
-    font-size: 1.1rem; /* Better mobile readability */
-    line-height: 1.6;
-    margin-bottom: 1.5rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    margin: 0 0 15px;
+    padding: 0;
   }
 
-  /* Horizontal scroll container */
-  .feature-slides {
-    display: flex;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch;
-  }
-  
-  /* Natural vertical scroll for content */
-  .feature-slide {
-    width: 100vw;
-    flex-shrink: 0;
-    padding-bottom: 2rem; /* Space for scroll */
+  .progress-indicator {
+    height: 10vh;
+    padding-top: 10px;
   }
 }
 
