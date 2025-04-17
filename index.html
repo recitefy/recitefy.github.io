@@ -588,57 +588,31 @@
 
 
 
-        .visually-hidden {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  border: 0;
-}
-
-.mode-selector {
+.mode-article {
+  margin-bottom: 3rem;
   display: flex;
-  gap: 1rem;
-  justify-content: center;
-  margin-bottom: 2rem;
-}
-
-.mode-tab {
-  padding: 1rem 2rem;
-  border: none;
-  background: #f0f0f0;
-  border-radius: 2rem;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.mode-tab.active,
-.mode-tab[aria-selected="true"] {
-  background: #007BFF;
-  color: white;
-}
-
-.mode-panel {
-  display: grid;
-  gap: 2rem;
+  flex-direction: column;
   align-items: center;
-}
-
-@media (min-width: 768px) {
-  .mode-panel {
-    grid-template-columns: 1fr 1fr;
-  }
+  text-align: center;
 }
 
 .mode-visual img {
   max-width: 100%;
-  height: auto;
-  border-radius: 1rem;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  border-radius: 12px;
+  margin-bottom: 1rem;
 }
+
+.mode-heading {
+  font-size: 1.75rem;
+  margin: 1rem 0 0.5rem;
+  color: #007BFF;
+}
+
+.mode-description {
+  font-size: 1.1rem;
+  max-width: 700px;
+}
+
     </style>
 </head>
    
@@ -741,40 +715,8 @@
   <div class="container">
     <h2 id="practice-modes-heading" class="section-title">Practice Modes</h2>
 
-    <div role="tablist" aria-label="Select practice mode" class="mode-selector">
-      <button role="tab"
-              aria-selected="true"
-              aria-controls="duet-panel"
-              id="duet-tab"
-              class="mode-tab active"
-              data-tab="duet">
-        Musaffah (Duet)
-      </button>
-      
-      <button role="tab"
-              aria-selected="false"
-              aria-controls="learn-panel"
-              id="learn-tab"
-              class="mode-tab"
-              data-tab="learn">
-        Learn Mode
-      </button>
-      
-      <button role="tab"
-              aria-selected="false"
-              aria-controls="challenge-panel"
-              id="challenge-tab"
-              class="mode-tab"
-              data-tab="challenge">
-        Tahaddi (Challenge)
-      </button>
-    </div>
-
-    <!-- Duet Mode Panel -->
-    <article role="tabpanel"
-             id="duet-panel"
-             aria-labelledby="duet-tab"
-             class="mode-panel active">
+    <!-- Musaffah (Duet) Mode -->
+    <article class="mode-article">
       <figure class="mode-visual">
         <img src="duet-mode.png" 
              alt="Screen showing alternating verses between user and Qari Mishary Rashid">
@@ -790,14 +732,10 @@
       </div>
     </article>
 
-    <!-- Learn Mode Panel -->
-    <article role="tabpanel"
-             id="learn-panel"
-             aria-labelledby="learn-tab"
-             class="mode-panel"
-             hidden>
+    <!-- Learn Mode -->
+    <article class="mode-article">
       <figure class="mode-visual">
-        <img src="learn-mode.png" 
+        <img src="duet-mode.png" 
              alt="Step-by-step learning interface with highlighted verses">
         <figcaption class="visually-hidden">Learn Mode Interface</figcaption>
       </figure>
@@ -811,12 +749,8 @@
       </div>
     </article>
 
-    <!-- Challenge Mode Panel -->
-    <article role="tabpanel"
-             id="challenge-panel"
-             aria-labelledby="challenge-tab"
-             class="mode-panel"
-             hidden>
+    <!-- Tahaddi (Challenge) Mode -->
+    <article class="mode-article">
       <figure class="mode-visual">
         <img src="challengemode.png" 
              alt="Challenge screen showing timer and progress bar">
@@ -830,8 +764,10 @@
         </p>
       </div>
     </article>
+
   </div>
 </section>
+
 
 <!-- <section class="feature-graphic-section" id="practice-modes">
   <div class="container">
