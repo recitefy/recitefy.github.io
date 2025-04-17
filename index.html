@@ -796,47 +796,47 @@
 
 
 
-
-
-
-        /* Mobile Optimization */
+/* Mobile Optimization */
 @media (max-width: 768px) {
   .feature-slide {
     flex-direction: column;
-    min-height: auto; /* Remove fixed height */
+    min-height: 0; /* Remove fixed height */
     padding: 1rem;
     gap: 1.5rem;
-  }
-
-  .hero-mockup,
-  .hero-description {
-    max-width: 100% !important;
-    width: 100%;
-    margin: 0 !important;
+    scroll-snap-align: start; /* Only if using horizontal scroll */
   }
 
   .hero-mockup {
-    height: auto;
-    max-height: 40vh; /* Limit image height */
-    object-fit: contain;
+    max-width: 85% !important;
+    max-height: 50vh; /* Prevent image domination */
+    margin: 0 auto;
+  }
+
+  .hero-description {
+    max-width: 90% !important;
+    padding: 0 0.5rem;
+    margin: 0 auto;
   }
 
   .hero-description p {
-    font-size: 1.1rem; /* Smaller text for mobile */
+    font-size: 1.1rem; /* Better mobile readability */
     line-height: 1.6;
-    padding: 0 1rem;
+    margin-bottom: 1.5rem;
   }
 
-  /* Enable natural scrolling for entire slide */
+  /* Horizontal scroll container */
   .feature-slides {
-    scroll-snap-type: y mandatory;
-    overflow-y: auto;
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
   }
-
+  
+  /* Natural vertical scroll for content */
   .feature-slide {
-    scroll-snap-align: start;
-    height: 100vh; /* Make each slide full viewport height */
-    box-sizing: border-box;
+    width: 100vw;
+    flex-shrink: 0;
+    padding-bottom: 2rem; /* Space for scroll */
   }
 }
     </style>
@@ -1299,30 +1299,6 @@ new PracticeModes();
 
 
 
-    // Add touch detection for mobile scrolling
-let touchStartY = 0;
-const slider = document.querySelector('.feature-slides');
-
-slider.addEventListener('touchstart', e => {
-  touchStartY = e.touches[0].clientY;
-}, false);
-
-slider.addEventListener('touchend', e => {
-  const touchEndY = e.changedTouches[0].clientY;
-  const diff = touchStartY - touchEndY;
-
-  if (Math.abs(diff) > 50) { // Minimum swipe distance
-    diff > 0 ? scrollToNextSlide() : scrollToPrevSlide();
-  }
-});
-
-function scrollToNextSlide() {
-  slider.scrollBy({ top: window.innerHeight, behavior: 'smooth' });
-}
-
-function scrollToPrevSlide() {
-  slider.scrollBy({ top: -window.innerHeight, behavior: 'smooth' });
-}
 </script>
 </body> 
 </html>
