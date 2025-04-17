@@ -839,6 +839,53 @@
     padding-bottom: 2rem; /* Space for scroll */
   }
 }
+
+
+
+
+
+
+        .feature-slide {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh; /* full screen */
+  padding: 1rem;
+  gap: 2rem;
+  flex-wrap: wrap;
+  box-sizing: border-box;
+}
+
+.hero-mockup {
+  max-height: 70vh;
+  width: auto;
+  max-width: 45%;
+}
+
+.hero-description {
+  max-width: 45%;
+  color: white;
+}
+
+.hero-description p {
+  font-size: 1.2rem;
+  line-height: 1.4;
+}
+
+
+        @media (max-width: 768px) {
+  .feature-slide {
+    flex-direction: column;
+    height: auto; /* allow scrolling on mobile if needed */
+  }
+
+  .hero-mockup,
+  .hero-description {
+    max-width: 90%;
+    text-align: center;
+  }
+}
+
     </style>
 </head>
    
