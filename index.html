@@ -793,6 +793,52 @@
   }
 }
 
+
+
+
+
+
+
+        /* Mobile Optimization */
+@media (max-width: 768px) {
+  .feature-slide {
+    flex-direction: column;
+    min-height: auto; /* Remove fixed height */
+    padding: 1rem;
+    gap: 1.5rem;
+  }
+
+  .hero-mockup,
+  .hero-description {
+    max-width: 100% !important;
+    width: 100%;
+    margin: 0 !important;
+  }
+
+  .hero-mockup {
+    height: auto;
+    max-height: 40vh; /* Limit image height */
+    object-fit: contain;
+  }
+
+  .hero-description p {
+    font-size: 1.1rem; /* Smaller text for mobile */
+    line-height: 1.6;
+    padding: 0 1rem;
+  }
+
+  /* Enable natural scrolling for entire slide */
+  .feature-slides {
+    scroll-snap-type: y mandatory;
+    overflow-y: auto;
+  }
+
+  .feature-slide {
+    scroll-snap-align: start;
+    height: 100vh; /* Make each slide full viewport height */
+    box-sizing: border-box;
+  }
+}
     </style>
 </head>
    
@@ -1250,6 +1296,33 @@ document.addEventListener('DOMContentLoaded', () => {
 }
 
 new PracticeModes();
+
+
+
+    // Add touch detection for mobile scrolling
+let touchStartY = 0;
+const slider = document.querySelector('.feature-slides');
+
+slider.addEventListener('touchstart', e => {
+  touchStartY = e.touches[0].clientY;
+}, false);
+
+slider.addEventListener('touchend', e => {
+  const touchEndY = e.changedTouches[0].clientY;
+  const diff = touchStartY - touchEndY;
+
+  if (Math.abs(diff) > 50) { // Minimum swipe distance
+    diff > 0 ? scrollToNextSlide() : scrollToPrevSlide();
+  }
+});
+
+function scrollToNextSlide() {
+  slider.scrollBy({ top: window.innerHeight, behavior: 'smooth' });
+}
+
+function scrollToPrevSlide() {
+  slider.scrollBy({ top: -window.innerHeight, behavior: 'smooth' });
+}
 </script>
 </body> 
 </html>
