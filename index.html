@@ -587,32 +587,132 @@
 }
 
 
+.practice-modes {
+  padding: 4rem 0;
+  background: #f8f9fa;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.section-title {
+  text-align: center;
+  font-size: 2.5rem;
+  color: #2d3436;
+  margin-bottom: 3rem;
+  position: relative;
+}
+
+.section-title::after {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 3px;
+  background: #007BFF;
+  margin: 1rem auto 0;
+}
 
 .mode-article {
-  margin-bottom: 3rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  margin-bottom: 4rem;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  padding: 2rem;
+  transition: transform 0.3s ease;
+}
+
+.mode-article:hover {
+  transform: translateY(-5px);
+}
+
+.mode-visual {
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
 }
 
 .mode-visual img {
-  max-width: 100%;
-  border-radius: 12px;
-  margin-bottom: 1rem;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 8px;
+  transition: transform 0.3s ease;
+}
+
+.mode-visual:hover img {
+  transform: scale(1.03);
+}
+
+.mode-content {
+  padding: 1rem 2rem;
 }
 
 .mode-heading {
-  font-size: 1.75rem;
-  margin: 1rem 0 0.5rem;
-  color: #007BFF;
+  font-size: 2rem;
+  color: #2d3436;
+  margin-bottom: 1.5rem;
+  position: relative;
+}
+
+.mode-heading::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+  width: 50px;
+  height: 3px;
+  background: #007BFF;
 }
 
 .mode-description {
   font-size: 1.1rem;
-  max-width: 700px;
+  line-height: 1.8;
+  color: #555;
+  margin-bottom: 1.5rem;
 }
 
+.mode-description strong {
+  color: #2d3436;
+  display: block;
+  margin: 1.5rem 0 0.5rem;
+  font-size: 1.2rem;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+@media (max-width: 768px) {
+  .mode-article {
+    grid-template-columns: 1fr;
+    padding: 1.5rem;
+  }
+  
+  .section-title {
+    font-size: 2rem;
+  }
+  
+  .mode-heading {
+    font-size: 1.75rem;
+  }
+  
+  .mode-content {
+    padding: 1rem 0;
+  }
+}
     </style>
 </head>
    
