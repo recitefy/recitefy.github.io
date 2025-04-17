@@ -464,6 +464,40 @@
 }
 
 
+
+        .tab-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+
+.tab-btn {
+  background: #007BFF;
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.3s;
+}
+
+.tab-btn.active {
+  background: #0056b3;
+}
+
+.tab-content {
+  display: none;
+  text-align: center;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+
     </style>
 </head>
    
@@ -494,16 +528,6 @@
       </div>
     </div> 
 
-<!--    Tadbeer Feed Visual  -->
-<!--     <div class="hero-visual"> -->
-<!--       <img src="tadbeerfeed.png" alt="Tadbeer Feed" class="hero-mockup">
-      <div class="hero-description" style="margin-top: 2rem; color: white;">
-
-        <p style="font-size: 1.5rem; color: white; margin-bottom: 0.5rem;">
-          Scroll through powerful verses and reflections like a spiritual feed. Whether it’s a timeless reminder or a verse that hits home today, this feed connects your heart to the Quran — effortlessly.
-        </p>
-      </div>
-    </div>  -->
   </div>
 </section>
 
@@ -512,12 +536,41 @@
             </div>
         </div>
     </section> 
+<section class="feature-graphic-section" id="practice-modes">
+  <div class="container">
+    <h2 class="section-title">Practice Modes</h2>
+
+    <div class="tab-buttons">
+      <button class="tab-btn active" data-tab="duet">Musaffah (Duet)</button>
+      <button class="tab-btn" data-tab="learn">Learn Mode</button>
+      <button class="tab-btn" data-tab="challenge">Tahaddi (Challenge)</button>
+    </div>
+
+    <div class="tab-content active" id="duet">
+      <img src="duet-mode.png" alt="Duet Mode Preview">
+      <h3>Musaffah (Duet) Mode</h3>
+      <p>Feel like you're in the same room with your favorite reciters. Our real-time duet system lets you alternate verses with Qaris like Mishary Rashid or Minshawy. It trains your ear, builds confidence, and keeps you in rhythm.</p>
+    </div>
+
+    <div class="tab-content" id="learn">
+      <img src="duet-mode.png" alt="Learn Mode Preview">
+      <h3>Learn Mode</h3>
+      <p>Ease into memorization with a stress-free flow. Listen and repeat in a structured loop — no pressure, no grading. It's a chill practice zone to get the verses stuck in your head before you try reciting solo.</p>
+    </div>
+
+    <div class="tab-content" id="challenge">
+      <img src="challengemode.png" alt="Challenge Mode">
+      <h3>Tahaddi (Challenge Mode)</h3>
+      <p>Gamify your Hifdh journey with timed challenges, Ayah flashbacks, and recall battles. Earn points as you test your memory — perfect for revision or just pure motivation.</p>
+    </div>
+  </div>
+</section>
 
 
     <section class="feature-graphic-section">
     <div class="container">
         <div class="feature-grid">
-            <div class="graphic-card">
+<!--             <div class="graphic-card">
                 <img src="duet-mode.png" alt="Duet Mode Preview">
                 <h3>Musaffah (Duet) Mode</h3>
                 <p>Feel like you're in the same room with your favorite reciters. Our real-time duet system lets you alternate verses with Qaris like Mishary Rashid or Minshawy. In Duet Mode, you take turns with your chosen reciter — one verse you, one verse them. It trains your ear, builds confidence, and helps you stay in rhythm. It's a powerful way to stay engaged and make memorization more immersive and motivating.</p>
@@ -533,18 +586,7 @@
         <img src="challengemode.png" alt="Challenge Mode">
         <h3>Tahaddi(Challenge Mode)</h3>
         <p>Gamify your Hifdh journey with timed challenges, Ayah flashbacks, and recall battles. Earn points as you test your memory — perfect for revision or just pure motivation.</p>
-      </div>
-<!--                 <div class="graphic-card">
-        <img src="quranview.png" alt="Quran View">
-        <h3>Crystal-Clear Quran View</h3>
-        <p>Experience a distraction-free interface designed for deep focus. Our beautifully rendered Mushaf view supports verse-by-verse playback.</p>
-      </div>
-         
-      <div class="graphic-card">
-        <img src="tafseerpage.png" alt="Tafseer Page">
-        <h3>Tafseer Page</h3>
-        <p>Tap the comments button instantly unlock rich Tafseer insights. Understand context, meaning, and interpretation from trusted classical and contemporary scholars — right when and where you need it most.</p>
-      </div>  -->
+      </div> -->
 
           
         </div>
@@ -576,14 +618,6 @@
         <div class="container">
         
             <div class="hero-content">
-<!--                 <h1 class="hero-title">Your Hifdh Journey Just Got Better</h1>
-<p class="hero-tagline">Train with your favorite reciters, Duet with world-famous voices, and level up your memorization — the Recitefy way.</p> -->
-
-<!--                 <a href="#" class="cta-btn">
-                    Coming Soon
-                    <i class="fas fa-arrow-right" style="margin-left: 10px;"></i>
-                </a> -->
-               
 
 
 <!--    Tadbeer Feed Visual  -->
@@ -653,6 +687,22 @@
     </p>
   </div>
 </footer>
+<script>
+  const tabButtons = document.querySelectorAll('.tab-btn');
+  const tabContents = document.querySelectorAll('.tab-content');
+
+  tabButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      // Remove active from all
+      tabButtons.forEach(b => b.classList.remove('active'));
+      tabContents.forEach(tc => tc.classList.remove('active'));
+
+      // Activate clicked
+      btn.classList.add('active');
+      document.getElementById(btn.getAttribute('data-tab')).classList.add('active');
+    });
+  });
+</script>
 
 </body> 
 </html>
