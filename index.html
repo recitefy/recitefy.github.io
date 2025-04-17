@@ -493,15 +493,17 @@
 }
 
 .tab-content {
-  display: none;
-  text-align: center;
-  padding: 1rem;
-  max-width: 700px;
-  margin: 0 auto;
+  opacity: 0;
+  position: absolute; /* Or you can use relative, but absolute ensures the layout isn't affected */
+  pointer-events: none; /* Prevent clicks on hidden sections */
+  transition: opacity 0.3s ease-in-out;
+  z-index: -1; /* Ensure inactive tabs are behind */
 }
 
 .tab-content.active {
-  display: block;
+  opacity: 1;
+  pointer-events: auto;
+  z-index: 1; /* Ensure the active tab is on top */
 }
 
 .tab-content img {
