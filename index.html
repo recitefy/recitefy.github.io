@@ -545,45 +545,69 @@
 
 
 
+.slider-container {
+  position: relative;
+  overflow: hidden;
+  margin: 0 auto;
+}
 
-        
+.feature-slides {
+  display: flex;
+  transition: transform 0.3s ease-in-out;
+}
+
+.feature-slide {
+  flex: 0 0 100%;
+  min-width: 100%;
+  padding: 20px;
+  text-align: center;
+}
+
+.hero-mockup {
+  max-width: 300px;
+  margin: 0 auto;
+}
+
+.hero-description {
+  margin-top: 1rem;
+  color: white;
+  font-size: 1.2rem;
+}
+
+.slide-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255,255,255,0.3);
+  border: none;
+  color: white;
+  padding: 10px 15px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 1.2rem;
+}
+
+.prev-arrow { left: 10px; }
+.next-arrow { right: 10px; }
+
 .progress-indicator {
   display: flex;
   justify-content: center;
-  gap: 10px;
-  margin-top: 1rem;
+  gap: 8px;
+  margin-top: 20px;
 }
 
 .progress-ball {
-  width: 10px;
-  height: 10px;
+  width: 12px;
+  height: 12px;
   border-radius: 50%;
-  background-color: white;
-  opacity: 0.5;
-  transition: opacity 0.3s ease-in-out;
+  background: rgba(255,255,255,0.3);
+  cursor: pointer;
 }
 
 .progress-ball.active {
-  opacity: 1;
+  background: white;
 }
-
-.hero-title {
-  color: #ffffff;
-}
-
-.hero-tagline {
-  color: #ffffff;
-}
-
-.cta-btn {
-  padding: 10px 20px;
-  background-color: #007bff;
-  color: white;
-  text-decoration: none;
-  border-radius: 5px;
-  margin-top: 15px;
-}
-
     </style>
 </head>
    
@@ -622,7 +646,7 @@
 <!--             </div>
         </div>
     </section>  -->
-
+<!-- 
      <section class="hero">
   <div class="container">
     <img src="logo.png" alt="Recitefy" class="logo">
@@ -633,7 +657,7 @@
         <i class="fas fa-arrow-right" style="margin-left: 10px;"></i>
       </a>
 
-      <!-- Sliding Feature Section -->
+      <!-- Sliding Feature Section 
       <section class="hero-extra-section">
         <div class="container">
           <div class="feature-slides">
@@ -647,6 +671,84 @@
             </div>
 
             <div class="feature-slide">
+              <img src="tadbeerfeed.png" alt="Tadbeer Feed" class="hero-mockup">
+              <div class="hero-description" style="margin-top: 2rem; color: white;">
+                <p style="font-size: 1.5rem; color: white; margin-bottom: 0.5rem;">
+                  Scroll through powerful verses and reflections like a spiritual feed. Whether it’s a timeless reminder or a verse that hits home today, this feed connects your heart to the Quran — effortlessly.
+                </p>
+              </div>
+            </div>
+<!-- 
+            <div class="feature-slide">
+              <img src="revisionplanner.png" alt="Revision Planner">
+              <h3>Smart Revision Planner</h3>
+              <p>Never forget what to revise or when. Our AI-assisted revision planner automatically schedules your reviews based on how long ago you memorized a verse, how often you've recited it, and where you last struggled. Stay sharp, effortlessly.</p>
+            </div>
+
+            <div class="feature-slide">
+              <img src="tikrar[1].png" alt="Progress Tracking">
+              <h3>Visual Progress Map</h3>
+              <p>See your Hifdh journey at a glance. Our visual tracker lights up every verse you complete and highlights areas for revision. Whether you’re on a 1-juz, 5-juz, or full Quran track, you’ll always know where you stand — and what to review.</p>
+            </div>
+
+            <div class="feature-slide">
+              <img src="quranview.png" alt="Quran View">
+              <h3>Crystal-Clear Quran View</h3>
+              <p>Experience a distraction-free interface designed for deep focus. Our beautifully rendered Mushaf view supports verse-by-verse playback.</p>
+            </div>
+
+            <div class="feature-slide">
+              <img src="tafseerpage.png" alt="Tafseer Page">
+              <h3>Tafseer Page</h3>
+              <p>Tap the comments button to instantly unlock rich Tafseer insights. Understand context, meaning, and interpretation from trusted scholars — right when and where you need it most.</p>
+            </div>
+          </div>
+
+           Progress Indicator 
+          <div class="progress-indicator">
+            <div class="progress-ball active"></div>
+            <div class="progress-ball"></div>
+            <div class="progress-ball"></div>
+            <div class="progress-ball"></div>
+            <div class="progress-ball"></div>
+            <div class="progress-ball"></div>
+          </div>
+
+        </div>
+      </section>
+
+    </div>
+  </div>
+</section> -->
+<section class="hero">
+  <div class="container">
+    <img src="logo.png" alt="Recitefy" class="logo">
+    <div class="hero-content">
+      <h1 class="hero-title">Your Hifdh Journey Just Got Better</h1>
+      <p class="hero-tagline">Train with your favorite reciters, Duet with world-famous voices, and level up your memorization — the Recitefy way.</p>
+      <a href="#" class="cta-btn">Coming Soon
+        <i class="fas fa-arrow-right" style="margin-left: 10px;"></i>
+      </a>
+
+      <!-- Sliding Feature Section -->
+      <section class="hero-extra-section">
+        <div class="container">
+          <div class="slider-container">
+            <button class="slide-arrow prev-arrow">&lt;</button>
+            <button class="slide-arrow next-arrow">&gt;</button>
+            
+            <div class="feature-slides">
+              <!-- Slides -->
+              <div class="feature-slide active">
+                <img src="hero-mockup.png" alt="App Preview" class="hero-mockup">
+                <div class="hero-description">
+                  <p style="font-size: 1.5rem; color: white; margin-bottom: 0.5rem;">
+                  Strengthen your Hifdh, your way. Pick Surah, choose a mode — Duet, Learn, or Challenge — and recite out loud. No pressure, just a powerful space to build confidence and fluency with every session.
+                </p>
+                </div>
+              </div>
+
+                  <div class="feature-slide">
               <img src="tadbeerfeed.png" alt="Tadbeer Feed" class="hero-mockup">
               <div class="hero-description" style="margin-top: 2rem; color: white;">
                 <p style="font-size: 1.5rem; color: white; margin-bottom: 0.5rem;">
@@ -678,6 +780,9 @@
               <h3>Tafseer Page</h3>
               <p>Tap the comments button to instantly unlock rich Tafseer insights. Understand context, meaning, and interpretation from trusted scholars — right when and where you need it most.</p>
             </div>
+
+              <!-- Add other slides following the same structure -->
+            </div>
           </div>
 
           <!-- Progress Indicator -->
@@ -689,13 +794,12 @@
             <div class="progress-ball"></div>
             <div class="progress-ball"></div>
           </div>
-
         </div>
       </section>
-
     </div>
   </div>
 </section>
+
 
 <section class="feature-graphic-section" id="practice-modes">
   <div class="container">
@@ -957,6 +1061,57 @@ setInterval(nextSlide, 5000);
 // Initialize the first slide
 updateSlide();
 
+</script>
+     
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const slides = document.querySelectorAll('.feature-slide');
+  const progressBalls = document.querySelectorAll('.progress-ball');
+  const track = document.querySelector('.feature-slides');
+  const prevArrow = document.querySelector('.prev-arrow');
+  const nextArrow = document.querySelector('.next-arrow');
+  let currentIndex = 0;
+
+  function updateSlider() {
+    track.style.transform = `translateX(-${currentIndex * 100}%)`;
+    
+    // Update active states
+    slides.forEach((slide, index) => {
+      slide.classList.toggle('active', index === currentIndex);
+    });
+    
+    progressBalls.forEach((ball, index) => {
+      ball.classList.toggle('active', index === currentIndex);
+    });
+
+    // Update arrow states
+    prevArrow.disabled = currentIndex === 0;
+    nextArrow.disabled = currentIndex === slides.length - 1;
+  }
+
+  // Arrow navigation
+  prevArrow.addEventListener('click', () => {
+    if (currentIndex > 0) {
+      currentIndex--;
+      updateSlider();
+    }
+  });
+
+  nextArrow.addEventListener('click', () => {
+    if (currentIndex < slides.length - 1) {
+      currentIndex++;
+      updateSlider();
+    }
+  });
+
+  // Progress ball navigation
+  progressBalls.forEach((ball, index) => {
+    ball.addEventListener('click', () => {
+      currentIndex = index;
+      updateSlider();
+    });
+  });
+});
 </script>
 
 </body> 
