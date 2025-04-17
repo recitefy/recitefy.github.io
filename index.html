@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+b<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -462,7 +462,7 @@
     color: #f8f9fa; /* Lighter text color for better contrast */
     max-width: 500px;
 }
-.tab-buttons {
+/* .tab-buttons {
   display: flex;
   justify-content: center;
   gap: 0.75rem;
@@ -495,17 +495,17 @@
 .tab-content {
   opacity: 0;
   position: absolute; /* Or you can use relative, but absolute ensures the layout isn't affected */
-  pointer-events: none; /* Prevent clicks on hidden sections */
-  transition: opacity 0.3s ease-in-out;
-  z-index: -1; /* Ensure inactive tabs are behind */
-}
+/*   pointer-events: none; /* Prevent clicks on hidden sections */
+/*   transition: opacity 0.3s ease-in-out;
+  z-index: -1; /* Ensure inactive tabs are behind */ 
+/* } 
 
-.tab-content.active {
+/* .tab-content.active {
   opacity: 1;
   pointer-events: auto;
   z-index: 1; /* Ensure the active tab is on top */
-}
-
+/* } */
+/* 
 .tab-content img {
   width: 100%;
   max-width: 400px;
@@ -539,12 +539,12 @@
 
   .tab-content p {
     font-size: 0.95rem;
-  }
-}
+  } */
+/* } */
 
 
 
-
+/* 
 .slider-container {
   position: relative;
   overflow: hidden;
@@ -555,14 +555,93 @@
   display: flex;
   transition: transform 0.3s ease-in-out;
 }
-
-.feature-slide {
+ */
+/* .feature-slide {
   flex: 0 0 100%;
   min-width: 100%;
   padding: 20px;
-  text-align: center;
+  text-align: center; */
+/* }   */
+
+/* Enhanced Slider CSS */
+.feature-slides {
+  display: flex;
+  transition: transform 0.3s ease-in-out;
+  width: 100%;
 }
 
+.feature-slide {
+  flex: 0 0 100%;
+  transition: opacity 0.3s ease;
+  opacity: 0;
+}
+
+.feature-slide.active {
+  opacity: 1;
+}
+
+/* Practice Modes Tabs */
+.tab-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+.tab-btn {
+  background: none;
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  background: #f0f0f0;
+}
+
+.tab-btn.active {
+  background: #007BFF;
+  color: white;
+}
+
+.tab-btn.active::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60%;
+  height: 3px;
+  background: #007BFF;
+}
+
+.tab-content {
+  display: none;
+  text-align: center;
+  padding: 2rem;
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.tab-content.active {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.tab-content img {
+  max-width: 300px;
+  border-radius: 15px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
 .hero-mockup {
   max-width: 300px;
   margin: 0 auto;
@@ -808,6 +887,101 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 </script>
+<script>
+// Enhanced Slider with Swipe Functionality
+document.addEventListener('DOMContentLoaded', () => {
+  // Slider Logic
+  const slider = {
+    slides: document.querySelectorAll('.feature-slide'),
+    progressBalls: document.querySelectorAll('.progress-ball'),
+    track: document.querySelector('.feature-slides'),
+    currentIndex: 0,
+    touchStartX: 0,
+    touchEndX: 0,
 
+    init() {
+      this.addEventListeners();
+      this.updateSlider();
+    },
+
+    addEventListeners() {
+      document.querySelector('.prev-arrow').addEventListener('click', () => this.navigate(-1));
+      document.querySelector('.next-arrow').addEventListener('click', () => this.navigate(1));
+      
+      this.progressBalls.forEach((ball, index) => {
+        ball.addEventListener('click', () => {
+          this.currentIndex = index;
+          this.updateSlider();
+        });
+      });
+
+      // Touch events for mobile swipe
+      this.track.addEventListener('touchstart', e => this.handleTouchStart(e));
+      this.track.addEventListener('touchend', e => this.handleTouchEnd(e));
+    },
+
+    handleTouchStart(e) {
+      this.touchStartX = e.changedTouches[0].screenX;
+    },
+
+    handleTouchEnd(e) {
+      this.touchEndX = e.changedTouches[0].screenX;
+      const diff = this.touchStartX - this.touchEndX;
+      if (Math.abs(diff) > 50) { // Minimum swipe distance
+        diff > 0 ? this.navigate(1) : this.navigate(-1);
+      }
+    },
+
+    navigate(direction) {
+      const newIndex = this.currentIndex + direction;
+      if (newIndex >= 0 && newIndex < this.slides.length) {
+        this.currentIndex = newIndex;
+        this.updateSlider();
+      }
+    },
+
+    updateSlider() {
+      this.track.style.transform = `translateX(-${this.currentIndex * 100}%)`;
+      
+      this.slides.forEach((slide, index) => {
+        slide.classList.toggle('active', index === this.currentIndex);
+      });
+      
+      this.progressBalls.forEach((ball, index) => {
+        ball.classList.toggle('active', index === this.currentIndex);
+      });
+
+      document.querySelector('.prev-arrow').disabled = this.currentIndex === 0;
+      document.querySelector('.next-arrow').disabled = this.currentIndex === this.slides.length - 1;
+    }
+  };
+
+  slider.init();
+
+  // Practice Modes Tabs
+  const tabHandler = {
+    init() {
+      document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => this.switchTab(e));
+      });
+    },
+
+    switchTab(e) {
+      const tabId = e.target.dataset.tab;
+      
+      // Remove active classes
+      document.querySelectorAll('.tab-btn, .tab-content').forEach(el => {
+        el.classList.remove('active');
+      });
+
+      // Add active classes
+      e.target.classList.add('active');
+      document.getElementById(tabId).classList.add('active');
+    }
+  };
+
+  tabHandler.init();
+});
+</script>
 </body> 
 </html>
