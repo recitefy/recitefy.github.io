@@ -585,6 +585,60 @@
 .progress-ball.active {
   background: white;
 }
+
+
+
+        .visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+.mode-selector {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+.mode-tab {
+  padding: 1rem 2rem;
+  border: none;
+  background: #f0f0f0;
+  border-radius: 2rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.mode-tab.active,
+.mode-tab[aria-selected="true"] {
+  background: #007BFF;
+  color: white;
+}
+
+.mode-panel {
+  display: grid;
+  gap: 2rem;
+  align-items: center;
+}
+
+@media (min-width: 768px) {
+  .mode-panel {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.mode-visual img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 1rem;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
     </style>
 </head>
    
@@ -683,9 +737,103 @@
     </div>
   </div>
 </section>
+<section aria-labelledby="practice-modes-heading" class="practice-modes" id="practice-modes">
+  <div class="container">
+    <h2 id="practice-modes-heading" class="section-title">Practice Modes</h2>
 
+    <div role="tablist" aria-label="Select practice mode" class="mode-selector">
+      <button role="tab"
+              aria-selected="true"
+              aria-controls="duet-panel"
+              id="duet-tab"
+              class="mode-tab active"
+              data-tab="duet">
+        Musaffah (Duet)
+      </button>
+      
+      <button role="tab"
+              aria-selected="false"
+              aria-controls="learn-panel"
+              id="learn-tab"
+              class="mode-tab"
+              data-tab="learn">
+        Learn Mode
+      </button>
+      
+      <button role="tab"
+              aria-selected="false"
+              aria-controls="challenge-panel"
+              id="challenge-tab"
+              class="mode-tab"
+              data-tab="challenge">
+        Tahaddi (Challenge)
+      </button>
+    </div>
 
-<section class="feature-graphic-section" id="practice-modes">
+    <!-- Duet Mode Panel -->
+    <article role="tabpanel"
+             id="duet-panel"
+             aria-labelledby="duet-tab"
+             class="mode-panel active">
+      <figure class="mode-visual">
+        <img src="duet-mode.png" 
+             alt="Screen showing alternating verses between user and Qari Mishary Rashid">
+        <figcaption class="visually-hidden">Duet Mode Interface</figcaption>
+      </figure>
+      <div class="mode-content">
+        <h3 class="mode-heading">Musaffah (Duet) Mode</h3>
+        <p class="mode-description">
+          Feel like you're in the same room with your favorite reciters. Our real-time duet system 
+          lets you alternate verses with Qaris like Mishary Rashid or Minshawy. It trains your ear, 
+          builds confidence, and keeps you in rhythm.
+        </p>
+      </div>
+    </article>
+
+    <!-- Learn Mode Panel -->
+    <article role="tabpanel"
+             id="learn-panel"
+             aria-labelledby="learn-tab"
+             class="mode-panel"
+             hidden>
+      <figure class="mode-visual">
+        <img src="learn-mode.png" 
+             alt="Step-by-step learning interface with highlighted verses">
+        <figcaption class="visually-hidden">Learn Mode Interface</figcaption>
+      </figure>
+      <div class="mode-content">
+        <h3 class="mode-heading">Learn Mode</h3>
+        <p class="mode-description">
+          Ease into memorization with a stress-free flow. Listen and repeat in a structured loop — 
+          no pressure, no grading. It's a chill practice zone to get the verses stuck in your head 
+          before you try reciting solo.
+        </p>
+      </div>
+    </article>
+
+    <!-- Challenge Mode Panel -->
+    <article role="tabpanel"
+             id="challenge-panel"
+             aria-labelledby="challenge-tab"
+             class="mode-panel"
+             hidden>
+      <figure class="mode-visual">
+        <img src="challengemode.png" 
+             alt="Challenge screen showing timer and progress bar">
+        <figcaption class="visually-hidden">Challenge Mode Interface</figcaption>
+      </figure>
+      <div class="mode-content">
+        <h3 class="mode-heading">Tahaddi (Challenge Mode)</h3>
+        <p class="mode-description">
+          Gamify your Hifdh journey with timed challenges, Ayah flashbacks, and recall battles. 
+          Earn points as you test your memory — perfect for revision or just pure motivation.
+        </p>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- <section class="feature-graphic-section" id="practice-modes">
   <div class="container">
     <h2 class="section-title">Practice Modes</h2>
 
@@ -713,7 +861,7 @@
       <p>Gamify your Hifdh journey with timed challenges, Ayah flashbacks, and recall battles. Earn points as you test your memory — perfect for revision or just pure motivation.</p>
     </div>
   </div>
-</section>
+</section> -->
 
 
 
@@ -894,6 +1042,70 @@ document.addEventListener('DOMContentLoaded', () => {
 
   tabHandler.init();
 });
+
+
+
+
+    class PracticeModes {
+  constructor() {
+    this.tabs = document.querySelectorAll('[role="tab"]');
+    this.panels = document.querySelectorAll('[role="tabpanel"]');
+    this.init();
+  }
+
+  init() {
+    this.tabs.forEach(tab => {
+      tab.addEventListener('click', e => this.switchTab(e.currentTarget));
+      tab.addEventListener('keydown', e => this.handleKeyDown(e));
+    });
+  }
+
+  switchTab(selectedTab) {
+    this.tabs.forEach(tab => {
+      const isSelected = tab === selectedTab;
+      tab.setAttribute('aria-selected', isSelected);
+      tab.classList.toggle('active', isSelected);
+    });
+
+    this.panels.forEach(panel => {
+      panel.hidden = panel.id !== selectedTab.getAttribute('aria-controls');
+    });
+  }
+
+  handleKeyDown(event) {
+    const key = event.key;
+    const currentTab = event.currentTarget;
+    
+    switch(key) {
+      case 'ArrowLeft':
+        this.focusPreviousTab(currentTab);
+        break;
+      case 'ArrowRight':
+        this.focusNextTab(currentTab);
+        break;
+      case 'Home':
+        this.tabs[0].focus();
+        break;
+      case 'End':
+        this.tabs[this.tabs.length - 1].focus();
+        break;
+    }
+  }
+
+  focusPreviousTab(currentTab) {
+    const index = Array.from(this.tabs).indexOf(currentTab);
+    const prevIndex = index > 0 ? index - 1 : this.tabs.length - 1;
+    this.tabs[prevIndex].focus();
+  }
+
+  focusNextTab(currentTab) {
+    const index = Array.from(this.tabs).indexOf(currentTab);
+    const nextIndex = index < this.tabs.length - 1 ? index + 1 : 0;
+    this.tabs[nextIndex].focus();
+  }
+}
+
+new PracticeModes();
 </script>
 </body> 
 </html>
