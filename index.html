@@ -834,91 +834,87 @@ blockquote {
   margin-top: 2rem;
   font-weight: bold;
 }
+/* Minimal Carousel Styles */
+.feature-carousel {
+  position: relative;
+  max-width: 320px;
+  margin: 2rem auto;
+  overflow: hidden;
+}
 
+.carousel-track {
+  display: flex;
+  transition: transform 0.5s ease;
+}
 
-  /* Carousel Styles */
-  .feature-carousel {
-    position: relative;
-    max-width: 320px;
-    margin: 2rem auto;
-    overflow: hidden;
-    border-radius: 16px;
-    box-shadow: 0 8px 24px rgba(0,0,0,0.15);
-  }
+.carousel-slide {
+  min-width: 100%;
+  position: relative;
+}
 
-  .carousel-track {
-    display: flex;
-    transition: transform 0.5s ease;
-  }
+.app-screenshot {
+  width: 100%;
+  height: auto;
+  display: block;
+}
 
-  .carousel-slide {
-    min-width: 100%;
-    position: relative;
-  }
+/* Transparent Navigation Arrows */
+.carousel-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  border: none;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+  opacity: 0.7;
+  transition: opacity 0.2s ease;
+}
 
-  .app-screenshot {
-    width: 100%;
-    height: auto;
-    display: block;
-  }
+.carousel-arrow:hover {
+  opacity: 1;
+}
 
-  /* Navigation Arrows */
-  .carousel-arrow {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background: rgba(255,255,255,0.7);
-    border: none;
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    z-index: 10;
-    transition: all 0.3s ease;
-  }
+.prev-arrow {
+  left: 5px;
+}
 
-  .carousel-arrow:hover {
-    background: rgba(255,255,255,0.9);
-  }
+.next-arrow {
+  right: 5px;
+}
 
-  .prev-arrow {
-    left: 15px;
-  }
+/* Minimal Navigation Dots */
+.carousel-dots {
+  position: absolute;
+  bottom: 10px;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  z-index: 10;
+}
 
-  .next-arrow {
-    right: 15px;
-  }
+.carousel-dots .dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(0,0,0,0.2);
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
 
-  /* Navigation Dots */
-  .carousel-dots {
-    position: absolute;
-    bottom: 15px;
-    left: 0;
-    right: 0;
-    display: flex;
-    justify-content: center;
-    gap: 8px;
-    z-index: 10;
-  }
-
-  .carousel-dots .dot {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background: rgba(255,255,255,0.5);
-    border: none;
-    padding: 0;
-    cursor: pointer;
-    transition: all 0.3s ease;
-  }
-
-  .carousel-dots .dot.active {
-    background: white;
-    transform: scale(1.2);
-  }
+.carousel-dots .dot.active {
+  background: rgba(0,0,0,0.6);
+  transform: scale(1.1);
+}
 </style>
 
 
@@ -934,7 +930,7 @@ blockquote {
     <img src="logo.png" alt="Recitefy" class="logo">
     <div class="hero-content">
       <h1 class="hero-title">Your Hifdh Journey Just Got Better</h1>
-      <p class="hero-tagline">Train with your favorite reciters, Duet with world-famous voices, and level up your memorization — the Recitefy way.</p>
+<!--       <p class="hero-tagline">Train with your favorite reciters, Duet with world-famous voices, and level up your memorization — the Recitefy way.</p> -->
       
       <!-- Feature Carousel Container -->
       <div class="feature-carousel">
