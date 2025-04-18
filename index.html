@@ -864,7 +864,7 @@ blockquote {
   top: 50%;
   transform: translateY(-50%);
   background: transparent;
-  border: 2px solid white; /* White border */
+  border: none;
   width: 30px;
   height: 30px;
   display: flex;
@@ -876,9 +876,17 @@ blockquote {
   transition: opacity 0.2s ease, background 0.3s ease;
 }
 
+.carousel-arrow i {
+  color: white; /* Ensures the icon color is white */
+}
+
 .carousel-arrow:hover {
   opacity: 1; /* Full opacity on hover */
   background: rgba(255, 255, 255, 0.1); /* Subtle white background on hover */
+}
+
+.carousel-arrow:hover i {
+  color: #FFA500; /* Optional: Change icon color on hover */
 }
 
 .prev-arrow {
