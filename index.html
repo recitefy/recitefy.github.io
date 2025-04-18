@@ -1017,6 +1017,203 @@ blockquote {
 
 
 
+/* Base Styles */
+.quran-master {
+  position: relative;
+  padding: 4rem 0;
+  background: #0a192f;
+  color: white;
+}
+
+.qm-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.qm-headline {
+  font-size: 2.8rem;
+  text-align: center;
+  margin-bottom: 1.5rem;
+  line-height: 1.2;
+}
+
+.qm-subhead {
+  font-size: 1.2rem;
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto 3rem;
+  opacity: 0.9;
+}
+
+.qm-cta {
+  display: inline-flex;
+  align-items: center;
+  padding: 1rem 2rem;
+  background: #2ec4b6;
+  color: white;
+  border-radius: 50px;
+  text-decoration: none;
+  margin: 2rem auto;
+  transition: transform 0.3s ease;
+}
+
+.qm-cta-icon {
+  margin-left: 0.8rem;
+  transition: transform 0.3s ease;
+}
+
+/* Carousel Styles */
+.qm-feature-carousel {
+  position: relative;
+  margin-top: 4rem;
+}
+
+.qm-slider-wrapper {
+  position: relative;
+}
+
+.qm-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255,255,255,0.1);
+  border: none;
+  color: white;
+  padding: 1rem;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 4;
+  transition: all 0.3s ease;
+}
+
+.qm-prev { left: 2rem; }
+.qm-next { right: 2rem; }
+
+.qm-slides-container {
+  overflow: hidden;
+  border-radius: 20px;
+}
+
+.qm-slide {
+  display: none;
+  transition: opacity 0.5s ease;
+}
+
+.qm-slide.current {
+  display: block;
+}
+
+.qm-preview {
+  width: 100%;
+  height: 600px;
+  object-fit: contain;
+  border-radius: 15px;
+}
+
+.qm-caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 2rem;
+  background: linear-gradient(transparent, rgba(0,0,0,0.9));
+}
+
+.qm-caption-text {
+  font-size: 1.2rem;
+  line-height: 1.6;
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+/* Progress Dots */
+.qm-progress {
+  display: flex;
+  justify-content: center;
+  gap: 0.8rem;
+  margin-top: 2rem;
+}
+
+.qm-ball {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.3);
+  transition: all 0.3s ease;
+}
+
+.qm-ball.active {
+  background: #2ec4b6;
+  transform: scale(1.3);
+}
+
+/* Mobile Styles */
+@media (max-width: 768px) {
+  .qm-headline {
+    font-size: 2rem;
+  }
+
+  .qm-subhead {
+    font-size: 1rem;
+    padding: 0 1rem;
+  }
+
+  .qm-preview {
+    height: 400px;
+  }
+
+  .qm-caption {
+    padding: 1.5rem;
+  }
+
+  .qm-caption-text {
+    font-size: 1rem;
+  }
+
+  .qm-nav {
+    padding: 0.8rem;
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .quran-master {
+    padding: 2rem 0;
+  }
+
+  .qm-preview {
+    height: 300px;
+  }
+
+  .qm-caption-text {
+    font-size: 0.9rem;
+  }
+
+  .qm-progress {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
+/* Interactions */
+.qm-cta:hover {
+  transform: translateY(-2px);
+}
+
+.qm-cta:hover .qm-cta-icon {
+  transform: translateX(3px);
+}
+
+.qm-nav:hover {
+  background: rgba(255,255,255,0.2);
+  transform: translateY(-50%) scale(1.1);
+}
+
+
     </style>
 </head>
    
@@ -1115,6 +1312,100 @@ blockquote {
     </div>
   </div>
 </section>
+
+        <section class="quran-master">
+  <div class="qm-container">
+    <img src="logo.png" alt="Recitefy" class="qm-logo">
+    <div class="qm-main-content">
+      <h1 class="qm-headline">Your Hifdh Journey Just Got Better</h1>
+      <p class="qm-subhead">Train with your favorite reciters, Duet with world-famous voices, and level up your memorization — the Recitefy way.</p>
+      <a href="#" class="qm-cta">Coming Soon
+        <i class="fas fa-arrow-right qm-cta-icon"></i>
+      </a>
+
+      <!-- Feature Carousel -->
+      <section class="qm-feature-carousel">
+        <div class="qm-slider-wrapper">
+          <button class="qm-nav qm-prev">&lt;</button>
+          <button class="qm-nav qm-next">&gt;</button>
+
+          <div class="qm-slides-container">
+            <!-- Slide 1 -->
+            <div class="qm-slide current">
+              <img src="hero-mockup.png" alt="App Preview" class="qm-preview">
+              <div class="qm-caption">
+                <p class="qm-caption-text">
+                  Strengthen your Hifdh, your way. Pick Surah, choose a mode — Duet, Learn, or Challenge — and recite out loud. No pressure, just a powerful space to build confidence and fluency with every session.
+                </p>
+              </div>
+            </div>
+
+            <!-- Slide 2 -->
+            <div class="qm-slide">
+              <img src="tadbeerfeed.png" alt="Tadbeer Feed" class="qm-preview">
+              <div class="qm-caption">
+                <p class="qm-caption-text">
+                  Scroll through powerful verses and reflections like a spiritual feed. Whether it's a timeless reminder or a verse that hits home today, this feed connects your heart to the Quran — effortlessly.
+                </p>
+              </div>
+            </div>
+
+            <!-- Slide 3 -->
+            <div class="qm-slide">
+              <img src="revisionplanner.png" alt="Revision Planner" class="qm-preview">
+              <div class="qm-caption">
+                <p class="qm-caption-text">
+                  Never forget what to revise or when. Our AI-assisted revision planner automatically schedules your reviews based on memorization history and recitation patterns. Stay sharp, effortlessly.
+                </p>
+              </div>
+            </div>
+
+            <!-- Slide 4 -->
+            <div class="qm-slide">
+              <img src="tikrar[1].png" alt="Progress Tracking" class="qm-preview">
+              <div class="qm-caption">
+                <p class="qm-caption-text">
+                  Visualize your Hifdh journey with our progress tracker. Lights indicate mastered verses while highlighting areas needing review. Track by juz or complete Quran with clear milestones.
+                </p>
+              </div>
+            </div>
+
+            <!-- Slide 5 -->
+            <div class="qm-slide">
+              <img src="quranview.png" alt="Quran View" class="qm-preview">
+              <div class="qm-caption">
+                <p class="qm-caption-text">
+                  Immersive Mushaf interface with verse-by-verse playback. Minimal distractions, maximum focus. Perfect for deep memorization sessions and precise revision.
+                </p>
+              </div>
+            </div>
+
+            <!-- Slide 6 -->
+            <div class="qm-slide">
+              <img src="tafseerpage.png" alt="Tafseer Page" class="qm-preview">
+              <div class="qm-caption">
+                <p class="qm-caption-text">
+                  Instant access to trusted Tafseer commentaries. Understand context and meaning with scholar-approved insights available at your fingertips during recitation.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Progress Dots -->
+        <div class="qm-progress">
+          <div class="qm-ball active"></div>
+          <div class="qm-ball"></div>
+          <div class="qm-ball"></div>
+          <div class="qm-ball"></div>
+          <div class="qm-ball"></div>
+          <div class="qm-ball"></div>
+        </div>
+      </section>
+    </div>
+  </div>
+</section>
+
 
  
  
