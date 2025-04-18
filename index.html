@@ -428,7 +428,7 @@
     z-index: 3;
   }
 } */
-        /* Mobile Devices - Enhanced Full Screen Experience */
+        /* Mobile Devices - Enhanced Full Screen Experience 
 @media (max-width: 480px) {
   .feature-slide {
     display: flex !important;
@@ -437,14 +437,14 @@
     width: 100vw;
     padding: 0;
     margin: 0;
-    background: #0F172A; /* Fallback dark background */
+    background: #0F172A; /* Fallback dark background 
     position: relative;
   }
 
   .hero-mockup {
     position: absolute;
     width: 100%;
-    height: 50vh; /* Show more content area */
+    height: 50vh; /* Show more content area 
     object-fit: contain;
     top: 12%;
     z-index: 1;
@@ -472,7 +472,7 @@
     font-weight: 500;
   }
 
-  /* Improved Interaction Elements */
+  /* Improved Interaction Elements 
   .mode-selector {
     display: grid;
     gap: 1rem;
@@ -495,7 +495,7 @@
     border-color: #2563EB;
   }
 
-  /* Reciter List Improvements */
+  /* Reciter List Improvements 
   .reciter-list {
     display: flex;
     flex-direction: column;
@@ -514,7 +514,7 @@
     justify-content: space-between;
   }
 
-  /* Enhanced Progress Indicator */
+  /* Enhanced Progress Indicator 
   .progress-indicator {
     position: absolute;
     top: 1rem;
@@ -536,8 +536,8 @@
     background: #3B82F6;
     transform: scale(1.2);
   }
-
-  /* Floating Action Button */
+/* 
+  /* Floating Action Button 
   .start-button {
     position: fixed;
     bottom: 2rem;
@@ -550,6 +550,95 @@
     font-weight: 700;
     box-shadow: 0 8px 24px rgba(59, 130, 246, 0.3);
     z-index: 5;
+  }
+} */
+
+        /* Mobile Devices - Balanced Image/Text Layout */
+@media (max-width: 480px) {
+  .feature-slide {
+    display: flex !important;
+    flex-direction: column;
+    height: 100vh;
+    width: 100vw;
+    padding: 0;
+    margin: 0;
+    background: #0F172A;
+    position: relative;
+  }
+
+  .hero-mockup {
+    width: 100%;
+    height: 60vh; /* Dedicated image space */
+    object-fit: contain;
+    padding: 1rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero-description {
+    flex: 1;
+    padding: 1.5rem 1rem;
+    background: #0F172A;
+    overflow-y: auto;
+    position: relative;
+    z-index: 2;
+    box-shadow: 0 -4px 20px rgba(0,0,0,0.3);
+  }
+
+  /* Image Container with Protective Gradient */
+  .image-container {
+    position: relative;
+    height: 60vh;
+    background: linear-gradient(to bottom, 
+      rgba(15, 23, 42, 0) 70%,
+      rgba(15, 23, 42, 1) 100%);
+  }
+
+  .hero-description p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #E2E8F0;
+    text-align: center;
+    margin: 0 auto 1.5rem;
+    max-width: 90%;
+  }
+
+  /* Content Organization */
+  .content-section {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-top: 1rem;
+  }
+
+  /* Reciter List with Scroll */
+  .reciter-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    max-height: 40vh;
+    overflow-y: auto;
+    padding: 0 0.5rem;
+  }
+
+  /* Progress Indicator */
+  .progress-indicator {
+    position: absolute;
+    top: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 3;
+  }
+
+  /* Floating Controls */
+  .controls-container {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: 400px;
+    z-index: 3;
   }
 }
         .founder-message {
