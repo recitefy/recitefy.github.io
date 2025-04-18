@@ -648,6 +648,67 @@
   }
 } */
 
+/* 
+        /* Mobile Devices - Fullscreen Image Layout */
+/* @media (max-width: 480px) {
+  .feature-slide {
+    display: flex !important;
+    flex-direction: column;
+    height: 100vh;
+    width: 100vw;
+    padding: 0;
+    margin: 0;
+    position: relative;
+  }
+
+  .hero-mockup {
+    width: 100%;
+    height: 100vh; /* Full viewport height 
+    object-fit: contain;
+    padding: 0;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Since there's no separate text area anymore 
+  .hero-description {
+    display: none;
+  }
+
+  .image-container {
+    position: relative;
+    height: 100vh;
+/* Optional: Add gradient overlay here if needed */
+  }
+
+  /* Disable content sections since text is inside the image 
+  .content-section,
+  .reciter-list {
+    display: none;
+  }
+
+  .progress-indicator {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 3;
+  }
+
+  .controls-container {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: 400px;
+    z-index: 3;
+  }
+} */ 
+
+
+
+
 
         /* Mobile Devices - Fullscreen Image Layout */
 @media (max-width: 480px) {
@@ -663,14 +724,20 @@
 
   .hero-mockup {
     width: 100%;
-    height: 100vh; /* Full viewport height */
-    object-fit: contain;
+    height: 100vh;
+    object-fit: cover; /* changed from contain to cover for full coverage */
+    border-radius: 8px;
+    transition: transform 0.3s ease;
     padding: 0;
     position: relative;
     z-index: 1;
   }
 
-  /* Since there's no separate text area anymore */
+  /* Optional hover effect for interaction (if needed) */
+  .hero-mockup:hover {
+    transform: scale(1.02);
+  }
+
   .hero-description {
     display: none;
   }
@@ -678,10 +745,10 @@
   .image-container {
     position: relative;
     height: 100vh;
-/* Optional: Add gradient overlay here if needed */
+    overflow: hidden;
+    border-radius: 8px;
   }
 
-  /* Disable content sections since text is inside the image */
   .content-section,
   .reciter-list {
     display: none;
