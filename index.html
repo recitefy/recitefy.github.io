@@ -583,7 +583,7 @@
     margin: 0;
   }
 
-  .hero-mockup {
+/*   .hero-mockup {
     width: 100% !important;
     height: 100% !important;
     object-fit: cover;
@@ -593,7 +593,17 @@
     z-index: 1;
     max-height: none !important;
     filter: brightness(0.7);
-  }
+  } */
+.hero-mockup {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw; /* Force it to fill viewport width */
+  height: 100vh; /* Force it to fill viewport height */
+  object-fit: cover;
+  z-index: 1;
+  filter: brightness(0.7);
+}
 
   .hero-description {
     position: relative;
