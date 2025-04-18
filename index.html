@@ -594,15 +594,21 @@
     max-height: none !important;
     filter: brightness(0.7);
   } */
-.hero-mockup {
+/* .hero-mockup {
   position: absolute;
   top: 0;
   left: 0;
-  width: 100vw; /* Force it to fill viewport width */
-  height: 100vh; /* Force it to fill viewport height */
+  width: 100vw; /* Force it to fill viewport width *
+  height: 100vh; /* Force it to fill viewport height *
   object-fit: cover;
   z-index: 1;
   filter: brightness(0.7);
+} */
+.hero-mockup {
+  width: 100vw;
+  height: 100vh;
+  object-fit: contain;
+  object-position: center;
 }
 
   .hero-description {
