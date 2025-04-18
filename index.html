@@ -839,33 +839,39 @@
   }
 }
 
-        /* Mobile Devices */
+/* Mobile Devices */
 @media (max-width: 480px) {
   .feature-slide {
-    gap: 1rem;
-    padding: 1.5rem 1rem;
-    flex-direction: column-reverse; /* Put text first in DOM order */
+    display: grid;
+    grid-template-rows: auto auto;
+    gap: 1.5rem;
+    height: auto;
+    padding: 1rem;
+    align-items: start;
   }
 
   .hero-mockup {
-    max-width: 100%;
-    max-height: 40vh; /* Reduce image height to make room for text */
-    margin-top: 1rem; /* Space between text and image */
+    grid-row: 2;
+    max-height: 40vh;
+    width: 100%;
+    object-fit: contain;
   }
 
   .hero-description {
-    width: 100%; /* Use full width */
-    max-width: none;
-    padding: 0 1rem; /* Add side padding */
-    box-sizing: border-box;
-    text-align: left; /* Better for paragraph flow */
+    grid-row: 1;
+    width: 100%;
+    padding: 0;
   }
 
   .hero-description p {
-    font-size: clamp(1.05rem, 4vw, 1.1rem); /* Fluid typography */
-    line-height: 1.6; /* Better readability */
-    max-width: 600px; /* Prevent over-long lines */
-    margin: 0 auto; /* Center text while maintaining good measure */
+    font-size: min(1.15rem, 5.5vw); /* Scales between 17-18px */
+    line-height: 1.7;
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    hyphens: auto; /* Enable hyphenation */
+    text-align: justify;
+    text-justify: inter-word;
   }
 
   .hero {
