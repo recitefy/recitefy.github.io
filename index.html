@@ -1747,80 +1747,6 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
-document.addEventListener('DOMContentLoaded', () => {
-  // Enhanced Slider with Swipe Functionality
-  const slider = {
-    slides: document.querySelectorAll('.qm-slide'),
-    progressBalls: document.querySelectorAll('.qm-ball'),
-    track: document.querySelector('.qm-slides-container'),
-    currentIndex: 0,
-    touchStartX: 0,
-    touchEndX: 0,
-
-    init() {
-      this.addEventListeners();
-      this.updateSlider();
-      this.autoSlide = setInterval(() => this.navigate(1), 7000);
-    },
-
-    addEventListeners() {
-      document.querySelector('.qm-prev').addEventListener('click', () => this.navigate(-1));
-      document.querySelector('.qm-next').addEventListener('click', () => this.navigate(1));
-      
-      this.progressBalls.forEach((ball, index) => {
-        ball.addEventListener('click', () => {
-          this.currentIndex = index;
-          this.updateSlider();
-        });
-      });
-
-      // Touch events for mobile swipe
-      this.track.addEventListener('touchstart', e => this.handleTouchStart(e));
-      this.track.addEventListener('touchend', e => this.handleTouchEnd(e));
-      
-      // Pause auto-slide on hover
-      this.track.addEventListener('mouseenter', () => clearInterval(this.autoSlide));
-      this.track.addEventListener('mouseleave', () => {
-        this.autoSlide = setInterval(() => this.navigate(1), 7000);
-      });
-    },
-
-    handleTouchStart(e) {
-      this.touchStartX = e.changedTouches[0].screenX;
-    },
-
-    handleTouchEnd(e) {
-      this.touchEndX = e.changedTouches[0].screenX;
-      const diff = this.touchStartX - this.touchEndX;
-      if (Math.abs(diff) > 50) {
-        diff > 0 ? this.navigate(1) : this.navigate(-1);
-      }
-    },
-
-    navigate(direction) {
-      const newIndex = this.currentIndex + direction;
-      if (newIndex >= 0 && newIndex < this.slides.length) {
-        this.currentIndex = newIndex;
-      } else if (newIndex < 0) {
-        this.currentIndex = this.slides.length - 1;
-      } else {
-        this.currentIndex = 0;
-      }
-      this.updateSlider();
-    },
-
-    updateSlider() {
-      this.track.style.transform = `translateX(-${this.currentIndex * 100}%)`;
-      
-      this.progressBalls.forEach((ball, index) => {
-        ball.classList.toggle('active', index === this.currentIndex);
-      });
-    }
-  };
-
-  slider.init();
-});
-
     class PracticeModes {
   constructor() {
     this.tabs = document.querySelectorAll('[role="tab"]');
@@ -1933,6 +1859,104 @@ document.addEventListener('DOMContentLoaded', function() {
   carousel.addEventListener('mouseleave', () => {
     autoSlide = setInterval(() => showSlide(currentSlide + 1), 7000);
   });
+});
+
+
+
+         document.addEventListener('DOMContentLoaded', () => {
+  // Slider Configuration
+  const slider = {
+    slides: document.querySelectorAll('.qm-slide'),
+    progressBalls: document.querySelectorAll('.qm-ball'),
+    track: document.querySelector('.qm-slides-container'),
+    prevButton: document.querySelector('.prev-arrow'),
+    nextButton: document.querySelector('.next-arrow'),
+    currentIndex: 0,
+    touchStartX: 0,
+    touchEndX: 0,
+
+    init() {
+      this.addEventListeners();
+      this.updateSlider();
+      this.startAutoSlide();
+    },
+
+    addEventListeners() {
+      // Button controls
+      this.prevButton.addEventListener('click', () => this.navigate(-1));
+      this.nextButton.addEventListener('click', () => this.navigate(1));
+
+      // Progress ball controls
+      this.progressBalls.forEach((ball, index) => {
+        ball.addEventListener('click', () => {
+          this.currentIndex = index;
+          this.updateSlider();
+          this.resetAutoSlide();
+        });
+      });
+
+      // Touch controls
+      this.track.addEventListener('touchstart', e => this.handleTouchStart(e));
+      this.track.addEventListener('touchend', e => this.handleTouchEnd(e));
+
+      // Pause on hover
+      this.track.addEventListener('mouseenter', () => clearInterval(this.autoSlide));
+      this.track.addEventListener('mouseleave', () => this.startAutoSlide());
+    },
+
+    handleTouchStart(e) {
+      this.touchStartX = e.touches[0].clientX;
+    },
+
+    handleTouchEnd(e) {
+      this.touchEndX = e.changedTouches[0].clientX;
+      this.handleSwipe();
+    },
+
+    handleSwipe() {
+      const swipeThreshold = 50;
+      const swipeDistance = this.touchStartX - this.touchEndX;
+
+      if (Math.abs(swipeDistance) > swipeThreshold) {
+        swipeDistance > 0 ? this.navigate(1) : this.navigate(-1);
+      }
+    },
+
+    navigate(direction) {
+      this.currentIndex += direction;
+      
+      // Wrap around logic
+      if (this.currentIndex < 0) {
+        this.currentIndex = this.slides.length - 1;
+      } else if (this.currentIndex >= this.slides.length) {
+        this.currentIndex = 0;
+      }
+      
+      this.updateSlider();
+      this.resetAutoSlide();
+    },
+
+    updateSlider() {
+      // Slide transition
+      this.track.style.transform = `translateX(-${this.currentIndex * 100}%)`;
+      
+      // Update progress balls
+      this.progressBalls.forEach(ball => ball.classList.remove('active'));
+      this.progressBalls[this.currentIndex].classList.add('active');
+    },
+
+    startAutoSlide() {
+      this.autoSlide = setInterval(() => this.navigate(1), 7000);
+    },
+
+    resetAutoSlide() {
+      clearInterval(this.autoSlide);
+      this.startAutoSlide();
+    }
+  };
+
+  // Initialize slider
+  slider.init();
 });
 </script>
 </body> 
