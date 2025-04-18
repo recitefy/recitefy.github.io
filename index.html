@@ -33,6 +33,8 @@
             color: var(--text);
             line-height: 1.7;
             overflow-x: hidden;
+             justify-content: center; /* Centers content horizontally */
+  align-items: center;
         }
 
        .hero {
@@ -849,7 +851,7 @@
     height: 100vh;
     width: 100vw
     padding: 1rem;
-    align-items: start;
+ 
   }
 
   .hero-mockup {
@@ -910,170 +912,6 @@
 
 
 
-
-
-        /* Founder Message Section */
-.founder-message {
-  padding: 6rem 0;
-  position: relative;
-  overflow: hidden;
-}
-
-.founder-header {
-  text-align: center;
-  margin-bottom: 4rem;
-}
-
-.founder-header h2 {
-  font-family: 'Amiri', serif;
-  font-size: clamp(1.8rem, 4vw, 2.5rem);
-  color: #c9a35e;
-  line-height: 1.4;
-  max-width: 800px;
-  margin: 0 auto 1rem;
-}
-
-.founder-header p {
-  color: #999;
-  letter-spacing: 2px;
-  font-size: 0.9rem;
-}
-
-.message-grid {
-  display: grid;
-  gap: 3rem;
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 2rem;
-}
-
-.message-block {
-  position: relative;
-  padding: 2rem;
-  background: rgba(0, 0, 0, 0.3);
-  border-radius: 12px;
-  border: 1px solid rgba(201, 163, 94, 0.2);
-}
-
-.section-subtitle {
-  font-family: 'Poppins', sans-serif;
-  color: #fff;
-  font-size: 1.4rem;
-  margin-bottom: 1.5rem;
-  position: relative;
-  padding-left: 1rem;
-}
-
-.section-subtitle::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 4px;
-  height: 80%;
-  background: #c9a35e;
-}
-
-.inspiration-list {
-  columns: 2;
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.inspiration-list li {
-  position: relative;
-  padding-left: 1.5rem;
-  margin-bottom: 1rem;
-  color: #ddd;
-  font-size: 1rem;
-}
-
-.inspiration-list li::before {
-  content: '✓';
-  position: absolute;
-  left: 0;
-  color: #c9a35e;
-}
-
-.beliefs-slider {
-  position: relative;
-  min-height: 120px;
-}
-
-.belief-slide {
-  display: none;
-  padding: 1.5rem;
-  border: 1px solid rgba(201, 163, 94, 0.3);
-  border-radius: 8px;
-  text-align: center;
-}
-
-.belief-slide.active {
-  display: block;
-  animation: fadeIn 0.6s ease;
-}
-
-.signature-block {
-  text-align: center;
-  margin-top: 4rem;
-  padding-top: 2rem;
-  border-top: 1px solid rgba(255,255,255,0.1);
-}
-
-/* Animations */
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-/* Mobile Optimization */
-@media (max-width: 768px) {
-  .founder-message {
-    padding: 4rem 0;
-  }
-
-  .message-grid {
-    padding: 1rem;
-    gap: 2rem;
-  }
-
-  .inspiration-list {
-    columns: 1;
-  }
-
-  .message-block {
-    padding: 1.5rem;
-  }
-
-  .section-subtitle {
-    font-size: 1.2rem;
-  }
-
-  .inspiration-list li {
-    font-size: 0.95rem;
-  }
-
-  .signature-block {
-    margin-top: 2rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .founder-header h2 {
-    font-size: 1.6rem;
-    line-height: 1.3;
-  }
-
-  .message-grid {
-    padding: 0;
-  }
-
-  .belief-slide {
-    padding: 1rem;
-  }
-}
     </style>
 </head>
    
@@ -1228,111 +1066,7 @@
     </section>
   </div>
 </section>
-<section class="founder-message feature-slide" style="background: rgba(15, 23, 42, 0.98);"> <!-- Changed to dark navy base -->
-  <div class="container">
-    <!-- Visual Header -->
-    <div class="founder-header" style="text-align: center; margin-bottom: 3rem;">
-      <h2 style="font-family: 'Amiri', serif; font-size: 2.5rem; color: #eab308;"> <!-- Changed gold to more vibrant #eab308 -->
-        <span style="opacity: 0.9">قُلْ بِفَضْلِ ٱللَّهِ وَبِرَحْمَتِهِۦ فَبِذَٰلِكَ فَلْيَفْرَحُوا۟</span><br>
-        "Say: In the bounty of Allah and His mercy—let them rejoice"
-      </h2>
-      <p style="color: #94a3b8; letter-spacing: 2px; margin-top: 1rem;">SURAH YUNUS, 58</p> <!-- Changed to slate-400 -->
-    </div>
 
-    <!-- Core Message Grid -->
-    <div class="message-grid" style="display: grid; gap: 4rem; max-width: 800px; margin: 0 auto;">
-      <!-- Founder Story -->
-      <div class="message-block" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(234,179,8,0.15);"> <!-- Added border -->
-        <h3 class="section-subtitle">Why We Built Recitefy</h3>
-        <p class="hero-description" style="font-size: 1.2rem; color: #f8fafc;"> <!-- Changed to slate-50 -->
-          <em style="color: #eab308; display: block; margin-bottom: 1rem;">Bismillah.</em>
-          We didn't start Recitefy because the world needed another app.We started because we saw a quiet struggle. For many Muslims today, memorizing the Qur'an feels harder than it should. Distractions are everywhere. Support is rare. And the process—while deeply rewarding—can sometimes feel overwhelming or disconnected.<br><br>
-          So we built Recitefy. Not just to teach the Qur'an—but to make it come alive. To make it fun. Playful. Beautiful. With duet-style recitations, gamified streaks, and a global sense of connection. We're not a big company. We're a few believers with a bold dream.
-        </p>
-      </div>
-
-      <!-- Inspired By -->
-      <div class="message-block" style="border-left: 2px solid #c9a35e; padding-left: 2rem;">
-        <h3 class="section-subtitle">Standing on Shoulders of Giants</h3>
-        <ul class="inspiration-list" style="columns: 2; list-style: none; padding: 0;">
-          <li style="margin-bottom: 1rem;">✓ Tarteel's agility</li>
-          <li style="margin-bottom: 1rem;">✓ Niyyah's heart</li>
-          <li style="margin-bottom: 1rem;">✓ AzanGuru's focus</li>
-          <li style="margin-bottom: 1rem;">✓ Kiitab's joy</li>
-        </ul>
-      </div>
-
-      <!-- What Fuels Us -->
-      <div class="message-block">
-        <h3 class="section-subtitle">What Fuels Our Journey</h3>
-        <ul class="inspiration-list" style="columns: 1; list-style: none; padding: 0;">
-          <li style="margin-bottom: 1rem;">✓ The kids who smiled when "Ree" said they did well</li>
-          <li style="margin-bottom: 1rem;">✓ Mothers who cried hearing their child recite confidently</li>
-          <li style="margin-bottom: 1rem;">✓ Hafidh who rediscovered joy through Tahaddi mode</li>
-          <li style="margin-bottom: 1rem;">✓ Believers who whispered: "This is what I needed"</li>
-        </ul>
-      </div>
-
-      <!-- Core Beliefs Carousel -->
-      <div class="beliefs-slider">
-        <div class="belief-slide active">
-          <p class="hero-description" style="font-size: 1.1rem; text-align: center;">
-            "Build relentlessly.<br>
-            <em style="font-size: 0.9em; color: #c9a35e;">Not for hype—for value</em>"
-          </p>
-        </div>
-        <div class="belief-slide">
-          <p class="hero-description" style="font-size: 1.1rem; text-align: center;">
-            "Listen deeply.<br>
-            <em style="font-size: 0.9em; color: #c9a35e;">Every user is a teacher</em>"
-          </p>
-        </div>
-        <div class="belief-slide">
-          <p class="hero-description" style="font-size: 1.1rem; text-align: center;">
-            "Launch smart.<br>
-            <em style="font-size: 0.9em; color: #c9a35e;">Start small, grow strong</em>"
-          </p>
-        </div>
-        <div class="belief-slide">
-          <p class="hero-description" style="font-size: 1.1rem; text-align: center;">
-            "Fail fast.<br>
-            <em style="font-size: 0.9em; color: #c9a35e;">Fix faster</em>"
-          </p>
-        </div>
-        <div class="belief-slide">
-          <p class="hero-description" style="font-size: 1.1rem; text-align: center;">
-            "Celebrate progress.<br>
-            <em style="font-size: 0.9em; color: #c9a35e;">One verse at a time</em>"
-          </p>
-        </div>
-        <div class="belief-slide">
-          <p class="hero-description" style="font-size: 1.1rem; text-align: center;">
-            "Stay humble.<br>
-            <em style="font-size: 0.9em; color: #c9a35e;">Alhamdulillah always</em>"
-          </p>
-        </div>
-      </div>
-
-      <!-- Final Message -->
-      <div class="message-block" style="text-align: center; background: transparent; border: 2px solid rgba(201, 163, 94, 0.3);">
-        <p class="hero-description" style="font-size: 1.1rem;">
-          "Verily, with hardship comes ease."<br>
-          <em style="color: #c9a35e; font-size: 0.9rem;">Surah Ash-Sharh 94:5</em>
-        </p>
-      </div>
-    </div>
-
-    <!-- Founder Signature -->
-    <div class="signature-block" style="text-align: center; margin-top: 3rem;">
-      <p style="font-family: 'Dancing Script', cursive; font-size: 2rem; color: #c9a35e;">
-        Saleem Ahmad
-      </p>
-      <p style="text-transform: uppercase; letter-spacing: 2px; color: #666;">
-        Founder, Recitefy
-      </p>
-    </div>
-  </div>
-</section>
 
 
 
@@ -1367,13 +1101,6 @@
      
 <script>
 
-
-    // Sample belief toggler
-document.querySelectorAll('.belief-slide').forEach((slide, index) => {
-  slide.addEventListener('click', () => {
-    showNextBelief(index + 1);
-  })
-});
 
     
 document.addEventListener('DOMContentLoaded', () => {
