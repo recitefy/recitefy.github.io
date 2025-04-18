@@ -560,7 +560,7 @@
   }
 } */
 
-        /* Mobile Devices - Balanced Image/Text Layout */
+/*         /* Mobile Devices - Balanced Image/Text Layout 
 @media (max-width: 480px) {
   .feature-slide {
     display: flex !important;
@@ -569,13 +569,13 @@
     width: 100vw;
     padding: 0;
     margin: 0;
-/*     background: #0F172A; */
+/*     background: #0F172A; 
     position: relative;
   }
 
   .hero-mockup {
     width: 100%;
-    height: 60vh; /* Dedicated image space */
+    height: 60vh; /* Dedicated image space 
     object-fit: contain;
     padding: 1rem;
     position: relative;
@@ -585,20 +585,20 @@
   .hero-description {
     flex: 1;
     padding: 1.5rem 1rem;
-/*     background: #0F172A; */
+/*     background: #0F172A; 
     overflow-y: auto;
     position: relative;
     z-index: 2;
 /*     box-shadow: 0 -4px 20px rgba(0,0,0,0.3); */
   }
 
-  /* Image Container with Protective Gradient */
+  /* Image Container with Protective Gradient 
   .image-container {
     position: relative;
     height: 60vh;
 /*     background: linear-gradient(to bottom, 
       rgba(15, 23, 42, 0) 70%,
-      rgba(15, 23, 42, 1) 100%); */
+      rgba(15, 23, 42, 1) 100%); 
   }
 
   .hero-description p {
@@ -610,7 +610,7 @@
     max-width: 90%;
   }
 
-  /* Content Organization */
+  /* Content Organization *
   .content-section {
     display: flex;
     flex-direction: column;
@@ -618,7 +618,7 @@
     margin-top: 1rem;
   }
 
-  /* Reciter List with Scroll */
+  /* Reciter List with Scroll 
   .reciter-list {
     display: flex;
     flex-direction: column;
@@ -627,7 +627,7 @@
     overflow-y: auto;
     padding: 0 0.5rem;
   }
-/*   /* Progress Indicator Fix  */
+/*   /* Progress Indicator Fix  
   .progress-indicator {
     position: absolute;
     bottom: 20px;
@@ -636,7 +636,65 @@
     z-index: 3;
   }
 
-  /* Floating Controls */
+  /* Floating Controls 
+  .controls-container {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: 400px;
+    z-index: 3;
+  }
+} */
+
+
+        /* Mobile Devices - Fullscreen Image Layout */
+@media (max-width: 480px) {
+  .feature-slide {
+    display: flex !important;
+    flex-direction: column;
+    height: 100vh;
+    width: 100vw;
+    padding: 0;
+    margin: 0;
+    position: relative;
+  }
+
+  .hero-mockup {
+    width: 100%;
+    height: 100vh; /* Full viewport height */
+    object-fit: contain;
+    padding: 0;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Since there's no separate text area anymore */
+  .hero-description {
+    display: none;
+  }
+
+  .image-container {
+    position: relative;
+    height: 100vh;
+/* Optional: Add gradient overlay here if needed */
+  }
+
+  /* Disable content sections since text is inside the image */
+  .content-section,
+  .reciter-list {
+    display: none;
+  }
+
+  .progress-indicator {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 3;
+  }
+
   .controls-container {
     position: absolute;
     bottom: 2rem;
@@ -647,6 +705,7 @@
     z-index: 3;
   }
 }
+
         .founder-message {
   background-color: #f9f9fb;
   padding: 3rem 1rem;
@@ -737,7 +796,7 @@ blockquote {
            <div class="feature-slides">
              
               <div class="feature-slide active">
-                <img src="hero-mockup.png" alt="App Preview" class="hero-mockup">
+                <img src="hero-mockup1.png" alt="App Preview" class="hero-mockup">
                 <div class="hero-description" style="margin-top: 2rem; color: white;">
                   <p style="font-size: 1.5rem; margin-bottom: 0.5rem;">
                     Strengthen your Hifdh, your way. Pick Surah, choose a mode — Duet, Learn, or Challenge — and recite out loud. No pressure, just a powerful space to build confidence and fluency with every session.
