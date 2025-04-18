@@ -865,6 +865,42 @@
 }
 
 
+
+
+        /* Prevent horizontal overflow */
+body {
+  overflow-x: hidden;
+}
+
+/* Ensure slides container doesn't shift */
+.feature-slides {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  padding: 0 1rem; /* prevent tight edge */
+}
+
+/* Each slide fits the screen and stays centered */
+.feature-slide {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+/* Make sure images scale properly on mobile */
+.hero-mockup {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
     </style>
 </head>
    
