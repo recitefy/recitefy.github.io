@@ -1214,6 +1214,35 @@ blockquote {
 }
 
 
+        /* Add to existing CSS */
+.qm-slides-container {
+  position: relative;
+  min-height: 600px; /* Match your slide height */
+}
+
+.qm-slide {
+  position: absolute;
+  width: 100%;
+  opacity: 0;
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.qm-slide.current {
+  opacity: 1;
+  transform: translateX(0);
+  z-index: 2;
+}
+
+/* Optional slide animation */
+.qm-slide.prev {
+  transform: translateX(-100%);
+}
+
+.qm-slide.next {
+  transform: translateX(100%);
+}
+
+
     </style>
 </head>
    
@@ -1765,6 +1794,56 @@ new PracticeModes();
 
 
 
+</script>
+     <script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Carousel elements
+  const slides = document.querySelectorAll('.qm-slide');
+  const progressBalls = document.querySelectorAll('.qm-ball');
+  const prevButton = document.querySelector('.qm-prev');
+  const nextButton = document.querySelector('.qm-next');
+  let currentSlide = 0;
+
+  // Show initial slide
+  showSlide(currentSlide);
+
+  // Navigation functions
+  function showSlide(index) {
+    // Handle wrap-around
+    if (index < 0) index = slides.length - 1;
+    if (index >= slides.length) index = 0;
+
+    // Hide all slides
+    slides.forEach(slide => slide.classList.remove('current'));
+    // Show selected slide
+    slides[index].classList.add('current');
+    
+    // Update progress balls
+    progressBalls.forEach(ball => ball.classList.remove('active'));
+    progressBalls[index].classList.add('active');
+    
+    currentSlide = index;
+  }
+
+  // Button click handlers
+  prevButton.addEventListener('click', () => showSlide(currentSlide - 1));
+  nextButton.addEventListener('click', () => showSlide(currentSlide + 1));
+
+  // Progress ball click handlers
+  progressBalls.forEach((ball, index) => {
+    ball.addEventListener('click', () => showSlide(index));
+  });
+
+  // Auto-advance (optional)
+  let autoSlide = setInterval(() => showSlide(currentSlide + 1), 7000);
+  
+  // Pause on hover
+  const carousel = document.querySelector('.qm-feature-carousel');
+  carousel.addEventListener('mouseenter', () => clearInterval(autoSlide));
+  carousel.addEventListener('mouseleave', () => {
+    autoSlide = setInterval(() => showSlide(currentSlide + 1), 7000);
+  });
+});
 </script>
 </body> 
 </html>
