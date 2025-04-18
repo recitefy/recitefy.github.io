@@ -836,104 +836,108 @@ blockquote {
 }
 
 
+  /* Carousel Styles */
+  .feature-carousel {
+    position: relative;
+    max-width: 320px;
+    margin: 2rem auto;
+    overflow: hidden;
+    border-radius: 16px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+  }
 
-        /* Hero Section */
-.hero {
-  padding: 2rem 1rem;
-  text-align: center;
-}
+  .carousel-track {
+    display: flex;
+    transition: transform 0.5s ease;
+  }
 
-/* Carousel Container */
-.screenshot-carousel {
-  margin: 2rem auto;
-  max-width: 320px;
-  position: relative;
-}
+  .carousel-slide {
+    min-width: 100%;
+    position: relative;
+  }
 
-/* Carousel Track */
-.carousel-track {
-  display: flex;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  scroll-behavior: smooth;
-  -webkit-overflow-scrolling: touch;
-  border-radius: 16px;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.15);
-}
+  .app-screenshot {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
 
-/* Hide scrollbar */
-.carousel-track::-webkit-scrollbar {
-  display: none;
-}
+  /* Navigation Arrows */
+  .carousel-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255,255,255,0.7);
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 10;
+    transition: all 0.3s ease;
+  }
 
-/* Carousel Slides */
-.carousel-slide {
-  scroll-snap-align: start;
-  flex-shrink: 0;
-  width: 100%;
-}
+  .carousel-arrow:hover {
+    background: rgba(255,255,255,0.9);
+  }
 
-.app-screenshot {
-  width: 100%;
-  height: auto;
-  border-radius: 12px;
-  display: block;
-}
+  .prev-arrow {
+    left: 15px;
+  }
 
-/* Navigation Dots */
-.carousel-nav {
-  display: flex;
-  justify-content: center;
-  gap: 8px;
-  margin-top: 1rem;
-}
+  .next-arrow {
+    right: 15px;
+  }
 
-.nav-dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: rgba(0,0,0,0.2);
-  border: none;
-  padding: 0;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
+  /* Navigation Dots */
+  .carousel-dots {
+    position: absolute;
+    bottom: 15px;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    z-index: 10;
+  }
 
-.nav-dot.active {
-  background: #3B82F6;
-  transform: scale(1.2);
-}
+  .carousel-dots .dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.5);
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
 
-/* Auto-advance animation */
-@keyframes rotateSlides {
-  0%, 16% { transform: translateX(0); }
-  20%, 36% { transform: translateX(-100%); }
-  40%, 56% { transform: translateX(-200%); }
-  60%, 76% { transform: translateX(-300%); }
-  80%, 96% { transform: translateX(-400%); }
-  100% { transform: translateX(-500%); }
-}
-
-.carousel-track {
-  animation: rotateSlides 24s infinite;
-}
-
-
+  .carousel-dots .dot.active {
+    background: white;
+    transform: scale(1.2);
+  }
+</style>
 
 
     </style>
 </head>
    
  <body>
-<section class="hero">
+
+
+
+     <section class="hero">
   <div class="container">
     <img src="logo.png" alt="Recitefy" class="logo">
     <div class="hero-content">
       <h1 class="hero-title">Your Hifdh Journey Just Got Better</h1>
       <p class="hero-tagline">Train with your favorite reciters, Duet with world-famous voices, and level up your memorization — the Recitefy way.</p>
       
-      <!-- Simplified Feature Carousel -->
-      <div class="screenshot-carousel">
+      <!-- Feature Carousel Container -->
+      <div class="feature-carousel">
         <div class="carousel-track">
           <div class="carousel-slide active">
             <img src="hero-mockup1.png" alt="App Preview" class="app-screenshot">
@@ -955,15 +959,16 @@ blockquote {
           </div>
         </div>
         
-        <!-- Minimal Navigation -->
-        <div class="carousel-nav">
-          <button class="nav-dot active" aria-label="Show slide 1"></button>
-          <button class="nav-dot" aria-label="Show slide 2"></button>
-          <button class="nav-dot" aria-label="Show slide 3"></button>
-          <button class="nav-dot" aria-label="Show slide 4"></button>
-          <button class="nav-dot" aria-label="Show slide 5"></button>
-          <button class="nav-dot" aria-label="Show slide 6"></button>
-        </div>
+        <!-- Navigation Arrows -->
+        <button class="carousel-arrow prev-arrow" aria-label="Previous">
+          <i class="fas fa-chevron-left"></i>
+        </button>
+        <button class="carousel-arrow next-arrow" aria-label="Next">
+          <i class="fas fa-chevron-right"></i>
+        </button>
+        
+        <!-- Navigation Dots -->
+        <div class="carousel-dots"></div>
       </div>
       
       <a href="#" class="cta-btn">Coming Soon
@@ -1115,405 +1120,92 @@ blockquote {
   </div>
 </footer>
 
-     
-<script>
-
-
-    
+     <script>
 document.addEventListener('DOMContentLoaded', () => {
-  const slides = document.querySelectorAll('.feature-slide');
-  const progressBalls = document.querySelectorAll('.progress-ball');
-  const track = document.querySelector('.feature-slides');
-  const prevArrow = document.querySelector('.prev-arrow');
-  const nextArrow = document.querySelector('.next-arrow');
+  const track = document.querySelector('.carousel-track');
+  const slides = document.querySelectorAll('.carousel-slide');
+  const dotsContainer = document.querySelector('.carousel-dots');
+  const prevBtn = document.querySelector('.prev-arrow');
+  const nextBtn = document.querySelector('.next-arrow');
+  
   let currentIndex = 0;
-
-  function updateSlider() {
+  const slideCount = slides.length;
+  
+  // Create dots
+  slides.forEach((_, index) => {
+    const dot = document.createElement('button');
+    dot.classList.add('dot');
+    dot.setAttribute('aria-label', `Go to slide ${index + 1}`);
+    dot.addEventListener('click', () => goToSlide(index));
+    dotsContainer.appendChild(dot);
+  });
+  
+  const dots = document.querySelectorAll('.dot');
+  dots[0].classList.add('active');
+  
+  // Update carousel position
+  function updateCarousel() {
     track.style.transform = `translateX(-${currentIndex * 100}%)`;
     
-    // Update active states
-    slides.forEach((slide, index) => {
-      slide.classList.toggle('active', index === currentIndex);
-    });
-    
-    progressBalls.forEach((ball, index) => {
-      ball.classList.toggle('active', index === currentIndex);
-    });
-
-    // Update arrow states
-    prevArrow.disabled = currentIndex === 0;
-    nextArrow.disabled = currentIndex === slides.length - 1;
-  }
-
-  // Arrow navigation
-  prevArrow.addEventListener('click', () => {
-    if (currentIndex > 0) {
-      currentIndex--;
-      updateSlider();
-    }
-  });
-
-  nextArrow.addEventListener('click', () => {
-    if (currentIndex < slides.length - 1) {
-      currentIndex++;
-      updateSlider();
-    }
-  });
-
-  // Progress ball navigation
-  progressBalls.forEach((ball, index) => {
-    ball.addEventListener('click', () => {
-      currentIndex = index;
-      updateSlider();
-    });
-  });
-});
-</script>
-<script>
-// Enhanced Slider with Swipe Functionality
-document.addEventListener('DOMContentLoaded', () => {
-  // Slider Logic
-  const slider = {
-    slides: document.querySelectorAll('.feature-slide'),
-    progressBalls: document.querySelectorAll('.progress-ball'),
-    track: document.querySelector('.feature-slides'),
-    currentIndex: 0,
-    touchStartX: 0,
-    touchEndX: 0,
-
-    init() {
-      this.addEventListeners();
-      this.updateSlider();
-    },
-
-    addEventListeners() {
-      document.querySelector('.prev-arrow').addEventListener('click', () => this.navigate(-1));
-      document.querySelector('.next-arrow').addEventListener('click', () => this.navigate(1));
-      
-      this.progressBalls.forEach((ball, index) => {
-        ball.addEventListener('click', () => {
-          this.currentIndex = index;
-          this.updateSlider();
-        });
-      });
-
-      // Touch events for mobile swipe
-      this.track.addEventListener('touchstart', e => this.handleTouchStart(e));
-      this.track.addEventListener('touchend', e => this.handleTouchEnd(e));
-    },
-
-    handleTouchStart(e) {
-      this.touchStartX = e.changedTouches[0].screenX;
-    },
-
-    handleTouchEnd(e) {
-      this.touchEndX = e.changedTouches[0].screenX;
-      const diff = this.touchStartX - this.touchEndX;
-      if (Math.abs(diff) > 50) { // Minimum swipe distance
-        diff > 0 ? this.navigate(1) : this.navigate(-1);
-      }
-    },
-
-    navigate(direction) {
-      const newIndex = this.currentIndex + direction;
-      if (newIndex >= 0 && newIndex < this.slides.length) {
-        this.currentIndex = newIndex;
-        this.updateSlider();
-      }
-    },
-
-    updateSlider() {
-      this.track.style.transform = `translateX(-${this.currentIndex * 100}%)`;
-      
-      this.slides.forEach((slide, index) => {
-        slide.classList.toggle('active', index === this.currentIndex);
-      });
-      
-      this.progressBalls.forEach((ball, index) => {
-        ball.classList.toggle('active', index === this.currentIndex);
-      });
-
-      document.querySelector('.prev-arrow').disabled = this.currentIndex === 0;
-      document.querySelector('.next-arrow').disabled = this.currentIndex === this.slides.length - 1;
-    }
-  };
-
-  slider.init();
-
-  // Practice Modes Tabs
-  const tabHandler = {
-    init() {
-      document.querySelectorAll('.tab-btn').forEach(btn => {
-        btn.addEventListener('click', (e) => this.switchTab(e));
-      });
-    },
-
-    switchTab(e) {
-      const tabId = e.target.dataset.tab;
-      
-      // Remove active classes
-      document.querySelectorAll('.tab-btn, .tab-content').forEach(el => {
-        el.classList.remove('active');
-      });
-
-      // Add active classes
-      e.target.classList.add('active');
-      document.getElementById(tabId).classList.add('active');
-    }
-  };
-
-  tabHandler.init();
-});
-
-
-    class PracticeModes {
-  constructor() {
-    this.tabs = document.querySelectorAll('[role="tab"]');
-    this.panels = document.querySelectorAll('[role="tabpanel"]');
-    this.init();
-  }
-
-  init() {
-    this.tabs.forEach(tab => {
-      tab.addEventListener('click', e => this.switchTab(e.currentTarget));
-      tab.addEventListener('keydown', e => this.handleKeyDown(e));
+    // Update active dot
+    dots.forEach((dot, index) => {
+      dot.classList.toggle('active', index === currentIndex);
     });
   }
-
-  switchTab(selectedTab) {
-    this.tabs.forEach(tab => {
-      const isSelected = tab === selectedTab;
-      tab.setAttribute('aria-selected', isSelected);
-      tab.classList.toggle('active', isSelected);
-    });
-
-    this.panels.forEach(panel => {
-      panel.hidden = panel.id !== selectedTab.getAttribute('aria-controls');
-    });
-  }
-
-  handleKeyDown(event) {
-    const key = event.key;
-    const currentTab = event.currentTarget;
-    
-    switch(key) {
-      case 'ArrowLeft':
-        this.focusPreviousTab(currentTab);
-        break;
-      case 'ArrowRight':
-        this.focusNextTab(currentTab);
-        break;
-      case 'Home':
-        this.tabs[0].focus();
-        break;
-      case 'End':
-        this.tabs[this.tabs.length - 1].focus();
-        break;
-    }
-  }
-
-  focusPreviousTab(currentTab) {
-    const index = Array.from(this.tabs).indexOf(currentTab);
-    const prevIndex = index > 0 ? index - 1 : this.tabs.length - 1;
-    this.tabs[prevIndex].focus();
-  }
-
-  focusNextTab(currentTab) {
-    const index = Array.from(this.tabs).indexOf(currentTab);
-    const nextIndex = index < this.tabs.length - 1 ? index + 1 : 0;
-    this.tabs[nextIndex].focus();
-  }
-}
-
-new PracticeModes();
-
-
-
-</script>
-     <script>
-document.addEventListener('DOMContentLoaded', function() {
-  // Carousel elements
-  const slides = document.querySelectorAll('.qm-slide');
-  const progressBalls = document.querySelectorAll('.qm-ball');
-  const prevButton = document.querySelector('.qm-prev');
-  const nextButton = document.querySelector('.qm-next');
-  let currentSlide = 0;
-
-  // Show initial slide
-  showSlide(currentSlide);
-
+  
   // Navigation functions
-  function showSlide(index) {
-    // Handle wrap-around
-    if (index < 0) index = slides.length - 1;
-    if (index >= slides.length) index = 0;
-
-    // Hide all slides
-    slides.forEach(slide => slide.classList.remove('current'));
-    // Show selected slide
-    slides[index].classList.add('current');
-    
-    // Update progress balls
-    progressBalls.forEach(ball => ball.classList.remove('active'));
-    progressBalls[index].classList.add('active');
-    
-    currentSlide = index;
+  function goToSlide(index) {
+    currentIndex = index;
+    updateCarousel();
   }
-
-  // Button click handlers
-  prevButton.addEventListener('click', () => showSlide(currentSlide - 1));
-  nextButton.addEventListener('click', () => showSlide(currentSlide + 1));
-
-  // Progress ball click handlers
-  progressBalls.forEach((ball, index) => {
-    ball.addEventListener('click', () => showSlide(index));
-  });
-
-  // Auto-advance (optional)
-  let autoSlide = setInterval(() => showSlide(currentSlide + 1), 7000);
   
-  // Pause on hover
-  const carousel = document.querySelector('.qm-feature-carousel');
-  carousel.addEventListener('mouseenter', () => clearInterval(autoSlide));
-  carousel.addEventListener('mouseleave', () => {
-    autoSlide = setInterval(() => showSlide(currentSlide + 1), 7000);
-  });
-});
-
-
-
-         document.addEventListener('DOMContentLoaded', () => {
-  // Slider Configuration
-  const slider = {
-    slides: document.querySelectorAll('.qm-slide'),
-    progressBalls: document.querySelectorAll('.qm-ball'),
-    track: document.querySelector('.qm-slides-container'),
-    prevButton: document.querySelector('.prev-arrow'),
-    nextButton: document.querySelector('.next-arrow'),
-    currentIndex: 0,
-    touchStartX: 0,
-    touchEndX: 0,
-
-    init() {
-      this.addEventListeners();
-      this.updateSlider();
-      this.startAutoSlide();
-    },
-
-    addEventListeners() {
-      // Button controls
-      this.prevButton.addEventListener('click', () => this.navigate(-1));
-      this.nextButton.addEventListener('click', () => this.navigate(1));
-
-      // Progress ball controls
-      this.progressBalls.forEach((ball, index) => {
-        ball.addEventListener('click', () => {
-          this.currentIndex = index;
-          this.updateSlider();
-          this.resetAutoSlide();
-        });
-      });
-
-      // Touch controls
-      this.track.addEventListener('touchstart', e => this.handleTouchStart(e));
-      this.track.addEventListener('touchend', e => this.handleTouchEnd(e));
-
-      // Pause on hover
-      this.track.addEventListener('mouseenter', () => clearInterval(this.autoSlide));
-      this.track.addEventListener('mouseleave', () => this.startAutoSlide());
-    },
-
-    handleTouchStart(e) {
-      this.touchStartX = e.touches[0].clientX;
-    },
-
-    handleTouchEnd(e) {
-      this.touchEndX = e.changedTouches[0].clientX;
-      this.handleSwipe();
-    },
-
-    handleSwipe() {
-      const swipeThreshold = 50;
-      const swipeDistance = this.touchStartX - this.touchEndX;
-
-      if (Math.abs(swipeDistance) > swipeThreshold) {
-        swipeDistance > 0 ? this.navigate(1) : this.navigate(-1);
-      }
-    },
-
-    navigate(direction) {
-      this.currentIndex += direction;
-      
-      // Wrap around logic
-      if (this.currentIndex < 0) {
-        this.currentIndex = this.slides.length - 1;
-      } else if (this.currentIndex >= this.slides.length) {
-        this.currentIndex = 0;
-      }
-      
-      this.updateSlider();
-      this.resetAutoSlide();
-    },
-
-    updateSlider() {
-      // Slide transition
-      this.track.style.transform = `translateX(-${this.currentIndex * 100}%)`;
-      
-      // Update progress balls
-      this.progressBalls.forEach(ball => ball.classList.remove('active'));
-      this.progressBalls[this.currentIndex].classList.add('active');
-    },
-
-    startAutoSlide() {
-      this.autoSlide = setInterval(() => this.navigate(1), 7000);
-    },
-
-    resetAutoSlide() {
-      clearInterval(this.autoSlide);
-      this.startAutoSlide();
+  function nextSlide() {
+    currentIndex = (currentIndex + 1) % slideCount;
+    updateCarousel();
+  }
+  
+  function prevSlide() {
+    currentIndex = (currentIndex - 1 + slideCount) % slideCount;
+    updateCarousel();
+  }
+  
+  // Event listeners
+  nextBtn.addEventListener('click', nextSlide);
+  prevBtn.addEventListener('click', prevSlide);
+  
+  // Touch/swipe support
+  let touchStartX = 0;
+  let touchEndX = 0;
+  
+  track.addEventListener('touchstart', (e) => {
+    touchStartX = e.changedTouches[0].screenX;
+  }, {passive: true});
+  
+  track.addEventListener('touchend', (e) => {
+    touchEndX = e.changedTouches[0].screenX;
+    handleSwipe();
+  }, {passive: true});
+  
+  function handleSwipe() {
+    const threshold = 50;
+    if (touchEndX < touchStartX - threshold) {
+      nextSlide(); // Swipe left
+    } else if (touchEndX > touchStartX + threshold) {
+      prevSlide(); // Swipe right
     }
-  };
-
-  // Initialize slider
-  slider.init();
-
-
-
-
-
-
-
-
-
-
-
-
-
-             document.addEventListener('DOMContentLoaded', () => {
-  const dots = document.querySelectorAll('.nav-dot');
-  const track = document.querySelector('.carousel-track');
+  }
   
-  dots.forEach((dot, index) => {
-    dot.addEventListener('click', () => {
-      // Update active dot
-      dots.forEach(d => d.classList.remove('active'));
-      dot.classList.add('active');
-      
-      // Scroll to slide
-      track.style.scrollBehavior = 'smooth';
-      track.scrollLeft = track.offsetWidth * index;
-    });
-  });
+  // Auto-advance (optional)
+  let autoSlideInterval = setInterval(nextSlide, 5000);
   
-  // Pause auto-rotate on interaction
+  // Pause auto-advance on interaction
   track.addEventListener('mouseenter', () => {
-    track.style.animationPlayState = 'paused';
+    clearInterval(autoSlideInterval);
   });
   
   track.addEventListener('mouseleave', () => {
-    track.style.animationPlayState = 'running';
+    autoSlideInterval = setInterval(nextSlide, 5000);
   });
-});
 });
 </script>
 </body> 
