@@ -242,6 +242,32 @@
         } */
 
 
+.hero-description p {
+    font-size: 1.5rem;
+    color: white; /* Changed from var(--text) to white */
+    margin-bottom: 0.5rem;
+}
+
+.hero-description p {
+    color: #f8f9fa; /* Lighter text color for better contrast */
+    max-width: 500px;
+}
+.feature-slides {
+  display: flex;
+  transition: transform 0.3s ease-in-out;
+  width: 100%;
+}
+
+.feature-slide {
+  flex: 0 0 100%;
+  transition: opacity 0.3s ease;
+  opacity: 0;
+}
+
+.feature-slide.active {
+  opacity: 1;
+}
+
 .hero-description {
   margin-top: 1rem;
   color: white;
