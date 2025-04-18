@@ -889,64 +889,69 @@
     padding-bottom: 5px;
   }
 } 
- */@media (max-width: 480px) {
+ */
+        /* Mobile Devices - Full Screen Image with Text Overlay */
+@media (max-width: 480px) {
   .feature-slide {
-    display: flex;
+    display: flex !important;
     flex-direction: column;
     height: 100vh;
     width: 100vw;
     padding: 0;
     position: relative;
     overflow: hidden;
+    margin: 0;
   }
 
   .hero-mockup {
-    width: 100%;
-    height: 100%;
+    width: 100% !important;
+    height: 100% !important;
     object-fit: cover;
     position: absolute;
     top: 0;
     left: 0;
     z-index: 1;
     max-height: none !important;
+    filter: brightness(0.7);
   }
 
   .hero-description {
     position: relative;
     z-index: 2;
     padding: 2rem;
-    background: rgba(0, 0, 0, 0.7);
     margin-top: auto;
-    backdrop-filter: blur(5px);
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(8px);
+    border-radius: 15px 15px 0 0;
+    box-shadow: 0 -4px 20px rgba(0,0,0,0.3);
+    width: 100% !important;
+    max-width: none !important;
   }
 
   .hero-description p {
-    font-size: 1.1rem;
-    line-height: 1.6;
-    max-width: none;
-    margin: 0;
-    color: white;
-    text-align: center;
-    hyphens: none;
+    font-size: 1.15rem !important;
+    line-height: 1.7 !important;
+    text-align: center !important;
+    margin: 0 auto !important;
+    max-width: 90% !important;
+    color: #fff !important;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.2);
   }
 
   .hero {
-    padding-bottom: 0;
+    padding-bottom: 0 !important;
+    overflow: hidden;
   }
 
-  /* Optional: Add gradient overlay */
-  .feature-slide::after {
-    content: '';
+  /* Progress Indicator Fix */
+  .progress-indicator {
     position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 60%;
-    background: linear-gradient(transparent 0%, rgba(0,0,0,0.8) 100%);
-    z-index: 1;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 3;
   }
 }
-
         .founder-message {
   background-color: #f9f9fb;
   padding: 3rem 1rem;
@@ -1167,7 +1172,7 @@ blockquote {
   </div>
 </section>
 
-<section class="founder-message">
+<!-- <section class="founder-message">
   <div class="founder-container">
     <h2 class="founder-title">From the Founder: Why We Built Recitefy</h2>
     <p class="founder-paragraph"><strong>Bismillah.</strong></p>
@@ -1221,7 +1226,7 @@ blockquote {
     <blockquote>“Verily, with hardship comes ease.” – Surah Ash-Sharh</blockquote>
     <p class="founder-signature">– Saleem Ahmad<br>Founder, Recitefy</p>
   </div>
-</section>
+</section> -->
 
 
 
