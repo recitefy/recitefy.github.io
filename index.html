@@ -834,6 +834,30 @@ blockquote {
   margin-top: 2rem;
   font-weight: bold;
 }
+/* /* Minimal Carousel Styles 
+.feature-carousel {
+  position: relative;
+  max-width: 700px; 
+  margin: 2rem auto;
+  overflow: hidden;
+  aspect-ratio: 9 / 16;
+}
+
+.carousel-track {
+  display: flex;
+  transition: transform 0.5s ease;
+}
+
+.carousel-slide {
+  min-width: 100%;
+  position: relative;
+}
+
+.app-screenshot {
+  width: 100%;
+  height: 100%;
+  display: block;
+} */
 /* Minimal Carousel Styles */
 .feature-carousel {
   position: relative;
@@ -841,6 +865,22 @@ blockquote {
   margin: 2rem auto;
   overflow: hidden;
   aspect-ratio: 9 / 16;
+}
+
+/* On mobile, make the carousel take full screen width and height */
+@media (max-width: 768px) {
+  .feature-carousel {
+    max-width: 100%;
+    height: 100vh; /* Make the carousel fill the full height of the screen */
+    margin: 0;
+    aspect-ratio: none; /* Remove aspect-ratio constraint */
+  }
+
+  .app-screenshot {
+    width: 100%;  /* Ensure image takes full width */
+    height: 100%; /* Ensure image takes full height */
+    object-fit: cover; /* Ensure the image covers the screen without stretching */
+  }
 }
 
 .carousel-track {
