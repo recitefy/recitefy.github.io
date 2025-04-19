@@ -889,7 +889,8 @@ blockquote {
 .carousel-arrow:hover i {
   color: #FFA500; /* Optional: Change icon color on hover */
 }
- .carousel-arrow {
+/* Navigation Arrows */
+.carousel-arrow {
   width: 40px;
   height: 40px;
   border-radius: 50%; /* Circular button */
@@ -905,6 +906,7 @@ blockquote {
 .carousel-arrow:hover {
   background: rgba(0, 0, 0, 0.7);
 }
+
 .prev-arrow {
   left: 5px;
 }
@@ -912,15 +914,34 @@ blockquote {
 .next-arrow {
   right: 5px;
 }
+
+/* Minimal Navigation Dots */
 .carousel-dots {
   display: flex;
   justify-content: center;
   gap: 6px;
   z-index: 10;
-  margin-top: 1rem; /* Slightly more space between dots and carousel */
-  margin-bottom: 2rem; /* More space below the dots */
+  margin-top: 1rem; /* Space between dots and carousel */
+  margin-bottom: 2rem; /* Space below dots */
 }
 
+.carousel-dots .dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.5); /* White with transparency */
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.carousel-dots .dot.active {
+  background: #3B82F6; /* Tailwind's blue-500 or your preferred shade */
+  transform: scale(1.1);
+}
+
+/* Call to Action Button */
 .cta-btn {
   margin-top: 2rem; /* Space above the button */
   display: inline-flex;
