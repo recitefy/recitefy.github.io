@@ -889,7 +889,8 @@ blockquote {
 .carousel-arrow:hover i {
   color: #FFA500; /* Optional: Change icon color on hover */
 }
-/* Navigation Arrows */
+
+/* Navigation Arrows for larger screens (defaults) */
 .carousel-arrow {
   width: 40px;
   height: 40px;
@@ -905,6 +906,13 @@ blockquote {
 
 .carousel-arrow:hover {
   background: rgba(0, 0, 0, 0.7);
+}
+
+/* Hide navigation arrows on mobile screens */
+@media (max-width: 768px) {
+  .carousel-arrow {
+    display: none;
+  }
 }
 
 .prev-arrow {
