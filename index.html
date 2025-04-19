@@ -912,7 +912,7 @@ blockquote {
 .next-arrow {
   right: 5px;
 }
-
+/* 
 .carousel-dots {
   position: absolute;
   bottom: 0;
@@ -923,9 +923,35 @@ blockquote {
   gap: 6px;
   z-index: 10;
   padding: 0.5rem 0;
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.4), transparent); /* fades upward */
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.4), transparent); /* fades upward 
 }
 
+
+.carousel-dots .dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.5); /* White with transparency 
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.carousel-dots .dot.active {
+  background: #3B82F6; /* Tailwind's blue-500 or use your preferred shade 
+  transform: scale(1.1);
+}
+ */
+
+/* Minimal Navigation Dots */
+.carousel-dots {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  z-index: 10;
+  margin-top: 1rem; /* Space the dots from the carousel */
+}
 
 .carousel-dots .dot {
   width: 8px;
@@ -942,8 +968,6 @@ blockquote {
   background: #3B82F6; /* Tailwind's blue-500 or use your preferred shade */
   transform: scale(1.1);
 }
-
-
 
   .cta-btn {
   background: rgba(255, 255, 255, 0.03); /* Very light transparent background */
@@ -1012,10 +1036,10 @@ blockquote {
           <i class="fas fa-chevron-right"></i>
         </button>
         
-        <!-- Navigation Dots -->
-        <div class="carousel-dots"></div>
+ 
       </div>
-      
+             <!-- Navigation Dots -->
+        <div class="carousel-dots"></div>
       <a href="#" class="cta-btn">Download Recitefy
         <i class="fas fa-arrow-right"></i>
       </a>
