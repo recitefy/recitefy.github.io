@@ -973,76 +973,114 @@ blockquote {
 
 
 
+  .why-we-built {
+    background: linear-gradient(135deg, #f8f5f0 0%, #e8e0d5 100%);
+    padding: 5rem 0;
+    text-align: center;
+    font-family: 'Poppins', 'Segoe UI', sans-serif;
+    color: #2c3e50;
+    border-top: 1px solid rgba(0,0,0,0.05);
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+  }
 
-        .why-we-built {
-  background-color: #f4f4f9; /* Light background */
-  padding: 4rem 0;
-  text-align: center;
-}
+  .container {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
 
-.why-we-built .container {
-  max-width: 800px;
-  margin: 0 auto;
-}
+  .title {
+    font-size: 2.5rem;
+    font-weight: 300;
+    letter-spacing: -0.5px;
+    margin-bottom: 1.5rem;
+    color: #1a5276;
+    position: relative;
+    display: inline-block;
+  }
 
-.why-we-built h2 {
-  font-size: 2.5rem;
-  font-weight: 600;
-  color: #333;
-  margin-bottom: 2rem;
-}
+  .title:after {
+    content: '';
+    position: absolute;
+    width: 50%;
+    height: 3px;
+    background: #a67c52;
+    bottom: -10px;
+    left: 25%;
+    border-radius: 3px;
+  }
 
-.why-we-built .intro {
-  font-size: 1.5rem;
-  font-weight: 500;
-  color: #444;
-  margin-bottom: 1rem;
-}
+  .intro {
+    font-size: 1.8rem;
+    line-height: 1.4;
+    margin-bottom: 3rem;
+    font-weight: 300;
+    color: #7b8a8b;
+  }
 
-.why-we-built .content {
-  font-size: 1.25rem;
-  font-weight: 400;
-  color: #555;
-  line-height: 1.6;
-  margin-bottom: 2rem;
-}
+  .content {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    margin-bottom: 3rem;
+    font-weight: 400;
+  }
 
-.why-we-built .quote {
-  font-size: 1.5rem;
-  font-style: italic;
-  color: #333;
-  margin-top: 2rem;
-}
+  .quote {
+    font-size: 1.3rem;
+    font-style: italic;
+    color: #a67c52;
+    margin: 3rem auto;
+    max-width: 500px;
+    position: relative;
+    padding: 0 20px;
+  }
 
-.why-we-built .founder {
-  font-size: 1.25rem;
-  font-weight: 500;
-  color: #555;
-  margin-top: 1rem;
-}
-
-@media (max-width: 768px) {
-  .why-we-built h2 {
+  .quote:before, .quote:after {
+    content: '"';
     font-size: 2rem;
+    color: rgba(166, 124, 82, 0.3);
+    position: absolute;
   }
 
-  .why-we-built .intro {
-    font-size: 1.25rem;
+  .quote:before {
+    left: 0;
+    top: -10px;
   }
 
-  .why-we-built .content {
-    font-size: 1.125rem;
+  .quote:after {
+    right: 0;
+    bottom: -20px;
   }
 
-  .why-we-built .quote {
-    font-size: 1.25rem;
+  .surah {
+    font-weight: 600;
+    color: #1a5276;
   }
 
-  .why-we-built .founder {
-    font-size: 1rem;
+  .founder {
+    font-size: 1.1rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #7b8a8b;
+    margin-top: 2rem;
   }
-}
 
+  .founder-name {
+    font-weight: 600;
+    color: #2c3e50;
+  }
+
+  @media (max-width: 768px) {
+    .title {
+      font-size: 2rem;
+    }
+    .intro {
+      font-size: 1.5rem;
+    }
+    .content {
+      font-size: 1.1rem;
+    }
+  }
     </style>
 </head>
    
@@ -1211,11 +1249,9 @@ blockquote {
   </div>
 </section> -->
 
-
-
- <section class="why-we-built">
+<section class="why-we-built">
   <div class="container">
-    <h2>Why We Built Recitefy</h2>
+    <h2 class="title">Why We Built Recitefy</h2>
     <p class="intro">Hifdh is beautiful—<br>but it’s not always easy.</p>
     <p class="content">
       Recitefy was born from that tension.<br><br>
@@ -1226,11 +1262,10 @@ blockquote {
       Just a few believers building what we wish we had.<br><br>
       And if you're here, you’re already part of it.
     </p>
-    <p class="quote">“Verily, with hardship comes ease.” – Surah Ash-Sharh</p>
-    <p class="founder">— Saleem Ahmad, Founder</p>
+    <p class="quote">“Verily, with hardship comes ease.” – <span class="surah">Surah Ash-Sharh</span></p>
+    <p class="founder">— <span class="founder-name">Saleem Ahmad</span>, Founder</p>
   </div>
 </section>
-
     
 <footer>
   <div class="container">
