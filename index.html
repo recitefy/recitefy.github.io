@@ -564,11 +564,21 @@ blockquote {
   border: none;
   outline: none;
   background: rgba(0, 0, 0, 0.5); /* Semi-dark background */
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
 }
 
-.carousel-arrow:hover {
-  background: rgba(0, 0, 0, 0.7);
+
+
+/* Show arrows on desktop hover */
+@media (min-width: 769px) {
+  .feature-carousel:hover .carousel-arrow {
+    opacity: 1;
+    pointer-events: all;
+  }
 }
+
 
 /* Hide navigation arrows on mobile screens */
 @media (max-width: 768px) {
