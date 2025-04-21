@@ -734,6 +734,123 @@ blockquote {
 }
 
 
+/* Hero Navigation Styles */
+.hero-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 0;
+  position: relative;
+  z-index: 10;
+}
+
+.nav-logo {
+  height: 40px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 1rem;
+  transition: color 0.3s ease;
+  position: relative;
+}
+
+.nav-links a:hover {
+  color: #4CAF50;
+}
+
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -5px;
+  left: 0;
+  background-color: #4CAF50;
+  transition: width 0.3s ease;
+}
+
+.nav-links a:hover::after {
+  width: 100%;
+}
+
+.nav-cta {
+  background-color: #4CAF50;
+  padding: 0.5rem 1.2rem;
+  border-radius: 50px;
+  transition: all 0.3s ease;
+}
+
+.nav-cta:hover {
+  background-color: #3e8e41;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Mobile Menu */
+.hamburger {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+}
+
+.hamburger-line {
+  display: block;
+  width: 25px;
+  height: 2px;
+  background-color: white;
+  margin: 5px 0;
+  transition: all 0.3s ease;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .nav-links {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem 0;
+    gap: 1.5rem;
+    clip-path: circle(0% at 100% 0);
+    transition: clip-path 0.4s ease-out;
+  }
+
+  .nav-links.active {
+    clip-path: circle(150% at 100% 0);
+  }
+
+  .hamburger {
+    display: block;
+  }
+  
+  .nav-cta {
+    background-color: transparent;
+    padding: 0;
+  }
+  
+  .nav-cta:hover {
+    background-color: transparent;
+    transform: none;
+    box-shadow: none;
+  }
+}
+
     </style>
 </head>
    
@@ -742,8 +859,25 @@ blockquote {
 
 
      <section class="hero">
-  <div class="container">
+ 
+  <div class="container
+      
     <img src="logo.png" alt="Recitefy" class="logo">
+       <nav class="hero-nav">
+      <a href="#" class="logo-link">
+        <img src="logo.png" alt="Recitefy" class="nav-logo">
+      </a>
+      <ul class="nav-links">
+        <li><a href="#practice-modes">Features</a></li>
+        <li><a href="#ree">Meet Ree</a></li>
+        <li><a href="https://apkpure.com/p/com.recitefy.app" class="nav-cta">Download</a></li>
+      </ul>
+      <button class="hamburger" aria-label="Menu">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+      </button>
+    </nav>
     <div class="hero-content">
       <h1 class="hero-title">Your Hifdh Journey Just Got Better</h1>
 <!--       <p class="hero-tagline">Train with your favorite reciters, Duet with world-famous voices, and level up your memorization — the Recitefy way.</p> -->
@@ -978,6 +1112,26 @@ document.addEventListener('DOMContentLoaded', () => {
     autoSlideInterval = setInterval(nextSlide, 5000);
   });
 });
+</script>
+
+
+     <script>
+  // Toggle mobile menu
+  const hamburger = document.querySelector('.hamburger');
+  const navLinks = document.querySelector('.nav-links');
+
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('active');
+    navLinks.classList.toggle('active');
+  });
+
+  // Close mobile menu when clicking a link
+  document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', () => {
+      hamburger.classList.remove('active');
+      navLinks.classList.remove('active');
+    });
+  });
 </script>
 </body> 
 </html>
