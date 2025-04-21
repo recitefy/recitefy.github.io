@@ -261,14 +261,31 @@
     color: #f8f9fa; /* Lighter text color for better contrast */
     max-width: 500px;
 }
-.hero-title {
-  font-size: 2.5rem; /* Adjust as needed */
+/* .hero-title {
+  font-size: 2.5rem; /* Adjust as needed *
+  font-weight: bold; /* You can choose a weight *
+  text-align: center; /* Center the title *
+  color: #fff; /* White color to stand out on the blue-purple background *
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); /* Adds subtle shadow for better visibility *
+  margin-bottom: 1.5rem; /* Adjust spacing *
+  letter-spacing: 1px; /* Slightly increases spacing between letters *
+}
+ */
+        .hero-title {
+  font-size: 2.5rem; /* Default size for mobile */
   font-weight: bold; /* You can choose a weight */
   text-align: center; /* Center the title */
   color: #fff; /* White color to stand out on the blue-purple background */
   text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); /* Adds subtle shadow for better visibility */
-  margin-bottom: 1.5rem; /* Adjust spacing */
+  margin: 2rem 0; /* Add margin on top and bottom */
   letter-spacing: 1px; /* Slightly increases spacing between letters */
+}
+
+/* Bigger font size for desktop screens */
+@media (min-width: 768px) {
+  .hero-title {
+    font-size: 4rem; /* Adjust the size for desktop */
+  }
 }
 
  .feature-slides {
