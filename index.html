@@ -598,13 +598,20 @@ blockquote {
         /* Minimal Navigation Dots */
 .carousel-dots {
   display: flex;
-  justify-content: center; /* This centers the dots */
+  justify-content: center;
   gap: 6px;
   z-index: 10;
-  margin-top: 1rem; /* Space between dots and carousel */
-  margin-bottom: 2rem; /* Space below dots */
-  width: 100%; /* Ensure the container takes full width */
-  position: relative; /* Optional, in case you need absolute positioning */
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+  position: relative;
+}
+
+.carousel-dots span {
+  width: 8px; /* Set the width of each dot */
+  height: 8px; /* Set the height of each dot */
+  border-radius: 50%; /* Make them round */
+  background-color: #333; /* Change to your desired dot color */
+  transition: background-color 0.3s ease; /* Optional: Smooth transition on hover or active state */
 }
 
 .carousel-dots .dot {
