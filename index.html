@@ -37,13 +37,27 @@
   align-items: center;
         }
 
-       .hero {
+/*        .hero {
             background: linear-gradient(135deg, var(--primary), var(--secondary));
          min-height: 100vh;
          padding: 2rem;
             position: relative;
             overflow: hidden;
         }
+ */
+        .hero {
+    background: linear-gradient(135deg, var(--primary), var(--secondary)); /* Your gradient */
+    min-height: 100vh;
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+
+    /* Frosted Glass Effect */
+    background-color: rgba(255, 255, 255, 0.1); /* Semi-transparent white */
+    backdrop-filter: blur(10px); /* Apply blur effect */
+    -webkit-backdrop-filter: blur(10px); /* Safari support */
+    border-radius: 10px; /* Optional: Add rounded corners */
+}
 
 .practice-modes {
   padding: 4rem 0;
