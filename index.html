@@ -849,7 +849,179 @@ blockquote {
     transform: none;
     box-shadow: none;
   }
-}
+
+
+
+
+
+
+
+
+      body {
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    background: #0a0f1a;
+    color: white;
+  }
+
+  .hero {
+    background: linear-gradient(to bottom, #0a0f1a, #0c1323);
+    padding: 2rem 1rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: auto;
+    position: relative;
+  }
+
+  .hero-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 0;
+  }
+
+  .nav-logo {
+    height: 40px;
+  }
+
+  .nav-links {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+  }
+
+  .nav-links a {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+  }
+
+  .nav-links a:hover {
+    color: #3498db;
+  }
+
+  .nav-cta {
+    background: #007bff;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    font-weight: 600;
+    color: white !important;
+  }
+
+  .hamburger {
+    display: none; /* Responsive toggle logic later */
+    background: none;
+    border: none;
+  }
+
+  .hero-content {
+    text-align: center;
+    padding-top: 3rem;
+  }
+
+  .hero-title {
+    font-size: 3rem;
+    font-weight: 700;
+    max-width: 800px;
+    margin: auto;
+  }
+
+  .cta-btn {
+    margin-top: 2rem;
+    display: inline-block;
+    background: linear-gradient(90deg, #007bff, #1e90ff);
+    color: white;
+    padding: 0.75rem 1.5rem;
+    font-weight: 600;
+    border-radius: 10px;
+    text-decoration: none;
+    transition: background 0.3s ease;
+  }
+
+  .cta-btn:hover {
+    background: linear-gradient(90deg, #0056b3, #1e90ff);
+  }
+
+  .feature-carousel {
+    position: relative;
+    margin: 3rem auto 1rem;
+    max-width: 100%;
+    overflow: hidden;
+  }
+
+  .carousel-track {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+  }
+
+  .carousel-slide {
+    min-width: 100%;
+    padding: 0 1rem;
+  }
+
+  .app-screenshot {
+    width: 100%;
+    border-radius: 12px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+  }
+
+  .carousel-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255,255,255,0.1);
+    border: none;
+    padding: 0.5rem;
+    border-radius: 50%;
+    color: white;
+    cursor: pointer;
+  }
+
+  .prev-arrow {
+    left: 10px;
+  }
+
+  .next-arrow {
+    right: 10px;
+  }
+
+  .carousel-dots {
+    text-align: center;
+    margin-top: 1rem;
+  }
+
+  .carousel-dots span {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    background: #ffffff33;
+    border-radius: 50%;
+    margin: 0 5px;
+    cursor: pointer;
+  }
+
+  .carousel-dots .active {
+    background: #3498db;
+  }
+
+  @media (max-width: 768px) {
+    .hero-title {
+      font-size: 2rem;
+    }
+
+    .nav-links {
+      display: none;
+    }
+
+    .hamburger {
+      display: block;
+    }
+  }
 
     </style>
 </head>
