@@ -1003,7 +1003,26 @@ body, html {
 
 
 
+/* make logo and text align nicely */
+.logo-link {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
 
+/* image sizing stays the same */
+.nav-logo {
+  height: 40px;
+}
+
+/* style your brand name */
+.logo-text {
+  color: white;
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-left: 0.5rem;
+  user-select: none;
+}
 
     </style>
 </head>
@@ -1081,6 +1100,7 @@ body, html {
   <nav class="hero-nav">
     <a href="#" class="logo-link">
       <img src="logo.png" alt="Recitefy" class="nav-logo">
+      <span class="logo-text">Recitefy</span>
     </a>
     <ul class="nav-links">
       <li><a href="#practice-modes">Features</a></li>
@@ -1094,6 +1114,7 @@ body, html {
     </button>
   </nav>
 </header>
+
 
 <section class="hero">
   <div class="container">
