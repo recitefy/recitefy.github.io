@@ -837,8 +837,8 @@ blockquote {
   }
 }
 
-
-/ Hero Navigation Styles */
+/* 
+Hero Navigation Styles 
 .hero-nav {
   position: sticky;
   display: flex;
@@ -847,23 +847,34 @@ blockquote {
   padding: 1.5rem 0;
     background-color: rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(10px);
-/*   position: relative; */
+/*   position: relative; 
   z-index: 10;
-} 
-
-/* .hero-nav {
-  position: absolute;
+}  */
+.hero-nav {
+  position: fixed;
   top: 0;
-  z-index: 1000;
-  background-color: rgba(0, 0, 0, 0.8);
-  backdrop-filter: blur(10px);
+  left: 0;
+  width: 100%;
+  height: 70px;                /* adjust to your nav’s actual height */
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1.5rem 2rem;
-  width: 100%;
-} */
+  padding: 1rem 2rem;
+  background-color: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(10px);
+  z-index: 1000;
+}
 
+/* push the hero down by the nav’s height */
+.hero {
+  padding-top: 70px;           /* same as .hero-nav height */
+}
+
+body, html {
+  margin: 0;
+  padding: 0;
+  scroll-behavior: smooth;
+}
 
 .nav-logo {
   height: 40px;
