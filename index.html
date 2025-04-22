@@ -118,16 +118,29 @@
   margin: 1rem auto 0;
 }
 
-.mode-article {
+/* .mode-article {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 3rem;
   margin-bottom: 4rem;
 /*   background: white; */
 /*   border-radius: 12px;
-  box-shadow: 0 5px 15px rgbva(0,0,0,0.1); */
+  box-shadow: 0 5px 15px rgbva(0,0,0,0.1); *
   padding: 2rem;
   transition: transform 0.3s ease;
+}
+ */
+
+        .mode-article {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  padding: 2rem;
+  margin-bottom: 4rem;
+
+  /* new: don’t let it outgrow the screen */
+  max-height: 90vh;       /* 90% of viewport height */
+  overflow-y: auto;       /* scrolls internally if needed */
 }
 
 .mode-article:hover {
