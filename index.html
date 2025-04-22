@@ -135,47 +135,34 @@
   max-height: 90vh;
   overflow-y: auto;   /* scrolls the whole wrapper on the page */
 }
-
 .mode-article {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  align-items: start;     /* top‑align image & text */
+  align-items: start;
   gap: 3rem;
   padding: 2rem;
-  margin-bottom: 4rem;
-
-  /* drop these two: */
-  /* max-height: 90vh; */
-  /* overflow-y: auto; */
+  margin: 0;                /* remove any extra bottom margin */
+  height: 100%;             /* stretch to full wrapper height */
 }
+
 
 .mode-article:hover {
   transform: translateY(-5px);
 }
-
 .mode-visual {
   width: 100%;
-  aspect-ratio: 9 / 19;    /* or 4/3, whatever looks best */
+  aspect-ratio: 9 / 19;
   overflow: hidden;
   border-radius: 8px;
 }
 
-/* .mode-visual img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  transition: transform 0.3s ease;
-}
- 
-      */  
-
- .mode-visual img {
+.mode-visual img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border-radius: 8px;
   transition: transform 0.3s ease;
-} 
+}
+
 
 .mode-visual:hover img {
   transform: scale(1.03);
