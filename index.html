@@ -89,18 +89,15 @@
   align-items: center;
   justify-content: center;
   width: 100vw; /* or use 100% if it's inside a full-width parent *
-} */
+} *//* Container for central alignment and responsive width */
 .container {
   width: 100%;
-  max-width: 1200px;      /* or whatever your design width is */
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 0 1rem;        /* optional side padding */
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  padding: 0 1rem;
 }
 
+/* Title styling */
 .section-title {
   text-align: center;
   font-size: 2.5rem;
@@ -118,37 +115,25 @@
   margin: 1rem auto 0;
 }
 
-/* .mode-article {
+/* Wrapper that fits below nav and fills screen */
+.section-wrapper {
+  height: calc(100vh - 70px); /* adjust if nav is taller */
+  display: flex;
+  align-items: center;
+}
+
+/* Grid layout for image + content side-by-side */
+.mode-article {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 3rem;
-  margin-bottom: 4rem;
-/*   background: white; */
-/*   border-radius: 12px;
-  box-shadow: 0 5px 15px rgbva(0,0,0,0.1); *
-  padding: 2rem;
-  transition: transform 0.3s ease;
-}
- */
-
-/*         .section-wrapper { *
-  max-height: 90vh;
-  overflow-y: auto;   /* scrolls the whole wrapper on the page */
-}
-/* .mode-article {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  align-items: start;
+  align-items: center;
   gap: 3rem;
   padding: 2rem;
-  margin: 0;                /* remove any extra bottom margin *
-  height: 100%;             /* stretch to full wrapper height *
+  width: 100%;
+  height: 100%; /* fill parent wrapper */
 }
 
-
-.mode-article:hover {
-  transform: translateY(-5px);
-}
+/* Image container with locked aspect ratio */
 .mode-visual {
   width: 100%;
   aspect-ratio: 9 / 19;
@@ -160,43 +145,6 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.3s ease;
-} */
-
-
-.mode-article {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 3rem;
-  margin-bottom: 4rem;
-/*   background: white; */
-/*   border-radius: 12px;
-  box-shadow: 0 5px 15px rgbva(0,0,0,0.1); */
-  padding: 2rem;
-  transition: transform 0.3s ease;
-}
-
-.mode-article:hover {
-  transform: translateY(-5px);
-}
-
-.mode-visual {
-  position: relative;
-  overflow: hidden;
-  border-radius: 8px;
-}
-
-/* .mode-visual img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 8px;
-  transition: transform 0.3s ease;
-} */
-.mode-visual img {
-  width: 100%;
-  height: auto;
-  object-fit: cover;   /* keeps cropping clean if needed */
   border-radius: 8px;
   transition: transform 0.3s ease;
 }
@@ -205,6 +153,7 @@
   transform: scale(1.03);
 }
 
+/* Content on the right */
 .mode-content {
   padding: 1rem 2rem;
 }
@@ -238,6 +187,28 @@
   display: block;
   margin: 1.5rem 0 0.5rem;
   font-size: 1.2rem;
+}
+
+/* Responsive: Stack vertically on smaller screens */
+@media (max-width: 768px) {
+  .mode-article {
+    grid-template-columns: 1fr;
+    height: auto;
+  }
+
+  .section-wrapper {
+    height: auto;
+    padding: 2rem 0;
+  }
+
+  .mode-visual {
+    aspect-ratio: unset;
+    height: auto;
+  }
+
+  .mode-visual img {
+    height: auto;
+  }
 }
 
 /* Meet Ree Styles */
