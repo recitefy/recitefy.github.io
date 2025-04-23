@@ -843,10 +843,7 @@ blockquote {
 
 
 
-
-
-
-        .why-we-built {
+.why-we-built {
   background: #2575fc; /* Blue background */
   padding: 2rem;
   font-family: 'Poppins', 'Segoe UI', sans-serif;
@@ -858,7 +855,7 @@ blockquote {
   align-items: center; /* Center content vertically */
 }
 
-.container {
+.why-we-built-wrapper {
   display: flex;
   flex-direction: row; /* Align children (heading and content) side by side */
   width: 100%; /* Ensure it takes full width */
@@ -919,35 +916,7 @@ blockquote {
   font-size: 1.4rem;
   color: #fff;
   margin-top: 2rem;
-  font-weight: 600;
-}
-
-@media (max-width: 768px) {
-  .why-we-built {
-    flex-direction: column; /* Stack elements vertically on smaller screens */
-    padding: 1.5rem;
-    align-items: center; /* Center everything on mobile */
-  }
-
-  .container {
-    flex-direction: column; /* Stack title and content vertically */
-    align-items: center; /* Center content vertically */
-  }
-
-  .title {
-    font-size: 1.6rem;
-    margin-right: 0;
-  }
-
-  .content {
-    font-size: 1.2rem;
-  }
-
-  .founder {
-    font-size: 1.3rem;
-  }
-}
-
+  font-weight:
 
 /* 
 Hero Navigation Styles 
@@ -1293,9 +1262,8 @@ body, html {
   </div>
 </section>
 
-
 <section class="why-we-built">
-  <div class="container">
+  <div class="why-we-built-wrapper">
     <div class="title-container">
       <h2 class="title">Why We Built Recitefy</h2>
     </div>
@@ -1315,6 +1283,7 @@ body, html {
     </div>
   </div>
 </section>
+
 
 <section id="how-to-install" style="padding: 60px 20px; background: #f9f9f9; color: #333; width: 100%;">
   <div style="max-width: 100%; margin: 0; text-align: left; padding: 0 20px;">
