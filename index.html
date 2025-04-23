@@ -261,8 +261,8 @@
   border-radius: 50%;
   object-fit: contain;
   margin: 0 auto 2rem;
-  border: 5px solid #007BFF;
-  background-color: #007BFF;
+/*   border: 5px solid #007BFF;
+  background-color: #007BFF; */
   box-shadow: 0 8px 24px rgba(0,123,255,0.15);
   transition: transform 0.3s ease;
 }
@@ -313,23 +313,25 @@
   border-radius: 12px;
   box-shadow: 0 8px 24px rgba(0,123,255,0.15);
 }
-
 .unmute-btn {
   position: absolute;
   bottom: 10px;
   left: 50%;
   transform: translateX(-50%);
-  padding: 0.5rem 1rem;
-  background-color: #007BFF;
+  padding: 0.3rem 0.8rem;
+  background-color: rgba(0, 123, 255, 0.8); /* Subtle blue with transparency */
   color: white;
   border: none;
-  border-radius: 5px;
-  font-size: 1rem;
+  border-radius: 20px; /* Soft rounded corners */
+  font-size: 0.9rem;
   cursor: pointer;
+  opacity: 0.8; /* Slightly faded look */
+  transition: opacity 0.3s ease, background-color 0.3s ease;
 }
 
 .unmute-btn:hover {
-  background-color: #0056b3;
+  opacity: 1; /* Full opacity on hover */
+  background-color: rgba(0, 123, 255, 1); /* Solid blue on hover */
 }
 
 
