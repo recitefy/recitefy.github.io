@@ -304,6 +304,7 @@
   margin: 2rem auto;
   display: flex;
   justify-content: center;
+  position: relative;
 }
 
 .ree-video {
@@ -312,6 +313,25 @@
   border-radius: 12px;
   box-shadow: 0 8px 24px rgba(0,123,255,0.15);
 }
+
+.unmute-btn {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 0.5rem 1rem;
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.unmute-btn:hover {
+  background-color: #0056b3;
+}
+
 
 /* Mobile responsiveness */
 @media (max-width: 768px) {
@@ -1450,7 +1470,7 @@ body, html {
       </div>
     </article>
 
-  <!-- Meet Ree Section -->
+<!-- Meet Ree Section -->
 <section class="meet-ree" id="ree">
   <img src="Ree-focused.png" alt="Ree the lazy mascot of Recitefy" class="ree-img">
   <h2>Meet Ree</h2>
@@ -1460,13 +1480,14 @@ body, html {
   <p>
     Don’t be surprised if he cheers you on when you hit a streak... or guilt-trips you when you miss one. 
   </p>
-  
+
   <!-- Video Section -->
   <div class="ree-video-container">
     <video class="ree-video" autoplay loop muted>
       <source src="Ree-intro.mp4" type="video/mp4">
       Your browser does not support the video tag.
     </video>
+    <button class="unmute-btn" onclick="toggleMute()">Unmute</button>
   </div>
 </section>
 
