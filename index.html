@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Recitefy – Your interactive Quran recitation companion. Duets, memorization, streaks, and more.">
+    <meta name="description" content="Recitefy – Your interactive Quran recitation companion. Duets, memorization, Revision streaks, and more.">
     <meta name="robots" content="index, follow">
     <link rel="icon" href="logo.png" type="image/png">
 
@@ -849,9 +849,16 @@ blockquote {
   height: 100vh; /* Fill the full screen height */
   overflow: hidden; /* Prevent scrolling */
   display: flex;
-  flex-direction: column;
-  justify-content: center; /* Center content vertically */
-  align-items: center; /* Center horizontally on larger screens */
+  flex-direction: row; /* Align children side by side */
+  justify-content: space-between; /* Space between elements */
+  align-items: center; /* Center vertically */
+}
+
+.why-we-built .container {
+  display: flex;
+  flex-direction: row; /* Make children in the container align side by side */
+  align-items: center;
+  justify-content: flex-start; /* Ensure content is aligned to the left */
 }
 
 .why-we-built .title {
@@ -862,22 +869,13 @@ blockquote {
   line-height: 1.4;
   text-transform: uppercase;
   text-align: left; /* Align title to the left */
+  flex: 0 1 auto; /* Prevent the title from expanding */
 }
 
-.container {
-  max-width: 100%;
-  margin: 0 auto;
-  padding: 0 0.4rem;
-  text-align: left; /* Center all content inside */
-}
-
-.title {
-  font-size: 2rem;
-  font-weight: 600;
-  color: #fff;
-  margin-bottom: 1.5rem;
-  line-height: 1.4;
-  text-transform: uppercase;
+.why-we-built .content {
+  font-size: 1.3rem;
+  margin-bottom: 2rem;
+  max-width: 60%; /* Limit width of content */
 }
 
 .intro {
@@ -885,11 +883,6 @@ blockquote {
   color: #d3d3d3;
   margin-bottom: 2rem;
   font-weight: 400;
-}
-
-.content {
-  font-size: 1.3rem;
-  margin-bottom: 2rem;
 }
 
 .content p {
@@ -921,12 +914,14 @@ blockquote {
 
 @media (max-width: 768px) {
   .why-we-built {
+    flex-direction: column; /* Stack elements on smaller screens */
     padding: 1.5rem;
     align-items: center; /* Keep everything centered on mobile */
   }
 
   .container {
     padding: 0 1.2rem;
+    display: block; /* Stack the container content vertically */
   }
 
   .title {
@@ -949,6 +944,7 @@ blockquote {
     font-size: 1.3rem;
   }
 }
+
 
 
 
