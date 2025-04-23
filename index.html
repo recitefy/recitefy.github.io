@@ -841,7 +841,6 @@ blockquote {
   left: 120%;
 }
 
-
 .why-we-built {
   background: #2575fc;
   padding: 2rem;
@@ -851,43 +850,92 @@ blockquote {
   height: 100vh;
   overflow: hidden;
   display: flex;
-  flex-direction: column;
-}
-
-.why-we-built .container {
-  width: 100%;
 }
 
 /* Desktop Layout */
-@media (min-width: 769px) {
-  .why-we-built .container {
-    display: flex;
-    gap: 4rem;
-    align-items: flex-start;
-  }
-
-  .why-we-built .title {
-    flex: 0 0 30%;
-    font-size: 2rem;
-    text-align: left;
-  }
-
-  .why-we-built .content {
-    flex: 1;
-  }
+.why-we-built .container {
+  display: flex;
+  gap: 4rem;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
-/* Mobile Layout (original) */
+.why-we-built .title-column {
+  flex: 0 0 30%;
+  display: flex;
+  align-items: flex-start;
+}
+
+.why-we-built .content-column {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.why-we-built .title {
+  font-size: 2rem;
+  font-weight: 600;
+  line-height: 1.4;
+  text-transform: uppercase;
+  position: sticky;
+  top: 2rem;
+}
+
+/* Content Stack */
+.intro {
+  font-size: 1.5rem;
+  color: #d3d3d3;
+  margin-bottom: 2rem;
+  font-weight: 400;
+}
+
+.content {
+  font-size: 1.3rem;
+  margin-bottom: 2rem;
+}
+
+.quote-block {
+  border-left: 4px solid #fff;
+  padding-left: 1.5rem;
+  margin: 2rem 0;
+  font-style: italic;
+}
+
+.surah {
+  font-size: 1rem;
+  font-weight: 500;
+  margin-top: 1rem;
+}
+
+.founder {
+  font-size: 1.4rem;
+  margin-top: 2rem;
+  font-weight: 600;
+}
+
+/* Mobile Layout */
 @media (max-width: 768px) {
   .why-we-built {
     height: auto;
     overflow: visible;
     padding: 1.5rem;
+    flex-direction: column;
   }
 
-  .why-we-built .title {
+  .container {
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .title-column, .content-column {
+    flex: none;
+    width: 100%;
+  }
+
+  .title {
     font-size: 1.6rem;
-    margin-bottom: 2rem;
+    position: static;
   }
 
   .intro {
@@ -905,44 +953,6 @@ blockquote {
   .founder {
     font-size: 1.3rem;
   }
-}
-
-/* Shared Styles */
-.why-we-built .title {
-  font-weight: 600;
-  text-transform: uppercase;
-  line-height: 1.4;
-}
-
-.intro {
-  font-size: 1.5rem;
-  color: #d3d3d3;
-  margin-bottom: 2rem;
-  font-weight: 400;
-}
-
-.content p {
-  margin-bottom: 1rem;
-}
-
-.quote-block {
-  border-left: 4px solid #fff;
-  padding-left: 1.5rem;
-  margin: 2rem 0;
-  font-style: italic;
-  font-size: 1.3rem;
-}
-
-.surah {
-  font-size: 1rem;
-  font-weight: 500;
-  margin-top: 1rem;
-}
-
-.founder {
-  font-size: 1.4rem;
-  margin-top: 2rem;
-  font-weight: 600;
 }
 
 
