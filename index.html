@@ -1163,10 +1163,6 @@ body, html {
 
 
 
-
-
-
-
 #how-to-install {
   background: linear-gradient(135deg, rgba(0, 123, 255, 0.9), rgba(138, 43, 226, 0.95));
   color: #fff;
@@ -1174,7 +1170,7 @@ body, html {
   width: 100%;
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border-radius: 2rem;
+  border-radius: 0; /* No rounded corners */
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
   z-index: 9;
 }
@@ -1203,7 +1199,6 @@ body, html {
   margin: 10px 0;
   padding: 8px 15px;
   background: rgba(255, 255, 255, 0.2);
-  
   font-style: italic;
   color: #fff;
 }
@@ -1226,64 +1221,22 @@ body, html {
   text-decoration: underline;
 }
 
-        @media (max-width: 768px) {
+@media (max-width: 768px) {
   #how-to-install {
-    background: linear-gradient(135deg, rgba(0, 123, 255, 0.9), rgba(138, 43, 226, 0.95));
-    color: #fff;
-    padding: 60px 20px;
-    width: 100%;
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border-radius: 2rem;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-    z-index: 9;
+    border-radius: 0; /* Remove bend on mobile too */
   }
 
   #how-to-install h3 {
     font-size: 1.7rem;
-    margin-bottom: 1rem;
-    font-weight: 700;
-    color: #fff;
   }
 
   #how-to-install p,
   #how-to-install ol {
     font-size: 1.2rem;
-    line-height: 1.7;
-    color: #f0f0f0;
-  }
-
-  #how-to-install li {
-    margin-bottom: 1rem;
-    padding-left: 0.5rem;
-  }
-
-  #how-to-install span {
-    display: inline-block;
-    margin: 10px 0;
-    padding: 8px 15px;
-    background: rgba(255, 255, 255, 0.2);
-   
-    font-style: italic;
-    color: #fff;
-  }
-
-  #how-to-install a {
-    color: #00ffff;
-    text-decoration: underline;
-    font-weight: 500;
   }
 
   .warning-note {
     font-size: 0.8rem;
-    color: #ccc;
-    margin-top: 10px;
-    padding: 0 20px;
-  }
-
-  .warning-note a {
-    color: #fff;
-    text-decoration: underline;
   }
 }
 
