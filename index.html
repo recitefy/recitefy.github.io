@@ -1487,7 +1487,8 @@ body, html {
       <source src="Ree-intro.mp4" type="video/mp4">
       Your browser does not support the video tag.
     </video>
-    <button class="unmute-btn" onclick="toggleMute()">Unmute</button>
+    <button class="unmute-btn" onclick="toggleMute()">
+      <i class="fas fa-volume-mute"></i>
   </div>
 </section>
 
@@ -1669,14 +1670,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-         function toggleMute() {
+function toggleMute() {
   const video = document.querySelector('.ree-video');
+  const icon = document.querySelector('.unmute-btn i');
   if (video.muted) {
     video.muted = false;
+    icon.classList.remove('fa-volume-mute');
+    icon.classList.add('fa-volume-up');
   } else {
     video.muted = true;
+    icon.classList.remove('fa-volume-up');
+    icon.classList.add('fa-volume-mute');
   }
 }
+
 
 </script>
 </body> 
