@@ -840,28 +840,35 @@ blockquote {
 .cta-btn:hover::after {
   left: 120%;
 }
-
-
 .why-we-built {
   background: #2575fc; /* Blue background */
   padding: 2rem;
   font-family: 'Poppins', 'Segoe UI', sans-serif;
   color: #fff;
   line-height: 1.6;
-
-  height: 100vh;              /* Fill the full screen height */
-  overflow: hidden;           /* Prevent scrolling */
-/*   display: flex;              /* Center content vertically */ */
+  height: 100vh; /* Fill the full screen height */
+  overflow: hidden; /* Prevent scrolling */
+  display: flex;
   flex-direction: column;
-/*   justify-content: center; */
-  align-items: flex-start; 
+  justify-content: center; /* Center content vertically */
+  align-items: center; /* Center horizontally on larger screens */
+}
+
+.why-we-built .title {
+  font-size: 2rem;
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 1.5rem;
+  line-height: 1.4;
+  text-transform: uppercase;
+  text-align: left; /* Align title to the left */
 }
 
 .container {
-  max-width: auto;
+  max-width: 100%;
   margin: 0 auto;
   padding: 0 0.4rem;
-  text-align: left;
+  text-align: center; /* Center all content inside */
 }
 
 .title {
@@ -915,6 +922,7 @@ blockquote {
 @media (max-width: 768px) {
   .why-we-built {
     padding: 1.5rem;
+    align-items: center; /* Keep everything centered on mobile */
   }
 
   .container {
