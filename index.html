@@ -247,13 +247,11 @@
 
 }
 
-/* Meet Ree Styles */
+/* Meet Ree Section */
 .meet-ree {
   text-align: left;
   padding: 4rem 2rem;
-  /* background: #fff; */
   border-radius: 12px;
-  /* box-shadow: 0 5px 15px rgba(0,0,0,0.1); */
   margin-top: 4rem;
 }
 
@@ -289,7 +287,6 @@
   transform: translateX(-50%);
   width: 60px;
   height: 3px;
-  /* background: #007BFF; */
 }
 
 .meet-ree p {
@@ -298,6 +295,22 @@
   color: #555;
   margin: 1.5rem auto;
   max-width: 600px;
+}
+
+/* New Video Section */
+.ree-video-container {
+  width: 100%;
+  max-width: 600px;
+  margin: 2rem auto;
+  display: flex;
+  justify-content: center;
+}
+
+.ree-video {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0,123,255,0.15);
 }
 
 /* Mobile responsiveness */
@@ -313,14 +326,18 @@
   }
   
   .meet-ree h2 {
-    font-size: 1.5rem; /* Reduced font size for h2 */
+    font-size: 1.5rem;
     margin-bottom: 1rem;
   }
   
   .meet-ree p {
-    font-size: 1.3rem; /* Reduced font size for p */
+    font-size: 1.3rem;
     margin: 1rem auto;
-    max-width: 90%; /* Adjusted for mobile width */
+    max-width: 90%;
+  }
+
+  .ree-video {
+    width: 90%; /* Adjust for smaller screens */
   }
 }
 
@@ -336,18 +353,21 @@
   }
 
   .meet-ree h2 {
-    font-size: 1.5rem; /* Reduced font size for h2 */
+    font-size: 1.5rem;
     margin-bottom: 0.8rem;
   }
 
   .meet-ree p {
-    font-size: 1.3rem; /* Further reduced font size for p */
+    font-size: 1.3rem;
     margin: 0.8rem auto;
-    max-width: 85%; /* Adjusted for mobile width */
+    max-width: 85%;
+  }
+
+  .ree-video {
+    width: 80%; /* Adjust for smaller screens */
   }
 }
 
-        
 .hero-description p {
     font-size: 1.5rem;
     color: white; /* Changed from var(--text) to white */
@@ -1430,19 +1450,26 @@ body, html {
       </div>
     </article>
 
-    <!-- Meet Ree Section -->
-    <section class="meet-ree" id="ree">
-      <img src="Ree-focused.png" alt="Ree the lazy mascot of Recitefy" class="ree-img">
-      <h2>Meet Ree</h2>
-      <p>
-        Ree is your chill Qur'an buddy. He's a little lazy, a bit sarcastic, and sometimes forgets where he kept his Mushaf — but he’s here to remind you to recite, celebrate your wins, and nap when you need it. 
-      </p>
-      <p>
-        Don’t be surprised if he cheers you on when you hit a streak... or guilt-trips you when you miss one. 
-      </p>
-    </section>
+  <!-- Meet Ree Section -->
+<section class="meet-ree" id="ree">
+  <img src="Ree-focused.png" alt="Ree the lazy mascot of Recitefy" class="ree-img">
+  <h2>Meet Ree</h2>
+  <p>
+    Ree is your chill Qur'an buddy. He's a little lazy, a bit sarcastic, and sometimes forgets where he kept his Mushaf — but he’s here to remind you to recite, celebrate your wins, and nap when you need it. 
+  </p>
+  <p>
+    Don’t be surprised if he cheers you on when you hit a streak... or guilt-trips you when you miss one. 
+  </p>
+  
+  <!-- Video Section -->
+  <div class="ree-video-container">
+    <video class="ree-video" autoplay loop muted>
+      <source src="Ree-intro.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
   </div>
 </section>
+
 
 
 
