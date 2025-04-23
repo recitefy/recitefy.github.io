@@ -795,13 +795,18 @@ blockquote {
 }
 
 
-
- .why-we-built {
+.why-we-built {
   background: #2575fc; /* Blue background */
-  padding: 4rem 0;
+  padding: 2rem;
   font-family: 'Poppins', 'Segoe UI', sans-serif;
   color: #fff;
   line-height: 1.6;
+
+  height: 100vh;              /* Fill the full screen height */
+  overflow: hidden;           /* Prevent scrolling */
+  display: flex;              /* Center content vertically */
+  flex-direction: column;
+  justify-content: center;
 }
 
 .container {
@@ -812,7 +817,7 @@ blockquote {
 }
 
 .title {
-  font-size: 3rem;
+  font-size: 2rem;
   font-weight: 600;
   color: #fff;
   margin-bottom: 1.5rem;
@@ -821,28 +826,28 @@ blockquote {
 }
 
 .intro {
-  font-size: 2rem;
+  font-size: 1.5rem;
   color: #d3d3d3;
-  margin-bottom: 2.5rem;
+  margin-bottom: 2rem;
   font-weight: 400;
 }
 
 .content {
-  font-size: 2rem;
-  margin-bottom: 3rem;
+  font-size: 1.3rem;
+  margin-bottom: 2rem;
 }
 
 .content p {
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
 }
 
 .quote-block {
   border-left: 4px solid #fff;
   padding-left: 1.5rem;
-  margin: 3rem 0;
+  margin: 2rem 0;
   font-style: italic;
   color: #fff;
-  font-size: 1.5rem;
+  font-size: 1.3rem;
 }
 
 .surah {
@@ -853,20 +858,23 @@ blockquote {
 }
 
 .founder {
-  font-size: 1.5rem;
+  font-size: 1.4rem;
   color: #fff;
   margin-top: 2rem;
   font-weight: 600;
 }
 
-/* Mobile adjustments — smaller font sizes on small screens */
 @media (max-width: 768px) {
+  .why-we-built {
+    padding: 1.5rem;
+  }
+
   .container {
-    padding: 0 1.5rem;
+    padding: 0 1.2rem;
   }
 
   .title {
-    font-size: 2rem;
+    font-size: 1.6rem;
   }
 
   .intro {
@@ -874,8 +882,18 @@ blockquote {
   }
 
   .content {
+    font-size: 1.2rem;
+  }
+
+  .quote-block {
+    font-size: 1.2rem;
+  }
+
+  .founder {
     font-size: 1.3rem;
   }
+}
+
 
 
 
