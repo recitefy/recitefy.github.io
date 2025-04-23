@@ -844,36 +844,42 @@ blockquote {
 
 
 
-
 .why-we-built {
-  background: #2575fc; /* Blue background */
+  background: #2575fc;
   padding: 2rem;
   font-family: 'Poppins', 'Segoe UI', sans-serif;
   color: #fff;
   line-height: 1.6;
-  height: 100vh; /* Full screen height */
-  overflow: hidden; /* Prevent scrolling */
+  height: 100vh;
+  overflow: hidden;
   display: flex;
-  flex-direction: row; /* Align items horizontally */
-  justify-content: flex-start; /* Ensure left alignment */
-  align-items: flex-start; /* Align items to the top */
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.why-we-built .container {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: 100%;
+  gap: 4rem; /* Increased gap for better spacing */
 }
 
 .why-we-built .title {
   font-size: 2rem;
   font-weight: 600;
   color: #fff;
-  margin-right: 2rem; /* Space between title and content */
   line-height: 1.4;
   text-transform: uppercase;
-  text-align: left; /* Align title to the left */
+  text-align: left;
+  flex: 0 0 35%; /* Fixed width column for title */
 }
 
-.container {
-  display: flex;
-  flex-direction: column; /* Stack the content vertically inside the container */
-  align-items: flex-start; /* Align content to the left */
-  justify-content: flex-start; /* Align the items to the top */
+.why-we-built .content {
+  font-size: 1.3rem;
+  margin-bottom: 2rem;
+  flex: 1; /* Takes remaining space */
 }
 
 .intro {
@@ -881,11 +887,6 @@ blockquote {
   color: #d3d3d3;
   margin-bottom: 2rem;
   font-weight: 400;
-}
-
-.content {
-  font-size: 1.3rem;
-  margin-bottom: 2rem;
 }
 
 .content p {
@@ -917,18 +918,20 @@ blockquote {
 
 @media (max-width: 768px) {
   .why-we-built {
-    flex-direction: column; /* Stack elements vertically on smaller screens */
     padding: 1.5rem;
-    align-items: center; /* Center everything on mobile */
+    height: auto;
+    overflow: visible;
   }
 
   .container {
-    align-items: center; /* Center content in mobile view */
+    flex-direction: column;
+    gap: 2rem;
   }
 
   .title {
     font-size: 1.6rem;
-    margin-right: 0;
+    flex: none;
+    width: 100%;
   }
 
   .intro {
@@ -937,6 +940,8 @@ blockquote {
 
   .content {
     font-size: 1.2rem;
+    width: 100%;
+    flex: none;
   }
 
   .quote-block {
@@ -947,9 +952,6 @@ blockquote {
     font-size: 1.3rem;
   }
 }
-
-
-
 
 
 
