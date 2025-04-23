@@ -842,132 +842,6 @@ blockquote {
 }
 
 
-.why-we-built {
-  background: #2575fc; /* Blue background */
-  padding: 2rem;
-  font-family: 'Poppins', 'Segoe UI', sans-serif;
-  color: #fff;
-  line-height: 1.6;
-  height: auto; /* Full screen height */
-  overflow: hidden; /* Prevent scrolling */
-  display: flex;
-  justify-content: center; /* Center all items horizontally */
-  align-items: center; /* Center all items vertically */
-}
-
-.why-we-built-wrapper {
-  display: flex;
-  flex-direction: row; /* Align children (heading and content) side by side */
-  width: 80%; /* Limit the container's width */
-  justify-content: center; /* Center the content horizontally */
-}
-
-.title-container {
-  flex: 0 1 30%; /* Take up 30% of the width */
-  text-align: left; /* Align text inside the title container to the left */
-}
-
-.title {
-  font-size: 2rem;
-  font-weight: 600;
-  color: #fff;
-  margin-bottom: 1.5rem;
-  line-height: 1.4;
-  text-transform: uppercase;
-}
-
-.content-container {
-  flex: 1; /* Take up the remaining space */
-  max-width: 70%; /* Limit the content's width */
-  text-align: left; /* Align text inside the content container to the left */
-}
-
-.intro {
-  font-size: 1.5rem;
-  color: #d3d3d3;
-  margin-bottom: 2rem;
-  font-weight: 400;
-}
-
-.content {
-  font-size: 1.3rem;
-  margin-bottom: 2rem;
-}
-
-.content p {
-  margin-bottom: 1rem;
-}
-
-.quote-block {
-  border-left: 4px solid #fff;
-  padding-left: 1.5rem;
-  margin: 2rem 0;
-  font-style: italic;
-  color: #fff;
-  font-size: 1.3rem;
-}
-
-.surah {
-  color: #fff;
-  font-size: 1rem;
-  font-weight: 500;
-  margin-top: 1rem;
-}
-
-.founder {
-  font-size: 1.4rem;
-  color: #fff;
-  margin-top: 2rem;
-  font-weight: 600;
-}
-
-@media (max-width: 768px) {
-  .why-we-built {
-    flex-direction: column; /* Stack elements vertically on smaller screens */
-    padding: 1.5rem;
-    align-items: center; /* Center everything on mobile */
-  }
-
-  .why-we-built-wrapper {
-    flex-direction: column; /* Stack title and content vertically */
-    align-items: center; /* Center content vertically */
-    width: 100%; /* Make sure it takes up full width */
-  }
-
-  .title-container,
-  .content-container {
-    text-align: left; /* Center text on mobile */
-  }
-
-  .title {
-    font-size: 1.6rem;
-    margin-right: 0;
-  }
-
-  .content {
-    font-size: 1.2rem;
-  }
-
-  .founder {
-    font-size: 1.3rem;
-  }
-}
-@media (min-width: 769px) {
-  .title-container,
-  .content-container {
-    text-align: left; /* Left align text on desktop */
-  }
-
-  .title-container {
-    display: flex;
-    align-items: center; /* Vertically center the heading */
-  }
-
-  .title {
-    font-size: 2.8rem; /* Larger heading for desktop */
-  }
-}
-
 
 /* 
 Hero Navigation Styles 
@@ -1161,18 +1035,149 @@ body, html {
 }
 
 
+.shared-gradient {
+  background: linear-gradient(135deg, rgba(0, 123, 255, 0.9), rgba(138, 43, 226, 0.95));
+  color: #fff;
+}
 
+
+.why-we-built {
+  padding: 2rem;
+  font-family: 'Poppins', 'Segoe UI', sans-serif;
+  color: #fff;
+  line-height: 1.6;
+  height: auto;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, rgba(0, 123, 255, 0.9), rgba(138, 43, 226, 0.95)); /* merged background */
+  margin-bottom: 0; /* prevent spacing between sections */
+}
+.why-we-built-wrapper {
+  display: flex;
+  flex-direction: row; /* Align children (heading and content) side by side */
+  width: 80%; /* Limit the container's width */
+  justify-content: center; /* Center the content horizontally */
+}
+
+.title-container {
+  flex: 0 1 30%; /* Take up 30% of the width */
+  text-align: left; /* Align text inside the title container to the left */
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 1.5rem;
+  line-height: 1.4;
+  text-transform: uppercase;
+}
+
+.content-container {
+  flex: 1; /* Take up the remaining space */
+  max-width: 70%; /* Limit the content's width */
+  text-align: left; /* Align text inside the content container to the left */
+}
+
+.intro {
+  font-size: 1.5rem;
+  color: #d3d3d3;
+  margin-bottom: 2rem;
+  font-weight: 400;
+}
+
+.content {
+  font-size: 1.3rem;
+  margin-bottom: 2rem;
+}
+
+.content p {
+  margin-bottom: 1rem;
+}
+
+.quote-block {
+  border-left: 4px solid #fff;
+  padding-left: 1.5rem;
+  margin: 2rem 0;
+  font-style: italic;
+  color: #fff;
+  font-size: 1.3rem;
+}
+
+.surah {
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 500;
+  margin-top: 1rem;
+}
+
+.founder {
+  font-size: 1.4rem;
+  color: #fff;
+  margin-top: 2rem;
+  font-weight: 600;
+}
+
+@media (max-width: 768px) {
+  .why-we-built {
+    flex-direction: column; /* Stack elements vertically on smaller screens */
+    padding: 1.5rem;
+    align-items: center; /* Center everything on mobile */
+  }
+
+  .why-we-built-wrapper {
+    flex-direction: column; /* Stack title and content vertically */
+    align-items: center; /* Center content vertically */
+    width: 100%; /* Make sure it takes up full width */
+  }
+
+  .title-container,
+  .content-container {
+    text-align: left; /* Center text on mobile */
+  }
+
+  .title {
+    font-size: 1.6rem;
+    margin-right: 0;
+  }
+
+  .content {
+    font-size: 1.2rem;
+  }
+
+  .founder {
+    font-size: 1.3rem;
+  }
+}
+@media (min-width: 769px) {
+  .title-container,
+  .content-container {
+    text-align: left; /* Left align text on desktop */
+  }
+
+  .title-container {
+    display: flex;
+    align-items: center; /* Vertically center the heading */
+  }
+
+  .title {
+    font-size: 2.8rem; /* Larger heading for desktop */
+  }
+}
 
 #how-to-install {
-  background: linear-gradient(135deg, rgba(0, 123, 255, 0.9), rgba(138, 43, 226, 0.95));
+  background: linear-gradient(135deg, rgba(0, 123, 255, 0.9), rgba(138, 43, 226, 0.95)); /* same as above */
   color: #fff;
   padding: 60px 20px;
   width: 100%;
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border-radius: 0; /* No rounded corners */
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  border-radius: 0;
+  box-shadow: none; /* remove shadow to keep it flat */
   z-index: 9;
+  margin-top: 0; /* remove top spacing if any */
 }
 
 #how-to-install h3 {
