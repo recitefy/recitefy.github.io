@@ -842,7 +842,6 @@ blockquote {
 }
 
 
-
 .why-we-built {
   background: #2575fc; /* Blue background */
   padding: 2rem;
@@ -853,17 +852,19 @@ blockquote {
   overflow: hidden; /* Prevent scrolling */
   display: flex;
   justify-content: center; /* Center all items horizontally */
-  align-items: center; /* Center content vertically */
+  align-items: center; /* Center all items vertically */
 }
 
 .why-we-built-wrapper {
   display: flex;
   flex-direction: row; /* Align children (heading and content) side by side */
-  width: 100%; /* Ensure it takes full width */
+  width: 80%; /* Limit the container's width */
+  justify-content: center; /* Center the content horizontally */
 }
 
 .title-container {
   flex: 0 1 30%; /* Take up 30% of the width */
+  text-align: left; /* Align text inside the title container to the left */
 }
 
 .title {
@@ -873,12 +874,12 @@ blockquote {
   margin-bottom: 1.5rem;
   line-height: 1.4;
   text-transform: uppercase;
-  text-align: left;
 }
 
 .content-container {
   flex: 1; /* Take up the remaining space */
   max-width: 70%; /* Limit the content's width */
+  text-align: left; /* Align text inside the content container to the left */
 }
 
 .intro {
@@ -889,7 +890,6 @@ blockquote {
 }
 
 .content {
-    
   font-size: 1.3rem;
   margin-bottom: 2rem;
 }
@@ -918,7 +918,47 @@ blockquote {
   font-size: 1.4rem;
   color: #fff;
   margin-top: 2rem;
-  font-weight:
+  font-weight: 600;
+}
+
+@media (max-width: 768px) {
+  .why-we-built {
+    flex-direction: column; /* Stack elements vertically on smaller screens */
+    padding: 1.5rem;
+    align-items: center; /* Center everything on mobile */
+  }
+
+  .why-we-built-wrapper {
+    flex-direction: column; /* Stack title and content vertically */
+    align-items: center; /* Center content vertically */
+    width: 100%; /* Make sure it takes up full width */
+  }
+
+  .title-container,
+  .content-container {
+    text-align: center; /* Center text on mobile */
+  }
+
+  .title {
+    font-size: 1.6rem;
+    margin-right: 0;
+  }
+
+  .content {
+    font-size: 1.2rem;
+  }
+
+  .founder {
+    font-size: 1.3rem;
+  }
+}
+
+@media (min-width: 769px) {
+  .title-container,
+  .content-container {
+    text-align: left; /* Left align text on desktop */
+  }
+}
 
 /* 
 Hero Navigation Styles 
