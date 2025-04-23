@@ -841,48 +841,48 @@ blockquote {
   left: 120%;
 }
 
-.why-we-built {
-  background: #2575fc;
+
+
+
+
+
+        .why-we-built {
+  background: #2575fc; /* Blue background */
   padding: 2rem;
   font-family: 'Poppins', 'Segoe UI', sans-serif;
   color: #fff;
   line-height: 1.6;
-  height: 100vh;
-  overflow: hidden;
+  height: 100vh; /* Full screen height */
+  overflow: hidden; /* Prevent scrolling */
   display: flex;
+  align-items: center; /* Center content vertically */
 }
 
-/* Desktop Layout */
-.why-we-built .container {
+.container {
   display: flex;
-  gap: 4rem;
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
+  flex-direction: row; /* Align children (heading and content) side by side */
+  width: 100%; /* Ensure it takes full width */
 }
 
-.why-we-built .title-column {
-  flex: 0 0 30%;
-  display: flex;
-  align-items: flex-start;
+.title-container {
+  flex: 0 1 30%; /* Take up 30% of the width */
 }
 
-.why-we-built .content-column {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-}
-
-.why-we-built .title {
+.title {
   font-size: 2rem;
   font-weight: 600;
+  color: #fff;
+  margin-bottom: 1.5rem;
   line-height: 1.4;
   text-transform: uppercase;
-  position: sticky;
-  top: 2rem;
+  text-align: left;
 }
 
-/* Content Stack */
+.content-container {
+  flex: 1; /* Take up the remaining space */
+  max-width: 70%; /* Limit the content's width */
+}
+
 .intro {
   font-size: 1.5rem;
   color: #d3d3d3;
@@ -895,14 +895,21 @@ blockquote {
   margin-bottom: 2rem;
 }
 
+.content p {
+  margin-bottom: 1rem;
+}
+
 .quote-block {
   border-left: 4px solid #fff;
   padding-left: 1.5rem;
   margin: 2rem 0;
   font-style: italic;
+  color: #fff;
+  font-size: 1.3rem;
 }
 
 .surah {
+  color: #fff;
   font-size: 1rem;
   font-weight: 500;
   margin-top: 1rem;
@@ -910,43 +917,29 @@ blockquote {
 
 .founder {
   font-size: 1.4rem;
+  color: #fff;
   margin-top: 2rem;
   font-weight: 600;
 }
 
-/* Mobile Layout */
 @media (max-width: 768px) {
   .why-we-built {
-    height: auto;
-    overflow: visible;
+    flex-direction: column; /* Stack elements vertically on smaller screens */
     padding: 1.5rem;
-    flex-direction: column;
+    align-items: center; /* Center everything on mobile */
   }
 
   .container {
-    flex-direction: column;
-    gap: 2rem;
-  }
-
-  .title-column, .content-column {
-    flex: none;
-    width: 100%;
+    flex-direction: column; /* Stack title and content vertically */
+    align-items: center; /* Center content vertically */
   }
 
   .title {
     font-size: 1.6rem;
-    position: static;
-  }
-
-  .intro {
-    font-size: 1.3rem;
+    margin-right: 0;
   }
 
   .content {
-    font-size: 1.2rem;
-  }
-
-  .quote-block {
     font-size: 1.2rem;
   }
 
@@ -1303,22 +1296,26 @@ body, html {
 
 <section class="why-we-built">
   <div class="container">
-    <h2 class="title">Why We Built Recitefy</h2>
-    <p class="intro">Hifdh is beautiful—<br>but it’s not always easy.</p>
-    <p class="content">
-      Recitefy was born from that tension.<br><br>
-      To make the journey lighter.<br>
-      To bring joy back into memorizing.<br>
-      To feel less alone. More connected.<br><br>
-      We’re not a big team.<br>
-      Just a few believers building what we wish we had.<br><br>
-      And if you're here, you’re already part of it.
-    </p>
-<!--     <p class="quote">“Verily, with hardship comes ease.” – <span class="surah">Surah Ash-Sharh</span></p> -->
-    <p class="founder">— <span class="founder-name">Saleem Ahmad</span>, Founder</p>
+    <div class="title-container">
+      <h2 class="title">Why We Built Recitefy</h2>
+    </div>
+    <div class="content-container">
+      <p class="intro">Hifdh is beautiful—<br>but it’s not always easy.</p>
+      <p class="content">
+        Recitefy was born from that tension.<br><br>
+        To make the journey lighter.<br>
+        To bring joy back into memorizing.<br>
+        To feel less alone. More connected.<br><br>
+        We’re not a big team.<br>
+        Just a few believers building what we wish we had.<br><br>
+        And if you're here, you’re already part of it.
+      </p>
+      <!-- <p class="quote">“Verily, with hardship comes ease.” – <span class="surah">Surah Ash-Sharh</span></p> -->
+      <p class="founder">— <span class="founder-name">Saleem Ahmad</span>, Founder</p>
+    </div>
   </div>
 </section>
-    
+
 <section id="how-to-install" style="padding: 60px 20px; background: #f9f9f9; color: #333; width: 100%;">
   <div style="max-width: 100%; margin: 0; text-align: left; padding: 0 20px;">
     <h3 style="font-size: 1.5rem; margin-bottom: 1rem; color: #111; font-weight: 600;">
