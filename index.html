@@ -250,9 +250,9 @@
 .meet-ree {
   text-align: left;
   padding: 4rem 2rem;
-/*   background: #fff; */
+  /* background: #fff; */
   border-radius: 12px;
-/*   box-shadow: 0 5px 15px rgba(0,0,0,0.1); */
+  /* box-shadow: 0 5px 15px rgba(0,0,0,0.1); */
   margin-top: 4rem;
 }
 
@@ -288,7 +288,7 @@
   transform: translateX(-50%);
   width: 60px;
   height: 3px;
-/*   background: #007BFF; */
+  /* background: #007BFF; */
 }
 
 .meet-ree p {
@@ -299,24 +299,8 @@
   max-width: 600px;
 }
 
+/* Mobile responsiveness */
 @media (max-width: 768px) {
-  .mode-article {
-    grid-template-columns: 1fr;
-    padding: 1.5rem;
-  }
-  
-  .section-title {
-    font-size: 2rem;
-  }
-  
-  .mode-heading {
-    font-size: 1.75rem;
-  }
-  
-  .mode-content {
-    padding: 1rem 0;
-  }
-
   .meet-ree {
     padding: 3rem 1rem;
     margin-top: 3rem;
@@ -328,14 +312,41 @@
   }
   
   .meet-ree h2 {
-    font-size: 1.75rem;
+    font-size: 1.5rem; /* Reduced font size for h2 */
+    margin-bottom: 1rem;
   }
   
   .meet-ree p {
-    font-size: 2rem;
+    font-size: 1.3rem; /* Reduced font size for p */
+    margin: 1rem auto;
+    max-width: 90%; /* Adjusted for mobile width */
   }
 }
 
+@media (max-width: 480px) {
+  .meet-ree {
+    padding: 2.5rem 1rem;
+    margin-top: 2rem;
+  }
+
+  .ree-img {
+    width: 140px;
+    height: 140px;
+  }
+
+  .meet-ree h2 {
+    font-size: 1.3rem; /* Reduced font size for h2 */
+    margin-bottom: 0.8rem;
+  }
+
+  .meet-ree p {
+    font-size: 1.1rem; /* Further reduced font size for p */
+    margin: 0.8rem auto;
+    max-width: 85%; /* Adjusted for mobile width */
+  }
+}
+
+        
 .hero-description p {
     font-size: 1.5rem;
     color: white; /* Changed from var(--text) to white */
