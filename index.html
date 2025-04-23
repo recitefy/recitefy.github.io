@@ -840,7 +840,12 @@ blockquote {
 .cta-btn:hover::after {
   left: 120%;
 }
-.why-we-built {
+
+
+
+
+
+        .why-we-built {
   background: #2575fc; /* Blue background */
   padding: 2rem;
   font-family: 'Poppins', 'Segoe UI', sans-serif;
@@ -849,23 +854,23 @@ blockquote {
   height: 100vh; /* Fill the full screen height */
   overflow: hidden; /* Prevent scrolling */
   display: flex;
-  flex-direction: row; /* Align children side by side */
-  justify-content: space-between; /* Space between elements */
-  align-items: center; /* Center vertically */
+  flex-direction: column; /* Stack content vertically */
+  align-items: flex-start; /* Align title to the left */
 }
 
 .why-we-built .container {
   display: flex;
-  flex-direction: row; /* Make children in the container align side by side */
-  align-items: center;
-  justify-content: flex-start; /* Ensure content is aligned to the left */
+  flex-direction: row; /* Align content side by side */
+  justify-content: flex-start; /* Align to the left */
+  align-items: flex-start; /* Align the items to the top */
+  width: 100%; /* Ensure it takes full width */
 }
 
 .why-we-built .title {
   font-size: 2rem;
   font-weight: 600;
   color: #fff;
-  margin-bottom: 1.5rem;
+  margin-right: 2rem; /* Add some space to the right */
   line-height: 1.4;
   text-transform: uppercase;
   text-align: left; /* Align title to the left */
@@ -914,18 +919,19 @@ blockquote {
 
 @media (max-width: 768px) {
   .why-we-built {
-    flex-direction: column; /* Stack elements on smaller screens */
+    flex-direction: column; /* Stack elements vertically on smaller screens */
     padding: 1.5rem;
-    align-items: center; /* Keep everything centered on mobile */
+    align-items: center; /* Center everything on mobile */
   }
 
   .container {
-    padding: 0 1.2rem;
-    display: block; /* Stack the container content vertically */
+    flex-direction: column; /* Stack the container content vertically */
+    align-items: center; /* Center align items vertically */
   }
 
   .title {
     font-size: 1.6rem;
+    margin-right: 0;
   }
 
   .intro {
