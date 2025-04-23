@@ -842,8 +842,6 @@ blockquote {
 }
 
 
-
-
 .why-we-built {
   background: #2575fc;
   padding: 2rem;
@@ -854,32 +852,66 @@ blockquote {
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
 }
 
 .why-we-built .container {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: flex-start;
   width: 100%;
-  gap: 4rem; /* Increased gap for better spacing */
 }
 
+/* Desktop Layout */
+@media (min-width: 769px) {
+  .why-we-built .container {
+    display: flex;
+    gap: 4rem;
+    align-items: flex-start;
+  }
+
+  .why-we-built .title {
+    flex: 0 0 30%;
+    font-size: 2rem;
+    text-align: left;
+  }
+
+  .why-we-built .content {
+    flex: 1;
+  }
+}
+
+/* Mobile Layout (original) */
+@media (max-width: 768px) {
+  .why-we-built {
+    height: auto;
+    overflow: visible;
+    padding: 1.5rem;
+  }
+
+  .why-we-built .title {
+    font-size: 1.6rem;
+    margin-bottom: 2rem;
+  }
+
+  .intro {
+    font-size: 1.3rem;
+  }
+
+  .content {
+    font-size: 1.2rem;
+  }
+
+  .quote-block {
+    font-size: 1.2rem;
+  }
+
+  .founder {
+    font-size: 1.3rem;
+  }
+}
+
+/* Shared Styles */
 .why-we-built .title {
-  font-size: 2rem;
   font-weight: 600;
-  color: #fff;
-  line-height: 1.4;
   text-transform: uppercase;
-  text-align: left;
-  flex: 0 0 35%; /* Fixed width column for title */
-}
-
-.why-we-built .content {
-  font-size: 1.3rem;
-  margin-bottom: 2rem;
-  flex: 1; /* Takes remaining space */
+  line-height: 1.4;
 }
 
 .intro {
@@ -898,12 +930,10 @@ blockquote {
   padding-left: 1.5rem;
   margin: 2rem 0;
   font-style: italic;
-  color: #fff;
   font-size: 1.3rem;
 }
 
 .surah {
-  color: #fff;
   font-size: 1rem;
   font-weight: 500;
   margin-top: 1rem;
@@ -911,48 +941,9 @@ blockquote {
 
 .founder {
   font-size: 1.4rem;
-  color: #fff;
   margin-top: 2rem;
   font-weight: 600;
 }
-
-@media (max-width: 768px) {
-  .why-we-built {
-    padding: 1.5rem;
-    height: auto;
-    overflow: visible;
-  }
-
-  .container {
-    flex-direction: column;
-    gap: 2rem;
-  }
-
-  .title {
-    font-size: 1.6rem;
-    flex: none;
-    width: 100%;
-  }
-
-  .intro {
-    font-size: 1.3rem;
-  }
-
-  .content {
-    font-size: 1.2rem;
-    width: 100%;
-    flex: none;
-  }
-
-  .quote-block {
-    font-size: 1.2rem;
-  }
-
-  .founder {
-    font-size: 1.3rem;
-  }
-}
-
 
 
 /* 
