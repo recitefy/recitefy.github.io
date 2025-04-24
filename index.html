@@ -22,11 +22,11 @@
             --light: #f8f9fa;
         }
 
-      {
-            margin: 0;
-            padding: 0;
-/*             box-sizing: border-box; */
-        }
+    * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
         body {
       
@@ -38,13 +38,6 @@
   align-items: center;
         }
 
-/*        .hero {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-         min-height: 100vh;
-         padding: 2rem;
-            position: relative;
-            overflow: hidden;
-        }
  */
         .hero {
     display: flex;
@@ -71,26 +64,7 @@
   padding: 4rem 0;
   background: #f8f9fa;
 }
-/* 
-.container {
-/*   width: 100vw;  
-  margin: 0 0;
-/*   padding: 0 1.5rem; */
-}
- */
-/*         .container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-} */
-/* .container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 100vw; /* or use 100% if it's inside a full-width parent *
-} *//* Container for central alignment and responsive width */
+
 .container {
   width: 100%;
 /*   max-width: 1200px; */
@@ -116,12 +90,6 @@
   margin: 1rem auto 0;
 }
 
-/* Wrapper that fits below nav and fills screen */
-/* .section-wrapper {
-  height: calc(100vh - 70px); /* adjust if nav is taller 
-  display: flex;
-  align-items: center;
-} */
 
 /* Grid layout for image + content side-by-side */
 .mode-article {
@@ -131,11 +99,9 @@
   gap: 3rem;
   padding: 0.5rem;
 
-/*   width: 100%;
-  height: 100%; /* fill parent wrapper */ */
 }
 
-/* Image container with locked aspect ratio */
+
 .mode-visual {
   width: 80%;
   aspect-ratio: 9 / 19;
@@ -401,16 +367,6 @@
     color: #f8f9fa; /* Lighter text color for better contrast */
     max-width: 500px;
 }
-/* .hero-title {
-  font-size: 2.5rem; /* Adjust as needed *
-  font-weight: bold; /* You can choose a weight *
-  text-align: center; /* Center the title *
-  color: #fff; /* White color to stand out on the blue-purple background *
-  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); /* Adds subtle shadow for better visibility *
-  margin-bottom: 1.5rem; /* Adjust spacing *
-  letter-spacing: 1px; /* Slightly increases spacing between letters *
-}
- */
         .hero-title {
   font-size: 2.5rem; /* Default size for mobile */
   font-weight: bold; /* You can choose a weight */
@@ -714,10 +670,6 @@ blockquote {
   opacity: 1; /* Full opacity on hover */
   background: rgba(255, 255, 255, 0.1); /* Subtle white background on hover */
 }
-/* 
-.carousel-arrow:hover i {
-  color: #FFA500; /* Optional: Change icon color on hover 
-} */
 
 /* Navigation Arrows for larger screens (defaults) */
 .carousel-arrow {
@@ -807,29 +759,7 @@ blockquote {
   transform: scale(1.1);
 }
 
-/* .cta-btn {
-  display: flex;
-  margin: 2rem auto 0;
-  align-items: center;
-  justify-content: center;
-  background: rgba(0, 0, 0, 0.4); /* Black with 40% opacity 
-  color: white;
-  border: 2px solid white;
-  padding: 10px 20px;
-  text-decoration: none;
-  border-radius: 5px;
-  transition: background 0.3s, color 0.3s;
-  cursor: pointer;
-}
-
-
-
-.cta-btn:hover {
-  background: white;
-  color: blue;
-}
-
- */
+ 
 .cta-btn {
   display: inline-flex;
   align-items: center;
@@ -885,20 +815,6 @@ blockquote {
 }
 
 
-
-/* 
-Hero Navigation Styles 
-.hero-nav {
-  position: sticky;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1.5rem 0;
-    background-color: rgba(0, 0, 0, 0.5);
-  backdrop-filter: blur(10px);
-/*   position: relative; 
-  z-index: 10;
-}  */
 .hero-nav {
   position: fixed;
   top: 0;
