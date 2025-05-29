@@ -1277,7 +1277,73 @@ body, html {
   padding: 0;
 }
 
+        /* Site Footer Styles */
+        .site-footer {
+            padding: 3rem 1rem;
+            color: #f0f0f0;
+            background: linear-gradient(to right, #0a2a43, #1e3d61);
+            margin-top: auto; /* Pushes footer to bottom */
+        }
 
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .footer-logo {
+            width: 120px;
+            height: auto;
+            margin-bottom: 1.5rem;
+            filter: drop-shadow(0 2px 5px rgba(0,0,0,0.3));
+        }
+
+        .footer-social {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .social-link:hover {
+            background: #4CAF50;
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        .footer-text {
+            font-size: 1rem;
+            color: #ddd;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .footer-text strong {
+            color: #fff;
+            font-weight: 600;
+        }
+
+        .copyright {
+            margin-top: 1.5rem;
+            font-size: 0.9rem;
+            color: #aaa;
+        }
 
     </style>
 </head>
@@ -1496,28 +1562,35 @@ body, html {
   </div>
 </section>
 </div>
-
-
-      <div style="margin-bottom: 1.5rem; display: flex; justify-content: center; gap: 1.5rem; font-size: 1.5rem;">
-  <a href="https://t.me/recitefy" target="_blank" aria-label="Telegram" style="color: white;">
-    <i class="fab fa-telegram-plane"></i>
-  </a>
-  <a href="https://www.facebook.com/profile.php?id=61565472024122" target="_blank" aria-label="Facebook" style="color: white;">
-    <i class="fab fa-facebook-f"></i>
-  </a>
-  <a href="https://twitter.com/recitefy" target="_blank" aria-label="Twitter" style="color: white;">
-    <i class="fab fa-twitter"></i>
-  </a>
-  <a href="https://instagram.com/recitefy" target="_blank" aria-label="Instagram" style="color: white;">
-    <i class="fab fa-instagram"></i>
-  </a>
-</div>
-
-<p style="color: #ddd; font-size: 0.95rem;">
-  &copy; 2025 <strong>Recitefy</strong>. Committed to making Qur’an memorization easy, enjoyable, and effective.
-</p>
-
-
+ <!-- Renamed Footer -->
+    <div class="site-footer">
+        <div class="footer-container">
+            <img src="logo.png" alt="Recitefy" style="width: 100px; margin-bottom: 2rem;" />
+            <div class="footer-social">
+                <a href="https://t.me/recitefy" class="social-link" aria-label="Telegram">
+                    <i class="fab fa-telegram-plane"></i>
+                </a>
+                <a href="https://www.facebook.com/profile.php?id=61565472024122" class="social-link" aria-label="Facebook">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="https://twitter.com/recitefy" class="social-link" aria-label="Twitter">
+                    <i class="fab fa-twitter"></i>
+                </a>
+                <a href="https://instagram.com/recitefy" class="social-link" aria-label="Instagram">
+                    <i class="fab fa-instagram"></i>
+                </a>
+            </div>
+            
+            <p class="footer-text">
+                <strong>Recitefy</strong> is committed to making Qur'an memorization easy, enjoyable, and effective. 
+                Our innovative tools help you stay consistent with your Hifdh journey.
+            </p>
+            
+            <p class="copyright">
+                &copy; 2025 Recitefy. All rights reserved.
+            </p>
+        </div>
+    </div>
      <script>
 document.addEventListener('DOMContentLoaded', () => {
   const track = document.querySelector('.carousel-track');
