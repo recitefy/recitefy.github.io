@@ -1,1736 +1,1618 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Recitefy – Your interactive Quran recitation companion. Duets, memorization, Revision streaks, and more.">
-    <meta name="robots" content="index, follow">
-    <link rel="icon" href="logo.png" type="image/png">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Recitefy — Revise Quran With The World's Greatest Reciters</title>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500;600&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #BB86FC;
+    --gold-light: #D4ADFF;
+    --gold-pale: #EDD9FF;
+    --deep: #0D0A14;
+    --deep2: #120F1C;
+    --deep3: #1A1628;
+    --white: #F4F0FF;
+    --muted: #8A86A0;
+    --green: #4A2D7A;
+    --green-light: #BB86FC;
+  }
 
-    <title>Recitefy – Transform Your Hifdh Journey</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
-<link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
-  <style>
-     
-         :root {
-            --primary: #2575fc;
-            --secondary: #6a11cb;
-            --accent: #ff6b6b;
-            --text: #2c3e50;
-            --light: #f8f9fa;
-        }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
 
-     {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-html, body {
-  overflow-x: hidden;
-  margin: 0;
-  padding: 0;
-  height: 100%;
-}
-footer {
-  margin-top: auto;
-}
+  html { scroll-behavior: smooth; }
 
-/*         body {
-      
-            font-family: 'Poppins', sans-serif;
-            color: var(--text);
-            line-height: 1.7;
-/*             overflow-x: hidden; *
-             justify-content: center; /* Centers content horizontally *
-  align-items: center;
-        } */
+  body {
+    background: var(--deep);
+    color: var(--white);
+    font-family: 'DM Sans', sans-serif;
+    overflow-x: hidden;
+  }
 
- body {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-  
-  font-family: 'Poppins', sans-serif;
-  color: var(--text);
-  line-height: 1.7;
+  /* NOISE TEXTURE */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.4;
+  }
 
-  overflow-x: hidden;
-}
-
-main {
-  flex: 1; /* Fills the available space */
-}
-
-        .hero {
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 1.2rem 2.5rem;
     display: flex;
-    background: linear-gradient(135deg, var(--primary), var(--secondary)); /* Your gradient */
-    min-height: min-content;
-            
-    padding: 2rem;
-    position: relative;
-    overflow: hidden;
-
-    /* Frosted Glass Effect */
-    background-color: rgba(255, 255, 255, 0.1); /* Semi-transparent white */
-    backdrop-filter: blur(10px); /* Apply blur effect */
-    -webkit-backdrop-filter: blur(10px); /* Safari support */
-
-}
-
-.practice-modes {
-  padding: 4rem 0;
-  background: #f8f9fa;
-}
-    
-/* Practice Modes Styles */
-.practice-modes {
-  padding: 4rem 0;
-  background: #f8f9fa;
-}
-
-.container {
-  width: 100%;
-/*   max-width: 1200px; */
-  margin: 0 0;
-  padding: 0 0rem;
-}
-
-/* Title styling */
-.section-title {
-  text-align: center;
-  font-size: 2.5rem;
-  color: #2d3436;
-  margin-bottom: 3rem;
-  position: relative;
-}
-
-.section-title::after {
-  content: '';
-  display: block;
-  width: 60px;
-  height: 3px;
-  background: #007BFF;
-  margin: 1rem auto 0;
-}
-
-
-/* Grid layout for image + content side-by-side */
-.mode-article {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  align-items: center;
-  gap: 3rem;
-  padding: 0.5rem;
-
-}
-
-
-.mode-visual {
-  width: 80%;
-  aspect-ratio: 9 / 19;
-  overflow: hidden;
-  border-radius: 8px;
-}
-
-.mode-visual img {
-  width: 80%;
-  height: 80%;
-  object-fit: cover;
-  border-radius: 8px;
-  transition: transform 0.3s ease;
-}
-
-.mode-visual:hover img {
-  transform: scale(1.03);
-}
-
-/* Content on the right */
-.mode-content {
-  padding: 1rem 1rem;
-}
-
-.mode-heading {
-  font-size: 3rem;
-  color: #2d3436;
-  margin-bottom: 1.5rem;
-  position: relative;
-}
-
-.mode-heading::after {
-  content: '';
-  position: absolute;
-  bottom: -10px;
-  left: 0;
-  width: 50px;
-  height: 3px;
-  background: #007BFF;
-}
-
-.mode-description {
-  font-size: 2rem;
-  line-height: 1.8;
-  color: #555;
-  margin-bottom: 1.5rem;
-}
-
-.mode-description strong {
-  color: #2d3436;
-  display: block;
-  margin: 1.5rem 0 0.5rem;
-  font-size: 2.1rem;
-}
-
-/* Mobile responsiveness */
-@media (max-width: 768px) {
-  .mode-heading {
-    font-size: 2rem;
-    margin-bottom: 1rem;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(11,15,26,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(201,168,76,0.12);
   }
 
-  .mode-heading::after {
-    width: 40px;
-  }
-
-  .mode-description {
-    font-size: 1.2rem;
-    margin-bottom: 1rem;
-  }
-
-  .mode-description strong {
-    font-size: 1.3rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .mode-heading {
-    font-size: 2rem;
-    margin-bottom: 0.8rem;
-  }
-
-  .mode-heading::after {
-    width: 30px;
-  }
-
-  .mode-description {
-    font-size: 1.4rem;
-    margin-bottom: 0.8rem;
-  }
-
-  .mode-description strong {
-    font-size: 1.6rem;
-  }
-}
-
-
-/* Responsive: Stack vertically on smaller screens */
-@media (max-width: 768px) {
-  .mode-article {
-    grid-template-columns: 1fr;
-    height: auto;
-    width: auto;
-  }
-
-  .section-wrapper {
-    height: auto;
-    padding: 2rem 0;
-  }
-
-  .mode-visual {
-    margin: 0 auto;
-    display: flex;
-    justify-content: center;
-  }
-
-  .mode-visual img {
-    width: 100%;
-    height: auto;
-  }
-}
-
-
-/* Meet Ree Section */
-.meet-ree {
-  text-align: left;
-  padding: 4rem 2rem;
-  border-radius: 12px;
-  margin-top: 4rem;
-}
-
-.ree-img {
-  width: 200px;
-  height: 200px;
-  border-radius: 50%;
-  object-fit: contain;
-  margin: 0 auto 2rem;
-/*   border: 5px solid #007BFF;
-  background-color: #007BFF; */
-  box-shadow: 0 8px 24px rgba(0,123,255,0.15);
-  transition: transform 0.3s ease;
-}
-
-.ree-img:hover {
-  transform: rotate(-5deg) scale(1.05);
-}
-
-.meet-ree h2 {
-  font-size: 2.25rem;
-  color: #2d3436;
-  margin-bottom: 1.5rem;
-  position: relative;
-  display: inline-block;
-}
-
-.meet-ree h2::after {
-  content: '';
-  position: absolute;
-  bottom: -10px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 60px;
-  height: 3px;
-}
-
-.meet-ree p {
-  font-size: 1.5rem;
-  line-height: 1.8;
-  color: #555;
-  margin: 1.5rem auto;
-  max-width: 600px;
-}
-
-/* New Video Section */
-.ree-video-container {
-  width: 100%;
-  max-width: 600px;
-  margin: 2rem auto;
-  display: flex;
-  justify-content: center;
-  position: relative;
-}
-
-.ree-video {
-  width: 100%;
-  height: auto;
-  border-radius: 12px;
-  box-shadow: 0 8px 24px rgba(0,123,255,0.15);
-}
-.unmute-btn {
-  position: absolute;
-  bottom: 10px;
-  left: 50%;
-  transform: translateX(-50%);
-  padding: 0.3rem 0.8rem;
-  background-color: rgba(0, 123, 255, 0.8); /* Subtle blue with transparency */
-  color: white;
-  border: none;
-  border-radius: 20px; /* Soft rounded corners */
-  font-size: 0.9rem;
-  cursor: pointer;
-  opacity: 0.8; /* Slightly faded look */
-  transition: opacity 0.3s ease, background-color 0.3s ease;
-}
-
-.unmute-btn:hover {
-  opacity: 1; /* Full opacity on hover */
-  background-color: rgba(0, 123, 255, 1); /* Solid blue on hover */
-}
-
-
-/* Mobile responsiveness */
-@media (max-width: 768px) {
-  .meet-ree {
-    padding: 3rem 1rem;
-    margin-top: 3rem;
-  }
-  
-  .ree-img {
-    width: 160px;
-    height: 160px;
-  }
-  
-  .meet-ree h2 {
+  .logo {
+    font-family: 'Playfair Display', serif;
     font-size: 1.5rem;
-    margin-bottom: 1rem;
-  }
-  
-  .meet-ree p {
-    font-size: 1.3rem;
-    margin: 1rem auto;
-    max-width: 90%;
-  }
-
-  .ree-video {
-    width: 90%; /* Adjust for smaller screens */
-  }
-}
-
-@media (max-width: 480px) {
-  .meet-ree {
-    padding: 2.5rem 1rem;
-    margin-top: 2rem;
-  }
-
-  .ree-img {
-    width: 140px;
-    height: 140px;
-  }
-
-  .meet-ree h2 {
-    font-size: 1.5rem;
-    margin-bottom: 0.8rem;
-  }
-
-  .meet-ree p {
-    font-size: 1.3rem;
-    margin: 0.8rem auto;
-    max-width: 85%;
-  }
-
-  .ree-video {
-    width: 80%; /* Adjust for smaller screens */
-  }
-}
-
-.hero-description p {
-    font-size: 1.5rem;
-    color: white; /* Changed from var(--text) to white */
-    margin-bottom: 0.5rem;
-}
-
-.hero-description p {
-    color: #f8f9fa; /* Lighter text color for better contrast */
-    max-width: 500px;
-}
-        .hero-title {
-  font-size: 2.5rem; /* Default size for mobile */
-  font-weight: bold; /* You can choose a weight */
-  text-align: center; /* Center the title */
-  color: #fff; /* White color to stand out on the blue-purple background */
-  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); /* Adds subtle shadow for better visibility */
-  margin: 2rem 0; /* Add margin on top and bottom */
-  letter-spacing: 1px; /* Slightly increases spacing between letters */
-}
-
-/* Bigger font size for desktop screens */
-@media (min-width: 768px) {
-  .hero-title {
-    font-size: 4rem; /* Adjust the size for desktop */
-  }
-}
-
- .feature-slides {
-  display: flex;
-  transition: transform 0.3s ease-in-out;
-  width: 100vw;
-}
- 
-.feature-slide {
-  flex: 0 0 100%;
-  transition: opacity 0.3s ease;
-  opacity: 0;
-}
-
-.feature-slide.active {
-  opacity: 1;
-}
-
-.hero-description {
-  margin-top: 1rem;
-  color: white;
-  font-size: 1.2rem;
-}
-
-.slide-arrow {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: rgba(255,255,255,0.3);
-  border: none;
-  color: white;
-  padding: 10px 15px;
-  border-radius: 50%;
-  cursor: pointer;
-  font-size: 1.2rem;
-}
-
-.prev-arrow { left: 10px;  opacity: 0;}
-.next-arrow { right: 10px; opacity: 0;}
-
-.progress-indicator {
-  display: flex;
-  justify-content: center;
-  gap: 8px;
-  margin-top: 20px;
-}
-
-.progress-ball {
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  background: rgba(255,255,255,0.3);
-  cursor: pointer;
-}
-
-.progress-ball.active {
-  background: white;
-}
-
-
-
-.hero-mockup {
-  max-height: 70vh;
-  width: auto;
-  max-width: 45%;
-}
-
-.hero-description {
-  max-width: 45%;
-  color: white;
-}
-
-.hero-description p {
-  font-size: 1.2rem;
-}
-
-.hero {
-  padding-bottom: 150px;
-  position: relative;
-}
-
-/* Tablet and Mobile Adaptations */
-@media (max-width: 768px) {
-  .feature-slide {
-    height: auto;
-    min-height: 100vh;
-    gap: 1.5rem;
-    padding: 2rem 1rem;
-  }
-
-  .hero-mockup {
-    max-width: 80%;
-    max-height: 60vh;
-  }
-
-  .hero-description {
-    max-width: 90%;
-    text-align: center;
-  }
-
-  .hero-description p {
-    font-size: 1.1rem;
-  }
-
-  .hero {
-    padding-bottom: 100px;
-  }
-} 
-
-
-
-
-        /* Mobile Devices - Fullscreen Image Layout */
-@media (max-width: 480px) {
-  .feature-slide {
-    display: flex !important;
-    flex-direction: column;
-    height: 100vh;
-    width: 100vw;
-    padding: 0;
-    margin: 0;
-    position: relative;
-  }
-
-  .hero-mockup {
-    width: 100%;
-    height: 100vh;
-    object-fit: cover; /* changed from contain to cover for full coverage */
-    border-radius: 8px;
-    transition: transform 0.3s ease;
-    padding: 0;
-    position: relative;
-    z-index: 1;
-  }
-
-  /* Optional hover effect for interaction (if needed) */
-  .hero-mockup:hover {
-    transform: scale(1.02);
-  }
-
-  .hero-description {
-    display: none;
-  }
-
-  .image-container {
-    position: relative;
-    height: 100vh;
-    overflow: hidden;
-    border-radius: 8px;
-  }
-
-  .content-section,
-  .reciter-list {
-    display: none;
-  }
-
-  .progress-indicator {
-    position: absolute;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 3;
-  }
-
-  .controls-container {
-    position: absolute;
-    bottom: 2rem;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 90%;
-    max-width: 400px;
-    z-index: 3;
-  }
-}
-
-        .founder-message {
-  background-color: #f9f9fb;
-  padding: 3rem 1rem;
-  color: #1a1a1a;
-  font-family: 'Inter', sans-serif;
-}
-
-.founder-container {
-  max-width: 768px;
-  margin: 0 auto;
-  line-height: 1.8;
-}
-
-.founder-title {
-  font-size: 2rem;
-  font-weight: bold;
-  margin-bottom: 1rem;
-  color: #003366;
-  text-align: center;
-}
-
-.founder-paragraph {
-  font-size: 1.1rem;
-  margin-bottom: 1rem;
-}
-
-.founder-container p {
-  margin-bottom: 1rem;
-}
-
-.founder-container ul {
-  list-style: disc inside;
-  margin-bottom: 1.5rem;
-}
-
-.founder-container hr {
-  margin: 2rem 0;
-  border: none;
-  height: 1px;
-  background-color: #e0e0e0;
-}
-
-.founder-container h3 {
-  margin-top: 1.5rem;
-  font-size: 1.3rem;
-  color: #003366;
-}
-
-blockquote {
-  font-style: italic;
-  background: #eef4ff;
-  padding: 1rem 1.5rem;
-  border-left: 4px solid #0070f3;
-  margin: 2rem 0;
-}
-
-.founder-signature {
-  text-align: right;
-  margin-top: 2rem;
-  font-weight: bold;
-}
-/* Minimal Carousel Styles */
-.feature-carousel {
-  position: relative;
-  max-width: 700px; 
-  margin: 2rem auto;
-  overflow: hidden;
-}
-
-
-
-.carousel-track {
-  display: flex;
-  transition: transform 0.5s ease;
-}
-
-.carousel-slide {
-  min-width: 100%;
-  position: relative;
-}
-
-.app-screenshot {
-  width: 100%;
-  height: 100%;
-  display: block;
-}
-
-/* Transparent Navigation Arrows */
-.carousel-arrow {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: transparent;
-  border: none;
-  width: 30px;
-  height: 30px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  z-index: 10;
-  opacity: 0.7;
-  transition: opacity 0.2s ease, background 0.3s ease;
-}
-
-.carousel-arrow i {
-  color: white; /* Ensures the icon color is white */
-}
-
-.carousel-arrow:hover {
-  opacity: 1; /* Full opacity on hover */
-  background: rgba(255, 255, 255, 0.1); /* Subtle white background on hover */
-}
-
-/* Navigation Arrows for larger screens (defaults) */
-.carousel-arrow {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%; /* Circular button */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  border: none;
-  outline: none;
-  background: rgba(0, 0, 0, 0.5); /* Semi-dark background */
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  pointer-events: none;
-}
-
-
-
-/* Show arrows on desktop hover */
-@media (min-width: 769px) {
-  .feature-carousel:hover .carousel-arrow {
-    opacity: 1;
-    pointer-events: all;
-  }
-}
-
-
-/* Hide navigation arrows on mobile screens */
-@media (max-width: 768px) {
-  .carousel-arrow {
-    display: none;
-  }
-}
-
-.prev-arrow {
-  left: 5px;
-}
-
-.next-arrow {
-  right: 5px;
-}
-
-/* Minimal Navigation Dots */
-/* .carousel-dots {
-  display: flex;
-  justify-content: center;
-  gap: 6px;
-  z-index: 10;
-  margin-top: 1rem; /* Space between dots and carousel 
-  margin-bottom: 2rem;
-}
- */
-        /* Minimal Navigation Dots */
-.carousel-dots {
-  display: flex;
-  justify-content: center;
-  gap: 6px;
-  z-index: 10;
-  margin-top: 1rem;
-  margin-bottom: 2rem;
-  position: relative;
-}
-
-.carousel-dots span {
-  width: 8px; /* Set the width of each dot */
-  height: 8px; /* Set the height of each dot */
-  border-radius: 50%; /* Make them round */
-  background-color: #333; /* Change to your desired dot color */
-  transition: background-color 0.3s ease; /* Optional: Smooth transition on hover or active state */
-}
-
-.carousel-dots .dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.5); /* White with transparency */
-  border: none;
-  padding: 0;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.carousel-dots .dot.active {
-  background: #3B82F6; /* Tailwind's blue-500 or your preferred shade */
-  transform: scale(1.1);
-}
-
- 
-.cta-btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  background: transparent;
-  color: white;
-  border: 2px solid white;
-  padding: 12px 30px;
-  text-decoration: none;
-  border-radius: 30px; /* More rounded corners */
-  transition: all 0.3s ease;
-  cursor: pointer;
-  font-weight: 600;
-  letter-spacing: 0.5px;
-  text-transform: uppercase;
-  font-size: 1rem;
-  margin: 2rem 0 0;
-  position: relative;
-  overflow: hidden;
-}
-
-.cta-btn:hover {
-  background: white;
-  color: black;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 15px rgba(255, 255, 255, 0.2);
-}
-
-.cta-btn i {
-  margin-left: 10px;
-  transition: transform 0.3s ease;
-}
-
-.cta-btn:hover i {
-  transform: translateX(3px);
-}
-
-/* Optional: Add a subtle shine effect on hover */
-.cta-btn::after {
-  content: '';
-  position: absolute;
-  top: -50%;
-  left: -60%;
-  width: 20px;
-  height: 200%;
-  background: rgba(255, 255, 255, 0.2);
-  transform: rotate(30deg);
-  transition: all 0.3s ease;
-}
-
-.cta-btn:hover::after {
-  left: 120%;
-}
-
-
-.hero-nav {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 70px;                /* adjust to your nav’s actual height */
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem 2rem;
-  background-color: rgba(0, 0, 0, 0.3);
-  backdrop-filter: blur(10px);
-  z-index: 1000;
-}
-
-/* push the hero down by the nav’s height */
-.hero {
-  padding-top: 70px;           /* same as .hero-nav height */
-}
-
-body, html {
-  margin: 0;
-  padding: 0;
-  scroll-behavior: smooth;
-}
-
-.nav-logo {
-  height: 40px;
-}
-
-.nav-links {
-  display: flex;
-  gap: 2rem;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-.nav-links a {
-  color: white;
-  text-decoration: none;
-  font-weight: 500;
-  font-size: 1rem;
-  transition: color 0.3s ease;
-  position: relative;
-}
-
-.nav-links a:hover {
-  color: #4CAF50;
-}
-
-.nav-links a::after {
-  content: '';
-  position: absolute;
-  width: 0;
-  height: 2px;
-  bottom: -5px;
-  left: 0;
-  background-color: #4CAF50;
-  transition: width 0.3s ease;
-}
-
-.nav-links a:hover::after {
-  width: 100%;
-}
-
-.nav-cta {
-  background-color: #4CAF50;
-  padding: 0.5rem 1.2rem;
-  border-radius: 50px;
-  transition: all 0.3s ease;
-}
-
-.nav-cta:hover {
-  background-color: #3e8e41;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-/* Mobile Menu */
-.hamburger {
-  display: none;
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 0.5rem;
-}
-
-.hamburger-line {
-  display: block;
-  width: 25px;
-  height: 2px;
-  background-color: white;
-  margin: 5px 0;
-  transition: all 0.3s ease;
-}
-
-
-@media (max-width: 768px) {
-
-.nav-links {
-  position: fixed; /* instead of absolute */
-  top: 0;
-  left: 0;
-  height: 100vh;
-  width: 100%;
-  background: linear-gradient(135deg, rgba(0, 123, 255, 0.9), rgba(138, 43, 226, 1));
-  -webkit-backdrop-filter: blur(20px);
-  backdrop-filter: blur(20px);
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  clip-path: circle(0% at 90% 0);
-  transition: clip-path 0.4s ease;
-  z-index: 10;
-}
-
-.nav-links.active {
-  clip-path: circle(150% at 90% 0);
-}
-
-  .nav-links.active {
-    clip-path: circle(150% at 90% 0);
-  }
- 
-  .hamburger {
-    display: block;
-    z-index: 11;
-    cursor: pointer;
-  }
-
-  .nav-links a {
-    color: #fff;
-    font-size: 1.1rem;
-    text-decoration: none;
+    color: var(--gold);
+    letter-spacing: 0.02em;
   }
 
   .nav-cta {
-    background-color: transparent !important;
-    padding: 0 !important;
-    color: #00bfff !important; /* or any highlight color */
-    border: 1px solid #00bfff;
-    border-radius: 5px;
-    padding: 0.5rem 1rem !important;
+    background: var(--gold);
+    color: #0D0A14;
+    padding: 0.55rem 1.4rem;
+    border-radius: 100px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.2s;
+    letter-spacing: 0.02em;
   }
+  .nav-cta:hover { background: var(--gold-light); transform: translateY(-1px); }
 
-  .nav-cta:hover {
-    background-color: #00bfff !important;
-    color: #fff !important;
-    box-shadow: 0 0 10px rgba(0, 191, 255, 0.5);
-  }
-      border-radius: 2rem;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-}
-
-
-
-/* make logo and text align nicely */
-.logo-link {
-  display: flex;
-  align-items: center;
-  text-decoration: none;
-}
-
-/* image sizing stays the same */
-.nav-logo {
-  height: 40px;
-}
-
-/* style your brand name */
-.logo-text {
-  color: white;
-  font-size: 1.25rem;
-  font-weight: 700;
-  margin-left: 0.5rem;
-  user-select: none;
-}
-
-
-.shared-gradient {
-  background: linear-gradient(135deg, rgba(0, 123, 255, 0.9), rgba(138, 43, 226, 0.95));
-  color: #fff;
-}
-
-
-.why-we-built {
-  padding: 2rem;
-  font-family: 'Poppins', 'Segoe UI', sans-serif;
-  color: #fff;
-  line-height: 1.6;
-  height: auto;
-  overflow: hidden;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-/*   background: linear-gradient(135deg, rgba(0, 123, 255, 0.9), rgba(138, 43, 226, 0.95)); /* merged background */ 
-  margin-bottom: 0; /* prevent spacing between sections */
-}
-.why-we-built-wrapper {
-  display: flex;
-  flex-direction: row; /* Align children (heading and content) side by side */
-  width: 80%; /* Limit the container's width */
-  justify-content: center; /* Center the content horizontally */
-}
-
-.title-container {
-  flex: 0 1 30%; /* Take up 30% of the width */
-  text-align: left; /* Align text inside the title container to the left */
-}
-
-.title {
-  font-size: 2rem;
-  font-weight: 600;
-  color: #fff;
-  margin-bottom: 1.5rem;
-  line-height: 1.4;
-  text-transform: uppercase;
-}
-
-.content-container {
-  flex: 1; /* Take up the remaining space */
-  max-width: 70%; /* Limit the content's width */
-  text-align: left; /* Align text inside the content container to the left */
-}
-
-.intro {
-  font-size: 1.5rem;
-  color: #d3d3d3;
-  margin-bottom: 2rem;
-  font-weight: 400;
-}
-
-.content {
-  font-size: 1.3rem;
-  margin-bottom: 2rem;
-}
-
-.content p {
-  margin-bottom: 1rem;
-}
-
-.quote-block {
-  border-left: 4px solid #fff;
-  padding-left: 1.5rem;
-  margin: 2rem 0;
-  font-style: italic;
-  color: #fff;
-  font-size: 1.3rem;
-}
-
-.surah {
-  color: #fff;
-  font-size: 1rem;
-  font-weight: 500;
-  margin-top: 1rem;
-}
-
-.founder {
-  font-size: 1.4rem;
-  color: #fff;
-  margin-top: 2rem;
-  font-weight: 600;
-}
-
-@media (max-width: 768px) {
-  .why-we-built {
-    flex-direction: column; /* Stack elements vertically on smaller screens */
-    padding: 0.5rem;
- 
-    align-items: center; /* Center everything on mobile */
-  }
-
-  .why-we-built-wrapper {
-    flex-direction: column; /* Stack title and content vertically */
-    align-items: center; /* Center content vertically */
-    width: 100%; /* Make sure it takes up full width */
-  }
-
-  .title-container,
-  .content-container {
-    text-align: left; /* Center text on mobile */
-  }
-
-  .title {
-    font-size: 1.6rem;
-    margin-right: 0;
-  }
-
-  .content {
-    font-size: 1.2rem;
-  }
-
-  .founder {
-    font-size: 1.3rem;
-  }
-}
-@media (min-width: 769px) {
-  .title-container,
-  .content-container {
-    text-align: left; /* Left align text on desktop */
-  }
-
-  .title-container {
+  /* HERO */
+  .hero {
+    min-height: 100vh;
     display: flex;
-    align-items: center; /* Vertically center the heading */
-  }
-
-  .title {
-    font-size: 2.8rem; /* Larger heading for desktop */
-  }
-}
-#how-to-install {
-/*   background: linear-gradient(135deg, rgba(0, 123, 255, 0.9), rgba(138, 43, 226, 0.95)); */
-  color: #fff;
-  padding: 60px 20px;
-  width: 100%;
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  z-index: 9;
-  margin-top: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.how-to-install-wrapper {
-  display: flex;
-  flex-direction: row;
-  width: 80%;
-  justify-content: center;
-}
-
-.install-title-container {
-  flex: 0 1 30%;
-  text-align: left;
-  display: flex;
-  align-items: center;
-}
-
-.install-title {
-  font-size: 2.8rem;
-  font-weight: 600;
-  color: #fff;
-  line-height: 1.4;
-  text-transform: uppercase;
-}
-
-.install-content-container {
-  flex: 1;
-  max-width: 70%;
-  text-align: left;
-}
-
-#how-to-install h3 {
-  font-size: 2rem;
-  margin-bottom: 1rem;
-  font-weight: 700;
-  color: #fff;
-}
-
-#how-to-install p,
-#how-to-install ol {
-  font-size: 1.25rem;
-  line-height: 1.7;
-  color: #f0f0f0;
-}
-
-#how-to-install li {
-  margin-bottom: 1rem;
-  padding-left: 0.5rem;
-}
-
-#how-to-install span {
-  display: inline-block;
-  margin: 10px 0;
-  padding: 8px 15px;
-  background: rgba(255, 255, 255, 0.2);
-  font-style: italic;
-  color: #fff;
-}
-
-#how-to-install a {
-  color: #00ffff;
-  text-decoration: underline;
-  font-weight: 500;
-}
-
-.warning-note {
-  font-size: 0.9rem;
-  color: #ccc;
-  margin-top: 10px;
-  padding: 0 20px;
-}
-
-.warning-note a {
-  color: #fff;
-  text-decoration: underline;
-}
-
-@media (max-width: 768px) {
-  #how-to-install {
     flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 8rem 1.5rem 5rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-glow {
+    position: absolute;
+    width: 700px; height: 700px;
+    background: radial-gradient(circle, rgba(201,168,76,0.12) 0%, transparent 70%);
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+  }
+
+  .hero-glow2 {
+    position: absolute;
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(45,106,79,0.15) 0%, transparent 70%);
+    top: 20%; right: 10%;
+    pointer-events: none;
+  }
+
+  /* Geometric ornament */
+  .ornament {
+    width: 80px; height: 80px;
+    margin: 0 auto 2rem;
+    position: relative;
+    animation: spin 20s linear infinite;
+  }
+
+  @keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+
+  .hero-arabic {
+    font-family: 'Amiri', serif;
+    font-size: 2rem;
+    color: var(--gold);
+    margin-bottom: 1.5rem;
+    opacity: 0.9;
+    animation: fadeUp 1s ease both;
+  }
+
+  .hero-headline {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.8rem, 7vw, 5.5rem);
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+    animation: fadeUp 1s 0.15s ease both;
+  }
+
+  .hero-headline span {
+    color: var(--gold);
+    font-style: italic;
+  }
+
+  .hero-sub {
+    font-size: clamp(1rem, 2.5vw, 1.2rem);
+    color: var(--muted);
+    max-width: 560px;
+    line-height: 1.7;
+    margin-bottom: 3rem;
+    animation: fadeUp 1s 0.3s ease both;
+  }
+
+  .hero-buttons {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    animation: fadeUp 1s 0.45s ease both;
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    background: var(--gold);
+    color: #0D0A14;
+    padding: 0.9rem 2rem;
+    border-radius: 100px;
+    font-weight: 600;
+    font-size: 1rem;
+    text-decoration: none;
+    transition: all 0.25s;
+    box-shadow: 0 0 30px rgba(201,168,76,0.3);
+  }
+  .btn-primary:hover {
+    background: var(--gold-light);
+    transform: translateY(-2px);
+    box-shadow: 0 0 50px rgba(201,168,76,0.45);
+  }
+
+  .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    background: transparent;
+    color: var(--white);
+    padding: 0.9rem 2rem;
+    border-radius: 100px;
+    font-weight: 500;
+    font-size: 1rem;
+    text-decoration: none;
+    border: 1px solid rgba(255,255,255,0.2);
+    transition: all 0.25s;
+  }
+  .btn-secondary:hover {
+    border-color: var(--gold);
+    color: var(--gold);
+    transform: translateY(-2px);
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* PHONE MOCKUP */
+  .phone-section {
+    padding: 4rem 1.5rem 6rem;
+    display: flex;
+    justify-content: center;
+    position: relative;
+  }
+
+  .phone-wrap {
+    position: relative;
+    width: 280px;
+    overflow: visible;
+  }
+
+  .phone {
+    width: 280px;
+    height: 560px;
+    background: var(--deep3);
+    border-radius: 40px;
+    border: 2px solid rgba(201,168,76,0.3);
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 40px 100px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.05), inset 0 1px 0 rgba(255,255,255,0.08);
+  }
+
+  .phone-notch {
+    position: absolute;
+    top: 16px; left: 50%;
+    transform: translateX(-50%);
+    width: 100px; height: 24px;
+    background: var(--deep);
+    border-radius: 100px;
+    z-index: 2;
+  }
+
+  .phone-screen {
+    padding: 60px 16px 20px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .phone-header {
+    text-align: center;
+    padding-bottom: 8px;
+    border-bottom: 1px solid rgba(201,168,76,0.15);
+  }
+
+  .phone-surah {
+    font-family: 'Amiri', serif;
+    font-size: 0.75rem;
+    color: var(--gold);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 2px;
+  }
+
+  .phone-page {
+    font-size: 0.6rem;
+    color: var(--muted);
+  }
+
+  .mushaf-lines {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 4px 0;
+  }
+
+  .mushaf-line {
+    font-family: 'Amiri', serif;
+    font-size: 1.1rem;
+    text-align: center;
+    color: rgba(249,246,239,0.75);
+    direction: rtl;
+    line-height: 1.6;
+    padding: 4px 8px;
+    border-radius: 6px;
+    transition: all 0.3s;
+  }
+
+  .mushaf-line.active {
+    color: var(--deep);
+    background: var(--gold);
+    box-shadow: 0 2px 12px rgba(201,168,76,0.4);
+  }
+
+  .reciters-row {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    padding: 8px 0;
+    border-top: 1px solid rgba(201,168,76,0.15);
+  }
+
+  .reciter-avatar {
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.5rem;
+    font-weight: 600;
+    text-align: center;
+    letter-spacing: 0;
+    line-height: 1.2;
+    color: var(--deep);
+    position: relative;
+  }
+
+  .reciter-avatar.active-r {
+    box-shadow: 0 0 0 2px var(--gold);
+  }
+
+  .reciter-avatar .pulse {
+    position: absolute;
+    inset: -4px;
+    border-radius: 50%;
+    border: 2px solid var(--gold);
+    animation: pulse 1.5s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 0.6; transform: scale(1); }
+    50% { opacity: 0; transform: scale(1.3); }
+  }
+
+  .turn-label {
+    text-align: center;
+    font-size: 0.6rem;
+    color: var(--gold);
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .slider-area {
+    background: rgba(201,168,76,0.08);
+    border-radius: 100px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    padding: 0 12px;
+    gap: 8px;
+    border: 1px solid rgba(201,168,76,0.2);
+  }
+
+  .slider-thumb {
+    width: 32px; height: 32px;
+    background: var(--gold);
+    border-radius: 50%;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .slider-track {
+    flex: 1;
+    height: 2px;
+    background: rgba(201,168,76,0.2);
+    border-radius: 2px;
+  }
+
+  .slider-text {
+    font-size: 0.55rem;
+    color: var(--muted);
+    white-space: nowrap;
+  }
+
+  /* glow ring around phone */
+  .phone-wrap::before {
+    content: '';
+    position: absolute;
+    inset: -30px;
+    background: radial-gradient(circle, rgba(201,168,76,0.08) 0%, transparent 70%);
+    border-radius: 60px;
+    pointer-events: none;
+  }
+
+  /* HOW IT WORKS */
+  .section {
+    padding: 5rem 1.5rem;
+    max-width: 1100px;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  .section-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1rem;
+    text-align: center;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    text-align: center;
+    margin-bottom: 1rem;
+    line-height: 1.2;
+  }
+
+  .section-title span { color: var(--gold); font-style: italic; }
+
+  .section-sub {
+    text-align: center;
+    color: var(--muted);
+    max-width: 520px;
+    margin: 0 auto 4rem;
+    line-height: 1.7;
+    font-size: 1rem;
+  }
+
+  /* STEPS */
+  .steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .step {
+    background: var(--deep2);
+    border: 1px solid rgba(201,168,76,0.12);
+    border-radius: 20px;
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s;
+  }
+
+  .step:hover {
+    border-color: rgba(201,168,76,0.35);
+    transform: translateY(-4px);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+  }
+
+  .step::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .step:hover::before { opacity: 1; }
+
+  .step-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem;
+    color: rgba(201,168,76,0.15);
+    font-weight: 700;
+    line-height: 1;
+    margin-bottom: 1rem;
+  }
+
+  .step-icon {
+    font-size: 1.8rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .step h3 {
+    font-size: 1.05rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: var(--white);
+  }
+
+  .step p {
+    font-size: 0.9rem;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  /* FEATURES */
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.2rem;
+  }
+
+  .feature {
+    background: var(--deep2);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 16px;
     padding: 1.5rem;
-    align-items: center;
+    transition: all 0.3s;
   }
 
-  .how-to-install-wrapper {
-    flex-direction: column;
-    align-items: center;
+  .feature:hover {
+    border-color: rgba(201,168,76,0.25);
+    background: var(--deep3);
+  }
+
+  .feature-icon {
+    font-size: 1.5rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .feature h4 {
+    font-size: 0.95rem;
+    font-weight: 600;
+    margin-bottom: 0.4rem;
+  }
+
+  .feature p {
+    font-size: 0.82rem;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+
+  /* DIVIDER */
+  .divider {
     width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(201,168,76,0.2), transparent);
+    margin: 2rem 0;
   }
 
-  .install-title-container,
-  .install-content-container {
+  /* QUOTE */
+  .quote-section {
+    padding: 5rem 1.5rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .quote-bg {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at center, rgba(201,168,76,0.06) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .quote-arabic {
+    font-family: 'Amiri', serif;
+    font-size: clamp(1.8rem, 5vw, 3rem);
+    color: var(--gold);
+    margin-bottom: 1.5rem;
+    line-height: 1.8;
+    direction: rtl;
+  }
+
+  .quote-translation {
+    font-size: 1rem;
+    color: var(--muted);
+    font-style: italic;
+    max-width: 500px;
+    margin: 0 auto 0.5rem;
+    line-height: 1.7;
+  }
+
+  .quote-source {
+    font-size: 0.8rem;
+    color: rgba(201,168,76,0.6);
+    letter-spacing: 0.1em;
+  }
+
+  /* CTA SECTION */
+  .cta-section {
+    padding: 5rem 1.5rem 8rem;
+    text-align: center;
+    position: relative;
+  }
+
+  .cta-card {
+    max-width: 640px;
+    margin: 0 auto;
+    background: linear-gradient(135deg, var(--deep2) 0%, var(--deep3) 100%);
+    border: 1px solid rgba(201,168,76,0.25);
+    border-radius: 28px;
+    padding: 3.5rem 2.5rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta-card::before {
+    content: '';
+    position: absolute;
+    top: -1px; left: 20%; right: 20%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  }
+
+  .cta-card h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+    margin-bottom: 1rem;
+    line-height: 1.2;
+  }
+
+  .cta-card h2 span { color: var(--gold); font-style: italic; }
+
+  .cta-card p {
+    color: var(--muted);
+    margin-bottom: 2.5rem;
+    line-height: 1.7;
+    font-size: 1rem;
+  }
+
+  .play-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 1rem;
+    background: var(--deep);
+    border: 1px solid rgba(201,168,76,0.3);
+    border-radius: 16px;
+    padding: 0.9rem 1.8rem;
+    text-decoration: none;
+    transition: all 0.25s;
+    margin-bottom: 1rem;
+  }
+
+  .play-badge:hover {
+    border-color: var(--gold);
+    background: rgba(201,168,76,0.07);
+    transform: translateY(-2px);
+  }
+
+  .play-badge svg {
+    width: 28px; height: 28px;
+  }
+
+  .play-badge-text {
     text-align: left;
   }
 
-  .install-title {
-    font-size: 1.6rem;
+  .play-badge-text .small {
+    font-size: 0.65rem;
+    color: var(--muted);
+    display: block;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
   }
 
-  #how-to-install p,
-  #how-to-install ol {
-    font-size: 1.2rem;
+  .play-badge-text .big {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--white);
+    display: block;
   }
 
-  .warning-note {
+  .free-tag {
+    font-size: 0.75rem;
+    color: var(--green-light);
+    background: rgba(74,45,122,0.3);
+    border: 1px solid rgba(187,134,252,0.3);
+    border-radius: 100px;
+    padding: 0.3rem 0.9rem;
+    display: inline-block;
+  }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid rgba(255,255,255,0.06);
+    padding: 2rem 1.5rem;
+    text-align: center;
+  }
+
+  .footer-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    color: var(--gold);
+    margin-bottom: 0.5rem;
+  }
+
+  .footer-text {
     font-size: 0.8rem;
+    color: var(--muted);
   }
-}
 
-.merged-section {
-  background: linear-gradient(135deg, var(--primary), var(--secondary));
-  color: #fff;
-  margin: 0;
-  padding: 0;
-}
+  /* SCROLL ANIMATION */
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
 
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
 
-    /* Footer Styles */
-    .site-footer {
-        padding: 3rem 1rem;
-        background-color: #ffffff;
-        margin-top: auto;
-        border-top: 1px solid #e0e0e0;
-        color: #333;
-    }
+  /* animated waveform for "reciter playing" */
+  .waveform {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    justify-content: center;
+    height: 20px;
+  }
 
-    .footer-container {
-        max-width: 1200px;
-        margin: 0 auto;
-        text-align: center;
-    }
+  .wave-bar {
+    width: 3px;
+    background: var(--gold);
+    border-radius: 3px;
+    animation: wave 1.2s ease-in-out infinite;
+  }
 
-    .footer-logo {
-        width: 100px;
-        fill:  #0a2a43;
-        margin-bottom: 2rem;
-        filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.1));
-    }
+  .wave-bar:nth-child(1) { animation-delay: 0s; height: 8px; }
+  .wave-bar:nth-child(2) { animation-delay: 0.1s; height: 14px; }
+  .wave-bar:nth-child(3) { animation-delay: 0.2s; height: 18px; }
+  .wave-bar:nth-child(4) { animation-delay: 0.3s; height: 12px; }
+  .wave-bar:nth-child(5) { animation-delay: 0.4s; height: 16px; }
+  .wave-bar:nth-child(6) { animation-delay: 0.5s; height: 10px; }
+  .wave-bar:nth-child(7) { animation-delay: 0.6s; height: 14px; }
 
-    .footer-social {
-        display: flex;
-        justify-content: center;
-        gap: 1.5rem;
-        margin-bottom: 2rem;
-        flex-wrap: wrap;
-    }
+  @keyframes wave {
+    0%, 100% { transform: scaleY(0.5); opacity: 0.5; }
+    50% { transform: scaleY(1); opacity: 1; }
+  }
 
-    .social-link {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 45px;
-        height: 45px;
-        border-radius: 50%;
-        background-color: #f5f5f5;
-        color: #007BFF; 
-        font-size: 1.25rem;
-        text-decoration: none;
-        transition: all 0.3s ease;
-    }
+  /* ── DEMO INTRO OVERLAY ── */
+  #demoIntroOverlay {
+    position: absolute;
+    inset: 0;
+    z-index: 50;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: var(--deep);
+    border-radius: 40px;
+    overflow: hidden;
+    pointer-events: none;
+  }
 
-    .social-link:hover {
-        background-color: #0a2a43;
-        color: #ffffff;
-        transform: translateY(-3px);
-        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-    }
+  #demoIntroOverlay::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 50% 60%, rgba(187,134,252,0.13) 0%, transparent 70%);
+    pointer-events: none;
+  }
 
-    .footer-text {
-        font-size: 1rem;
-        color: #555;
-        max-width: 600px;
-        margin: 0 auto;
-        line-height: 1.6;
-    }
+  .intro-sentence {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 28px 20px;
+    opacity: 0;
+    transition: opacity 0.55s ease;
+    text-align: center;
+    flex-direction: column;
+    gap: 10px;
+  }
 
-    .footer-text strong {
-        color: #0a2a43;
-    }
+  .intro-sentence.active { opacity: 1; }
 
-    .copyright {
-        margin-top: 1.5rem;
-        font-size: 0.875rem;
-        color: #999;
-    }
-    </style>
+  .intro-icon {
+    font-size: 1.6rem;
+    margin-bottom: 2px;
+  }
+
+  .intro-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 0.95rem;
+    color: #F4F0FF;
+    line-height: 1.55;
+    letter-spacing: 0.01em;
+  }
+
+  .intro-text em {
+    color: #BB86FC;
+    font-style: italic;
+  }
+
+  .intro-loading-bar {
+    position: absolute;
+    bottom: 0; left: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #BB86FC, #D4ADFF);
+    width: 0%;
+    transition: width linear;
+    border-radius: 0 2px 2px 0;
+  }
+
+  .intro-dots {
+    position: absolute;
+    bottom: 14px;
+    display: flex;
+    gap: 5px;
+    align-items: center;
+  }
+
+  .intro-dot {
+    width: 4px; height: 4px;
+    border-radius: 50%;
+    background: rgba(187,134,252,0.25);
+    transition: all 0.3s;
+  }
+
+  .intro-dot.active {
+    width: 16px;
+    border-radius: 4px;
+    background: #BB86FC;
+  }
+
+  /* loading phase */
+  .intro-loader {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    opacity: 0;
+    transition: opacity 0.4s;
+    pointer-events: none;
+  }
+
+  .intro-loader.visible { opacity: 1; }
+
+  .loader-spinner {
+    width: 28px; height: 28px;
+    border: 2px solid rgba(187,134,252,0.2);
+    border-top-color: #BB86FC;
+    border-radius: 50%;
+    animation: spin 0.9s linear infinite;
+  }
+
+  .loader-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    align-items: flex-start;
+  }
+
+  .loader-step {
+    font-size: 0.52rem;
+    color: rgba(244,240,255,0.35);
+    letter-spacing: 0.06em;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    transition: color 0.4s;
+  }
+
+  .loader-step.done { color: #BB86FC; }
+  .loader-step.active { color: rgba(244,240,255,0.8); }
+
+  .loader-step-dot {
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    background: rgba(187,134,252,0.3);
+    flex-shrink: 0;
+    transition: background 0.4s;
+  }
+
+  .loader-step.done .loader-step-dot { background: #BB86FC; }
+  .loader-step.active .loader-step-dot { background: rgba(244,240,255,0.8); animation: pulse 1s ease-in-out infinite; }
+</style>
 </head>
-   
- <body>
+<body>
 
+<nav>
+  <div class="logo">Recitefy</div>
+  <a href="https://play.google.com/store/apps/details?id=com.recitefy.app" class="nav-cta" target="_blank">Download Free</a>
+</nav>
 
-<header>
-  <nav class="hero-nav">
-    <a href="#" class="logo-link">
-      <img src="logo.png" alt="Recitefy" class="nav-logo">
-      <span class="logo-text">Recitefy</span>
-    </a>
-    <ul class="nav-links">
-      <li><a href="#practice-modes">Features</a></li>
-      <li><a href="#ree">Meet Ree</a></li>
-<!--       <li><a href="https://apkpure.com/p/com.recitefy.app" class="nav-cta">Download</a></li> -->
-        <a href="https://recitefy.apk.com" class="nav-cta">Download on APKPure</a>
-
-    </ul>
-    <button class="hamburger" aria-label="Menu">
-      <span class="hamburger-line"></span>
-      <span class="hamburger-line"></span>
-      <span class="hamburger-line"></span>
-    </button>
-  </nav>
-</header>
-
-
+<!-- HERO -->
 <section class="hero">
-  <div class="container">
-    <div class="hero-content">
-      <h1 class="hero-title">Your Hifdh Journey Just Got Better</h1>
+  <div class="hero-glow"></div>
+  <div class="hero-glow2"></div>
 
-      <!-- Feature Carousel Container -->
-      <div class="feature-carousel">
-        <div class="carousel-track">
-          <div class="carousel-slide active">
-            <img src="recall.png" alt="App Preview" class="app-screenshot">
-          </div>
-          <div class="carousel-slide">
-            <img src="tadbeer.png" alt="Tadbeer Feed" class="app-screenshot">
-          </div>
-          <div class="carousel-slide">
-            <img src="revision.png" alt="Revision Planner" class="app-screenshot">
-          </div>
-          <div class="carousel-slide">
-            <img src="profile.png" alt="Progress Tracking" class="app-screenshot">
-          </div>
-          <div class="carousel-slide">
-            <img src="quran.png" alt="Quran View" class="app-screenshot">
-          </div>
-          <div class="carousel-slide">
+  <!-- Geometric SVG ornament -->
+  <svg class="ornament" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <polygon points="40,4 76,62 4,62" stroke="#C9A84C" stroke-width="1.5" fill="none" opacity="0.5"/>
+    <polygon points="40,76 4,18 76,18" stroke="#C9A84C" stroke-width="1.5" fill="none" opacity="0.5"/>
+    <circle cx="40" cy="40" r="10" stroke="#C9A84C" stroke-width="1.5" fill="none" opacity="0.7"/>
+    <circle cx="40" cy="40" r="3" fill="#C9A84C" opacity="0.8"/>
+  </svg>
 
+  <p class="hero-arabic">﴿ وَرَتِّلِ الْقُرْآنَ تَرْتِيلًا ﴾</p>
 
-            <img src="tafseer.png" alt="Tafseer Page" class="app-screenshot">
+  <h1 class="hero-headline">
+    Revise Quran<br>
+    <span>Never Alone Again.</span>
+  </h1>
+
+  <p class="hero-sub">
+    A halqa in your pocket. The world's greatest reciters take turns with you — verse by verse, page by page, all 604.
+  </p>
+
+  <div class="hero-buttons">
+    <a href="https://play.google.com/store/apps/details?id=com.recitefy.app" class="btn-primary" target="_blank">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M3.18 23.76c.3.17.64.24.99.2l13.12-11.9L13.7 8.6 3.18 23.76zm17.6-10.85c.27-.3.42-.68.42-1.1s-.15-.8-.42-1.1L18.3 9.2l-3.6 3.4 3.6 3.38 2.48-1.07zM.3.56C.11.85 0 1.2 0 1.6v20.8c0 .4.11.75.3 1.04L12.6 12 .3.56zm11.92 10.56L3.18.24C2.83.2 2.49.27 2.19.44L13.7 12 12.22 11.12z"/></svg>
+      Get on Google Play
+    </a>
+    <a href="#how-it-works" class="btn-secondary">
+      See how it works ↓
+    </a>
+  </div>
+</section>
+
+<!-- INTERACTIVE DEMO -->
+<div class="phone-section" style="flex-direction:column;align-items:center;gap:2rem;">
+
+  <div style="text-align:center;">
+    <p style="font-size:0.72rem;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:#BB86FC;margin-bottom:0.5rem;">Live Preview</p>
+    <h2 style="font-family:'Playfair Display',serif;font-size:clamp(1.6rem,3.5vw,2.4rem);color:#F4F0FF;">See it in <span style="color:#BB86FC;font-style:italic;">action</span></h2>
+  </div>
+
+  <div style="display:flex;flex-direction:column;align-items:center;gap:1rem;">
+    <div class="phone-wrap" id="demoPhoneWrap" style="position:relative;overflow:visible;">
+      <div class="phone" style="overflow:hidden;position:relative;">
+        <div class="phone-notch"></div>
+
+        <!-- INTRO OVERLAY -->
+        <div id="demoIntroOverlay">
+          <!-- Sentence 1 -->
+          <div class="intro-sentence active" id="introS0">
+            <div class="intro-icon">🕌</div>
+            <div class="intro-text">Revise Quran with<br><em>the world's greatest reciters</em></div>
+          </div>
+          <!-- Sentence 2 -->
+          <div class="intro-sentence" id="introS1">
+            <div class="intro-icon">🎙️</div>
+            <div class="intro-text">Al-Afasy. Sudais. Mishary.<br><em>Your halqa, every day.</em></div>
+          </div>
+          <!-- Sentence 3 -->
+          <div class="intro-sentence" id="introS2">
+            <div class="intro-icon">📖</div>
+            <div class="intro-text">Verse by verse, page by page.<br><em>All 604 pages covered.</em></div>
+          </div>
+          <!-- Sentence 4 -->
+          <div class="intro-sentence" id="introS3">
+            <div class="intro-icon">✨</div>
+            <div class="intro-text"><em>Never revise alone again.</em><br>See how it works ↓</div>
+          </div>
+
+          <!-- Loading phase -->
+          <div class="intro-loader" id="introLoader">
+            <div class="loader-spinner"></div>
+            <div class="loader-steps">
+              <div class="loader-step" id="ls0"><div class="loader-step-dot"></div>Loading reciters…</div>
+              <div class="loader-step" id="ls1"><div class="loader-step-dot"></div>Preparing your halqa…</div>
+              <div class="loader-step" id="ls2"><div class="loader-step-dot"></div>Opening Mushaf…</div>
+              <div class="loader-step" id="ls3"><div class="loader-step-dot"></div>Starting demo…</div>
+            </div>
+          </div>
+
+          <!-- Progress bar -->
+          <div class="intro-loading-bar" id="introBar"></div>
+
+          <!-- Dots -->
+          <div class="intro-dots">
+            <div class="intro-dot active" id="iDot0"></div>
+            <div class="intro-dot" id="iDot1"></div>
+            <div class="intro-dot" id="iDot2"></div>
+            <div class="intro-dot" id="iDot3"></div>
+          </div>
+        </div>
+        <div id="screenHome" style="position:absolute;inset:0;padding:52px 14px 0 14px;display:flex;flex-direction:column;opacity:0;transition:opacity 0.4s;">
+          <div style="margin-bottom:12px;">
+            <div style="font-size:0.8rem;font-weight:700;color:#F4F0FF;">Recitefy</div>
+            <div style="font-size:1.25rem;font-weight:800;color:#F4F0FF;margin-top:4px;">Welcome back</div>
+          </div>
+          <div style="background:#1A1628;border-radius:18px;padding:16px 14px 14px;margin-bottom:10px;flex-shrink:0;position:relative;overflow:hidden;">
+            <div style="position:absolute;top:-20px;right:-20px;width:80px;height:80px;border-radius:50%;background:rgba(187,134,252,0.07);pointer-events:none;"></div>
+            <div style="font-size:0.48rem;font-weight:700;color:#BB86FC;letter-spacing:0.18em;text-transform:uppercase;margin-bottom:3px;">Revision Circle</div>
+            <div style="font-size:1rem;font-weight:800;color:#F4F0FF;margin-bottom:2px;">Resume</div>
+            <div style="font-size:0.52rem;color:rgba(244,240,255,0.45);margin-bottom:8px;">Continue your daily revision with</div>
+            <div style="font-size:0.45rem;font-weight:700;color:#BB86FC;letter-spacing:0.14em;text-transform:uppercase;margin-bottom:10px;">Today's Companions</div>
+            <div style="display:flex;justify-content:center;margin-bottom:12px;">
+              <div id="phoneCircle" style="position:relative;width:110px;height:110px;">
+                <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:90px;height:90px;border-radius:50%;background:rgba(13,10,20,0.6);"></div>
+                <div id="phonePulse" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:38px;height:38px;border-radius:50%;background:rgba(187,134,252,0.18);border:1px solid rgba(187,134,252,0.3);display:flex;align-items:center;justify-content:center;z-index:2;">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="#BB86FC"><path d="M8 5v14l11-7z"/></svg>
+                </div>
+              </div>
+            </div>
+            <div style="background:rgba(187,134,252,0.1);border:1px solid rgba(187,134,252,0.3);border-radius:100px;padding:7px 0;text-align:center;font-size:0.52rem;font-weight:600;color:#BB86FC;display:flex;align-items:center;justify-content:center;gap:5px;">
+              <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="#BB86FC" stroke-width="2.5"><path d="M23 4v6h-6M1 20v-6h6"/><path d="M3.51 9a9 9 0 0114.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0020.49 15"/></svg>
+              Refresh your circle
+            </div>
+          </div>
+          <div style="font-size:0.44rem;font-weight:700;color:rgba(244,240,255,0.35);letter-spacing:0.14em;text-transform:uppercase;margin-bottom:7px;">Quick Access</div>
+          <div style="background:#1A1628;border-radius:14px;width:56px;height:52px;display:flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,0.05);">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#BB86FC" stroke-width="1.6"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>
+          </div>
+          <div style="margin-top:auto;padding:10px 0 12px;border-top:1px solid rgba(255,255,255,0.06);display:flex;justify-content:space-around;align-items:center;">
+            <div style="display:flex;flex-direction:column;align-items:center;gap:2px;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="#BB86FC"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>
+              <span style="font-size:0.42rem;color:#BB86FC;font-weight:600;">Home</span>
+              <div style="width:4px;height:4px;border-radius:50%;background:#BB86FC;"></div>
+            </div>
+            <div style="display:flex;flex-direction:column;align-items:center;gap:2px;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgba(244,240,255,0.25)" stroke-width="1.5"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>
+              <span style="font-size:0.42rem;color:rgba(244,240,255,0.25);">Library</span>
+            </div>
+            <div style="display:flex;flex-direction:column;align-items:center;gap:2px;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgba(244,240,255,0.25)" stroke-width="1.5"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+              <span style="font-size:0.42rem;color:rgba(244,240,255,0.25);">Profile</span>
+            </div>
           </div>
         </div>
 
-        <!-- Navigation Arrows -->
-        <button class="carousel-arrow prev-arrow" aria-label="Previous">
-          <i class="fas fa-chevron-left"></i>
-        </button>
-        <button class="carousel-arrow next-arrow" aria-label="Next">
-          <i class="fas fa-chevron-right"></i>
-        </button>
-      </div>
-
-      <!-- Navigation Dots -->
-      <div class="carousel-dots"></div>
-<!-- Primary Download Button -->
-<a href="https://recitefy.apk.com" class="cta-btn">
-  Download Now
-</a>
-
-<!-- Secondary APKPure Store Link -->
-<small style="display: block; margin-top: 8px; color: #ccc; font-size: 0.9rem;">
-  Prefer APKPure store? 
-  <a href="https://apkpure.com/p/com.recitefy.app" style="color: #fff; text-decoration: underline;" target="_blank">
-    Click here
-  </a>
-</small>
-
-<!-- Warning Note -->
-<p style="font-size: 0.8rem; color: #aaa; margin-top: 4px;">
-  ⚠️ You may see a warning during install — Recitefy is 100% safe. 
-  <a href="#how-to-install" style="color: #fff; text-decoration: underline;">Learn why</a>
-</p>
-
-<!--       <a href="https://apkpure.com/p/com.recitefy.app" class="cta-btn">Download Recitefy
-        <i class="fas fa-arrow-right"></i> -->
-      </a>
-    </div>
-  </div>
-</section>
-
- 
- 
-<section aria-labelledby="practice-modes-heading" class="practice-modes" id="practice-modes">
-  <div class="container">
-    <h2 id="practice-modes-heading" class="section-title">Practice Modes</h2>
-
-      
-<div class="section-wrapper">
-    <!-- Practice Modes Content -->
-    <article class="mode-article">
-      <figure class="mode-visual">
-        <img src="musaffahme.png" 
-             alt="Interface showing verse-by-verse Quran recitation with a Qari">
-
-      </figure>
-      <div class="mode-content">
-        <h3 class="mode-heading">Musaffah (Duet) & Learn Mode</h3>
-        <p class="mode-description">
-          <strong>Musaffah (Duet) Mode:</strong> Feel like you're in the same room with your favorite reciters. Our real-time duet system 
-          lets you alternate verses with Qaris like Mishary Rashid or Minshawy. It trains your ear, builds confidence, and keeps you in rhythm.
-        </p>
-        <p class="mode-description">
-          <strong>Learn Mode:</strong> Ease into memorization with a stress-free flow. Listen and repeat in a structured loop.
-            It's a chill practice zone to get the verses stuck in your head before you try reciting solo.
-        </p>
-      </div>
-    </article>
-</div>
-    <!-- Challenge Mode -->
-    <article class="mode-article">
-      <figure class="mode-visual">
-        <img src="tahaddi.png" 
-             alt="Challenge screen showing timer and progress bar">
-      </figure>
-      <div class="mode-content">
-        <h3 class="mode-heading">Tahaddi (Challenge Mode)</h3>
-        <p class="mode-description">
-          Gamify your Hifdh journey with timed challenges, Ayah flashbacks, and recall battles. 
-          Earn points as you test your memory — perfect for revision or just pure motivation.
-        </p>
-      </div>
-    </article>
-
-<!-- Meet Ree Section -->
-<section class="meet-ree" id="ree">
-  <img src="Ree-focused.png" alt="Ree the lazy mascot of Recitefy" class="ree-img">
-  <h2>Meet Ree</h2>
-  <p>
-    Ree is your chill Qur'an buddy. He's a little lazy, a bit sarcastic, and sometimes forgets where he kept his Mushaf — but he’s here to remind you to recite, celebrate your wins, and nap when you need it. 
-  </p>
-  <p>
-    Don’t be surprised if he cheers you on when you hit a streak... or guilt-trips you when you miss one. 
-  </p>
-
-  <!-- Video Section -->
-  <div class="ree-video-container">
-    <video class="ree-video" autoplay loop muted>
-      <source src="Ree-intro.mp4" type="video/mp4">
-      Your browser does not support the video tag.
-    </video>
-    <button class="unmute-btn" onclick="toggleMute()">
-      <i class="fas fa-volume-mute"></i>
-  </div>
-</section>
-
-
-
-
-<div class="merged-section">
-<section id="how-to-install">
-  <div>
-    <h3>How to Install</h3>
-    <div>
-      <p>
-        When you install an APK outside the Play Store, Android may show:
-        <br>
-        <span>"This type of file can harm your device."</span>
-        That’s a standard security prompt for sideloaded apps—Recitefy is 100% safe.
-      </p>
-
-      <ol>
-        <li>Tap <strong>"Download Now"</strong> above and allow the file to download</li>
-        <li>
-          If prompted, go to <strong>Settings → Install unknown apps</strong> and enable it for your browser
-        </li>
-        <li>Open the downloaded file to install Recitefy</li>
-      </ol>
-
-      <p style="margin-top: 2rem;">
-        Prefer the APKPure store flow?  
-        <a href="https://apkpure.com/p/com.recitefy.app" target="_blank">Use the APKPure store version</a>
-      </p>
-    </div>
-  </div>
-</section>
-
-
-<section class="why-we-built">
-  <div class="why-we-built-wrapper">
-    <div class="title-container">
-      <h2 class="title">Why We Built Recitefy</h2>
-    </div>
-    <div class="content-container">
-      <p class="intro">Hifdh is beautiful—<br>but staying consistent with revision is hard.</p>
-      <p class="content">
-        Recitefy was born from that tension.<br><br>
-        To ease the weight of daily Muraja'ah.<br>
-        To bring joy back into revisiting what you’ve already memorized.<br>
-<!--         We’re not a big team.<br>
-        Just a few believers building what we wish we had.<br><br>
-        We're not here to compete—<br>
-        Instead, we’re carving a new lane—one focused on joy, memory, and daily motivation.<br>
-        While other apps offer utility, Recitefy offers an experience.<br> -->
-        It’s not just about precision; it’s about the journey of revisiting, reinforcing, and staying motivated along the way.<br><br>
-        And if you're here, you’re already part of it.
-      </p>
-<!--        <p class="quote">“Verily, with hardship comes ease.” – <span class="surah">Surah Ash-Sharh</span></p>  -->
-       <p class="founder">— <span class="founder-name">Saleem Ahmad</span>, Founder</p> 
-    </div>
-  </div>
-</section>
-</div>
- <!-- Renamed Footer -->
- <div class="site-footer">
-    <div class="footer-container">
-        <img src="logo.png" alt="Recitefy" style="width: 100px; margin-bottom: 2rem;" />
-        
-        <div class="footer-social">
-            <a href="https://t.me/recitefy" class="social-link" aria-label="Telegram">
-                <i class="fab fa-telegram-plane"></i>
-            </a>
-            <a href="https://www.facebook.com/profile.php?id=61565472024122" class="social-link" aria-label="Facebook">
-                <i class="fab fa-facebook-f"></i>
-            </a>
-            <a href="https://twitter.com/recitefy" class="social-link" aria-label="Twitter">
-                <i class="fab fa-twitter"></i>
-            </a>
-            <a href="https://instagram.com/recitefy" class="social-link" aria-label="Instagram">
-                <i class="fab fa-instagram"></i>
-            </a>
+        <!-- SCREEN B: Setup -->
+        <div id="screenSetup" style="position:absolute;inset:0;padding:0 0 0 0;display:flex;flex-direction:column;opacity:0;pointer-events:none;transition:opacity 0.4s;background:#0D0A14;">
+          <!-- Header -->
+          <div style="display:flex;align-items:center;justify-content:space-between;padding:44px 14px 10px;">
+            <div style="width:28px;height:28px;border-radius:50%;background:rgba(255,255,255,0.07);display:flex;align-items:center;justify-content:center;">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#F4F0FF" stroke-width="2.2"><polyline points="15 18 9 12 15 6"/></svg>
+            </div>
+            <div style="font-size:0.75rem;font-weight:700;color:#F4F0FF;letter-spacing:0.05em;">Setup</div>
+            <div style="width:28px;"></div>
+          </div>
+          <!-- Recitation Mode -->
+          <div style="padding:0 12px 8px;">
+            <div style="font-size:0.38rem;font-weight:700;color:rgba(244,240,255,0.4);letter-spacing:0.16em;text-transform:uppercase;margin-bottom:6px;">Recitation Mode</div>
+            <div style="display:flex;gap:4px;background:#1A1628;border-radius:10px;padding:4px;">
+              <div style="flex:1;background:#BB86FC;border-radius:7px;padding:5px 0;text-align:center;font-size:0.42rem;font-weight:700;color:#0D0A14;">Musaffa</div>
+              <div style="flex:1;padding:5px 0;text-align:center;font-size:0.42rem;color:rgba(244,240,255,0.45);">Learn</div>
+              <div style="flex:1;padding:5px 0;text-align:center;font-size:0.42rem;color:rgba(244,240,255,0.45);">Tarteel</div>
+              <div style="flex:1;padding:5px 0;text-align:center;font-size:0.42rem;color:rgba(244,240,255,0.45);">Listen</div>
+            </div>
+            <div style="font-size:0.36rem;color:rgba(244,240,255,0.3);margin-top:4px;font-style:italic;">ⓘ Musaffa mode: Turn-based recitation with the Qari.</div>
+          </div>
+          <!-- Pre-selected target -->
+          <div style="margin:0 12px 8px;background:#1A1628;border-radius:10px;padding:10px 12px;display:flex;align-items:center;gap:10px;">
+            <div style="width:28px;height:28px;border-radius:50%;background:rgba(187,134,252,0.15);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#BB86FC" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+            <div>
+              <div style="font-size:0.36rem;font-weight:700;color:#BB86FC;letter-spacing:0.14em;text-transform:uppercase;margin-bottom:1px;">Pre-Selected Target</div>
+              <div style="font-size:0.72rem;font-weight:800;color:#F4F0FF;font-family:'Amiri',serif;">Surah At-Tawbah</div>
+            </div>
+          </div>
+          <!-- Today's Circle Companions -->
+          <div style="padding:0 12px 8px;">
+            <div style="display:flex;align-items:center;gap:5px;margin-bottom:7px;">
+              <div style="font-size:0.38rem;font-weight:700;color:rgba(244,240,255,0.4);letter-spacing:0.16em;text-transform:uppercase;">Today's Circle Companions</div>
+              <div style="background:rgba(187,134,252,0.2);border-radius:4px;padding:1px 4px;font-size:0.3rem;font-weight:700;color:#BB86FC;letter-spacing:0.1em;">DAILY</div>
+            </div>
+            <div style="display:flex;gap:10px;">
+              <div style="display:flex;flex-direction:column;align-items:center;gap:3px;">
+                <div style="width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#5B3A8C,#3D2070);border:2px solid #BB86FC;display:flex;align-items:center;justify-content:center;font-size:0.55rem;font-weight:700;color:#F4F0FF;">مح</div>
+                <span style="font-size:0.36rem;color:#BB86FC;font-weight:600;">Muhammad</span>
+              </div>
+              <div style="display:flex;flex-direction:column;align-items:center;gap:3px;">
+                <div style="width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#2A2040,#1A1628);border:1.5px solid rgba(255,255,255,0.12);display:flex;align-items:center;justify-content:center;font-size:0.55rem;font-weight:700;color:#F4F0FF;">عب</div>
+                <span style="font-size:0.36rem;color:rgba(244,240,255,0.5);">Abdullaah</span>
+              </div>
+              <div style="display:flex;flex-direction:column;align-items:center;gap:3px;">
+                <div style="width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#2A2040,#1A1628);border:1.5px solid rgba(255,255,255,0.12);display:flex;align-items:center;justify-content:center;font-size:0.55rem;font-weight:700;color:#F4F0FF;">أح</div>
+                <span style="font-size:0.36rem;color:rgba(244,240,255,0.5);">Ahmed</span>
+              </div>
+            </div>
+          </div>
+          <!-- Turn Duration -->
+          <div style="padding:0 12px 10px;">
+            <div style="font-size:0.38rem;font-weight:700;color:rgba(244,240,255,0.4);letter-spacing:0.16em;text-transform:uppercase;margin-bottom:6px;">Turn Duration</div>
+            <div style="display:flex;gap:4px;background:#1A1628;border-radius:10px;padding:4px;">
+              <div style="flex:1;background:#BB86FC;border-radius:7px;padding:5px 0;text-align:center;font-size:0.42rem;font-weight:700;color:#0D0A14;">Verse Turn</div>
+              <div style="flex:1;padding:5px 0;text-align:center;font-size:0.42rem;color:rgba(244,240,255,0.45);">Page Turn</div>
+            </div>
+          </div>
+          <!-- Start Reciting CTA -->
+          <div style="margin:auto 12px 14px;padding:0 12px;">
+            <div id="setupStartBtn" style="background:linear-gradient(135deg,#BB86FC,#9B5FE0);border-radius:100px;padding:11px 0;text-align:center;display:flex;align-items:center;justify-content:center;gap:7px;box-shadow:0 0 20px rgba(187,134,252,0.4);">
+              <span style="font-size:0.58rem;font-weight:700;color:#0D0A14;letter-spacing:0.04em;">Start Reciting</span>
+              <div style="width:18px;height:18px;border-radius:50%;background:rgba(13,10,20,0.25);display:flex;align-items:center;justify-content:center;">
+                <svg width="8" height="8" viewBox="0 0 24 24" fill="#0D0A14"><path d="M8 5v14l11-7z"/></svg>
+              </div>
+            </div>
+          </div>
         </div>
-        
-        <p class="footer-text">
-            &copy; 2025 <strong>Recitefy</strong>. Committed to making Qur’an memorization easy, enjoyable, and effective.
-        </p>
 
-        <p class="copyright">
-            &copy; 2025 Recitefy. All rights reserved. 
-            <a href="https://recitefy.com.ng/privacy_policy.html" style="color: #0a2a43; text-decoration: underline; margin-left: 10px;">Privacy Policy</a>
-        </p>
+        <!-- SCREEN C: Reciter's Turn -->
+        <div id="screenReciter" style="position:absolute;inset:0;padding:52px 12px 14px;display:flex;flex-direction:column;opacity:0;pointer-events:none;transition:opacity 0.4s;">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;">
+            <div style="display:flex;align-items:center;gap:7px;">
+              <div style="width:30px;height:30px;border-radius:50%;background:linear-gradient(135deg,#6B3FA0,#3D2070);border:1.5px solid rgba(187,134,252,0.5);display:flex;align-items:center;justify-content:center;font-size:0.65rem;font-weight:700;color:#F4F0FF;flex-shrink:0;">ع</div>
+              <div>
+                <div style="font-size:0.65rem;font-weight:700;color:#F4F0FF;">Reciter's Turn</div>
+                <div style="font-size:0.48rem;color:rgba(244,240,255,0.45);">Al-Afasy reciting…</div>
+              </div>
+            </div>
+            <div class="waveform" style="height:16px;"><div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div></div>
+          </div>
+          <div style="border:1.5px solid rgba(187,134,252,0.5);border-radius:8px;padding:6px 10px;text-align:center;margin-bottom:10px;position:relative;background:rgba(187,134,252,0.04);">
+            <span style="position:absolute;left:6px;top:50%;transform:translateY(-50%);font-size:0.7rem;color:rgba(187,134,252,0.6);">❧</span>
+            <span style="position:absolute;right:6px;top:50%;transform:translateY(-50%);font-size:0.7rem;color:rgba(187,134,252,0.6);">❧</span>
+            <div style="font-family:'Amiri',serif;font-size:0.9rem;color:#F4F0FF;direction:rtl;">سُورَةُ التَّوْبَة</div>
+          </div>
+          <div style="flex:1;font-family:'Amiri',serif;direction:rtl;text-align:justify;font-size:0.78rem;line-height:2.1;color:rgba(244,240,255,0.85);padding:0 2px;overflow:hidden;">
+            <span style="color:rgba(244,240,255,0.4);">بَرَاءَةٌ مِّنَ اللَّهِ وَرَسُولِهِ إِلَى الَّذِينَ عَاهَدتُّم مِّنَ الْمُشْرِكِينَ ①</span>
+            <span style="color:rgba(244,240,255,0.4);"> فَسِيحُوا فِي الْأَرْضِ أَرْبَعَةَ أَشْهُرٍ وَاعْلَمُوا أَنَّكُمْ غَيْرُ مُعْجِزِي اللَّهِ ②</span>
+            <span style="color:#4ADE80;"> وَأَذَانٌ مِّنَ اللَّهِ وَرَسُولِهِ إِلَى النَّاسِ يَوْمَ الْحَجِّ الْأَكْبَرِ أَنَّ اللَّهَ بَرِيءٌ مِّنَ الْمُشْرِكِينَ ③</span>
+            <span style="color:rgba(244,240,255,0.4);"> فَإِن تُبْتُمْ فَهُوَ خَيْرٌ لَّكُمْ وَإِن تَوَلَّيْتُمْ فَاعْلَمُوا أَنَّكُمْ غَيْرُ مُعْجِزِي اللَّهِ ④</span>
+          </div>
+          <div style="text-align:center;font-size:0.48rem;color:rgba(244,240,255,0.3);margin:5px 0;">١٨٧</div>
+          <div style="display:flex;align-items:center;gap:6px;margin-top:2px;">
+            <div style="width:32px;height:32px;border-radius:50%;background:#1A1628;border:1px solid rgba(255,255,255,0.1);display:flex;align-items:center;justify-content:center;">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="rgba(244,240,255,0.25)" stroke-width="2"><line x1="1" y1="1" x2="23" y2="23"/><path d="M9 9v3a3 3 0 005.12 2.12M15 9.34V4a3 3 0 00-5.94-.6"/><path d="M17 16.95A7 7 0 015 12v-2m14 0v2a7 7 0 01-.11 1.23M12 19v3M8 23h8"/></svg>
+            </div>
+            <div style="width:32px;height:32px;border-radius:50%;background:#1A1628;border:1px solid rgba(255,255,255,0.1);display:flex;align-items:center;justify-content:center;">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="rgba(244,240,255,0.25)" stroke-width="2"><line x1="4" y1="21" x2="4" y2="14"/><line x1="4" y1="10" x2="4" y2="3"/><line x1="12" y1="21" x2="12" y2="12"/><line x1="12" y1="8" x2="12" y2="3"/><line x1="20" y1="21" x2="20" y2="16"/><line x1="20" y1="12" x2="20" y2="3"/><line x1="1" y1="14" x2="7" y2="14"/><line x1="9" y1="8" x2="15" y2="8"/><line x1="17" y1="16" x2="23" y2="16"/></svg>
+            </div>
+            <div style="flex:1;background:rgba(30,24,48,0.8);border-radius:100px;height:32px;display:flex;align-items:center;padding:0 5px;gap:5px;border:1px solid rgba(255,255,255,0.06);">
+              <div style="width:24px;height:24px;border-radius:50%;background:rgba(187,134,252,0.1);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="rgba(187,134,252,0.3)"><path d="M12 1a3 3 0 00-3 3v8a3 3 0 006 0V4a3 3 0 00-3-3z"/><path d="M19 10v2a7 7 0 01-14 0v-2M12 19v4M8 23h8"/></svg>
+              </div>
+              <span style="font-size:0.44rem;color:rgba(244,240,255,0.2);letter-spacing:0.04em;">waiting for your turn…</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- SCREEN D: Your Turn -->
+        <div id="screenYours" style="position:absolute;inset:0;padding:52px 12px 14px;display:flex;flex-direction:column;opacity:0;pointer-events:none;transition:opacity 0.4s;">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;">
+            <div style="display:flex;align-items:center;gap:7px;">
+              <div style="width:30px;height:30px;border-radius:50%;background:linear-gradient(135deg,#2A2040,#3D2070);border:2px solid #BB86FC;display:flex;align-items:center;justify-content:center;font-size:0.65rem;font-weight:700;color:#BB86FC;flex-shrink:0;">S</div>
+              <div>
+                <div style="font-size:0.65rem;font-weight:700;color:#F4F0FF;">Your Turn</div>
+                <div style="font-size:0.48rem;color:rgba(244,240,255,0.5);">Now you recite! ✨</div>
+              </div>
+            </div>
+            <div style="width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,#4A2D7A,#2A1A50);border:1.5px solid rgba(187,134,252,0.4);display:flex;align-items:center;justify-content:center;">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#BB86FC" stroke-width="1.5"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            </div>
+          </div>
+          <div style="border:1.5px solid rgba(187,134,252,0.5);border-radius:8px;padding:6px 10px;text-align:center;margin-bottom:10px;position:relative;background:rgba(187,134,252,0.04);">
+            <span style="position:absolute;left:6px;top:50%;transform:translateY(-50%);font-size:0.7rem;color:rgba(187,134,252,0.6);">❧</span>
+            <span style="position:absolute;right:6px;top:50%;transform:translateY(-50%);font-size:0.7rem;color:rgba(187,134,252,0.6);">❧</span>
+            <div style="font-family:'Amiri',serif;font-size:0.9rem;color:#F4F0FF;direction:rtl;">سُورَةُ التَّوْبَة</div>
+          </div>
+          <div style="flex:1;font-family:'Amiri',serif;direction:rtl;text-align:justify;font-size:0.78rem;line-height:2.1;color:rgba(244,240,255,0.85);padding:0 2px;overflow:hidden;">
+            <span style="color:rgba(244,240,255,0.4);">بَرَاءَةٌ مِّنَ اللَّهِ وَرَسُولِهِ إِلَى الَّذِينَ عَاهَدتُّم مِّنَ الْمُشْرِكِينَ ①</span>
+            <span style="color:rgba(244,240,255,0.4);"> فَسِيحُوا فِي الْأَرْضِ أَرْبَعَةَ أَشْهُرٍ وَاعْلَمُوا أَنَّكُمْ غَيْرُ مُعْجِزِي اللَّهِ ②</span>
+            <span style="color:rgba(244,240,255,0.4);"> وَأَذَانٌ مِّنَ اللَّهِ وَرَسُولِهِ إِلَى النَّاسِ يَوْمَ الْحَجِّ الْأَكْبَرِ أَنَّ اللَّهَ بَرِيءٌ مِّنَ الْمُشْرِكِينَ ③</span>
+            <span style="color:#4ADE80;"> فَإِن تُبْتُمْ فَهُوَ خَيْرٌ لَّكُمْ وَإِن تَوَلَّيْتُمْ فَاعْلَمُوا أَنَّكُمْ غَيْرُ مُعْجِزِي اللَّهِ ④</span>
+            <span style="color:rgba(244,240,255,0.4);"> وَبَشِّرِ الَّذِينَ كَفَرُوا بِعَذَابٍ أَلِيمٍ ⑤</span>
+          </div>
+          <div style="text-align:center;font-size:0.48rem;color:rgba(244,240,255,0.3);margin:5px 0;">١٨٧</div>
+          <div style="display:flex;align-items:center;gap:6px;margin-top:2px;">
+            <div style="width:32px;height:32px;border-radius:50%;background:#1A1628;border:1px solid rgba(255,255,255,0.1);display:flex;align-items:center;justify-content:center;">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="rgba(244,240,255,0.4)" stroke-width="2"><line x1="1" y1="1" x2="23" y2="23"/><path d="M9 9v3a3 3 0 005.12 2.12M15 9.34V4a3 3 0 00-5.94-.6"/><path d="M17 16.95A7 7 0 015 12v-2m14 0v2a7 7 0 01-.11 1.23M12 19v3M8 23h8"/></svg>
+            </div>
+            <div style="width:32px;height:32px;border-radius:50%;background:#1A1628;border:1px solid rgba(255,255,255,0.1);display:flex;align-items:center;justify-content:center;">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="rgba(244,240,255,0.4)" stroke-width="2"><line x1="4" y1="21" x2="4" y2="14"/><line x1="4" y1="10" x2="4" y2="3"/><line x1="12" y1="21" x2="12" y2="12"/><line x1="12" y1="8" x2="12" y2="3"/><line x1="20" y1="21" x2="20" y2="16"/><line x1="20" y1="12" x2="20" y2="3"/><line x1="1" y1="14" x2="7" y2="14"/><line x1="9" y1="8" x2="15" y2="8"/><line x1="17" y1="16" x2="23" y2="16"/></svg>
+            </div>
+            <div style="flex:1;background:#2A2040;border-radius:100px;height:32px;display:flex;align-items:center;padding:0 4px;gap:0;border:1px solid rgba(187,134,252,0.25);position:relative;overflow:hidden;">
+              <div id="sliderThumb" style="width:26px;height:26px;border-radius:50%;background:#F4F0FF;display:flex;align-items:center;justify-content:center;flex-shrink:0;z-index:2;transition:transform 1s cubic-bezier(0.4,0,0.2,1);">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="#0D0A14"><path d="M12 1a3 3 0 00-3 3v8a3 3 0 006 0V4a3 3 0 00-3-3z"/><path d="M19 10v2a7 7 0 01-14 0v-2M12 19v4M8 23h8"/></svg>
+              </div>
+              <span id="sliderLabel" style="font-size:0.44rem;color:rgba(244,240,255,0.4);letter-spacing:0.04em;margin-left:6px;">slide to recite</span>
+            </div>
+          </div>
+        </div>
+
+      <!-- Hand cursor — inside phone, absolute to phone -->
+      <div id="demoCursor" style="position:absolute;width:28px;height:36px;pointer-events:none;z-index:9999;display:none;opacity:0;left:0;top:0;transition:left 0.65s cubic-bezier(0.4,0,0.2,1),top 0.65s cubic-bezier(0.4,0,0.2,1),opacity 0.3s;">
+        <svg id="handSvg" viewBox="0 0 28 36" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;filter:drop-shadow(0 2px 5px rgba(0,0,0,0.6));transition:transform 0.15s ease;">
+          <path d="M10 2C8.3 2 7 3.3 7 5v11.2C6.3 15.5 5.5 15 4.5 15 2.6 15 1 16.6 1 18.5c0 .7.2 1.4.6 2L6 27.5C7.1 29.6 9.4 31 12 31h4c3.3 0 6-2.7 6-6V13c0-1.7-1.3-3-3-3-.4 0-.8.1-1.1.2C17.5 9.1 16.3 8 15 8c-.3 0-.7.1-1 .2C13.6 7 12.4 6 11 6V5c0-1.7-1.3-3-3-3z" fill="#F4F0FF" stroke="rgba(187,134,252,0.7)" stroke-width="0.8"/>
+          <path d="M10 2C8.3 2 7 3.3 7 5v14h3V5c0-1.7-1.3-3-3-3z" fill="#DDD6FF"/>
+        </svg>
+        <div id="tapRipple" style="position:absolute;top:-4px;left:-4px;width:36px;height:36px;border-radius:50%;background:rgba(187,134,252,0.35);transform:scale(0);opacity:0;pointer-events:none;"></div>
+      </div>
+
+      </div><!-- /phone -->
+    </div><!-- /phone-wrap -->
+
+    <!-- Step dots -->
+    <div style="display:flex;gap:8px;align-items:center;">
+      <div id="dot0" style="width:10px;height:10px;border-radius:50%;background:#BB86FC;transition:all 0.3s;"></div>
+      <div id="dot1" style="width:6px;height:6px;border-radius:50%;background:rgba(187,134,252,0.3);transition:all 0.3s;"></div>
+      <div id="dot2" style="width:6px;height:6px;border-radius:50%;background:rgba(187,134,252,0.3);transition:all 0.3s;"></div>
     </div>
+    <div id="demoCaption" style="font-size:0.85rem;color:#8A86A0;text-align:center;min-height:1.6em;max-width:340px;transition:opacity 0.3s;">Tap the revision circle to start your halqa</div>
+
+  </div><!-- /column -->
+
 </div>
 
-     <script>
-document.addEventListener('DOMContentLoaded', () => {
-  const track = document.querySelector('.carousel-track');
-  const slides = document.querySelectorAll('.carousel-slide');
-  const dotsContainer = document.querySelector('.carousel-dots');
-  const prevBtn = document.querySelector('.prev-arrow');
-  const nextBtn = document.querySelector('.next-arrow');
-  
-  let currentIndex = 0;
-  const slideCount = slides.length;
-  
-  // Create dots
-  slides.forEach((_, index) => {
-    const dot = document.createElement('button');
-    dot.classList.add('dot');
-    dot.setAttribute('aria-label', `Go to slide ${index + 1}`);
-    dot.addEventListener('click', () => goToSlide(index));
-    dotsContainer.appendChild(dot);
-  });
-  
-  const dots = document.querySelectorAll('.dot');
-  dots[0].classList.add('active');
-  
-  // Update carousel position
-  function updateCarousel() {
-    track.style.transform = `translateX(-${currentIndex * 100}%)`;
-    
-    // Update active dot
-    dots.forEach((dot, index) => {
-      dot.classList.toggle('active', index === currentIndex);
+<!-- HOW IT WORKS -->
+<section class="section" id="how-it-works">
+  <div class="reveal">
+    <p class="section-label">The Experience</p>
+    <h2 class="section-title">Your <span>Halqa</span>, Every Day</h2>
+    <p class="section-sub">A traditional revision circle — now in your pocket, with reciters you've admired your whole life.</p>
+  </div>
+
+  <div class="steps reveal">
+    <div class="step">
+      <div class="step-num">01</div>
+      <div class="step-icon">🎲</div>
+      <h3>Daily Reciters</h3>
+      <p>Every day, 3 world-famous reciters join your circle. Not the same ones — keeps it fresh and alive.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">02</div>
+      <div class="step-icon">🎙️</div>
+      <h3>They Recite First</h3>
+      <p>Your reciter reads a verse or page — beautifully, with full tajweed. You listen, follow along on the Mushaf.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">03</div>
+      <div class="step-icon">📖</div>
+      <h3>Your Turn</h3>
+      <p>Now you recite. The verse is highlighted. Slide the button when you're done. Back and forth, all the way through.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">04</div>
+      <div class="step-icon">🔄</div>
+      <h3>Reshuffle Anytime</h3>
+      <p>Want different reciters today? Watch a short ad and reshuffle your circle whenever you like.</p>
+    </div>
+  </div>
+</section>
+
+<div class="divider" style="max-width:900px;margin:0 auto;"></div>
+
+<!-- FEATURES -->
+<section class="section">
+  <div class="reveal">
+    <p class="section-label">Features</p>
+    <h2 class="section-title">Built for <span>Serious</span> Revision</h2>
+    <p class="section-sub">Everything a hafiz needs. Nothing they don't.</p>
+  </div>
+
+  <div class="features-grid reveal">
+    <div class="feature">
+      <div class="feature-icon">📜</div>
+      <h4>604-Page Mushaf Madani</h4>
+      <p>Pixel-perfect replica of the Madinah Mushaf. The same layout you memorized from.</p>
+    </div>
+    <div class="feature">
+      <div class="feature-icon">✨</div>
+      <h4>Live Verse Highlighting</h4>
+      <p>Each verse lights up as it's recited. Track exactly where you are at all times.</p>
+    </div>
+    <div class="feature">
+      <div class="feature-icon">🎛️</div>
+      <h4>Verse or Page Mode</h4>
+      <p>Choose your pace. Verse by verse for deep focus. Page by page for momentum.</p>
+    </div>
+    <div class="feature">
+      <div class="feature-icon">👆</div>
+      <h4>Slide to Finish</h4>
+      <p>A smooth slider signals the end of your turn. No buttons to fumble with mid-recitation.</p>
+    </div>
+    <div class="feature">
+      <div class="feature-icon">🌍</div>
+      <h4>World-Class Reciters</h4>
+      <p>A growing library of the most beloved Quran reciters from around the world.</p>
+    </div>
+    <div class="feature">
+      <div class="feature-icon">🆓</div>
+      <h4>Completely Free</h4>
+      <p>No subscriptions. No paywalls. Just open the app and start your halqa.</p>
+    </div>
+  </div>
+</section>
+
+<!-- QUOTE -->
+<section class="quote-section">
+  <div class="quote-bg"></div>
+  <div class="reveal">
+    <div class="quote-arabic">﴿ وَمَن يَتَّقِ اللَّهَ يَجْعَل لَّهُ مَخْرَجًا ﴾</div>
+    <p class="quote-translation">"Whoever fears Allah, He will make a way out for them."</p>
+    <p class="quote-source">— Surah At-Talaq, 65:2</p>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="cta-card reveal">
+    <h2>Your Halqa is <span>Waiting.</span></h2>
+    <p>Download Recitefy free on Google Play. Join thousands of huffaz who never revise alone.</p>
+
+    <a href="https://play.google.com/store/apps/details?id=com.recitefy.app" class="play-badge" target="_blank">
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M3.18 23.76c.3.17.64.24.99.2l13.12-11.9L13.7 8.6 3.18 23.76z" fill="#C9A84C"/>
+        <path d="M20.78 12.91c.27-.3.42-.68.42-1.1s-.15-.8-.42-1.1L18.3 9.2l-3.6 3.4 3.6 3.38 2.48-1.07z" fill="#E8C97A"/>
+        <path d="M.3.56C.11.85 0 1.2 0 1.6v20.8c0 .4.11.75.3 1.04L12.6 12 .3.56z" fill="#F5E6B8"/>
+        <path d="M12.22 11.12L3.18.24C2.83.2 2.49.27 2.19.44L13.7 12 12.22 11.12z" fill="#C9A84C" opacity="0.7"/>
+      </svg>
+      <div class="play-badge-text">
+        <span class="small">Get it on</span>
+        <span class="big">Google Play</span>
+      </div>
+    </a>
+
+    <br>
+    <span class="free-tag">✓ Free · No ads on recitation · No subscription</span>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Recitefy</div>
+  <p class="footer-text">May Allah accept it from all of us. 🤲</p>
+</footer>
+
+<script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => observer.observe(el));
+
+  // ── INTRO OVERLAY ORCHESTRATOR ──
+  (function() {
+    const overlay   = document.getElementById('demoIntroOverlay');
+    const bar       = document.getElementById('introBar');
+    const loader    = document.getElementById('introLoader');
+    const sentences = [0,1,2,3].map(i => document.getElementById('introS' + i));
+    const iDots     = [0,1,2,3].map(i => document.getElementById('iDot' + i));
+    const lSteps    = [0,1,2,3].map(i => document.getElementById('ls' + i));
+
+    let currentSentence = 0;
+    const SENTENCE_DURATION = 1900; // ms per sentence
+    const TOTAL_SENTENCES   = 4;
+
+    // Animate the progress bar across all sentences
+    bar.style.transition = `width ${SENTENCE_DURATION * TOTAL_SENTENCES}ms linear`;
+    setTimeout(() => { bar.style.width = '100%'; }, 60);
+
+    function showSentence(idx) {
+      sentences.forEach((s, i) => s.classList.toggle('active', i === idx));
+      iDots.forEach((d, i) => d.classList.toggle('active', i === idx));
+    }
+
+    // Step through sentences
+    let sentenceTimer = setInterval(() => {
+      currentSentence++;
+      if (currentSentence < TOTAL_SENTENCES) {
+        showSentence(currentSentence);
+      } else {
+        clearInterval(sentenceTimer);
+        // Transition to loading phase
+        sentences.forEach(s => { s.style.opacity = '0'; s.style.transition = 'opacity 0.4s'; });
+        iDots.forEach(d => d.style.opacity = '0');
+        setTimeout(() => {
+          loader.classList.add('visible');
+          runLoaderSteps();
+        }, 450);
+      }
+    }, SENTENCE_DURATION);
+
+    // Loading steps then dismiss
+    function runLoaderSteps() {
+      const stepDuration = 520;
+      lSteps[0].classList.add('active');
+      let si = 0;
+      const stepTimer = setInterval(() => {
+        lSteps[si].classList.remove('active');
+        lSteps[si].classList.add('done');
+        si++;
+        if (si < lSteps.length) {
+          lSteps[si].classList.add('active');
+        } else {
+          clearInterval(stepTimer);
+          // Fade out overlay and start demo
+          setTimeout(() => {
+            overlay.style.transition = 'opacity 0.6s ease';
+            overlay.style.opacity = '0';
+            setTimeout(() => {
+              overlay.style.display = 'none';
+              // Kick off the demo
+              showScreen(0);
+              setTimeout(runDemo, 800);
+            }, 620);
+          }, 400);
+        }
+      }, stepDuration);
+    }
+  })();
+
+  // ── Orbiting reciter avatars ──
+  const reciters = [
+    { label: 'Sudais',      color: '#BB86FC', bg: 'rgba(187,134,252,0.22)' },
+    { label: 'Mishary',     color: '#C09AFC', bg: 'rgba(192,154,252,0.22)' },
+    { label: 'Al-Afasy',    color: '#A070E0', bg: 'rgba(160,112,224,0.22)' },
+  ];
+
+  function buildOrbit(containerId, pulseId, radius, avSize, fontSize) {
+    const container = document.getElementById(containerId);
+    const pulse     = document.getElementById(pulseId);
+    if (!container) return null;
+    const avatars = reciters.map((r, i) => {
+      const wrap = document.createElement('div');
+      wrap.style.cssText = 'position:absolute;display:flex;flex-direction:column;align-items:center;pointer-events:none;';
+      const av = document.createElement('div');
+      av.style.cssText = `width:${avSize}px;height:${avSize}px;border-radius:50%;background:${r.bg};border:1.5px solid rgba(255,255,255,0.15);display:flex;align-items:center;justify-content:center;font-size:${fontSize}px;font-weight:700;color:${r.color};`;
+      av.textContent = r.label.substring(0, 2);
+      const nm = document.createElement('div');
+      nm.style.cssText = `font-size:${Math.max(6,fontSize-2)}px;color:rgba(244,240,255,0.55);margin-top:2px;text-align:center;white-space:nowrap;`;
+      nm.textContent = r.label;
+      wrap.appendChild(av); wrap.appendChild(nm);
+      container.appendChild(wrap);
+      return wrap;
     });
+    return { avatars, pulse };
   }
-  
-  // Navigation functions
-  function goToSlide(index) {
-    currentIndex = index;
-    updateCarousel();
+
+  const phoneC = buildOrbit('phoneCircle', 'phonePulse', 40, 24, 7);
+
+  let ang = 0;
+  function animateOrbit() {
+    ang += 0.005;
+    const pScale = 1 + 0.07 * Math.sin(ang * 3);
+    if (phoneC) {
+      phoneC.avatars.forEach((w, i) => {
+        const a = ang + (i / reciters.length) * 2 * Math.PI;
+        const x = 55 + 40 * Math.cos(a) - 12;
+        const y = 55 + 40 * Math.sin(a) - 12;
+        w.style.left = x + 'px'; w.style.top = y + 'px';
+      });
+      if (phoneC.pulse) phoneC.pulse.style.transform = `translate(-50%,-50%) scale(${pScale})`;
+    }
+    requestAnimationFrame(animateOrbit);
   }
-  
-  function nextSlide() {
-    currentIndex = (currentIndex + 1) % slideCount;
-    updateCarousel();
-  }
-  
-  function prevSlide() {
-    currentIndex = (currentIndex - 1 + slideCount) % slideCount;
-    updateCarousel();
-  }
-  
-  // Event listeners
-  nextBtn.addEventListener('click', nextSlide);
-  prevBtn.addEventListener('click', prevSlide);
-  
-  // Touch/swipe support
-  let touchStartX = 0;
-  let touchEndX = 0;
-  
-  track.addEventListener('touchstart', (e) => {
-    touchStartX = e.changedTouches[0].screenX;
-  }, {passive: true});
-  
-  track.addEventListener('touchend', (e) => {
-    touchEndX = e.changedTouches[0].screenX;
-    handleSwipe();
-  }, {passive: true});
-  
-  function handleSwipe() {
-    const threshold = 50;
-    if (touchEndX < touchStartX - threshold) {
-      nextSlide(); // Swipe left
-    } else if (touchEndX > touchStartX + threshold) {
-      prevSlide(); // Swipe right
+  animateOrbit();
+
+  // ── Interactive Demo Orchestrator ──
+  // Screens: 0=Home, 1=Setup, 2=Reciter, 3=YourTurn
+  const screens  = ['screenHome', 'screenSetup', 'screenReciter', 'screenYours'];
+  const dots     = [document.getElementById('dot0'), document.getElementById('dot1'), document.getElementById('dot2')];
+  const captions = [
+    'Tap the revision circle to start your halqa',
+    'Choose your mode — Musaffa, Tarteel, or Listen',
+    'Al-Afasy is reciting verse ③ — follow along on the Mushaf',
+    'Now it\'s your turn — slide to finish your recitation',
+  ];
+  const cursor   = document.getElementById('demoCursor');
+  const handSvg  = document.getElementById('handSvg');
+  const tapRipple = document.getElementById('tapRipple');
+  const caption  = document.getElementById('demoCaption');
+
+  let step = 0;
+  let demoTimer;
+
+  // dots only have 3 indicators — map 4 screens onto 3
+  const dotMap = [0, 1, 1, 2];
+
+  function showScreen(idx) {
+    screens.forEach((id, i) => {
+      const el = document.getElementById(id);
+      if (!el) return;
+      el.style.opacity = i === idx ? '1' : '0';
+      el.style.pointerEvents = i === idx ? 'auto' : 'none';
+    });
+    const di = dotMap[idx];
+    dots.forEach((d, i) => {
+      if (!d) return;
+      d.style.width  = i === di ? '10px' : '6px';
+      d.style.height = i === di ? '10px' : '6px';
+      d.style.background = i === di ? '#BB86FC' : 'rgba(187,134,252,0.3)';
+    });
+    if (caption) {
+      caption.style.opacity = '0';
+      setTimeout(() => { caption.textContent = captions[idx]; caption.style.opacity = '1'; }, 200);
     }
   }
-  
-  // Auto-advance (optional)
-  let autoSlideInterval = setInterval(nextSlide, 5000);
-  
-  // Pause auto-advance on interaction
-  track.addEventListener('mouseenter', () => {
-    clearInterval(autoSlideInterval);
-  });
-  
-  track.addEventListener('mouseleave', () => {
-    autoSlideInterval = setInterval(nextSlide, 5000);
-  });
-});
-</script>
 
-
-     <script>
-  // Toggle mobile menu
-  const hamburger = document.querySelector('.hamburger');
-  const navLinks = document.querySelector('.nav-links');
-
-  hamburger.addEventListener('click', () => {
-    hamburger.classList.toggle('active');
-    navLinks.classList.toggle('active');
-  });
-
-  // Close mobile menu when clicking a link
-  document.querySelectorAll('.nav-links a').forEach(link => {
-    link.addEventListener('click', () => {
-      hamburger.classList.remove('active');
-      navLinks.classList.remove('active');
-    });
-  });
-
-
-
-function toggleMute() {
-  const video = document.querySelector('.ree-video');
-  const icon = document.querySelector('.unmute-btn i');
-  if (video.muted) {
-    video.muted = false;
-    icon.classList.remove('fa-volume-mute');
-    icon.classList.add('fa-volume-up');
-  } else {
-    video.muted = true;
-    icon.classList.remove('fa-volume-up');
-    icon.classList.add('fa-volume-mute');
+  function moveCursorTo(x, y, cb, duration) {
+    cursor.style.display = 'block';
+    cursor.style.transitionDuration = (duration || 600) + 'ms';
+    cursor.getBoundingClientRect();
+    cursor.style.opacity = '1';
+    cursor.style.left = x + 'px';
+    cursor.style.top  = y + 'px';
+    setTimeout(cb, (duration || 600) + 60);
   }
-}
 
+  function showCursorAt(x, y) {
+    cursor.style.display = 'block';
+    cursor.style.transitionDuration = '0ms';
+    cursor.style.opacity = '0';
+    cursor.style.left = x + 'px';
+    cursor.style.top  = y + 'px';
+    cursor.getBoundingClientRect();
+    cursor.style.transitionDuration = '300ms';
+    cursor.style.opacity = '1';
+  }
 
+  function doTap(cb) {
+    if (handSvg) handSvg.style.transform = 'scale(0.82) translateY(4px)';
+    tapRipple.style.transition = 'none';
+    tapRipple.style.transform = 'scale(0)';
+    tapRipple.style.opacity = '0.8';
+    tapRipple.getBoundingClientRect();
+    tapRipple.style.transition = 'transform 0.4s ease, opacity 0.4s ease';
+    tapRipple.style.transform = 'scale(2.5)';
+    tapRipple.style.opacity = '0';
+    setTimeout(() => {
+      if (handSvg) handSvg.style.transform = 'scale(1) translateY(0)';
+      setTimeout(cb, 150);
+    }, 200);
+  }
+
+  function hideCursor(cb) {
+    cursor.style.opacity = '0';
+    setTimeout(() => { cursor.style.display = 'none'; if (cb) cb(); }, 350);
+  }
+
+  function doDrag(x1, y1, x2, y2, dragMs, cb) {
+    const sliderEl = document.getElementById('sliderThumb');
+    const label    = document.getElementById('sliderLabel');
+    const maxSlide = 118;
+    cursor.style.transitionDuration = dragMs + 'ms';
+    cursor.style.left = x2 + 'px';
+    cursor.style.top  = y2 + 'px';
+    const start = performance.now();
+    function tick(now) {
+      const t = Math.min((now - start) / dragMs, 1);
+      const ease = t < 0.5 ? 2*t*t : -1+(4-2*t)*t;
+      if (sliderEl) sliderEl.style.transform = `translateX(${ease * maxSlide}px)`;
+      if (label) label.style.opacity = String(1 - ease);
+      if (t < 1) requestAnimationFrame(tick);
+      else setTimeout(cb, 100);
+    }
+    requestAnimationFrame(tick);
+  }
+
+  function resetSlider() {
+    const sliderEl = document.getElementById('sliderThumb');
+    const label    = document.getElementById('sliderLabel');
+    if (sliderEl) sliderEl.style.transform = 'translateX(0)';
+    if (label) label.style.opacity = '1';
+  }
+
+  function runDemo() {
+    const phoneWrap = document.getElementById('demoPhoneWrap');
+    if (!phoneWrap) { scheduleNext(); return; }
+    const pw = phoneWrap.offsetWidth;
+    const ph = phoneWrap.offsetHeight;
+
+    if (step === 0) {
+      // Tap the revision circle play button
+      const tx = pw * 0.50, ty = ph * 0.415;
+      showCursorAt(pw * 0.82, ty + 40);
+      setTimeout(() => {
+        moveCursorTo(tx, ty, () => {
+          doTap(() => {
+            hideCursor(() => { step = 1; showScreen(1); scheduleNext(3200); });
+          });
+        }, 650);
+      }, 100);
+
+    } else if (step === 1) {
+      // Tap "Start Reciting" button near bottom of Setup screen
+      const tx = pw * 0.50, ty = ph * 0.875;
+      showCursorAt(pw * 0.80, ty + 20);
+      setTimeout(() => {
+        moveCursorTo(tx, ty, () => {
+          doTap(() => {
+            hideCursor(() => { step = 2; showScreen(2); scheduleNext(3500); });
+          });
+        }, 600);
+      }, 100);
+
+    } else if (step === 3) {
+      // Drag slider to finish recitation
+      const sliderStartX = pw * 0.17;
+      const sliderStartY = ph * 0.875;
+      const sliderEndX   = pw * 0.78;
+      showCursorAt(sliderStartX - 20, sliderStartY + 30);
+      setTimeout(() => {
+        moveCursorTo(sliderStartX, sliderStartY, () => {
+          doTap(() => {
+            doDrag(sliderStartX, sliderStartY, sliderEndX, sliderStartY, 900, () => {
+              hideCursor(() => {
+                resetSlider();
+                step = 0; showScreen(0); scheduleNext(2200);
+              });
+            });
+          });
+        }, 500);
+      }, 100);
+    }
+  }
+
+  function scheduleNext(delay) {
+    clearTimeout(demoTimer);
+    demoTimer = setTimeout(() => {
+      if (step === 2) { step = 3; showScreen(3); runDemo(); }
+      else { runDemo(); }
+    }, delay || 2200);
+  }
+
+  // Start — triggered by intro overlay after it completes
+  // (showScreen(0) and runDemo called from intro orchestrator)
+
+  // Manual tap on phone to advance
+  const demoPhone = document.querySelector('.phone-wrap .phone');
+  if (demoPhone) {
+    demoPhone.addEventListener('click', () => {
+      clearTimeout(demoTimer);
+      cursor.style.display = 'none';
+      resetSlider();
+      step = (step + 1) % 4;
+      showScreen(step);
+      const delays = [2200, 3200, 3500, 800];
+      scheduleNext(delays[step]);
+    });
+  }
 </script>
-</body> 
+</body>
 </html>
