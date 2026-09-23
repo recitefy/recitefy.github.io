@@ -1,876 +1,559 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Recitefy — Never Revise the Qur'an Alone Again | Smart Hifz Companion</title>
-    <meta name="description" content="Recitefy brings the experience of revising the Qur'an alongside world-famous Qaris directly to your phone. Featuring Musaffa turn-taking, Slider & Shadow modes, Revision Circle, and authentic 604-page Madani Mushaf. 100% Free with zero ads.">
-    <meta name="keywords" content="Quran, Hifz, Quran Memorization, Tajweed, Reciters, Al-Husary, Minshawi, Alafasy, Sudais, Abdul Basit, Musaffa, Quran App, Revision Circle">
-    
-    <!-- Open Graph / Meta -->
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="Recitefy — Never Revise the Qur'an Alone Again">
-    <meta property="og:description" content="Revise alongside legendary Qaris with interactive Musaffa turn-taking, hands-free Shadow mode, and automated Revision Circle. 100% Free.">
-    
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Outfit:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    
-    <link rel="stylesheet" href="style.css">
-    <link rel="icon" type="image/png" href="assets/transparent_icon.png">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Recitefy — Revise Quran With The World's Greatest Reciters</title>
+<meta name="description" content="Recite verse by verse alongside world-famous Qaris. Musaffa turn-taking, Revision Circle, 604-page Madani Mushaf. 100% Free.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,500;1,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<link rel="icon" type="image/png" href="assets/transparent_icon.png">
 </head>
 <body>
 
-    <!-- Dynamic Cosmic Canvas -->
-    <canvas id="cosmic-canvas"></canvas>
-    <div class="ambient-glow glow-1"></div>
-    <div class="ambient-glow glow-2"></div>
-    <div class="ambient-glow glow-3"></div>
-
-    <!-- Navigation Header -->
-    <header class="header">
-        <nav class="navbar container">
-            <a href="#" class="brand">
-                <div class="brand-logo-wrap">
-                    <img src="assets/transparent_icon.png" alt="Recitefy Logo" class="brand-logo" onerror="this.src='assets/app_icon.png'">
-                    <span class="logo-pulse"></span>
-                </div>
-                <div class="brand-text">
-                    <span class="brand-name">Recitefy</span>
-                    <span class="brand-tag">Hifz Companion</span>
-                </div>
-            </a>
-
-            <div class="nav-menu" id="navMenu">
-                <a href="#qaris" class="nav-link">Legendary Qaris</a>
-                <a href="#musaffa" class="nav-link">Musaffa Mode</a>
-                <a href="#pacing" class="nav-link">Pacing Modes</a>
-                <a href="#circle" class="nav-link">Revision Circle</a>
-                <a href="#features" class="nav-link">Core Features</a>
-                <a href="#built-for" class="nav-link">For You</a>
-            </div>
-
-            <div class="nav-actions">
-                <a href="#download" class="btn btn-nav">
-                    <svg class="btn-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
-                    <span>Download Free</span>
-                </a>
-                <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle navigation">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
-            </div>
-        </nav>
-    </header>
-
-    <main>
-        <!-- HERO SECTION -->
-        <section class="hero-section">
-            <div class="container hero-grid">
-                <div class="hero-content">
-                    <div class="pill-badge">
-                        <span class="badge-icon">✨</span>
-                        <span class="badge-text">Never Revise the Qur'an Alone Again</span>
-                    </div>
-
-                    <h1 class="hero-title">
-                        What if you had a <span class="gradient-text">World-Famous Qari</span> revising with you every day?
-                    </h1>
-
-                    <p class="hero-description">
-                        <strong>Recitefy</strong> brings the authentic experience of revising with a master reciter directly to your phone. Recite alongside timeless voices, match their Tajweed pace, take interactive turns, and keep your Hifz alive and unbreakable.
-                    </p>
-
-                    <div class="hero-cta-group">
-                        <a href="#download" class="btn btn-primary btn-lg glow-button">
-                            <svg class="btn-icon" viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M3 20.5V3.5C3 2.91 3.34 2.39 3.84 2.15l13.62 13.62L3 20.5zM18.81 16.81l-1.35-1.35-13.62-13.62L5.19 3.19l13.62 13.62-1.35 1.35zM20.16 15.46l-1.35-1.35-2.7-2.7 1.35-1.35 2.7 2.7 1.35 1.35-1.35 1.35zM4.08 21.92l14.73-8.5c.58-.33.58-1.17 0-1.5L4.08 3.42C3.5 3.09 2.77 3.51 2.77 4.17v17.01c0 .66.73 1.08 1.31.74z"/></svg>
-                            <span>Download Free on Google Play</span>
-                        </a>
-                        <a href="#musaffa" class="btn btn-glass btn-lg">
-                            <span class="play-circle-icon">▶</span>
-                            <span>Explore Musaffa Mode</span>
-                        </a>
-                    </div>
-
-                    <div class="trust-strip">
-                        <div class="trust-item">
-                            <div class="trust-icon-box">⭐</div>
-                            <div>
-                                <strong>100% Free</strong>
-                                <span>Zero Ads, Forever</span>
-                            </div>
-                        </div>
-                        <div class="trust-divider"></div>
-                        <div class="trust-item">
-                            <div class="trust-icon-box">🎙️</div>
-                            <div>
-                                <strong>15+ Master Qaris</strong>
-                                <span>Studio Audio Quality</span>
-                            </div>
-                        </div>
-                        <div class="trust-divider"></div>
-                        <div class="trust-item">
-                            <div class="trust-icon-box">📖</div>
-                            <div>
-                                <strong>Madani Mushaf</strong>
-                                <span>604 Authentic Pages</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Hero Interactive Phone Showcase -->
-                <div class="hero-visual">
-                    <div class="phone-mockup-wrapper">
-                        <div class="phone-frame glass-panel">
-                            <!-- Speaker / Camera notch -->
-                            <div class="phone-notch">
-                                <span class="notch-lens"></span>
-                                <span class="notch-speaker"></span>
-                            </div>
-
-                            <!-- Screen Header -->
-                            <div class="phone-app-bar">
-                                <div class="surah-info">
-                                    <span class="surah-number">Surah Al-Mulk</span>
-                                    <span class="page-indicator">Page 562 • Juz 29</span>
-                                </div>
-                                <div class="live-reciter-tag">
-                                    <span class="live-dot"></span>
-                                    <span>Sh. Al-Husary</span>
-                                </div>
-                            </div>
-
-                            <!-- Quran Page Simulation with Highlight -->
-                            <div class="mushaf-screen">
-                                <div class="arabic-bismillah">بِسْمِ ٱللَّهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ</div>
-                                
-                                <div class="ayah-block active-ayah" id="heroAyah1">
-                                    <span class="arabic-text">تَبَٰرَكَ ٱلَّذِى بِيَدِهِ ٱلْمُلْكُ وَهُوَ عَلَىٰ كُلِّ شَىْءٍۢ قَدِيرٌ</span>
-                                    <span class="ayah-num">﴿١﴾</span>
-                                </div>
-
-                                <div class="ayah-block next-turn" id="heroAyah2">
-                                    <span class="arabic-text">ٱلَّذِى خَلَقَ ٱلْمَوْتَ وَٱلْحَيَوٰةَ لِيَبْلُوَكُمْ أَيُّكُمْ أَحْسَنُ عَمَلًۭا ۚ وَهُوَ ٱلْعَزِيزُ ٱلْغَفُورُ</span>
-                                    <span class="ayah-num">﴿٢﴾</span>
-                                </div>
-
-                                <div class="ayah-block" id="heroAyah3">
-                                    <span class="arabic-text">ٱلَّذِى خَلَقَ سَبْعَ سَمَٰوَٰتٍۢ طِبَاقًۭا ۖ مَّا تَرَىٰ فِى خَلْقِ ٱلرَّحْمَٰنِ مِن تَفَٰوُتٍۢ</span>
-                                    <span class="ayah-num">﴿٣﴾</span>
-                                </div>
-
-                                <!-- Floating Musaffa Turn Indicator -->
-                                <div class="phone-floating-pill">
-                                    <div class="status-indicator reciting">
-                                        <span class="pulse-ring"></span>
-                                        <span class="status-text"><strong>Qari's Turn:</strong> Ayah 1 (Listening)</span>
-                                    </div>
-                                    <div class="audio-bars">
-                                        <span></span><span></span><span></span><span></span><span></span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Bottom Floating Controls -->
-                            <div class="phone-bottom-bar">
-                                <div class="mode-badge-small">Musaffa Mode • Active</div>
-                                <div class="phone-action-icons">
-                                    <span>🔄 Rotation</span>
-                                    <span>⚡ Shadow</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Floating Badges around phone -->
-                        <div class="floating-bubble bubble-qaris">
-                            <div class="bubble-avatars">
-                                <span class="b-avatar q1">ح</span>
-                                <span class="b-avatar q2">م</span>
-                                <span class="b-avatar q3">ع</span>
-                            </div>
-                            <div>
-                                <small>Live Companions</small>
-                                <strong>15+ World Qaris</strong>
-                            </div>
-                        </div>
-
-                        <div class="floating-bubble bubble-circle">
-                            <div class="retention-ring">
-                                <span>98%</span>
-                            </div>
-                            <div>
-                                <small>Revision Circle</small>
-                                <strong>Daily Streak: 42 Days</strong>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- REVISE WITH LEGENDARY QARIS SECTION -->
-        <section id="qaris" class="section qaris-section">
-            <div class="container">
-                <div class="section-header text-center">
-                    <div class="section-badge">REVISE WITH LEGENDARY QARIS</div>
-                    <h2 class="section-title">Choose Your <span class="gradient-text">Ultimate Recitation Companion</span></h2>
-                    <p class="section-subtitle">Connect deeply and practice your Tajweed with the timeless, inspiring voices you know and love. Feel their presence verse-by-verse.</p>
-                </div>
-
-                <div class="qaris-grid">
-                    <!-- Qari Card 1 -->
-                    <div class="qari-card glass-panel" data-reciter="husary">
-                        <div class="qari-header">
-                            <div class="qari-avatar avatar-gold">
-                                <span>الحصري</span>
-                            </div>
-                            <div class="qari-meta">
-                                <h3>Sheikh Mahmoud Khalil Al-Husary</h3>
-                                <span class="qari-title">Shaykh al-Maqāri' • Master of Tajweed</span>
-                            </div>
-                        </div>
-                        <p class="qari-desc">World gold-standard for precise articulation, pristine makharij, and methodical rhythm. Unrivaled for strict Tajweed mastery.</p>
-                        <div class="qari-footer">
-                            <span class="tag-pill">Murattal & Mujawwad</span>
-                            <span class="sample-play-btn" onclick="playVoiceSample('Sheikh Mahmoud Khalil Al-Husary')">▶ Preview Voice</span>
-                        </div>
-                    </div>
-
-                    <!-- Qari Card 2 -->
-                    <div class="qari-card glass-panel" data-reciter="minshawi">
-                        <div class="qari-header">
-                            <div class="qari-avatar avatar-emerald">
-                                <span>المنشاوي</span>
-                            </div>
-                            <div class="qari-meta">
-                                <h3>Sheikh Mohamed Siddiq El-Minshawi</h3>
-                                <span class="qari-title">The "Crying Voice" (الصوت الباكي)</span>
-                            </div>
-                        </div>
-                        <p class="qari-desc">Profound emotional depth and heart-rending cadence that brings tears to your eyes and reinforces deep Tadabbur during revision.</p>
-                        <div class="qari-footer">
-                            <span class="tag-pill">Deep Emotion</span>
-                            <span class="sample-play-btn" onclick="playVoiceSample('Sheikh Mohamed Siddiq El-Minshawi')">▶ Preview Voice</span>
-                        </div>
-                    </div>
-
-                    <!-- Qari Card 3 -->
-                    <div class="qari-card glass-panel" data-reciter="alafasy">
-                        <div class="qari-header">
-                            <div class="qari-avatar avatar-cyan">
-                                <span>العفاسي</span>
-                            </div>
-                            <div class="qari-meta">
-                                <h3>Sheikh Mishary Rashid Alafasy</h3>
-                                <span class="qari-title">World Renowned Melody & Clarity</span>
-                            </div>
-                        </div>
-                        <p class="qari-desc">Inspiring, crystal-clear vocal tones loved across the globe. Melodic pacing that keeps your memory focused and uplifted.</p>
-                        <div class="qari-footer">
-                            <span class="tag-pill">Melodic Cadence</span>
-                            <span class="sample-play-btn" onclick="playVoiceSample('Sheikh Mishary Rashid Alafasy')">▶ Preview Voice</span>
-                        </div>
-                    </div>
-
-                    <!-- Qari Card 4 -->
-                    <div class="qari-card glass-panel" data-reciter="sudais">
-                        <div class="qari-header">
-                            <div class="qari-avatar avatar-purple">
-                                <span>السديس</span>
-                            </div>
-                            <div class="qari-meta">
-                                <h3>Sheikh Abdul Rahman As-Sudais</h3>
-                                <span class="qari-title">Imam of Masjid Al-Haram, Makkah</span>
-                            </div>
-                        </div>
-                        <p class="qari-desc">The unmistakable, soul-stirring Haram recitation. Revise with the pace and resonant emotion of Taraweeh in Makkah.</p>
-                        <div class="qari-footer">
-                            <span class="tag-pill">Masjid Al-Haram</span>
-                            <span class="sample-play-btn" onclick="playVoiceSample('Sheikh Abdul Rahman As-Sudais')">▶ Preview Voice</span>
-                        </div>
-                    </div>
-
-                    <!-- Qari Card 5 -->
-                    <div class="qari-card glass-panel" data-reciter="basit">
-                        <div class="qari-header">
-                            <div class="qari-avatar avatar-amber">
-                                <span>عبد الباسط</span>
-                            </div>
-                            <div class="qari-meta">
-                                <h3>Sheikh Abdul Basit 'Abd us-Samad</h3>
-                                <span class="qari-title">Golden Voice of the Century</span>
-                            </div>
-                        </div>
-                        <p class="qari-desc">Legendary breath control, majestic presence, and incomparable resonance that elevates your heart with every single ayah.</p>
-                        <div class="qari-footer">
-                            <span class="tag-pill">Legendary Tone</span>
-                            <span class="sample-play-btn" onclick="playVoiceSample('Sheikh Abdul Basit Abd us-Samad')">▶ Preview Voice</span>
-                        </div>
-                    </div>
-
-                    <!-- Qari Card 6 -->
-                    <div class="qari-card glass-panel" data-reciter="shuraym">
-                        <div class="qari-header">
-                            <div class="qari-avatar avatar-rose">
-                                <span>الشريم</span>
-                            </div>
-                            <div class="qari-meta">
-                                <h3>Sheikh Saood ash-Shuraym</h3>
-                                <span class="qari-title">Beloved Imam of Masjid Al-Haram</span>
-                            </div>
-                        </div>
-                        <p class="qari-desc">Dynamic, measured, and rhythmic pacing. Exceptional for Huffaz looking to revise large Juz portions with seamless flow.</p>
-                        <div class="qari-footer">
-                            <span class="tag-pill">Steady Flow</span>
-                            <span class="sample-play-btn" onclick="playVoiceSample('Sheikh Saood ash-Shuraym')">▶ Preview Voice</span>
-                        </div>
-                    </div>
-
-                    <!-- Qari Card 7 -->
-                    <div class="qari-card glass-panel" data-reciter="dosari">
-                        <div class="qari-header">
-                            <div class="qari-avatar avatar-indigo">
-                                <span>الدوسري</span>
-                            </div>
-                            <div class="qari-meta">
-                                <h3>Sheikh Yasser Al-Dosari</h3>
-                                <span class="qari-title">Imam of Masjid Al-Haram</span>
-                            </div>
-                        </div>
-                        <p class="qari-desc">Powerful maqamat and deeply poignant, modern Haram delivery that energizes your revision sessions with unmatched passion.</p>
-                        <div class="qari-footer">
-                            <span class="tag-pill">Vibrant Maqam</span>
-                            <span class="sample-play-btn" onclick="playVoiceSample('Sheikh Yasser Al-Dosari')">▶ Preview Voice</span>
-                        </div>
-                    </div>
-
-                    <!-- Qari Card 8 (+15 More) -->
-                    <div class="qari-card glass-panel more-qaris-card">
-                        <div class="more-content">
-                            <div class="more-icon-badge">+15</div>
-                            <h3>And 15+ More Masters</h3>
-                            <p>Including Sheikh Maher Al-Muaiqly, Sheikh Abu Bakr Al-Shatri, Sheikh Muhammad Ayyub, Sheikh Hani ar-Rifai, and more.</p>
-                            <a href="#download" class="btn btn-secondary btn-sm">Explore All Reciters</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- INTERACTIVE REVISION WITH MUSAFFA (TURN-TAKING) -->
-        <section id="musaffa" class="section musaffa-section">
-            <div class="container">
-                <div class="feature-showcase-grid">
-                    <div class="showcase-content">
-                        <div class="section-badge">INTERACTIVE REVISION WITH MUSAFFA</div>
-                        <h2 class="section-title">Turn-Taking Revision: <br><span class="gradient-text">They Read A Verse, You Read The Next.</span></h2>
-                        <p class="section-text">
-                            In traditional Quran circles (Halaqat), students revise with their Ustadh through <strong>Musaffa</strong> — a dynamic turn-taking method where partners alternate reciting.
-                        </p>
-                        <p class="section-text">
-                            Recitefy digitizes this sacred tradition for the first time. Choose verse-by-verse or page-by-page alternation. When your Sheikh recites, listen and calibrate your Tajweed; when your turn arrives, recite from your memory with confidence!
-                        </p>
-
-                        <div class="musaffa-steps">
-                            <div class="step-card">
-                                <div class="step-number">1</div>
-                                <div class="step-details">
-                                    <h4>Sheikh's Turn (Listen & Absorb)</h4>
-                                    <p>The Qari recites the first ayah with pristine Tajweed. You absorb the rhythm, waqf, and pronunciation.</p>
-                                </div>
-                            </div>
-
-                            <div class="step-card">
-                                <div class="step-number">2</div>
-                                <div class="step-details">
-                                    <h4>Your Turn (Recite & Test Memory)</h4>
-                                    <p>The audio pauses automatically. Now it’s your turn to recite the following ayah and test your retention!</p>
-                                </div>
-                            </div>
-
-                            <div class="step-card">
-                                <div class="step-number">3</div>
-                                <div class="step-details">
-                                    <h4>Continuous Momentum</h4>
-                                    <p>Seamlessly alternate until you complete your Surah or daily Juz target without losing focus.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Interactive Musaffa Simulator Widget -->
-                    <div class="showcase-interactive">
-                        <div class="interactive-simulator-card glass-panel" id="interactive-demo">
-                            <div class="sim-header">
-                                <div class="sim-title-group">
-                                    <span class="sim-badge">Live Interactive Simulator</span>
-                                    <h3>Musaffa Turn-Taking Demo</h3>
-                                </div>
-                                <div class="sim-mode-tag">Verse-by-Verse</div>
-                            </div>
-
-                            <div class="sim-display-screen">
-                                <!-- Status Banner -->
-                                <div class="sim-status-banner" id="simStatus">
-                                    <div class="sim-status-indicator">
-                                        <span class="sim-dot active"></span>
-                                        <span id="simStatusText">Ready for Musaffa demo</span>
-                                    </div>
-                                    <div class="sim-timer" id="simTimer">00:00</div>
-                                </div>
-
-                                <!-- Verse Area -->
-                                <div class="sim-verse-container">
-                                    <div class="sim-surah-tag">Surah Al-Fatihah (1:1 - 1:3)</div>
-                                    <div class="sim-ayah active" id="ayah1">
-                                        <div class="sim-speaker-badge sheikh">Sheikh's Turn (Ayah 1)</div>
-                                        <div class="arabic-display">بِسْمِ ٱللَّهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ ﴿١﴾</div>
-                                        <div class="sim-translation">In the name of Allah, the Entirely Merciful, the Especially Merciful.</div>
-                                    </div>
-
-                                    <div class="sim-ayah" id="ayah2">
-                                        <div class="sim-speaker-badge you">Your Turn (Ayah 2)</div>
-                                        <div class="arabic-display">ٱلْحَمْدُ لِلَّهِ رَبِّ ٱلْعَٰلَمِينَ ﴿٢﴾</div>
-                                        <div class="sim-translation">All praise is due to Allah, Lord of the worlds.</div>
-                                    </div>
-
-                                    <div class="sim-ayah" id="ayah3">
-                                        <div class="sim-speaker-badge sheikh">Sheikh's Turn (Ayah 3)</div>
-                                        <div class="arabic-display">ٱلرَّحْمَٰنِ ٱلرَّحِيمِ ﴿٣﴾</div>
-                                        <div class="sim-translation">The Entirely Merciful, the Especially Merciful.</div>
-                                    </div>
-                                </div>
-
-                                <!-- Interactive Simulator Controls -->
-                                <div class="sim-controls">
-                                    <button class="btn btn-primary btn-block" id="simToggleBtn" onclick="toggleMusaffaSimulation()">
-                                        <span id="simBtnIcon">▶</span>
-                                        <span id="simBtnText">Start Musaffa Simulation</span>
-                                    </button>
-                                    <div class="sim-hint">Click above to experience how Recitefy alternates reciting with you!</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- CHOOSE HOW YOU RECITE (SLIDER VS SHADOW MODE) -->
-        <section id="pacing" class="section pacing-section">
-            <div class="container">
-                <div class="section-header text-center">
-                    <div class="section-badge">CHOOSE HOW YOU RECITE</div>
-                    <h2 class="section-title">Control Your Flow with <span class="gradient-text">Precision Pacing</span></h2>
-                    <p class="section-subtitle">Whether you want full tactile control or a hands-free flow while driving or walking, Recitefy adapts to your lifestyle.</p>
-                </div>
-
-                <div class="pacing-grid">
-                    <!-- Slider Mode Card -->
-                    <div class="pacing-card glass-panel">
-                        <div class="pacing-icon-wrap icon-cyan">
-                            <svg viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v8M8 12h8"/><path d="m14 9 3 3-3 3M10 9l-3 3 3 3"/></svg>
-                        </div>
-                        <div class="pacing-badge">TACTILE CONTROL</div>
-                        <h3 class="pacing-title">Slider Mode</h3>
-                        <p class="pacing-desc">Use your hand to manually drag across the screen to advance the text exactly as you read. You dictate the exact speed, pausing whenever you need to reflect or solidify a difficult ayah.</p>
-                        
-                        <div class="pacing-interactive-demo">
-                            <div class="slider-track-demo">
-                                <input type="range" min="1" max="100" value="45" class="custom-range" id="demoRange" oninput="updateSliderDemo(this.value)">
-                                <div class="slider-labels">
-                                    <span>Ayah 1</span>
-                                    <span id="sliderAyahIndicator">Ayah 5 (Active)</span>
-                                    <span>Ayah 10</span>
-                                </div>
-                            </div>
-                            <div class="pacing-tagline">✨ Ideal for: Careful Hifz check & deep tafsir reflection</div>
-                        </div>
-                    </div>
-
-                    <!-- Shadow Mode Card -->
-                    <div class="pacing-card glass-panel highlighted-pacing">
-                        <div class="popular-ribbon">POPULAR</div>
-                        <div class="pacing-icon-wrap icon-emerald">
-                            <svg viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/><path d="m18 8 4 4-4 4"/></svg>
-                        </div>
-                        <div class="pacing-badge">100% HANDS-FREE</div>
-                        <h3 class="pacing-title">Shadow Mode</h3>
-                        <p class="pacing-desc">Recite completely hands-free! The text moves forward automatically as you recite, matching the natural pacing and rhythm of your chosen Qari like a guided teleprompter for Hifz.</p>
-                        
-                        <div class="pacing-interactive-demo">
-                            <div class="shadow-meter-box">
-                                <div class="shadow-pulse-anim"></div>
-                                <div class="shadow-status">
-                                    <div class="audio-wave">
-                                        <span></span><span></span><span></span><span></span><span></span><span></span>
-                                    </div>
-                                    <span class="shadow-text">Tracking Qari Rhythm • Hands-Free Auto Scroll</span>
-                                </div>
-                            </div>
-                            <div class="pacing-tagline">✨ Ideal for: Commutes, walking, busy parents, and effortless daily revision</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- KEEP YOUR MEMORIZATION IN ROTATION (REVISION CIRCLE) -->
-        <section id="circle" class="section circle-section">
-            <div class="container">
-                <div class="feature-showcase-grid reverse-grid">
-                    <div class="showcase-content">
-                        <div class="section-badge">KEEP YOUR MEMORIZATION IN ROTATION</div>
-                        <h2 class="section-title">The Revision Circle: <br><span class="gradient-text">Never Forget a Surah Again.</span></h2>
-                        <p class="section-text">
-                            The greatest challenge of Hifz is retention. Without a structured rotation, newly memorized Surahs slip away while old portions weaken.
-                        </p>
-                        <p class="section-text">
-                            <strong>Revision Circle</strong> automatically calculates, plans, and loops your memorized portions based on smart retention intervals. Build an unbreakable daily habit alongside the very voices that inspire your soul.
-                        </p>
-
-                        <div class="circle-benefits-list">
-                            <div class="benefit-item">
-                                <div class="benefit-icon">🔄</div>
-                                <div>
-                                    <strong>Automated Rotation Schedule</strong>
-                                    <p>No more wondering "What should I revise today?". Recitefy serves your exact daily portion automatically.</p>
-                                </div>
-                            </div>
-
-                            <div class="benefit-item">
-                                <div class="benefit-icon">📈</div>
-                                <div>
-                                    <strong>Hifz Strength & Retention Tracking</strong>
-                                    <p>Visualize your progress, streak count, and mastery level across all 114 Surahs.</p>
-                                </div>
-                            </div>
-
-                            <div class="benefit-item">
-                                <div class="benefit-icon">🎯</div>
-                                <div>
-                                    <strong>Daily Habit Builder</strong>
-                                    <p>Intelligent, gentle reminders keep your revision consistent every single day.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="showcase-visual">
-                        <div class="circle-visual-card glass-panel">
-                            <div class="circle-interactive-orbit">
-                                <div class="orbit-center">
-                                    <img src="assets/transparent_icon.png" alt="Recitefy" class="center-icon" onerror="this.src='assets/app_icon.png'">
-                                    <span class="center-label">Daily Circle</span>
-                                </div>
-
-                                <div class="orbit-item node-1">
-                                    <span class="node-surah">Juz 30</span>
-                                    <span class="node-status done">✓ Revised</span>
-                                </div>
-                                <div class="orbit-item node-2 active">
-                                    <span class="node-surah">Juz 29</span>
-                                    <span class="node-status today">Today's Goal</span>
-                                </div>
-                                <div class="orbit-item node-3">
-                                    <span class="node-surah">Juz 28</span>
-                                    <span class="node-status up">Tomorrow</span>
-                                </div>
-                                <div class="orbit-item node-4">
-                                    <span class="node-surah">Juz 1</span>
-                                    <span class="node-status queued">In Queue</span>
-                                </div>
-
-                                <div class="orbit-ring ring-inner"></div>
-                                <div class="orbit-ring ring-outer"></div>
-                            </div>
-
-                            <div class="circle-stats-row">
-                                <div class="stat-box">
-                                    <span class="stat-num">30/30</span>
-                                    <span class="stat-label">Juz In Rotation</span>
-                                </div>
-                                <div class="stat-box">
-                                    <span class="stat-num">100%</span>
-                                    <span class="stat-label">Retention Score</span>
-                                </div>
-                                <div class="stat-box">
-                                    <span class="stat-num">🔥 45</span>
-                                    <span class="stat-label">Day Streak</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- CORE FEATURES SECTION -->
-        <section id="features" class="section features-section">
-            <div class="container">
-                <div class="section-header text-center">
-                    <div class="section-badge">ENGINEERED FOR EXCELLENCE</div>
-                    <h2 class="section-title">Core Features Designed for <span class="gradient-text">Pure Focus</span></h2>
-                    <p class="section-subtitle">Everything you need to master your recitation, elevate your Tajweed, and maintain lifelong Hifz.</p>
-                </div>
-
-                <div class="features-cards-grid">
-                    <!-- Feature 1 -->
-                    <div class="feature-box glass-panel">
-                        <div class="feature-icon-circle icon-gold">
-                            <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5Z"/><path d="M6 6h10M6 10h10M6 14h6"/></svg>
-                        </div>
-                        <h3>Authentic 604-Page Madani Mushaf</h3>
-                        <p>Exact 15-line Madani script replica with real-time, live verse-by-verse highlighting that synchronizes perfectly with audio.</p>
-                    </div>
-
-                    <!-- Feature 2 -->
-                    <div class="feature-box glass-panel">
-                        <div class="feature-icon-circle icon-emerald">
-                            <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-                        </div>
-                        <h3>Interactive Musaffa Turn-Taking</h3>
-                        <p>Practice verse-by-verse or page-by-page with your chosen Sheikh. The first interactive virtual Halaqah built for mobile.</p>
-                    </div>
-
-                    <!-- Feature 3 -->
-                    <div class="feature-box glass-panel">
-                        <div class="feature-icon-circle icon-cyan">
-                            <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-                        </div>
-                        <h3>Custom Pacing: Slider & Shadow</h3>
-                        <p>Toggle between tactile manual slider navigation or effortless hands-free Shadow tracking that follows Qari rhythm.</p>
-                    </div>
-
-                    <!-- Feature 4 -->
-                    <div class="feature-box glass-panel">
-                        <div class="feature-icon-circle icon-purple">
-                            <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/></svg>
-                        </div>
-                        <h3>Personalized Revision Circle</h3>
-                        <p>Smart rotation algorithm automatically schedules, calculates, and loops your memorized portions so nothing is ever forgotten.</p>
-                    </div>
-
-                    <!-- Feature 5 -->
-                    <div class="feature-box glass-panel">
-                        <div class="feature-icon-circle icon-rose">
-                            <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
-                        </div>
-                        <h3>Master Studio Audio Quality</h3>
-                        <p>Crystal-clear, high-definition studio audio recordings of the greatest Tajweed masters with zero distortion or lag.</p>
-                    </div>
-
-                    <!-- Feature 6 -->
-                    <div class="feature-box glass-panel">
-                        <div class="feature-icon-circle icon-green">
-                            <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-                        </div>
-                        <h3>100% Free & Zero Intrusive Ads</h3>
-                        <p>Pure spiritual focus without popup interruptions, banner distractions, or paywalls. Built purely for the sake of Allah.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- BUILT FOR (AUDIENCE PERSONAS) -->
-        <section id="built-for" class="section built-for-section">
-            <div class="container">
-                <div class="section-header text-center">
-                    <div class="section-badge">TAILORED TO YOUR GOALS</div>
-                    <h2 class="section-title">Who is <span class="gradient-text">Recitefy Built For?</span></h2>
-                    <p class="section-subtitle">No matter where you are in your relationship with the Qur'an, Recitefy is your steadfast companion.</p>
-                </div>
-
-                <div class="personas-grid">
-                    <!-- Persona 1: Huffaz -->
-                    <div class="persona-card glass-panel">
-                        <div class="persona-avatar-box">🎓</div>
-                        <h3 class="persona-title">Huffaz Maintaining Their Hifz</h3>
-                        <p class="persona-quote">"I finished memorizing, but keeping all 30 Juz solid while busy with life is tough."</p>
-                        <ul class="persona-perks">
-                            <li>✓ Automatic daily rotation loop via Revision Circle</li>
-                            <li>✓ Hands-free Shadow Mode during work commutes</li>
-                            <li>✓ Immediate Tajweed calibration with senior masters</li>
-                        </ul>
-                    </div>
-
-                    <!-- Persona 2: Students -->
-                    <div class="persona-card glass-panel highlight-persona">
-                        <div class="persona-badge-tag">MOST LOVED</div>
-                        <div class="persona-avatar-box">📖</div>
-                        <h3 class="persona-title">Active Quran Students</h3>
-                        <p class="persona-quote">"I need an interactive partner to test my memorization when my teacher isn't available."</p>
-                        <ul class="persona-perks">
-                            <li>✓ Musaffa turn-taking acts as your 24/7 revision partner</li>
-                            <li>✓ Verse-by-verse audio replay for difficult passages</li>
-                            <li>✓ Live highlighting on authentic 604-page Madani pages</li>
-                        </ul>
-                    </div>
-
-                    <!-- Persona 3: Devoted Believers -->
-                    <div class="persona-card glass-panel">
-                        <div class="persona-avatar-box">❤️</div>
-                        <h3 class="persona-title">Seekers of Deeper Connection</h3>
-                        <p class="persona-quote">"I want to recite smoothly with beautiful Tajweed and feel the presence of the Quran."</p>
-                        <ul class="persona-perks">
-                            <li>✓ Recite alongside the most beloved voices in Islamic history</li>
-                            <li>✓ Zero intrusive ads to preserve deep spiritual focus</li>
-                            <li>✓ Intuitive and accessible for readers of all levels</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- CALL TO ACTION & DOWNLOAD SECTION -->
-        <section id="download" class="section download-cta-section">
-            <div class="container">
-                <div class="download-banner glass-panel">
-                    <div class="banner-glow"></div>
-                    <div class="banner-content text-center">
-                        <div class="banner-arabic-ayah">
-                            « وَلَقَدْ يَسَّرْنَا الْقُرْآنَ لِلذِّكْرِ فَهَلْ مِن مَّدَّكِرٍ »
-                        </div>
-                        <h2 class="banner-title">Recite with the Voice That Moves Your Heart.</h2>
-                        <p class="banner-subtitle">Keep the Qur’an alive in your memory. Never revise alone again. Download Recitefy today — completely free.</p>
-
-                        <div class="banner-btn-group">
-                            <a href="#" class="store-btn google-play-btn">
-                                <svg viewBox="0 0 24 24" width="30" height="30" fill="currentColor"><path d="M3 20.5V3.5C3 2.91 3.34 2.39 3.84 2.15l13.62 13.62L3 20.5zM18.81 16.81l-1.35-1.35-13.62-13.62L5.19 3.19l13.62 13.62-1.35 1.35zM20.16 15.46l-1.35-1.35-2.7-2.7 1.35-1.35 2.7 2.7 1.35 1.35-1.35 1.35zM4.08 21.92l14.73-8.5c.58-.33.58-1.17 0-1.5L4.08 3.42C3.5 3.09 2.77 3.51 2.77 4.17v17.01c0 .66.73 1.08 1.31.74z"/></svg>
-                                <div class="store-text">
-                                    <span class="small-text">GET IT ON</span>
-                                    <span class="big-text">Google Play</span>
-                                </div>
-                            </a>
-
-                            <a href="#" class="store-btn app-store-btn">
-                                <svg viewBox="0 0 24 24" width="30" height="30" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 6.37c.61-.75 1.04-1.8 0.92-2.85-.9.04-2 .6-2.65 1.35-.58.66-1.09 1.73-.96 2.75 1 .08 2.08-.5 2.69-1.25z"/></svg>
-                                <div class="store-text">
-                                    <span class="small-text">DOWNLOAD ON THE</span>
-                                    <span class="big-text">App Store (iOS)</span>
-                                </div>
-                            </a>
-                        </div>
-
-                        <div class="guarantee-text">
-                            🔒 100% Free • Zero Advertisements • Offline Mode Available
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- FAQ SECTION -->
-        <section class="section faq-section">
-            <div class="container">
-                <div class="section-header text-center">
-                    <div class="section-badge">FREQUENTLY ASKED QUESTIONS</div>
-                    <h2 class="section-title">Got Questions? <span class="gradient-text">We've Got Answers</span></h2>
-                </div>
-
-                <div class="faq-accordion">
-                    <div class="faq-item glass-panel">
-                        <button class="faq-question">
-                            <span>How does Musaffa turn-taking work in Recitefy?</span>
-                            <span class="faq-toggle-icon">+</span>
-                        </button>
-                        <div class="faq-answer">
-                            <p>In Musaffa mode, Recitefy acts like a live revision partner in a Halaqah. You choose your Sheikh and recitation unit (verse-by-verse or page-by-page). The Sheikh recites the first portion while you listen, and then the app pauses so you can recite the subsequent portion from your memory. It alternates continuously until your target is complete!</p>
-                        </div>
-                    </div>
-
-                    <div class="faq-item glass-panel">
-                        <button class="faq-question">
-                            <span>What is the difference between Slider Mode and Shadow Mode?</span>
-                            <span class="faq-toggle-icon">+</span>
-                        </button>
-                        <div class="faq-answer">
-                            <p><strong>Slider Mode</strong> gives you tactile fingertip control by letting you drag across the screen to manually advance verse-by-verse at your own custom pace. <strong>Shadow Mode</strong> is completely hands-free: the app automatically scrolls and highlights verses synchronized with the natural Tajweed speed of the Qari, making it ideal when your hands are busy.</p>
-                        </div>
-                    </div>
-
-                    <div class="faq-item glass-panel">
-                        <button class="faq-question">
-                            <span>How does the Revision Circle help me avoid forgetting Surahs?</span>
-                            <span class="faq-toggle-icon">+</span>
-                        </button>
-                        <div class="faq-answer">
-                            <p>The Revision Circle uses an automated spaced rotation algorithm. It tracks all the Juz and Surahs you have memorized and serves you an exact balanced daily portion. By completing your daily circle, you ensure every single Surah is revisited on a recurring schedule without manual planning.</p>
-                        </div>
-                    </div>
-
-                    <div class="faq-item glass-panel">
-                        <button class="faq-question">
-                            <span>Is Recitefy really 100% free with no ads?</span>
-                            <span class="faq-toggle-icon">+</span>
-                        </button>
-                        <div class="faq-answer">
-                            <p>Yes! Recitefy is completely free with zero intrusive advertisements or paywalls. Our mission is to facilitate Quran memorization and revision for the entire Ummah with pure, uninterrupted focus.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <!-- FOOTER -->
-    <footer class="footer">
-        <div class="container footer-content">
-            <div class="footer-brand-col">
-                <div class="brand">
-                    <img src="assets/transparent_icon.png" alt="Recitefy Logo" class="brand-logo" onerror="this.src='assets/app_icon.png'">
-                    <span class="brand-name">Recitefy</span>
-                </div>
-                <p class="footer-tagline">The ultimate digital companion for Qur'an memorization, revision, and Tajweed mastery.</p>
-            </div>
-
-            <div class="footer-links-col">
-                <h4>Navigation</h4>
-                <ul>
-                    <li><a href="#qaris">Legendary Qaris</a></li>
-                    <li><a href="#musaffa">Musaffa Mode</a></li>
-                    <li><a href="#pacing">Pacing Modes</a></li>
-                    <li><a href="#circle">Revision Circle</a></li>
-                </ul>
-            </div>
-
-            <div class="footer-links-col">
-                <h4>Features</h4>
-                <ul>
-                    <li><a href="#features">Madani Mushaf 604</a></li>
-                    <li><a href="#features">Slider & Shadow Modes</a></li>
-                    <li><a href="#built-for">Built For Huffaz</a></li>
-                    <li><a href="#download">Download App</a></li>
-                </ul>
-            </div>
-
-            <div class="footer-links-col">
-                <h4>Community & Trust</h4>
-                <ul>
-                    <li><a href="#">Privacy Policy</a></li>
-                    <li><a href="#">Terms of Service</a></li>
-                    <li><a href="#">Contact & Feedback</a></li>
-                    <li><a href="#">Support Project</a></li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="container footer-bottom">
-            <p>&copy; 2026 Recitefy. All rights reserved. Made with love for the Qur'an.</p>
-            <p class="arabic-signature">اللهم اجعل القرآن العظيم ربيع قلوبنا</p>
-        </div>
-    </footer>
-
-    <!-- Audio Toast / Notification -->
-    <div id="audioToast" class="audio-toast">
-        <span class="toast-icon">🔊</span>
-        <span id="toastMsg">Playing sample...</span>
+<!-- NAV -->
+<nav class="navbar" id="navbar">
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">
+      <img src="assets/transparent_icon.png" class="nav-logo-img" alt="Recitefy" onerror="this.style.display='none'">
+      <span>Recitefy</span>
+    </a>
+    <div class="nav-links" id="navLinks">
+      <a href="#musaffa">Musaffa</a>
+      <a href="#qaris">Reciters</a>
+      <a href="#journey">Journey</a>
+      <a href="#features">Features</a>
+    </div>
+    <a href="https://play.google.com/store/apps/details?id=com.recitefy.app" target="_blank" class="nav-cta">Download Free</a>
+    <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg-glow"></div>
+  <div class="hero-bg-glow hero-bg-glow2"></div>
+  <canvas id="heroCanvas"></canvas>
+
+  <div class="container hero-grid">
+
+    <!-- Left: Copy -->
+    <div class="hero-copy">
+      <div class="hero-eyebrow">
+        <span class="eyebrow-star">۞</span>
+        Your Recitation Companion
+      </div>
+
+      <h1 class="hero-h1">
+        Take turns reciting<br>
+        <em class="hero-em">with your Qari.</em>
+      </h1>
+
+      <p class="hero-arabic">﴿ وَرَتِّلِ الْقُرْآنَ تَرْتِيلًا ﴾</p>
+
+      <p class="hero-sub">
+        What if you never had to revise the Qur'an alone again? Recitefy brings the
+        authentic <em>halqah</em> experience to your phone — recite alongside
+        world-famous Qaris, verse by verse, all 604 pages.
+      </p>
+
+      <div class="hero-btns">
+        <a href="https://play.google.com/store/apps/details?id=com.recitefy.app" target="_blank" class="btn-play">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M3.18 23.76c.3.17.64.24.99.2l13.12-11.9L13.7 8.6 3.18 23.76zm17.6-10.85c.27-.3.42-.68.42-1.1s-.15-.8-.42-1.1L18.3 9.2l-3.6 3.4 3.6 3.38 2.48-1.07zM.3.56C.11.85 0 1.2 0 1.6v20.8c0 .4.11.75.3 1.04L12.6 12 .3.56zm11.92 10.56L3.18.24C2.83.2 2.49.27 2.19.44L13.7 12 12.22 11.12z"/></svg>
+          <div>
+            <small>GET IT ON</small>
+            <strong>Google Play</strong>
+          </div>
+        </a>
+        <a href="#musaffa" class="btn-ghost">See how it works ↓</a>
+      </div>
+
+      <div class="hero-pills">
+        <span class="pill">💎 100% Free</span>
+        <span class="pill">🎙️ 15+ Legendary Qaris</span>
+        <span class="pill">📖 604-Page Mushaf</span>
+      </div>
     </div>
 
-    <!-- Scripts -->
-    <script src="script.js"></script>
+    <!-- Right: Phone mockup -->
+    <div class="hero-mockup">
+      <div class="phone-glow-ring"></div>
+      <div class="phone-device">
+        <div class="phone-notch"></div>
+        <!-- Qari's Turn card (top right float) -->
+        <div class="float-card float-qari">
+          <div class="float-card-head">
+            <span class="fc-dot fc-purple"></span>
+            <strong>QARI'S TURN</strong>
+          </div>
+          <p class="fc-arabic">وَمِنَ النَّاسِ مَن يَقُولُ آمَنَّا بِاللَّهِ ﴿٨﴾</p>
+          <div class="waveform waveform-purple">
+            <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+          </div>
+        </div>
+        <!-- Your Turn card (bottom right float) -->
+        <div class="float-card float-you">
+          <div class="float-card-head">
+            <span class="fc-dot fc-mint"></span>
+            <strong>YOUR TURN</strong>
+          </div>
+          <p class="fc-arabic fc-mint-text">وَإِذَا قِيلَ لَهُمْ لَا تُفْسِدُوا۟ فِى ٱلْأَرْضِ ﴿١١﴾</p>
+          <div class="waveform waveform-mint">
+            <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+          </div>
+        </div>
+        <!-- Phone screen interior -->
+        <div class="phone-screen">
+          <div class="ps-header">
+            <div class="ps-reciter-row">
+              <div class="ps-avatar">ع</div>
+              <div>
+                <div class="ps-name">Your Turn</div>
+                <div class="ps-sub">Recite at Qari's pace from memory</div>
+              </div>
+              <div class="ps-surah-tag">Al-Baqarah<br><small>Juz 1</small></div>
+            </div>
+          </div>
+          <div class="ps-mushaf">
+            <div class="ps-surah-banner">
+              <span>❧</span>
+              <span class="ps-surah-name">سُورَةُ الْبَقَرَةِ</span>
+              <span>❧</span>
+            </div>
+            <div class="ps-ayahs">
+              <div class="ps-ayah dimmed">الٓمٓ ﴿١﴾ ذَٰلِكَ ٱلْكِتَٰبُ لَا رَيْبَ ۛ فِيهِ ۛ هُدًۭى ﴿٢﴾</div>
+              <div class="ps-ayah dimmed">وَيُؤْمِنُونَ بِمَآ أُنزِلَ إِلَيْكَ وَمَآ أُنزِلَ مِن قَبْلِكَ ﴿٤﴾</div>
+              <div class="ps-ayah active-ayah">لَا تُفْسِدُوا۟ فِى ٱلْأَرْضِ إِنَّمَا نَحْنُ مُصْلِحُونَ ﴿١١﴾</div>
+              <div class="ps-ayah dimmed">أَلَآ إِنَّهُمْ هُمُ ٱلْمُفْسِدُونَ وَلَٰكِن لَّا يَشْعُرُونَ ﴿١٢﴾</div>
+            </div>
+          </div>
+          <div class="ps-controls">
+            <div class="ps-player-bar">
+              <span class="ps-wave-icon">🎙️</span>
+              <span class="ps-qari-name">Alafasy</span>
+              <button class="ps-pause">⏸</button>
+              <span class="ps-your-turn">Your Turn</span>
+              <span class="ps-user-icon">👤</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="mockup-label">
+        <span class="oct">۞</span> Musaffa — Turn-Taking Recitation
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- GOOGLE PLAY SHOWCASE STRIP -->
+<section class="showcase-section">
+  <div class="container">
+    <div class="showcase-label">AS SEEN ON GOOGLE PLAY</div>
+    <div class="showcase-grid">
+      <div class="showcase-item">
+        <img src="assets/showcase/graphic_1.jpg" alt="Take turns reciting with your Qari" class="showcase-img">
+        <div class="showcase-caption">Musaffa — Turn-Taking Mode</div>
+      </div>
+      <div class="showcase-item showcase-center">
+        <img src="assets/showcase/graphic_2.png" alt="Companionship with the voice that inspires you" class="showcase-img">
+        <div class="showcase-caption">Your Recitation Companion</div>
+      </div>
+      <div class="showcase-item">
+        <img src="assets/showcase/graphic_3.jpg" alt="Your Quran journey in one place" class="showcase-img">
+        <div class="showcase-caption">Revision Journey & Circle</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MUSAFFA SECTION -->
+<section id="musaffa" class="section musaffa-section">
+  <div class="container two-col">
+
+    <div class="col-text reveal">
+      <div class="section-badge">INTERACTIVE REVISION WITH MUSAFFA</div>
+      <h2 class="section-h2">They recite a verse.<br><span class="em-purple">You recite the next.</span></h2>
+      <p class="body-p">Traditional Quran Halaqat practice, digitised. While the Sheikh reads a verse with full Tajweed, you follow on the Mushaf. Then it's your turn — recite from memory, slide to advance, and continue the sacred conversation.</p>
+
+      <div class="steps-list">
+        <div class="step-row">
+          <div class="step-n">01</div>
+          <div class="step-body">
+            <strong>Qari Recites — You Listen & Follow</strong>
+            <p>The Sheikh reads with master Tajweed, synchronized on the authentic 604-page Mushaf with real-time verse highlighting.</p>
+          </div>
+        </div>
+        <div class="step-row">
+          <div class="step-n">02</div>
+          <div class="step-body">
+            <strong>Your Turn — Recite from Memory</strong>
+            <p>The app pauses. The next verse glows. You recite at your own pace, testing your Hifz on each ayah.</p>
+          </div>
+        </div>
+        <div class="step-row">
+          <div class="step-n">03</div>
+          <div class="step-body">
+            <strong>Slide or Shadow — Seamless Advance</strong>
+            <p>Drag the slider to signal you're done and advance — or let Shadow Mode auto-scroll hands-free.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Musaffa Simulator -->
+    <div class="col-visual reveal">
+      <div class="sim-phone glass-card">
+        <div class="sim-header">
+          <span class="sim-dot"></span>
+          <span class="sim-title" id="simTitle">Musaffa Simulator</span>
+          <span class="sim-badge" id="simBadge">READY</span>
+        </div>
+        <div class="sim-body">
+          <div class="sim-surah-bar">
+            <span>سُورَةُ الْفَاتِحَةِ</span>
+            <small>Verse-by-Verse Mode</small>
+          </div>
+          <div class="sim-verses" id="simVerses">
+            <div class="sim-verse" id="sv0" data-who="sheikh">
+              <div class="sv-tag sheikh-tag">🎙️ Sheikh (Ayah 1)</div>
+              <div class="sv-arabic">بِسْمِ ٱللَّهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ ﴿١﴾</div>
+              <div class="sv-eng">In the name of Allah, the Entirely Merciful.</div>
+            </div>
+            <div class="sim-verse" id="sv1" data-who="you">
+              <div class="sv-tag you-tag">✨ Your Turn (Ayah 2)</div>
+              <div class="sv-arabic">ٱلْحَمْدُ لِلَّهِ رَبِّ ٱلْعَٰلَمِينَ ﴿٢﴾</div>
+              <div class="sv-eng">All praise is due to Allah, Lord of the worlds.</div>
+            </div>
+            <div class="sim-verse" id="sv2" data-who="sheikh">
+              <div class="sv-tag sheikh-tag">🎙️ Sheikh (Ayah 3)</div>
+              <div class="sv-arabic">ٱلرَّحْمَٰنِ ٱلرَّحِيمِ ﴿٣﴾</div>
+              <div class="sv-eng">The Entirely Merciful, the Especially Merciful.</div>
+            </div>
+            <div class="sim-verse" id="sv3" data-who="you">
+              <div class="sv-tag you-tag">✨ Your Turn (Ayah 4)</div>
+              <div class="sv-arabic">مَٰلِكِ يَوْمِ ٱلدِّينِ ﴿٤﴾</div>
+              <div class="sv-eng">Master of the Day of Judgment.</div>
+            </div>
+          </div>
+          <div class="sim-status" id="simStatus">Press Start to experience Musaffa live.</div>
+          <button class="btn-sim" id="simBtn" onclick="toggleSim()">▶ Start Musaffa</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- LEGENDARY QARIS -->
+<section id="qaris" class="section qaris-section">
+  <div class="container">
+    <div class="section-header text-center reveal">
+      <div class="section-badge">REVISE WITH LEGENDARY QARIS</div>
+      <h2 class="section-h2">Choose Your <span class="em-purple">Recitation Companion</span></h2>
+      <p class="section-sub-p">Connect deeply with timeless voices. Practice Tajweed with masters who shaped Qur'anic recitation for generations.</p>
+    </div>
+
+    <div class="qaris-grid reveal">
+
+      <div class="qari-card glass-card">
+        <div class="qc-top">
+          <div class="qc-avatar av-purple"><span>مش</span></div>
+          <div class="qc-meta"><h4>Sheikh Mishary Rashid Alafasy</h4><small>Melodic Clarity • World Beloved</small></div>
+        </div>
+        <p>Heart-soothing cadence that makes daily revision effortless and deeply memorable.</p>
+      </div>
+
+      <div class="qari-card glass-card">
+        <div class="qc-top">
+          <div class="qc-avatar av-gold"><span>محمود</span></div>
+          <div class="qc-meta"><h4>Sheikh Mahmoud Khalil Al-Husary</h4><small>Shaykh al-Maqāri' • Gold Standard</small></div>
+        </div>
+        <p>The undisputed global master of Tajweed. Flawless makhārij and rhythmic precision.</p>
+      </div>
+
+      <div class="qari-card glass-card">
+        <div class="qc-top">
+          <div class="qc-avatar av-blue"><span>منشاوي</span></div>
+          <div class="qc-meta"><h4>Sheikh Mohamed Siddiq El-Minshawi</h4><small>The "Crying Voice" الصوت الباكي</small></div>
+        </div>
+        <p>Incomparable emotional resonance that brings tears to your eyes while cementing Hifz.</p>
+      </div>
+
+      <div class="qari-card glass-card">
+        <div class="qc-top">
+          <div class="qc-avatar av-teal"><span>السديس</span></div>
+          <div class="qc-meta"><h4>Sheikh Abdul Rahman As-Sudais</h4><small>Imam of Masjid Al-Haram, Makkah</small></div>
+        </div>
+        <p>Soul-stirring Haram energy. Revise with the inspiring power of Taraweeh in Makkah.</p>
+      </div>
+
+      <div class="qari-card glass-card">
+        <div class="qc-top">
+          <div class="qc-avatar av-pink"><span>عبد الباسط</span></div>
+          <div class="qc-meta"><h4>Sheikh Abdul Basit 'Abd us-Samad</h4><small>The Golden Voice of the Century</small></div>
+        </div>
+        <p>Legendary breath control and majestic presence that elevates every single ayah.</p>
+      </div>
+
+      <div class="qari-card glass-card">
+        <div class="qc-top">
+          <div class="qc-avatar av-orange"><span>الشريم</span></div>
+          <div class="qc-meta"><h4>Sheikh Saood ash-Shuraym</h4><small>Beloved Former Imam of Makkah</small></div>
+        </div>
+        <p>Dynamic pacing tailored for reviewing entire Juz portions with sustained momentum.</p>
+      </div>
+
+      <div class="qari-card glass-card">
+        <div class="qc-top">
+          <div class="qc-avatar av-green"><span>الدوسري</span></div>
+          <div class="qc-meta"><h4>Sheikh Yasser Al-Dosari</h4><small>Imam of Masjid Al-Haram</small></div>
+        </div>
+        <p>Electrifying vocal power and poignant delivery that ignites your passion for the Quran.</p>
+      </div>
+
+      <div class="qari-card more-card glass-card">
+        <div class="more-circle">+15</div>
+        <h4>More World-Class Masters</h4>
+        <p>Maher Al-Muaiqly, Abu Bakr Ash-Shaatree, Muhammad Ayyoub, Hani ar-Rifai, and many more.</p>
+        <a href="https://play.google.com/store/apps/details?id=com.recitefy.app" target="_blank" class="btn-ghost-sm">Explore All Reciters</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- PACING MODES -->
+<section id="pacing" class="section pacing-section">
+  <div class="container">
+    <div class="section-header text-center reveal">
+      <div class="section-badge">CHOOSE HOW YOU RECITE</div>
+      <h2 class="section-h2">Precision Pacing — <span class="em-purple">Your Way</span></h2>
+      <p class="section-sub-p">Fingertip tactile control or hands-free auto flow — Recitefy matches your rhythm.</p>
+    </div>
+    <div class="pacing-grid reveal">
+
+      <div class="pacing-card glass-card">
+        <div class="pacing-icon-wrap">
+          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#BB86FC" stroke-width="1.8"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/></svg>
+        </div>
+        <div class="pacing-mode-tag">TACTILE CONTROL</div>
+        <h3>Slider Mode</h3>
+        <p>Smoothly drag the slider to finish your turn and advance text. You dictate the exact pace, pausing whenever you need to test a difficult Ayah.</p>
+        <div class="slider-demo-wrap">
+          <input type="range" min="1" max="10" value="4" class="glow-slider" id="sliderDemo" oninput="updateSliderLabel(this.value)">
+          <div class="slider-label-row">
+            <span>Ayah 1</span>
+            <strong id="sliderLbl">Ayah 4</strong>
+            <span>Ayah 10</span>
+          </div>
+        </div>
+        <small class="pacing-tip">💡 Best for: Testing tough passages & deep reflection</small>
+      </div>
+
+      <div class="pacing-card glass-card pacing-featured">
+        <div class="featured-badge-top">★ FEATURED</div>
+        <div class="pacing-icon-wrap">
+          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#4ADE80" stroke-width="1.8"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+        </div>
+        <div class="pacing-mode-tag green-tag">HANDS-FREE</div>
+        <h3>Shadow Mode</h3>
+        <p>Recite completely hands-free! Text advances automatically, matching the natural Tajweed speed of your Qari — like a dedicated Quran teleprompter.</p>
+        <div class="shadow-demo-wrap">
+          <div class="waveform waveform-mint waveform-large">
+            <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+          </div>
+          <div class="shadow-status">Auto Tracking Active · Pacing synchronized</div>
+        </div>
+        <small class="pacing-tip">🚗 Best for: Commuting, walking, cooking</small>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- REVISION JOURNEY SECTION -->
+<section id="journey" class="section journey-section">
+  <div class="container two-col">
+
+    <!-- Left: Dashboard Mockup (from Graphic 3) -->
+    <div class="col-visual reveal">
+      <div class="dash-mockup glass-card">
+        <div class="dash-top">
+          <span class="dash-brand">Recitefy</span>
+          <div class="dash-streak">🔥 7 Day Streak</div>
+        </div>
+
+        <div class="dash-stats">
+          <div class="ds-item">
+            <strong>7 days</strong><small>Streak</small>
+          </div>
+          <div class="ds-item">
+            <strong>6 pages</strong><small>This Week</small>
+          </div>
+          <div class="ds-item">
+            <strong>7 days</strong><small>Best</small>
+          </div>
+        </div>
+
+        <div class="dash-section-box">
+          <div class="dsb-title">Your Revision Journey</div>
+          <div class="dsb-sub">with Mishary Alafasy</div>
+          <div class="journey-nodes">
+            <div class="jnode done"><div class="jn-icon">✓</div><span>Ta-Ha</span><small>1-135</small></div>
+            <div class="jline active-jline"></div>
+            <div class="jnode active"><div class="jn-icon pulse-icon">📖</div><span>Al-Anbiya</span><small>1-112</small></div>
+            <div class="jline"></div>
+            <div class="jnode locked"><div class="jn-icon">🔒</div><span>Al-Hajj</span><small>1-78</small></div>
+          </div>
+          <a href="https://play.google.com/store/apps/details?id=com.recitefy.app" target="_blank" class="btn-primary btn-block">▶ Continue Revision</a>
+        </div>
+
+        <div class="dash-progress-box">
+          <div class="dpb-meta">
+            <strong>Revision Progress</strong>
+            <small>Every verse you revise brings this building to life.</small>
+          </div>
+          <div class="dpb-art">
+            <span class="dpb-mosque">🕌</span>
+            <div class="dpb-bar"><div class="dpb-fill" style="width:68%"></div></div>
+          </div>
+        </div>
+
+        <div class="dash-nav-bar">
+          <div class="dnb-item active-tab"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg><span>Home</span></div>
+          <div class="dnb-item"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg><span>Library</span></div>
+          <div class="dnb-item"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg><span>Settings</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right: Copy -->
+    <div class="col-text reveal">
+      <div class="section-badge">YOUR QUR'AN JOURNEY IN ONE PLACE</div>
+      <h2 class="section-h2">Track progress. Stay consistent.<br><span class="em-purple">Never forget a verse.</span></h2>
+      <p class="body-p">The greatest challenge for any Hafiz is retention. Without a smart system, earlier Surahs fade as you learn new ones. <strong>Revision Circle</strong> automatically calculates, loops, and schedules your memorized portions so your Hifz stays unbreakable.</p>
+      <p class="body-p">Build a daily habit, track your streak, and watch your retention transform into lifelong mastery.</p>
+
+      <div class="j-stats-row">
+        <div class="jstat glass-card">
+          <strong>🔥 7</strong><small>Day Streak</small>
+        </div>
+        <div class="jstat glass-card">
+          <strong>6</strong><small>Pages / Week</small>
+        </div>
+        <div class="jstat glass-card">
+          <strong>100%</strong><small>Your Target</small>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- FEATURES GRID -->
+<section id="features" class="section features-section">
+  <div class="container">
+    <div class="section-header text-center reveal">
+      <div class="section-badge">BUILT FOR SERIOUS REVISION</div>
+      <h2 class="section-h2">Everything a Hafiz Needs. <span class="em-purple">Nothing Else.</span></h2>
+    </div>
+    <div class="features-grid reveal">
+      <div class="feat-tile glass-card"><div class="ft-icon">📜</div><h4>604-Page Madani Mushaf</h4><p>Pixel-perfect replica matching the exact layout you memorized from.</p></div>
+      <div class="feat-tile glass-card"><div class="ft-icon">✨</div><h4>Live Verse Highlighting</h4><p>Real-time glowing highlight synchronized with the Qari's recitation.</p></div>
+      <div class="feat-tile glass-card"><div class="ft-icon">🎙️</div><h4>Musaffa Turn-Taking</h4><p>Verse or page alternation — your Quran partner, available 24/7.</p></div>
+      <div class="feat-tile glass-card"><div class="ft-icon">⚡</div><h4>Slider & Shadow Modes</h4><p>Tactile sliding or hands-free auto-scroll for every lifestyle.</p></div>
+      <div class="feat-tile glass-card"><div class="ft-icon">🔄</div><h4>Revision Circle</h4><p>Smart rotation ensures no Surah is ever forgotten or neglected.</p></div>
+      <div class="feat-tile glass-card"><div class="ft-icon">💎</div><h4>100% Free · Zero Ads</h4><p>No popups, no paywalls, no interruptions. Just the Qur'an.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- BUILT FOR SECTION -->
+<section id="built-for" class="section personas-section">
+  <div class="container">
+    <div class="section-header text-center reveal">
+      <div class="section-badge">WHO IS RECITEFY FOR?</div>
+      <h2 class="section-h2">A Companion for Every <span class="em-purple">Qur'an Journey</span></h2>
+    </div>
+    <div class="personas-grid reveal">
+
+      <div class="persona-card glass-card">
+        <div class="persona-icon">🎓</div>
+        <h3>Huffaz Protecting Their Hifz</h3>
+        <p class="persona-quote">"I memorized the Quran, but maintaining all 30 Juz while working full-time is a daily battle."</p>
+        <ul>
+          <li>✓ Automated daily rotation</li>
+          <li>✓ Hands-free Shadow Mode</li>
+          <li>✓ Instant Tajweed calibration</li>
+        </ul>
+      </div>
+
+      <div class="persona-card glass-card persona-featured">
+        <div class="persona-top-tag">MOST POPULAR</div>
+        <div class="persona-icon">📖</div>
+        <h3>Active Quran Students</h3>
+        <p class="persona-quote">"I need a dynamic partner to test my memory when my Sheikh isn't available."</p>
+        <ul>
+          <li>✓ Musaffa actively tests memory</li>
+          <li>✓ Verse replay for tough Ayahs</li>
+          <li>✓ Authentic 604-page visual anchor</li>
+        </ul>
+      </div>
+
+      <div class="persona-card glass-card">
+        <div class="persona-icon">❤️</div>
+        <h3>Seekers of Deeper Connection</h3>
+        <p class="persona-quote">"I want to recite alongside legendary voices and feel the serenity of the Quran."</p>
+        <ul>
+          <li>✓ 15+ master Qaris to choose from</li>
+          <li>✓ Zero ad interruptions</li>
+          <li>✓ Easy for all levels</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CTA DOWNLOAD SECTION -->
+<section class="cta-section">
+  <div class="container">
+    <div class="cta-card glass-card text-center reveal">
+      <p class="cta-arabic">﴿ وَمَن يَتَّقِ اللَّهَ يَجْعَل لَّهُ مَخْرَجًا ﴾</p>
+      <h2 class="cta-h2">Your Halqa is <em class="em-purple">Waiting.</em></h2>
+      <p class="cta-sub">Join thousands of Huffaz and students who never revise the Qur'an alone. Download Recitefy — completely free on Google Play.</p>
+      <a href="https://play.google.com/store/apps/details?id=com.recitefy.app" target="_blank" class="btn-play btn-play-lg">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M3.18 23.76c.3.17.64.24.99.2l13.12-11.9L13.7 8.6 3.18 23.76zm17.6-10.85c.27-.3.42-.68.42-1.1s-.15-.8-.42-1.1L18.3 9.2l-3.6 3.4 3.6 3.38 2.48-1.07zM.3.56C.11.85 0 1.2 0 1.6v20.8c0 .4.11.75.3 1.04L12.6 12 .3.56zm11.92 10.56L3.18.24C2.83.2 2.49.27 2.19.44L13.7 12 12.22 11.12z"/></svg>
+        <div>
+          <small>GET IT ON</small>
+          <strong>Google Play Store</strong>
+        </div>
+      </a>
+      <div class="cta-trust-strip">
+        <span>🔒 100% Free</span><span>·</span><span>No Ads on Recitation</span><span>·</span><span>No Subscription</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <div class="footer-logo">Recitefy</div>
+      <p>Companionship with the voice that inspires you.</p>
+    </div>
+    <div class="footer-right">
+      <p>May Allah accept it from all of us. 🤲</p>
+      <p class="footer-arabic">اللهم اجعل القرآن ربيع قلوبنا</p>
+      <small>&copy; 2026 Recitefy. All rights reserved.</small>
+    </div>
+  </div>
+</footer>
+
+<script src="script.js"></script>
 </body>
 </html>
