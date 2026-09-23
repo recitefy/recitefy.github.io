@@ -1,1618 +1,876 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Recitefy — Revise Quran With The World's Greatest Reciters</title>
-<link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500;600&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
-<style>
-  :root {
-    --gold: #BB86FC;
-    --gold-light: #D4ADFF;
-    --gold-pale: #EDD9FF;
-    --deep: #0D0A14;
-    --deep2: #120F1C;
-    --deep3: #1A1628;
-    --white: #F4F0FF;
-    --muted: #8A86A0;
-    --green: #4A2D7A;
-    --green-light: #BB86FC;
-  }
-
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-
-  html { scroll-behavior: smooth; }
-
-  body {
-    background: var(--deep);
-    color: var(--white);
-    font-family: 'DM Sans', sans-serif;
-    overflow-x: hidden;
-  }
-
-  /* NOISE TEXTURE */
-  body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
-    pointer-events: none;
-    z-index: 0;
-    opacity: 0.4;
-  }
-
-  /* NAV */
-  nav {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    z-index: 100;
-    padding: 1.2rem 2.5rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: rgba(11,15,26,0.85);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid rgba(201,168,76,0.12);
-  }
-
-  .logo {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.5rem;
-    color: var(--gold);
-    letter-spacing: 0.02em;
-  }
-
-  .nav-cta {
-    background: var(--gold);
-    color: #0D0A14;
-    padding: 0.55rem 1.4rem;
-    border-radius: 100px;
-    font-size: 0.85rem;
-    font-weight: 600;
-    text-decoration: none;
-    transition: all 0.2s;
-    letter-spacing: 0.02em;
-  }
-  .nav-cta:hover { background: var(--gold-light); transform: translateY(-1px); }
-
-  /* HERO */
-  .hero {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 8rem 1.5rem 5rem;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .hero-glow {
-    position: absolute;
-    width: 700px; height: 700px;
-    background: radial-gradient(circle, rgba(201,168,76,0.12) 0%, transparent 70%);
-    top: 50%; left: 50%;
-    transform: translate(-50%, -50%);
-    pointer-events: none;
-  }
-
-  .hero-glow2 {
-    position: absolute;
-    width: 400px; height: 400px;
-    background: radial-gradient(circle, rgba(45,106,79,0.15) 0%, transparent 70%);
-    top: 20%; right: 10%;
-    pointer-events: none;
-  }
-
-  /* Geometric ornament */
-  .ornament {
-    width: 80px; height: 80px;
-    margin: 0 auto 2rem;
-    position: relative;
-    animation: spin 20s linear infinite;
-  }
-
-  @keyframes spin {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
-  }
-
-  .hero-arabic {
-    font-family: 'Amiri', serif;
-    font-size: 2rem;
-    color: var(--gold);
-    margin-bottom: 1.5rem;
-    opacity: 0.9;
-    animation: fadeUp 1s ease both;
-  }
-
-  .hero-headline {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(2.8rem, 7vw, 5.5rem);
-    line-height: 1.1;
-    margin-bottom: 1.5rem;
-    animation: fadeUp 1s 0.15s ease both;
-  }
-
-  .hero-headline span {
-    color: var(--gold);
-    font-style: italic;
-  }
-
-  .hero-sub {
-    font-size: clamp(1rem, 2.5vw, 1.2rem);
-    color: var(--muted);
-    max-width: 560px;
-    line-height: 1.7;
-    margin-bottom: 3rem;
-    animation: fadeUp 1s 0.3s ease both;
-  }
-
-  .hero-buttons {
-    display: flex;
-    gap: 1rem;
-    flex-wrap: wrap;
-    justify-content: center;
-    animation: fadeUp 1s 0.45s ease both;
-  }
-
-  .btn-primary {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.6rem;
-    background: var(--gold);
-    color: #0D0A14;
-    padding: 0.9rem 2rem;
-    border-radius: 100px;
-    font-weight: 600;
-    font-size: 1rem;
-    text-decoration: none;
-    transition: all 0.25s;
-    box-shadow: 0 0 30px rgba(201,168,76,0.3);
-  }
-  .btn-primary:hover {
-    background: var(--gold-light);
-    transform: translateY(-2px);
-    box-shadow: 0 0 50px rgba(201,168,76,0.45);
-  }
-
-  .btn-secondary {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.6rem;
-    background: transparent;
-    color: var(--white);
-    padding: 0.9rem 2rem;
-    border-radius: 100px;
-    font-weight: 500;
-    font-size: 1rem;
-    text-decoration: none;
-    border: 1px solid rgba(255,255,255,0.2);
-    transition: all 0.25s;
-  }
-  .btn-secondary:hover {
-    border-color: var(--gold);
-    color: var(--gold);
-    transform: translateY(-2px);
-  }
-
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(24px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  /* PHONE MOCKUP */
-  .phone-section {
-    padding: 4rem 1.5rem 6rem;
-    display: flex;
-    justify-content: center;
-    position: relative;
-  }
-
-  .phone-wrap {
-    position: relative;
-    width: 280px;
-    overflow: visible;
-  }
-
-  .phone {
-    width: 280px;
-    height: 560px;
-    background: var(--deep3);
-    border-radius: 40px;
-    border: 2px solid rgba(201,168,76,0.3);
-    position: relative;
-    overflow: hidden;
-    box-shadow: 0 40px 100px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.05), inset 0 1px 0 rgba(255,255,255,0.08);
-  }
-
-  .phone-notch {
-    position: absolute;
-    top: 16px; left: 50%;
-    transform: translateX(-50%);
-    width: 100px; height: 24px;
-    background: var(--deep);
-    border-radius: 100px;
-    z-index: 2;
-  }
-
-  .phone-screen {
-    padding: 60px 16px 20px;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-  }
-
-  .phone-header {
-    text-align: center;
-    padding-bottom: 8px;
-    border-bottom: 1px solid rgba(201,168,76,0.15);
-  }
-
-  .phone-surah {
-    font-family: 'Amiri', serif;
-    font-size: 0.75rem;
-    color: var(--gold);
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    margin-bottom: 2px;
-  }
-
-  .phone-page {
-    font-size: 0.6rem;
-    color: var(--muted);
-  }
-
-  .mushaf-lines {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    padding: 4px 0;
-  }
-
-  .mushaf-line {
-    font-family: 'Amiri', serif;
-    font-size: 1.1rem;
-    text-align: center;
-    color: rgba(249,246,239,0.75);
-    direction: rtl;
-    line-height: 1.6;
-    padding: 4px 8px;
-    border-radius: 6px;
-    transition: all 0.3s;
-  }
-
-  .mushaf-line.active {
-    color: var(--deep);
-    background: var(--gold);
-    box-shadow: 0 2px 12px rgba(201,168,76,0.4);
-  }
-
-  .reciters-row {
-    display: flex;
-    gap: 8px;
-    justify-content: center;
-    padding: 8px 0;
-    border-top: 1px solid rgba(201,168,76,0.15);
-  }
-
-  .reciter-avatar {
-    width: 44px; height: 44px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 0.5rem;
-    font-weight: 600;
-    text-align: center;
-    letter-spacing: 0;
-    line-height: 1.2;
-    color: var(--deep);
-    position: relative;
-  }
-
-  .reciter-avatar.active-r {
-    box-shadow: 0 0 0 2px var(--gold);
-  }
-
-  .reciter-avatar .pulse {
-    position: absolute;
-    inset: -4px;
-    border-radius: 50%;
-    border: 2px solid var(--gold);
-    animation: pulse 1.5s ease-in-out infinite;
-  }
-
-  @keyframes pulse {
-    0%, 100% { opacity: 0.6; transform: scale(1); }
-    50% { opacity: 0; transform: scale(1.3); }
-  }
-
-  .turn-label {
-    text-align: center;
-    font-size: 0.6rem;
-    color: var(--gold);
-    font-weight: 600;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-  }
-
-  .slider-area {
-    background: rgba(201,168,76,0.08);
-    border-radius: 100px;
-    height: 44px;
-    display: flex;
-    align-items: center;
-    padding: 0 12px;
-    gap: 8px;
-    border: 1px solid rgba(201,168,76,0.2);
-  }
-
-  .slider-thumb {
-    width: 32px; height: 32px;
-    background: var(--gold);
-    border-radius: 50%;
-    flex-shrink: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .slider-track {
-    flex: 1;
-    height: 2px;
-    background: rgba(201,168,76,0.2);
-    border-radius: 2px;
-  }
-
-  .slider-text {
-    font-size: 0.55rem;
-    color: var(--muted);
-    white-space: nowrap;
-  }
-
-  /* glow ring around phone */
-  .phone-wrap::before {
-    content: '';
-    position: absolute;
-    inset: -30px;
-    background: radial-gradient(circle, rgba(201,168,76,0.08) 0%, transparent 70%);
-    border-radius: 60px;
-    pointer-events: none;
-  }
-
-  /* HOW IT WORKS */
-  .section {
-    padding: 5rem 1.5rem;
-    max-width: 1100px;
-    margin: 0 auto;
-    position: relative;
-  }
-
-  .section-label {
-    font-size: 0.75rem;
-    font-weight: 600;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 1rem;
-    text-align: center;
-  }
-
-  .section-title {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(2rem, 4vw, 3rem);
-    text-align: center;
-    margin-bottom: 1rem;
-    line-height: 1.2;
-  }
-
-  .section-title span { color: var(--gold); font-style: italic; }
-
-  .section-sub {
-    text-align: center;
-    color: var(--muted);
-    max-width: 520px;
-    margin: 0 auto 4rem;
-    line-height: 1.7;
-    font-size: 1rem;
-  }
-
-  /* STEPS */
-  .steps {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: 1.5rem;
-  }
-
-  .step {
-    background: var(--deep2);
-    border: 1px solid rgba(201,168,76,0.12);
-    border-radius: 20px;
-    padding: 2rem;
-    position: relative;
-    overflow: hidden;
-    transition: all 0.3s;
-  }
-
-  .step:hover {
-    border-color: rgba(201,168,76,0.35);
-    transform: translateY(-4px);
-    box-shadow: 0 20px 50px rgba(0,0,0,0.3);
-  }
-
-  .step::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 2px;
-    background: linear-gradient(90deg, transparent, var(--gold), transparent);
-    opacity: 0;
-    transition: opacity 0.3s;
-  }
-
-  .step:hover::before { opacity: 1; }
-
-  .step-num {
-    font-family: 'Playfair Display', serif;
-    font-size: 3rem;
-    color: rgba(201,168,76,0.15);
-    font-weight: 700;
-    line-height: 1;
-    margin-bottom: 1rem;
-  }
-
-  .step-icon {
-    font-size: 1.8rem;
-    margin-bottom: 0.75rem;
-  }
-
-  .step h3 {
-    font-size: 1.05rem;
-    font-weight: 600;
-    margin-bottom: 0.5rem;
-    color: var(--white);
-  }
-
-  .step p {
-    font-size: 0.9rem;
-    color: var(--muted);
-    line-height: 1.6;
-  }
-
-  /* FEATURES */
-  .features-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 1.2rem;
-  }
-
-  .feature {
-    background: var(--deep2);
-    border: 1px solid rgba(255,255,255,0.06);
-    border-radius: 16px;
-    padding: 1.5rem;
-    transition: all 0.3s;
-  }
-
-  .feature:hover {
-    border-color: rgba(201,168,76,0.25);
-    background: var(--deep3);
-  }
-
-  .feature-icon {
-    font-size: 1.5rem;
-    margin-bottom: 0.75rem;
-  }
-
-  .feature h4 {
-    font-size: 0.95rem;
-    font-weight: 600;
-    margin-bottom: 0.4rem;
-  }
-
-  .feature p {
-    font-size: 0.82rem;
-    color: var(--muted);
-    line-height: 1.5;
-  }
-
-  /* DIVIDER */
-  .divider {
-    width: 100%;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(201,168,76,0.2), transparent);
-    margin: 2rem 0;
-  }
-
-  /* QUOTE */
-  .quote-section {
-    padding: 5rem 1.5rem;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .quote-bg {
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(ellipse at center, rgba(201,168,76,0.06) 0%, transparent 70%);
-    pointer-events: none;
-  }
-
-  .quote-arabic {
-    font-family: 'Amiri', serif;
-    font-size: clamp(1.8rem, 5vw, 3rem);
-    color: var(--gold);
-    margin-bottom: 1.5rem;
-    line-height: 1.8;
-    direction: rtl;
-  }
-
-  .quote-translation {
-    font-size: 1rem;
-    color: var(--muted);
-    font-style: italic;
-    max-width: 500px;
-    margin: 0 auto 0.5rem;
-    line-height: 1.7;
-  }
-
-  .quote-source {
-    font-size: 0.8rem;
-    color: rgba(201,168,76,0.6);
-    letter-spacing: 0.1em;
-  }
-
-  /* CTA SECTION */
-  .cta-section {
-    padding: 5rem 1.5rem 8rem;
-    text-align: center;
-    position: relative;
-  }
-
-  .cta-card {
-    max-width: 640px;
-    margin: 0 auto;
-    background: linear-gradient(135deg, var(--deep2) 0%, var(--deep3) 100%);
-    border: 1px solid rgba(201,168,76,0.25);
-    border-radius: 28px;
-    padding: 3.5rem 2.5rem;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .cta-card::before {
-    content: '';
-    position: absolute;
-    top: -1px; left: 20%; right: 20%;
-    height: 2px;
-    background: linear-gradient(90deg, transparent, var(--gold), transparent);
-  }
-
-  .cta-card h2 {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(1.8rem, 4vw, 2.5rem);
-    margin-bottom: 1rem;
-    line-height: 1.2;
-  }
-
-  .cta-card h2 span { color: var(--gold); font-style: italic; }
-
-  .cta-card p {
-    color: var(--muted);
-    margin-bottom: 2.5rem;
-    line-height: 1.7;
-    font-size: 1rem;
-  }
-
-  .play-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 1rem;
-    background: var(--deep);
-    border: 1px solid rgba(201,168,76,0.3);
-    border-radius: 16px;
-    padding: 0.9rem 1.8rem;
-    text-decoration: none;
-    transition: all 0.25s;
-    margin-bottom: 1rem;
-  }
-
-  .play-badge:hover {
-    border-color: var(--gold);
-    background: rgba(201,168,76,0.07);
-    transform: translateY(-2px);
-  }
-
-  .play-badge svg {
-    width: 28px; height: 28px;
-  }
-
-  .play-badge-text {
-    text-align: left;
-  }
-
-  .play-badge-text .small {
-    font-size: 0.65rem;
-    color: var(--muted);
-    display: block;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-  }
-
-  .play-badge-text .big {
-    font-size: 1.1rem;
-    font-weight: 600;
-    color: var(--white);
-    display: block;
-  }
-
-  .free-tag {
-    font-size: 0.75rem;
-    color: var(--green-light);
-    background: rgba(74,45,122,0.3);
-    border: 1px solid rgba(187,134,252,0.3);
-    border-radius: 100px;
-    padding: 0.3rem 0.9rem;
-    display: inline-block;
-  }
-
-  /* FOOTER */
-  footer {
-    border-top: 1px solid rgba(255,255,255,0.06);
-    padding: 2rem 1.5rem;
-    text-align: center;
-  }
-
-  .footer-logo {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.3rem;
-    color: var(--gold);
-    margin-bottom: 0.5rem;
-  }
-
-  .footer-text {
-    font-size: 0.8rem;
-    color: var(--muted);
-  }
-
-  /* SCROLL ANIMATION */
-  .reveal {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.7s ease, transform 0.7s ease;
-  }
-
-  .reveal.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  /* animated waveform for "reciter playing" */
-  .waveform {
-    display: flex;
-    align-items: center;
-    gap: 3px;
-    justify-content: center;
-    height: 20px;
-  }
-
-  .wave-bar {
-    width: 3px;
-    background: var(--gold);
-    border-radius: 3px;
-    animation: wave 1.2s ease-in-out infinite;
-  }
-
-  .wave-bar:nth-child(1) { animation-delay: 0s; height: 8px; }
-  .wave-bar:nth-child(2) { animation-delay: 0.1s; height: 14px; }
-  .wave-bar:nth-child(3) { animation-delay: 0.2s; height: 18px; }
-  .wave-bar:nth-child(4) { animation-delay: 0.3s; height: 12px; }
-  .wave-bar:nth-child(5) { animation-delay: 0.4s; height: 16px; }
-  .wave-bar:nth-child(6) { animation-delay: 0.5s; height: 10px; }
-  .wave-bar:nth-child(7) { animation-delay: 0.6s; height: 14px; }
-
-  @keyframes wave {
-    0%, 100% { transform: scaleY(0.5); opacity: 0.5; }
-    50% { transform: scaleY(1); opacity: 1; }
-  }
-
-  /* ── DEMO INTRO OVERLAY ── */
-  #demoIntroOverlay {
-    position: absolute;
-    inset: 0;
-    z-index: 50;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background: var(--deep);
-    border-radius: 40px;
-    overflow: hidden;
-    pointer-events: none;
-  }
-
-  #demoIntroOverlay::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(ellipse at 50% 60%, rgba(187,134,252,0.13) 0%, transparent 70%);
-    pointer-events: none;
-  }
-
-  .intro-sentence {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 28px 20px;
-    opacity: 0;
-    transition: opacity 0.55s ease;
-    text-align: center;
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  .intro-sentence.active { opacity: 1; }
-
-  .intro-icon {
-    font-size: 1.6rem;
-    margin-bottom: 2px;
-  }
-
-  .intro-text {
-    font-family: 'Playfair Display', serif;
-    font-size: 0.95rem;
-    color: #F4F0FF;
-    line-height: 1.55;
-    letter-spacing: 0.01em;
-  }
-
-  .intro-text em {
-    color: #BB86FC;
-    font-style: italic;
-  }
-
-  .intro-loading-bar {
-    position: absolute;
-    bottom: 0; left: 0;
-    height: 2px;
-    background: linear-gradient(90deg, transparent, #BB86FC, #D4ADFF);
-    width: 0%;
-    transition: width linear;
-    border-radius: 0 2px 2px 0;
-  }
-
-  .intro-dots {
-    position: absolute;
-    bottom: 14px;
-    display: flex;
-    gap: 5px;
-    align-items: center;
-  }
-
-  .intro-dot {
-    width: 4px; height: 4px;
-    border-radius: 50%;
-    background: rgba(187,134,252,0.25);
-    transition: all 0.3s;
-  }
-
-  .intro-dot.active {
-    width: 16px;
-    border-radius: 4px;
-    background: #BB86FC;
-  }
-
-  /* loading phase */
-  .intro-loader {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 14px;
-    opacity: 0;
-    transition: opacity 0.4s;
-    pointer-events: none;
-  }
-
-  .intro-loader.visible { opacity: 1; }
-
-  .loader-spinner {
-    width: 28px; height: 28px;
-    border: 2px solid rgba(187,134,252,0.2);
-    border-top-color: #BB86FC;
-    border-radius: 50%;
-    animation: spin 0.9s linear infinite;
-  }
-
-  .loader-steps {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-    align-items: flex-start;
-  }
-
-  .loader-step {
-    font-size: 0.52rem;
-    color: rgba(244,240,255,0.35);
-    letter-spacing: 0.06em;
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    transition: color 0.4s;
-  }
-
-  .loader-step.done { color: #BB86FC; }
-  .loader-step.active { color: rgba(244,240,255,0.8); }
-
-  .loader-step-dot {
-    width: 5px; height: 5px;
-    border-radius: 50%;
-    background: rgba(187,134,252,0.3);
-    flex-shrink: 0;
-    transition: background 0.4s;
-  }
-
-  .loader-step.done .loader-step-dot { background: #BB86FC; }
-  .loader-step.active .loader-step-dot { background: rgba(244,240,255,0.8); animation: pulse 1s ease-in-out infinite; }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recitefy — Never Revise the Qur'an Alone Again | Smart Hifz Companion</title>
+    <meta name="description" content="Recitefy brings the experience of revising the Qur'an alongside world-famous Qaris directly to your phone. Featuring Musaffa turn-taking, Slider & Shadow modes, Revision Circle, and authentic 604-page Madani Mushaf. 100% Free with zero ads.">
+    <meta name="keywords" content="Quran, Hifz, Quran Memorization, Tajweed, Reciters, Al-Husary, Minshawi, Alafasy, Sudais, Abdul Basit, Musaffa, Quran App, Revision Circle">
+    
+    <!-- Open Graph / Meta -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Recitefy — Never Revise the Qur'an Alone Again">
+    <meta property="og:description" content="Revise alongside legendary Qaris with interactive Musaffa turn-taking, hands-free Shadow mode, and automated Revision Circle. 100% Free.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Outfit:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="assets/transparent_icon.png">
 </head>
 <body>
 
-<nav>
-  <div class="logo">Recitefy</div>
-  <a href="https://play.google.com/store/apps/details?id=com.recitefy.app" class="nav-cta" target="_blank">Download Free</a>
-</nav>
+    <!-- Dynamic Cosmic Canvas -->
+    <canvas id="cosmic-canvas"></canvas>
+    <div class="ambient-glow glow-1"></div>
+    <div class="ambient-glow glow-2"></div>
+    <div class="ambient-glow glow-3"></div>
 
-<!-- HERO -->
-<section class="hero">
-  <div class="hero-glow"></div>
-  <div class="hero-glow2"></div>
-
-  <!-- Geometric SVG ornament -->
-  <svg class="ornament" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <polygon points="40,4 76,62 4,62" stroke="#C9A84C" stroke-width="1.5" fill="none" opacity="0.5"/>
-    <polygon points="40,76 4,18 76,18" stroke="#C9A84C" stroke-width="1.5" fill="none" opacity="0.5"/>
-    <circle cx="40" cy="40" r="10" stroke="#C9A84C" stroke-width="1.5" fill="none" opacity="0.7"/>
-    <circle cx="40" cy="40" r="3" fill="#C9A84C" opacity="0.8"/>
-  </svg>
-
-  <p class="hero-arabic">﴿ وَرَتِّلِ الْقُرْآنَ تَرْتِيلًا ﴾</p>
-
-  <h1 class="hero-headline">
-    Revise Quran<br>
-    <span>Never Alone Again.</span>
-  </h1>
-
-  <p class="hero-sub">
-    A halqa in your pocket. The world's greatest reciters take turns with you — verse by verse, page by page, all 604.
-  </p>
-
-  <div class="hero-buttons">
-    <a href="https://play.google.com/store/apps/details?id=com.recitefy.app" class="btn-primary" target="_blank">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M3.18 23.76c.3.17.64.24.99.2l13.12-11.9L13.7 8.6 3.18 23.76zm17.6-10.85c.27-.3.42-.68.42-1.1s-.15-.8-.42-1.1L18.3 9.2l-3.6 3.4 3.6 3.38 2.48-1.07zM.3.56C.11.85 0 1.2 0 1.6v20.8c0 .4.11.75.3 1.04L12.6 12 .3.56zm11.92 10.56L3.18.24C2.83.2 2.49.27 2.19.44L13.7 12 12.22 11.12z"/></svg>
-      Get on Google Play
-    </a>
-    <a href="#how-it-works" class="btn-secondary">
-      See how it works ↓
-    </a>
-  </div>
-</section>
-
-<!-- INTERACTIVE DEMO -->
-<div class="phone-section" style="flex-direction:column;align-items:center;gap:2rem;">
-
-  <div style="text-align:center;">
-    <p style="font-size:0.72rem;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:#BB86FC;margin-bottom:0.5rem;">Live Preview</p>
-    <h2 style="font-family:'Playfair Display',serif;font-size:clamp(1.6rem,3.5vw,2.4rem);color:#F4F0FF;">See it in <span style="color:#BB86FC;font-style:italic;">action</span></h2>
-  </div>
-
-  <div style="display:flex;flex-direction:column;align-items:center;gap:1rem;">
-    <div class="phone-wrap" id="demoPhoneWrap" style="position:relative;overflow:visible;">
-      <div class="phone" style="overflow:hidden;position:relative;">
-        <div class="phone-notch"></div>
-
-        <!-- INTRO OVERLAY -->
-        <div id="demoIntroOverlay">
-          <!-- Sentence 1 -->
-          <div class="intro-sentence active" id="introS0">
-            <div class="intro-icon">🕌</div>
-            <div class="intro-text">Revise Quran with<br><em>the world's greatest reciters</em></div>
-          </div>
-          <!-- Sentence 2 -->
-          <div class="intro-sentence" id="introS1">
-            <div class="intro-icon">🎙️</div>
-            <div class="intro-text">Al-Afasy. Sudais. Mishary.<br><em>Your halqa, every day.</em></div>
-          </div>
-          <!-- Sentence 3 -->
-          <div class="intro-sentence" id="introS2">
-            <div class="intro-icon">📖</div>
-            <div class="intro-text">Verse by verse, page by page.<br><em>All 604 pages covered.</em></div>
-          </div>
-          <!-- Sentence 4 -->
-          <div class="intro-sentence" id="introS3">
-            <div class="intro-icon">✨</div>
-            <div class="intro-text"><em>Never revise alone again.</em><br>See how it works ↓</div>
-          </div>
-
-          <!-- Loading phase -->
-          <div class="intro-loader" id="introLoader">
-            <div class="loader-spinner"></div>
-            <div class="loader-steps">
-              <div class="loader-step" id="ls0"><div class="loader-step-dot"></div>Loading reciters…</div>
-              <div class="loader-step" id="ls1"><div class="loader-step-dot"></div>Preparing your halqa…</div>
-              <div class="loader-step" id="ls2"><div class="loader-step-dot"></div>Opening Mushaf…</div>
-              <div class="loader-step" id="ls3"><div class="loader-step-dot"></div>Starting demo…</div>
-            </div>
-          </div>
-
-          <!-- Progress bar -->
-          <div class="intro-loading-bar" id="introBar"></div>
-
-          <!-- Dots -->
-          <div class="intro-dots">
-            <div class="intro-dot active" id="iDot0"></div>
-            <div class="intro-dot" id="iDot1"></div>
-            <div class="intro-dot" id="iDot2"></div>
-            <div class="intro-dot" id="iDot3"></div>
-          </div>
-        </div>
-        <div id="screenHome" style="position:absolute;inset:0;padding:52px 14px 0 14px;display:flex;flex-direction:column;opacity:0;transition:opacity 0.4s;">
-          <div style="margin-bottom:12px;">
-            <div style="font-size:0.8rem;font-weight:700;color:#F4F0FF;">Recitefy</div>
-            <div style="font-size:1.25rem;font-weight:800;color:#F4F0FF;margin-top:4px;">Welcome back</div>
-          </div>
-          <div style="background:#1A1628;border-radius:18px;padding:16px 14px 14px;margin-bottom:10px;flex-shrink:0;position:relative;overflow:hidden;">
-            <div style="position:absolute;top:-20px;right:-20px;width:80px;height:80px;border-radius:50%;background:rgba(187,134,252,0.07);pointer-events:none;"></div>
-            <div style="font-size:0.48rem;font-weight:700;color:#BB86FC;letter-spacing:0.18em;text-transform:uppercase;margin-bottom:3px;">Revision Circle</div>
-            <div style="font-size:1rem;font-weight:800;color:#F4F0FF;margin-bottom:2px;">Resume</div>
-            <div style="font-size:0.52rem;color:rgba(244,240,255,0.45);margin-bottom:8px;">Continue your daily revision with</div>
-            <div style="font-size:0.45rem;font-weight:700;color:#BB86FC;letter-spacing:0.14em;text-transform:uppercase;margin-bottom:10px;">Today's Companions</div>
-            <div style="display:flex;justify-content:center;margin-bottom:12px;">
-              <div id="phoneCircle" style="position:relative;width:110px;height:110px;">
-                <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:90px;height:90px;border-radius:50%;background:rgba(13,10,20,0.6);"></div>
-                <div id="phonePulse" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:38px;height:38px;border-radius:50%;background:rgba(187,134,252,0.18);border:1px solid rgba(187,134,252,0.3);display:flex;align-items:center;justify-content:center;z-index:2;">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="#BB86FC"><path d="M8 5v14l11-7z"/></svg>
+    <!-- Navigation Header -->
+    <header class="header">
+        <nav class="navbar container">
+            <a href="#" class="brand">
+                <div class="brand-logo-wrap">
+                    <img src="assets/transparent_icon.png" alt="Recitefy Logo" class="brand-logo" onerror="this.src='assets/app_icon.png'">
+                    <span class="logo-pulse"></span>
                 </div>
-              </div>
+                <div class="brand-text">
+                    <span class="brand-name">Recitefy</span>
+                    <span class="brand-tag">Hifz Companion</span>
+                </div>
+            </a>
+
+            <div class="nav-menu" id="navMenu">
+                <a href="#qaris" class="nav-link">Legendary Qaris</a>
+                <a href="#musaffa" class="nav-link">Musaffa Mode</a>
+                <a href="#pacing" class="nav-link">Pacing Modes</a>
+                <a href="#circle" class="nav-link">Revision Circle</a>
+                <a href="#features" class="nav-link">Core Features</a>
+                <a href="#built-for" class="nav-link">For You</a>
             </div>
-            <div style="background:rgba(187,134,252,0.1);border:1px solid rgba(187,134,252,0.3);border-radius:100px;padding:7px 0;text-align:center;font-size:0.52rem;font-weight:600;color:#BB86FC;display:flex;align-items:center;justify-content:center;gap:5px;">
-              <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="#BB86FC" stroke-width="2.5"><path d="M23 4v6h-6M1 20v-6h6"/><path d="M3.51 9a9 9 0 0114.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0020.49 15"/></svg>
-              Refresh your circle
+
+            <div class="nav-actions">
+                <a href="#download" class="btn btn-nav">
+                    <svg class="btn-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+                    <span>Download Free</span>
+                </a>
+                <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle navigation">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
             </div>
-          </div>
-          <div style="font-size:0.44rem;font-weight:700;color:rgba(244,240,255,0.35);letter-spacing:0.14em;text-transform:uppercase;margin-bottom:7px;">Quick Access</div>
-          <div style="background:#1A1628;border-radius:14px;width:56px;height:52px;display:flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,0.05);">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#BB86FC" stroke-width="1.6"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>
-          </div>
-          <div style="margin-top:auto;padding:10px 0 12px;border-top:1px solid rgba(255,255,255,0.06);display:flex;justify-content:space-around;align-items:center;">
-            <div style="display:flex;flex-direction:column;align-items:center;gap:2px;">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="#BB86FC"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>
-              <span style="font-size:0.42rem;color:#BB86FC;font-weight:600;">Home</span>
-              <div style="width:4px;height:4px;border-radius:50%;background:#BB86FC;"></div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- HERO SECTION -->
+        <section class="hero-section">
+            <div class="container hero-grid">
+                <div class="hero-content">
+                    <div class="pill-badge">
+                        <span class="badge-icon">✨</span>
+                        <span class="badge-text">Never Revise the Qur'an Alone Again</span>
+                    </div>
+
+                    <h1 class="hero-title">
+                        What if you had a <span class="gradient-text">World-Famous Qari</span> revising with you every day?
+                    </h1>
+
+                    <p class="hero-description">
+                        <strong>Recitefy</strong> brings the authentic experience of revising with a master reciter directly to your phone. Recite alongside timeless voices, match their Tajweed pace, take interactive turns, and keep your Hifz alive and unbreakable.
+                    </p>
+
+                    <div class="hero-cta-group">
+                        <a href="#download" class="btn btn-primary btn-lg glow-button">
+                            <svg class="btn-icon" viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M3 20.5V3.5C3 2.91 3.34 2.39 3.84 2.15l13.62 13.62L3 20.5zM18.81 16.81l-1.35-1.35-13.62-13.62L5.19 3.19l13.62 13.62-1.35 1.35zM20.16 15.46l-1.35-1.35-2.7-2.7 1.35-1.35 2.7 2.7 1.35 1.35-1.35 1.35zM4.08 21.92l14.73-8.5c.58-.33.58-1.17 0-1.5L4.08 3.42C3.5 3.09 2.77 3.51 2.77 4.17v17.01c0 .66.73 1.08 1.31.74z"/></svg>
+                            <span>Download Free on Google Play</span>
+                        </a>
+                        <a href="#musaffa" class="btn btn-glass btn-lg">
+                            <span class="play-circle-icon">▶</span>
+                            <span>Explore Musaffa Mode</span>
+                        </a>
+                    </div>
+
+                    <div class="trust-strip">
+                        <div class="trust-item">
+                            <div class="trust-icon-box">⭐</div>
+                            <div>
+                                <strong>100% Free</strong>
+                                <span>Zero Ads, Forever</span>
+                            </div>
+                        </div>
+                        <div class="trust-divider"></div>
+                        <div class="trust-item">
+                            <div class="trust-icon-box">🎙️</div>
+                            <div>
+                                <strong>15+ Master Qaris</strong>
+                                <span>Studio Audio Quality</span>
+                            </div>
+                        </div>
+                        <div class="trust-divider"></div>
+                        <div class="trust-item">
+                            <div class="trust-icon-box">📖</div>
+                            <div>
+                                <strong>Madani Mushaf</strong>
+                                <span>604 Authentic Pages</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hero Interactive Phone Showcase -->
+                <div class="hero-visual">
+                    <div class="phone-mockup-wrapper">
+                        <div class="phone-frame glass-panel">
+                            <!-- Speaker / Camera notch -->
+                            <div class="phone-notch">
+                                <span class="notch-lens"></span>
+                                <span class="notch-speaker"></span>
+                            </div>
+
+                            <!-- Screen Header -->
+                            <div class="phone-app-bar">
+                                <div class="surah-info">
+                                    <span class="surah-number">Surah Al-Mulk</span>
+                                    <span class="page-indicator">Page 562 • Juz 29</span>
+                                </div>
+                                <div class="live-reciter-tag">
+                                    <span class="live-dot"></span>
+                                    <span>Sh. Al-Husary</span>
+                                </div>
+                            </div>
+
+                            <!-- Quran Page Simulation with Highlight -->
+                            <div class="mushaf-screen">
+                                <div class="arabic-bismillah">بِسْمِ ٱللَّهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ</div>
+                                
+                                <div class="ayah-block active-ayah" id="heroAyah1">
+                                    <span class="arabic-text">تَبَٰرَكَ ٱلَّذِى بِيَدِهِ ٱلْمُلْكُ وَهُوَ عَلَىٰ كُلِّ شَىْءٍۢ قَدِيرٌ</span>
+                                    <span class="ayah-num">﴿١﴾</span>
+                                </div>
+
+                                <div class="ayah-block next-turn" id="heroAyah2">
+                                    <span class="arabic-text">ٱلَّذِى خَلَقَ ٱلْمَوْتَ وَٱلْحَيَوٰةَ لِيَبْلُوَكُمْ أَيُّكُمْ أَحْسَنُ عَمَلًۭا ۚ وَهُوَ ٱلْعَزِيزُ ٱلْغَفُورُ</span>
+                                    <span class="ayah-num">﴿٢﴾</span>
+                                </div>
+
+                                <div class="ayah-block" id="heroAyah3">
+                                    <span class="arabic-text">ٱلَّذِى خَلَقَ سَبْعَ سَمَٰوَٰتٍۢ طِبَاقًۭا ۖ مَّا تَرَىٰ فِى خَلْقِ ٱلرَّحْمَٰنِ مِن تَفَٰوُتٍۢ</span>
+                                    <span class="ayah-num">﴿٣﴾</span>
+                                </div>
+
+                                <!-- Floating Musaffa Turn Indicator -->
+                                <div class="phone-floating-pill">
+                                    <div class="status-indicator reciting">
+                                        <span class="pulse-ring"></span>
+                                        <span class="status-text"><strong>Qari's Turn:</strong> Ayah 1 (Listening)</span>
+                                    </div>
+                                    <div class="audio-bars">
+                                        <span></span><span></span><span></span><span></span><span></span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Bottom Floating Controls -->
+                            <div class="phone-bottom-bar">
+                                <div class="mode-badge-small">Musaffa Mode • Active</div>
+                                <div class="phone-action-icons">
+                                    <span>🔄 Rotation</span>
+                                    <span>⚡ Shadow</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Floating Badges around phone -->
+                        <div class="floating-bubble bubble-qaris">
+                            <div class="bubble-avatars">
+                                <span class="b-avatar q1">ح</span>
+                                <span class="b-avatar q2">م</span>
+                                <span class="b-avatar q3">ع</span>
+                            </div>
+                            <div>
+                                <small>Live Companions</small>
+                                <strong>15+ World Qaris</strong>
+                            </div>
+                        </div>
+
+                        <div class="floating-bubble bubble-circle">
+                            <div class="retention-ring">
+                                <span>98%</span>
+                            </div>
+                            <div>
+                                <small>Revision Circle</small>
+                                <strong>Daily Streak: 42 Days</strong>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div style="display:flex;flex-direction:column;align-items:center;gap:2px;">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgba(244,240,255,0.25)" stroke-width="1.5"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>
-              <span style="font-size:0.42rem;color:rgba(244,240,255,0.25);">Library</span>
+        </section>
+
+        <!-- REVISE WITH LEGENDARY QARIS SECTION -->
+        <section id="qaris" class="section qaris-section">
+            <div class="container">
+                <div class="section-header text-center">
+                    <div class="section-badge">REVISE WITH LEGENDARY QARIS</div>
+                    <h2 class="section-title">Choose Your <span class="gradient-text">Ultimate Recitation Companion</span></h2>
+                    <p class="section-subtitle">Connect deeply and practice your Tajweed with the timeless, inspiring voices you know and love. Feel their presence verse-by-verse.</p>
+                </div>
+
+                <div class="qaris-grid">
+                    <!-- Qari Card 1 -->
+                    <div class="qari-card glass-panel" data-reciter="husary">
+                        <div class="qari-header">
+                            <div class="qari-avatar avatar-gold">
+                                <span>الحصري</span>
+                            </div>
+                            <div class="qari-meta">
+                                <h3>Sheikh Mahmoud Khalil Al-Husary</h3>
+                                <span class="qari-title">Shaykh al-Maqāri' • Master of Tajweed</span>
+                            </div>
+                        </div>
+                        <p class="qari-desc">World gold-standard for precise articulation, pristine makharij, and methodical rhythm. Unrivaled for strict Tajweed mastery.</p>
+                        <div class="qari-footer">
+                            <span class="tag-pill">Murattal & Mujawwad</span>
+                            <span class="sample-play-btn" onclick="playVoiceSample('Sheikh Mahmoud Khalil Al-Husary')">▶ Preview Voice</span>
+                        </div>
+                    </div>
+
+                    <!-- Qari Card 2 -->
+                    <div class="qari-card glass-panel" data-reciter="minshawi">
+                        <div class="qari-header">
+                            <div class="qari-avatar avatar-emerald">
+                                <span>المنشاوي</span>
+                            </div>
+                            <div class="qari-meta">
+                                <h3>Sheikh Mohamed Siddiq El-Minshawi</h3>
+                                <span class="qari-title">The "Crying Voice" (الصوت الباكي)</span>
+                            </div>
+                        </div>
+                        <p class="qari-desc">Profound emotional depth and heart-rending cadence that brings tears to your eyes and reinforces deep Tadabbur during revision.</p>
+                        <div class="qari-footer">
+                            <span class="tag-pill">Deep Emotion</span>
+                            <span class="sample-play-btn" onclick="playVoiceSample('Sheikh Mohamed Siddiq El-Minshawi')">▶ Preview Voice</span>
+                        </div>
+                    </div>
+
+                    <!-- Qari Card 3 -->
+                    <div class="qari-card glass-panel" data-reciter="alafasy">
+                        <div class="qari-header">
+                            <div class="qari-avatar avatar-cyan">
+                                <span>العفاسي</span>
+                            </div>
+                            <div class="qari-meta">
+                                <h3>Sheikh Mishary Rashid Alafasy</h3>
+                                <span class="qari-title">World Renowned Melody & Clarity</span>
+                            </div>
+                        </div>
+                        <p class="qari-desc">Inspiring, crystal-clear vocal tones loved across the globe. Melodic pacing that keeps your memory focused and uplifted.</p>
+                        <div class="qari-footer">
+                            <span class="tag-pill">Melodic Cadence</span>
+                            <span class="sample-play-btn" onclick="playVoiceSample('Sheikh Mishary Rashid Alafasy')">▶ Preview Voice</span>
+                        </div>
+                    </div>
+
+                    <!-- Qari Card 4 -->
+                    <div class="qari-card glass-panel" data-reciter="sudais">
+                        <div class="qari-header">
+                            <div class="qari-avatar avatar-purple">
+                                <span>السديس</span>
+                            </div>
+                            <div class="qari-meta">
+                                <h3>Sheikh Abdul Rahman As-Sudais</h3>
+                                <span class="qari-title">Imam of Masjid Al-Haram, Makkah</span>
+                            </div>
+                        </div>
+                        <p class="qari-desc">The unmistakable, soul-stirring Haram recitation. Revise with the pace and resonant emotion of Taraweeh in Makkah.</p>
+                        <div class="qari-footer">
+                            <span class="tag-pill">Masjid Al-Haram</span>
+                            <span class="sample-play-btn" onclick="playVoiceSample('Sheikh Abdul Rahman As-Sudais')">▶ Preview Voice</span>
+                        </div>
+                    </div>
+
+                    <!-- Qari Card 5 -->
+                    <div class="qari-card glass-panel" data-reciter="basit">
+                        <div class="qari-header">
+                            <div class="qari-avatar avatar-amber">
+                                <span>عبد الباسط</span>
+                            </div>
+                            <div class="qari-meta">
+                                <h3>Sheikh Abdul Basit 'Abd us-Samad</h3>
+                                <span class="qari-title">Golden Voice of the Century</span>
+                            </div>
+                        </div>
+                        <p class="qari-desc">Legendary breath control, majestic presence, and incomparable resonance that elevates your heart with every single ayah.</p>
+                        <div class="qari-footer">
+                            <span class="tag-pill">Legendary Tone</span>
+                            <span class="sample-play-btn" onclick="playVoiceSample('Sheikh Abdul Basit Abd us-Samad')">▶ Preview Voice</span>
+                        </div>
+                    </div>
+
+                    <!-- Qari Card 6 -->
+                    <div class="qari-card glass-panel" data-reciter="shuraym">
+                        <div class="qari-header">
+                            <div class="qari-avatar avatar-rose">
+                                <span>الشريم</span>
+                            </div>
+                            <div class="qari-meta">
+                                <h3>Sheikh Saood ash-Shuraym</h3>
+                                <span class="qari-title">Beloved Imam of Masjid Al-Haram</span>
+                            </div>
+                        </div>
+                        <p class="qari-desc">Dynamic, measured, and rhythmic pacing. Exceptional for Huffaz looking to revise large Juz portions with seamless flow.</p>
+                        <div class="qari-footer">
+                            <span class="tag-pill">Steady Flow</span>
+                            <span class="sample-play-btn" onclick="playVoiceSample('Sheikh Saood ash-Shuraym')">▶ Preview Voice</span>
+                        </div>
+                    </div>
+
+                    <!-- Qari Card 7 -->
+                    <div class="qari-card glass-panel" data-reciter="dosari">
+                        <div class="qari-header">
+                            <div class="qari-avatar avatar-indigo">
+                                <span>الدوسري</span>
+                            </div>
+                            <div class="qari-meta">
+                                <h3>Sheikh Yasser Al-Dosari</h3>
+                                <span class="qari-title">Imam of Masjid Al-Haram</span>
+                            </div>
+                        </div>
+                        <p class="qari-desc">Powerful maqamat and deeply poignant, modern Haram delivery that energizes your revision sessions with unmatched passion.</p>
+                        <div class="qari-footer">
+                            <span class="tag-pill">Vibrant Maqam</span>
+                            <span class="sample-play-btn" onclick="playVoiceSample('Sheikh Yasser Al-Dosari')">▶ Preview Voice</span>
+                        </div>
+                    </div>
+
+                    <!-- Qari Card 8 (+15 More) -->
+                    <div class="qari-card glass-panel more-qaris-card">
+                        <div class="more-content">
+                            <div class="more-icon-badge">+15</div>
+                            <h3>And 15+ More Masters</h3>
+                            <p>Including Sheikh Maher Al-Muaiqly, Sheikh Abu Bakr Al-Shatri, Sheikh Muhammad Ayyub, Sheikh Hani ar-Rifai, and more.</p>
+                            <a href="#download" class="btn btn-secondary btn-sm">Explore All Reciters</a>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div style="display:flex;flex-direction:column;align-items:center;gap:2px;">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgba(244,240,255,0.25)" stroke-width="1.5"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-              <span style="font-size:0.42rem;color:rgba(244,240,255,0.25);">Profile</span>
+        </section>
+
+        <!-- INTERACTIVE REVISION WITH MUSAFFA (TURN-TAKING) -->
+        <section id="musaffa" class="section musaffa-section">
+            <div class="container">
+                <div class="feature-showcase-grid">
+                    <div class="showcase-content">
+                        <div class="section-badge">INTERACTIVE REVISION WITH MUSAFFA</div>
+                        <h2 class="section-title">Turn-Taking Revision: <br><span class="gradient-text">They Read A Verse, You Read The Next.</span></h2>
+                        <p class="section-text">
+                            In traditional Quran circles (Halaqat), students revise with their Ustadh through <strong>Musaffa</strong> — a dynamic turn-taking method where partners alternate reciting.
+                        </p>
+                        <p class="section-text">
+                            Recitefy digitizes this sacred tradition for the first time. Choose verse-by-verse or page-by-page alternation. When your Sheikh recites, listen and calibrate your Tajweed; when your turn arrives, recite from your memory with confidence!
+                        </p>
+
+                        <div class="musaffa-steps">
+                            <div class="step-card">
+                                <div class="step-number">1</div>
+                                <div class="step-details">
+                                    <h4>Sheikh's Turn (Listen & Absorb)</h4>
+                                    <p>The Qari recites the first ayah with pristine Tajweed. You absorb the rhythm, waqf, and pronunciation.</p>
+                                </div>
+                            </div>
+
+                            <div class="step-card">
+                                <div class="step-number">2</div>
+                                <div class="step-details">
+                                    <h4>Your Turn (Recite & Test Memory)</h4>
+                                    <p>The audio pauses automatically. Now it’s your turn to recite the following ayah and test your retention!</p>
+                                </div>
+                            </div>
+
+                            <div class="step-card">
+                                <div class="step-number">3</div>
+                                <div class="step-details">
+                                    <h4>Continuous Momentum</h4>
+                                    <p>Seamlessly alternate until you complete your Surah or daily Juz target without losing focus.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Interactive Musaffa Simulator Widget -->
+                    <div class="showcase-interactive">
+                        <div class="interactive-simulator-card glass-panel" id="interactive-demo">
+                            <div class="sim-header">
+                                <div class="sim-title-group">
+                                    <span class="sim-badge">Live Interactive Simulator</span>
+                                    <h3>Musaffa Turn-Taking Demo</h3>
+                                </div>
+                                <div class="sim-mode-tag">Verse-by-Verse</div>
+                            </div>
+
+                            <div class="sim-display-screen">
+                                <!-- Status Banner -->
+                                <div class="sim-status-banner" id="simStatus">
+                                    <div class="sim-status-indicator">
+                                        <span class="sim-dot active"></span>
+                                        <span id="simStatusText">Ready for Musaffa demo</span>
+                                    </div>
+                                    <div class="sim-timer" id="simTimer">00:00</div>
+                                </div>
+
+                                <!-- Verse Area -->
+                                <div class="sim-verse-container">
+                                    <div class="sim-surah-tag">Surah Al-Fatihah (1:1 - 1:3)</div>
+                                    <div class="sim-ayah active" id="ayah1">
+                                        <div class="sim-speaker-badge sheikh">Sheikh's Turn (Ayah 1)</div>
+                                        <div class="arabic-display">بِسْمِ ٱللَّهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ ﴿١﴾</div>
+                                        <div class="sim-translation">In the name of Allah, the Entirely Merciful, the Especially Merciful.</div>
+                                    </div>
+
+                                    <div class="sim-ayah" id="ayah2">
+                                        <div class="sim-speaker-badge you">Your Turn (Ayah 2)</div>
+                                        <div class="arabic-display">ٱلْحَمْدُ لِلَّهِ رَبِّ ٱلْعَٰلَمِينَ ﴿٢﴾</div>
+                                        <div class="sim-translation">All praise is due to Allah, Lord of the worlds.</div>
+                                    </div>
+
+                                    <div class="sim-ayah" id="ayah3">
+                                        <div class="sim-speaker-badge sheikh">Sheikh's Turn (Ayah 3)</div>
+                                        <div class="arabic-display">ٱلرَّحْمَٰنِ ٱلرَّحِيمِ ﴿٣﴾</div>
+                                        <div class="sim-translation">The Entirely Merciful, the Especially Merciful.</div>
+                                    </div>
+                                </div>
+
+                                <!-- Interactive Simulator Controls -->
+                                <div class="sim-controls">
+                                    <button class="btn btn-primary btn-block" id="simToggleBtn" onclick="toggleMusaffaSimulation()">
+                                        <span id="simBtnIcon">▶</span>
+                                        <span id="simBtnText">Start Musaffa Simulation</span>
+                                    </button>
+                                    <div class="sim-hint">Click above to experience how Recitefy alternates reciting with you!</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
+        </section>
+
+        <!-- CHOOSE HOW YOU RECITE (SLIDER VS SHADOW MODE) -->
+        <section id="pacing" class="section pacing-section">
+            <div class="container">
+                <div class="section-header text-center">
+                    <div class="section-badge">CHOOSE HOW YOU RECITE</div>
+                    <h2 class="section-title">Control Your Flow with <span class="gradient-text">Precision Pacing</span></h2>
+                    <p class="section-subtitle">Whether you want full tactile control or a hands-free flow while driving or walking, Recitefy adapts to your lifestyle.</p>
+                </div>
+
+                <div class="pacing-grid">
+                    <!-- Slider Mode Card -->
+                    <div class="pacing-card glass-panel">
+                        <div class="pacing-icon-wrap icon-cyan">
+                            <svg viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v8M8 12h8"/><path d="m14 9 3 3-3 3M10 9l-3 3 3 3"/></svg>
+                        </div>
+                        <div class="pacing-badge">TACTILE CONTROL</div>
+                        <h3 class="pacing-title">Slider Mode</h3>
+                        <p class="pacing-desc">Use your hand to manually drag across the screen to advance the text exactly as you read. You dictate the exact speed, pausing whenever you need to reflect or solidify a difficult ayah.</p>
+                        
+                        <div class="pacing-interactive-demo">
+                            <div class="slider-track-demo">
+                                <input type="range" min="1" max="100" value="45" class="custom-range" id="demoRange" oninput="updateSliderDemo(this.value)">
+                                <div class="slider-labels">
+                                    <span>Ayah 1</span>
+                                    <span id="sliderAyahIndicator">Ayah 5 (Active)</span>
+                                    <span>Ayah 10</span>
+                                </div>
+                            </div>
+                            <div class="pacing-tagline">✨ Ideal for: Careful Hifz check & deep tafsir reflection</div>
+                        </div>
+                    </div>
+
+                    <!-- Shadow Mode Card -->
+                    <div class="pacing-card glass-panel highlighted-pacing">
+                        <div class="popular-ribbon">POPULAR</div>
+                        <div class="pacing-icon-wrap icon-emerald">
+                            <svg viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/><path d="m18 8 4 4-4 4"/></svg>
+                        </div>
+                        <div class="pacing-badge">100% HANDS-FREE</div>
+                        <h3 class="pacing-title">Shadow Mode</h3>
+                        <p class="pacing-desc">Recite completely hands-free! The text moves forward automatically as you recite, matching the natural pacing and rhythm of your chosen Qari like a guided teleprompter for Hifz.</p>
+                        
+                        <div class="pacing-interactive-demo">
+                            <div class="shadow-meter-box">
+                                <div class="shadow-pulse-anim"></div>
+                                <div class="shadow-status">
+                                    <div class="audio-wave">
+                                        <span></span><span></span><span></span><span></span><span></span><span></span>
+                                    </div>
+                                    <span class="shadow-text">Tracking Qari Rhythm • Hands-Free Auto Scroll</span>
+                                </div>
+                            </div>
+                            <div class="pacing-tagline">✨ Ideal for: Commutes, walking, busy parents, and effortless daily revision</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- KEEP YOUR MEMORIZATION IN ROTATION (REVISION CIRCLE) -->
+        <section id="circle" class="section circle-section">
+            <div class="container">
+                <div class="feature-showcase-grid reverse-grid">
+                    <div class="showcase-content">
+                        <div class="section-badge">KEEP YOUR MEMORIZATION IN ROTATION</div>
+                        <h2 class="section-title">The Revision Circle: <br><span class="gradient-text">Never Forget a Surah Again.</span></h2>
+                        <p class="section-text">
+                            The greatest challenge of Hifz is retention. Without a structured rotation, newly memorized Surahs slip away while old portions weaken.
+                        </p>
+                        <p class="section-text">
+                            <strong>Revision Circle</strong> automatically calculates, plans, and loops your memorized portions based on smart retention intervals. Build an unbreakable daily habit alongside the very voices that inspire your soul.
+                        </p>
+
+                        <div class="circle-benefits-list">
+                            <div class="benefit-item">
+                                <div class="benefit-icon">🔄</div>
+                                <div>
+                                    <strong>Automated Rotation Schedule</strong>
+                                    <p>No more wondering "What should I revise today?". Recitefy serves your exact daily portion automatically.</p>
+                                </div>
+                            </div>
+
+                            <div class="benefit-item">
+                                <div class="benefit-icon">📈</div>
+                                <div>
+                                    <strong>Hifz Strength & Retention Tracking</strong>
+                                    <p>Visualize your progress, streak count, and mastery level across all 114 Surahs.</p>
+                                </div>
+                            </div>
+
+                            <div class="benefit-item">
+                                <div class="benefit-icon">🎯</div>
+                                <div>
+                                    <strong>Daily Habit Builder</strong>
+                                    <p>Intelligent, gentle reminders keep your revision consistent every single day.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="showcase-visual">
+                        <div class="circle-visual-card glass-panel">
+                            <div class="circle-interactive-orbit">
+                                <div class="orbit-center">
+                                    <img src="assets/transparent_icon.png" alt="Recitefy" class="center-icon" onerror="this.src='assets/app_icon.png'">
+                                    <span class="center-label">Daily Circle</span>
+                                </div>
+
+                                <div class="orbit-item node-1">
+                                    <span class="node-surah">Juz 30</span>
+                                    <span class="node-status done">✓ Revised</span>
+                                </div>
+                                <div class="orbit-item node-2 active">
+                                    <span class="node-surah">Juz 29</span>
+                                    <span class="node-status today">Today's Goal</span>
+                                </div>
+                                <div class="orbit-item node-3">
+                                    <span class="node-surah">Juz 28</span>
+                                    <span class="node-status up">Tomorrow</span>
+                                </div>
+                                <div class="orbit-item node-4">
+                                    <span class="node-surah">Juz 1</span>
+                                    <span class="node-status queued">In Queue</span>
+                                </div>
+
+                                <div class="orbit-ring ring-inner"></div>
+                                <div class="orbit-ring ring-outer"></div>
+                            </div>
+
+                            <div class="circle-stats-row">
+                                <div class="stat-box">
+                                    <span class="stat-num">30/30</span>
+                                    <span class="stat-label">Juz In Rotation</span>
+                                </div>
+                                <div class="stat-box">
+                                    <span class="stat-num">100%</span>
+                                    <span class="stat-label">Retention Score</span>
+                                </div>
+                                <div class="stat-box">
+                                    <span class="stat-num">🔥 45</span>
+                                    <span class="stat-label">Day Streak</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CORE FEATURES SECTION -->
+        <section id="features" class="section features-section">
+            <div class="container">
+                <div class="section-header text-center">
+                    <div class="section-badge">ENGINEERED FOR EXCELLENCE</div>
+                    <h2 class="section-title">Core Features Designed for <span class="gradient-text">Pure Focus</span></h2>
+                    <p class="section-subtitle">Everything you need to master your recitation, elevate your Tajweed, and maintain lifelong Hifz.</p>
+                </div>
+
+                <div class="features-cards-grid">
+                    <!-- Feature 1 -->
+                    <div class="feature-box glass-panel">
+                        <div class="feature-icon-circle icon-gold">
+                            <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5Z"/><path d="M6 6h10M6 10h10M6 14h6"/></svg>
+                        </div>
+                        <h3>Authentic 604-Page Madani Mushaf</h3>
+                        <p>Exact 15-line Madani script replica with real-time, live verse-by-verse highlighting that synchronizes perfectly with audio.</p>
+                    </div>
+
+                    <!-- Feature 2 -->
+                    <div class="feature-box glass-panel">
+                        <div class="feature-icon-circle icon-emerald">
+                            <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                        </div>
+                        <h3>Interactive Musaffa Turn-Taking</h3>
+                        <p>Practice verse-by-verse or page-by-page with your chosen Sheikh. The first interactive virtual Halaqah built for mobile.</p>
+                    </div>
+
+                    <!-- Feature 3 -->
+                    <div class="feature-box glass-panel">
+                        <div class="feature-icon-circle icon-cyan">
+                            <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                        </div>
+                        <h3>Custom Pacing: Slider & Shadow</h3>
+                        <p>Toggle between tactile manual slider navigation or effortless hands-free Shadow tracking that follows Qari rhythm.</p>
+                    </div>
+
+                    <!-- Feature 4 -->
+                    <div class="feature-box glass-panel">
+                        <div class="feature-icon-circle icon-purple">
+                            <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/></svg>
+                        </div>
+                        <h3>Personalized Revision Circle</h3>
+                        <p>Smart rotation algorithm automatically schedules, calculates, and loops your memorized portions so nothing is ever forgotten.</p>
+                    </div>
+
+                    <!-- Feature 5 -->
+                    <div class="feature-box glass-panel">
+                        <div class="feature-icon-circle icon-rose">
+                            <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+                        </div>
+                        <h3>Master Studio Audio Quality</h3>
+                        <p>Crystal-clear, high-definition studio audio recordings of the greatest Tajweed masters with zero distortion or lag.</p>
+                    </div>
+
+                    <!-- Feature 6 -->
+                    <div class="feature-box glass-panel">
+                        <div class="feature-icon-circle icon-green">
+                            <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                        </div>
+                        <h3>100% Free & Zero Intrusive Ads</h3>
+                        <p>Pure spiritual focus without popup interruptions, banner distractions, or paywalls. Built purely for the sake of Allah.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- BUILT FOR (AUDIENCE PERSONAS) -->
+        <section id="built-for" class="section built-for-section">
+            <div class="container">
+                <div class="section-header text-center">
+                    <div class="section-badge">TAILORED TO YOUR GOALS</div>
+                    <h2 class="section-title">Who is <span class="gradient-text">Recitefy Built For?</span></h2>
+                    <p class="section-subtitle">No matter where you are in your relationship with the Qur'an, Recitefy is your steadfast companion.</p>
+                </div>
+
+                <div class="personas-grid">
+                    <!-- Persona 1: Huffaz -->
+                    <div class="persona-card glass-panel">
+                        <div class="persona-avatar-box">🎓</div>
+                        <h3 class="persona-title">Huffaz Maintaining Their Hifz</h3>
+                        <p class="persona-quote">"I finished memorizing, but keeping all 30 Juz solid while busy with life is tough."</p>
+                        <ul class="persona-perks">
+                            <li>✓ Automatic daily rotation loop via Revision Circle</li>
+                            <li>✓ Hands-free Shadow Mode during work commutes</li>
+                            <li>✓ Immediate Tajweed calibration with senior masters</li>
+                        </ul>
+                    </div>
+
+                    <!-- Persona 2: Students -->
+                    <div class="persona-card glass-panel highlight-persona">
+                        <div class="persona-badge-tag">MOST LOVED</div>
+                        <div class="persona-avatar-box">📖</div>
+                        <h3 class="persona-title">Active Quran Students</h3>
+                        <p class="persona-quote">"I need an interactive partner to test my memorization when my teacher isn't available."</p>
+                        <ul class="persona-perks">
+                            <li>✓ Musaffa turn-taking acts as your 24/7 revision partner</li>
+                            <li>✓ Verse-by-verse audio replay for difficult passages</li>
+                            <li>✓ Live highlighting on authentic 604-page Madani pages</li>
+                        </ul>
+                    </div>
+
+                    <!-- Persona 3: Devoted Believers -->
+                    <div class="persona-card glass-panel">
+                        <div class="persona-avatar-box">❤️</div>
+                        <h3 class="persona-title">Seekers of Deeper Connection</h3>
+                        <p class="persona-quote">"I want to recite smoothly with beautiful Tajweed and feel the presence of the Quran."</p>
+                        <ul class="persona-perks">
+                            <li>✓ Recite alongside the most beloved voices in Islamic history</li>
+                            <li>✓ Zero intrusive ads to preserve deep spiritual focus</li>
+                            <li>✓ Intuitive and accessible for readers of all levels</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CALL TO ACTION & DOWNLOAD SECTION -->
+        <section id="download" class="section download-cta-section">
+            <div class="container">
+                <div class="download-banner glass-panel">
+                    <div class="banner-glow"></div>
+                    <div class="banner-content text-center">
+                        <div class="banner-arabic-ayah">
+                            « وَلَقَدْ يَسَّرْنَا الْقُرْآنَ لِلذِّكْرِ فَهَلْ مِن مَّدَّكِرٍ »
+                        </div>
+                        <h2 class="banner-title">Recite with the Voice That Moves Your Heart.</h2>
+                        <p class="banner-subtitle">Keep the Qur’an alive in your memory. Never revise alone again. Download Recitefy today — completely free.</p>
+
+                        <div class="banner-btn-group">
+                            <a href="#" class="store-btn google-play-btn">
+                                <svg viewBox="0 0 24 24" width="30" height="30" fill="currentColor"><path d="M3 20.5V3.5C3 2.91 3.34 2.39 3.84 2.15l13.62 13.62L3 20.5zM18.81 16.81l-1.35-1.35-13.62-13.62L5.19 3.19l13.62 13.62-1.35 1.35zM20.16 15.46l-1.35-1.35-2.7-2.7 1.35-1.35 2.7 2.7 1.35 1.35-1.35 1.35zM4.08 21.92l14.73-8.5c.58-.33.58-1.17 0-1.5L4.08 3.42C3.5 3.09 2.77 3.51 2.77 4.17v17.01c0 .66.73 1.08 1.31.74z"/></svg>
+                                <div class="store-text">
+                                    <span class="small-text">GET IT ON</span>
+                                    <span class="big-text">Google Play</span>
+                                </div>
+                            </a>
+
+                            <a href="#" class="store-btn app-store-btn">
+                                <svg viewBox="0 0 24 24" width="30" height="30" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 6.37c.61-.75 1.04-1.8 0.92-2.85-.9.04-2 .6-2.65 1.35-.58.66-1.09 1.73-.96 2.75 1 .08 2.08-.5 2.69-1.25z"/></svg>
+                                <div class="store-text">
+                                    <span class="small-text">DOWNLOAD ON THE</span>
+                                    <span class="big-text">App Store (iOS)</span>
+                                </div>
+                            </a>
+                        </div>
+
+                        <div class="guarantee-text">
+                            🔒 100% Free • Zero Advertisements • Offline Mode Available
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ SECTION -->
+        <section class="section faq-section">
+            <div class="container">
+                <div class="section-header text-center">
+                    <div class="section-badge">FREQUENTLY ASKED QUESTIONS</div>
+                    <h2 class="section-title">Got Questions? <span class="gradient-text">We've Got Answers</span></h2>
+                </div>
+
+                <div class="faq-accordion">
+                    <div class="faq-item glass-panel">
+                        <button class="faq-question">
+                            <span>How does Musaffa turn-taking work in Recitefy?</span>
+                            <span class="faq-toggle-icon">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            <p>In Musaffa mode, Recitefy acts like a live revision partner in a Halaqah. You choose your Sheikh and recitation unit (verse-by-verse or page-by-page). The Sheikh recites the first portion while you listen, and then the app pauses so you can recite the subsequent portion from your memory. It alternates continuously until your target is complete!</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item glass-panel">
+                        <button class="faq-question">
+                            <span>What is the difference between Slider Mode and Shadow Mode?</span>
+                            <span class="faq-toggle-icon">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            <p><strong>Slider Mode</strong> gives you tactile fingertip control by letting you drag across the screen to manually advance verse-by-verse at your own custom pace. <strong>Shadow Mode</strong> is completely hands-free: the app automatically scrolls and highlights verses synchronized with the natural Tajweed speed of the Qari, making it ideal when your hands are busy.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item glass-panel">
+                        <button class="faq-question">
+                            <span>How does the Revision Circle help me avoid forgetting Surahs?</span>
+                            <span class="faq-toggle-icon">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            <p>The Revision Circle uses an automated spaced rotation algorithm. It tracks all the Juz and Surahs you have memorized and serves you an exact balanced daily portion. By completing your daily circle, you ensure every single Surah is revisited on a recurring schedule without manual planning.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item glass-panel">
+                        <button class="faq-question">
+                            <span>Is Recitefy really 100% free with no ads?</span>
+                            <span class="faq-toggle-icon">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Yes! Recitefy is completely free with zero intrusive advertisements or paywalls. Our mission is to facilitate Quran memorization and revision for the entire Ummah with pure, uninterrupted focus.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container footer-content">
+            <div class="footer-brand-col">
+                <div class="brand">
+                    <img src="assets/transparent_icon.png" alt="Recitefy Logo" class="brand-logo" onerror="this.src='assets/app_icon.png'">
+                    <span class="brand-name">Recitefy</span>
+                </div>
+                <p class="footer-tagline">The ultimate digital companion for Qur'an memorization, revision, and Tajweed mastery.</p>
+            </div>
+
+            <div class="footer-links-col">
+                <h4>Navigation</h4>
+                <ul>
+                    <li><a href="#qaris">Legendary Qaris</a></li>
+                    <li><a href="#musaffa">Musaffa Mode</a></li>
+                    <li><a href="#pacing">Pacing Modes</a></li>
+                    <li><a href="#circle">Revision Circle</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-links-col">
+                <h4>Features</h4>
+                <ul>
+                    <li><a href="#features">Madani Mushaf 604</a></li>
+                    <li><a href="#features">Slider & Shadow Modes</a></li>
+                    <li><a href="#built-for">Built For Huffaz</a></li>
+                    <li><a href="#download">Download App</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-links-col">
+                <h4>Community & Trust</h4>
+                <ul>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                    <li><a href="#">Contact & Feedback</a></li>
+                    <li><a href="#">Support Project</a></li>
+                </ul>
+            </div>
         </div>
 
-        <!-- SCREEN B: Setup -->
-        <div id="screenSetup" style="position:absolute;inset:0;padding:0 0 0 0;display:flex;flex-direction:column;opacity:0;pointer-events:none;transition:opacity 0.4s;background:#0D0A14;">
-          <!-- Header -->
-          <div style="display:flex;align-items:center;justify-content:space-between;padding:44px 14px 10px;">
-            <div style="width:28px;height:28px;border-radius:50%;background:rgba(255,255,255,0.07);display:flex;align-items:center;justify-content:center;">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#F4F0FF" stroke-width="2.2"><polyline points="15 18 9 12 15 6"/></svg>
-            </div>
-            <div style="font-size:0.75rem;font-weight:700;color:#F4F0FF;letter-spacing:0.05em;">Setup</div>
-            <div style="width:28px;"></div>
-          </div>
-          <!-- Recitation Mode -->
-          <div style="padding:0 12px 8px;">
-            <div style="font-size:0.38rem;font-weight:700;color:rgba(244,240,255,0.4);letter-spacing:0.16em;text-transform:uppercase;margin-bottom:6px;">Recitation Mode</div>
-            <div style="display:flex;gap:4px;background:#1A1628;border-radius:10px;padding:4px;">
-              <div style="flex:1;background:#BB86FC;border-radius:7px;padding:5px 0;text-align:center;font-size:0.42rem;font-weight:700;color:#0D0A14;">Musaffa</div>
-              <div style="flex:1;padding:5px 0;text-align:center;font-size:0.42rem;color:rgba(244,240,255,0.45);">Learn</div>
-              <div style="flex:1;padding:5px 0;text-align:center;font-size:0.42rem;color:rgba(244,240,255,0.45);">Tarteel</div>
-              <div style="flex:1;padding:5px 0;text-align:center;font-size:0.42rem;color:rgba(244,240,255,0.45);">Listen</div>
-            </div>
-            <div style="font-size:0.36rem;color:rgba(244,240,255,0.3);margin-top:4px;font-style:italic;">ⓘ Musaffa mode: Turn-based recitation with the Qari.</div>
-          </div>
-          <!-- Pre-selected target -->
-          <div style="margin:0 12px 8px;background:#1A1628;border-radius:10px;padding:10px 12px;display:flex;align-items:center;gap:10px;">
-            <div style="width:28px;height:28px;border-radius:50%;background:rgba(187,134,252,0.15);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
-              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#BB86FC" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-            </div>
-            <div>
-              <div style="font-size:0.36rem;font-weight:700;color:#BB86FC;letter-spacing:0.14em;text-transform:uppercase;margin-bottom:1px;">Pre-Selected Target</div>
-              <div style="font-size:0.72rem;font-weight:800;color:#F4F0FF;font-family:'Amiri',serif;">Surah At-Tawbah</div>
-            </div>
-          </div>
-          <!-- Today's Circle Companions -->
-          <div style="padding:0 12px 8px;">
-            <div style="display:flex;align-items:center;gap:5px;margin-bottom:7px;">
-              <div style="font-size:0.38rem;font-weight:700;color:rgba(244,240,255,0.4);letter-spacing:0.16em;text-transform:uppercase;">Today's Circle Companions</div>
-              <div style="background:rgba(187,134,252,0.2);border-radius:4px;padding:1px 4px;font-size:0.3rem;font-weight:700;color:#BB86FC;letter-spacing:0.1em;">DAILY</div>
-            </div>
-            <div style="display:flex;gap:10px;">
-              <div style="display:flex;flex-direction:column;align-items:center;gap:3px;">
-                <div style="width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#5B3A8C,#3D2070);border:2px solid #BB86FC;display:flex;align-items:center;justify-content:center;font-size:0.55rem;font-weight:700;color:#F4F0FF;">مح</div>
-                <span style="font-size:0.36rem;color:#BB86FC;font-weight:600;">Muhammad</span>
-              </div>
-              <div style="display:flex;flex-direction:column;align-items:center;gap:3px;">
-                <div style="width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#2A2040,#1A1628);border:1.5px solid rgba(255,255,255,0.12);display:flex;align-items:center;justify-content:center;font-size:0.55rem;font-weight:700;color:#F4F0FF;">عب</div>
-                <span style="font-size:0.36rem;color:rgba(244,240,255,0.5);">Abdullaah</span>
-              </div>
-              <div style="display:flex;flex-direction:column;align-items:center;gap:3px;">
-                <div style="width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#2A2040,#1A1628);border:1.5px solid rgba(255,255,255,0.12);display:flex;align-items:center;justify-content:center;font-size:0.55rem;font-weight:700;color:#F4F0FF;">أح</div>
-                <span style="font-size:0.36rem;color:rgba(244,240,255,0.5);">Ahmed</span>
-              </div>
-            </div>
-          </div>
-          <!-- Turn Duration -->
-          <div style="padding:0 12px 10px;">
-            <div style="font-size:0.38rem;font-weight:700;color:rgba(244,240,255,0.4);letter-spacing:0.16em;text-transform:uppercase;margin-bottom:6px;">Turn Duration</div>
-            <div style="display:flex;gap:4px;background:#1A1628;border-radius:10px;padding:4px;">
-              <div style="flex:1;background:#BB86FC;border-radius:7px;padding:5px 0;text-align:center;font-size:0.42rem;font-weight:700;color:#0D0A14;">Verse Turn</div>
-              <div style="flex:1;padding:5px 0;text-align:center;font-size:0.42rem;color:rgba(244,240,255,0.45);">Page Turn</div>
-            </div>
-          </div>
-          <!-- Start Reciting CTA -->
-          <div style="margin:auto 12px 14px;padding:0 12px;">
-            <div id="setupStartBtn" style="background:linear-gradient(135deg,#BB86FC,#9B5FE0);border-radius:100px;padding:11px 0;text-align:center;display:flex;align-items:center;justify-content:center;gap:7px;box-shadow:0 0 20px rgba(187,134,252,0.4);">
-              <span style="font-size:0.58rem;font-weight:700;color:#0D0A14;letter-spacing:0.04em;">Start Reciting</span>
-              <div style="width:18px;height:18px;border-radius:50%;background:rgba(13,10,20,0.25);display:flex;align-items:center;justify-content:center;">
-                <svg width="8" height="8" viewBox="0 0 24 24" fill="#0D0A14"><path d="M8 5v14l11-7z"/></svg>
-              </div>
-            </div>
-          </div>
+        <div class="container footer-bottom">
+            <p>&copy; 2026 Recitefy. All rights reserved. Made with love for the Qur'an.</p>
+            <p class="arabic-signature">اللهم اجعل القرآن العظيم ربيع قلوبنا</p>
         </div>
+    </footer>
 
-        <!-- SCREEN C: Reciter's Turn -->
-        <div id="screenReciter" style="position:absolute;inset:0;padding:52px 12px 14px;display:flex;flex-direction:column;opacity:0;pointer-events:none;transition:opacity 0.4s;">
-          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;">
-            <div style="display:flex;align-items:center;gap:7px;">
-              <div style="width:30px;height:30px;border-radius:50%;background:linear-gradient(135deg,#6B3FA0,#3D2070);border:1.5px solid rgba(187,134,252,0.5);display:flex;align-items:center;justify-content:center;font-size:0.65rem;font-weight:700;color:#F4F0FF;flex-shrink:0;">ع</div>
-              <div>
-                <div style="font-size:0.65rem;font-weight:700;color:#F4F0FF;">Reciter's Turn</div>
-                <div style="font-size:0.48rem;color:rgba(244,240,255,0.45);">Al-Afasy reciting…</div>
-              </div>
-            </div>
-            <div class="waveform" style="height:16px;"><div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div></div>
-          </div>
-          <div style="border:1.5px solid rgba(187,134,252,0.5);border-radius:8px;padding:6px 10px;text-align:center;margin-bottom:10px;position:relative;background:rgba(187,134,252,0.04);">
-            <span style="position:absolute;left:6px;top:50%;transform:translateY(-50%);font-size:0.7rem;color:rgba(187,134,252,0.6);">❧</span>
-            <span style="position:absolute;right:6px;top:50%;transform:translateY(-50%);font-size:0.7rem;color:rgba(187,134,252,0.6);">❧</span>
-            <div style="font-family:'Amiri',serif;font-size:0.9rem;color:#F4F0FF;direction:rtl;">سُورَةُ التَّوْبَة</div>
-          </div>
-          <div style="flex:1;font-family:'Amiri',serif;direction:rtl;text-align:justify;font-size:0.78rem;line-height:2.1;color:rgba(244,240,255,0.85);padding:0 2px;overflow:hidden;">
-            <span style="color:rgba(244,240,255,0.4);">بَرَاءَةٌ مِّنَ اللَّهِ وَرَسُولِهِ إِلَى الَّذِينَ عَاهَدتُّم مِّنَ الْمُشْرِكِينَ ①</span>
-            <span style="color:rgba(244,240,255,0.4);"> فَسِيحُوا فِي الْأَرْضِ أَرْبَعَةَ أَشْهُرٍ وَاعْلَمُوا أَنَّكُمْ غَيْرُ مُعْجِزِي اللَّهِ ②</span>
-            <span style="color:#4ADE80;"> وَأَذَانٌ مِّنَ اللَّهِ وَرَسُولِهِ إِلَى النَّاسِ يَوْمَ الْحَجِّ الْأَكْبَرِ أَنَّ اللَّهَ بَرِيءٌ مِّنَ الْمُشْرِكِينَ ③</span>
-            <span style="color:rgba(244,240,255,0.4);"> فَإِن تُبْتُمْ فَهُوَ خَيْرٌ لَّكُمْ وَإِن تَوَلَّيْتُمْ فَاعْلَمُوا أَنَّكُمْ غَيْرُ مُعْجِزِي اللَّهِ ④</span>
-          </div>
-          <div style="text-align:center;font-size:0.48rem;color:rgba(244,240,255,0.3);margin:5px 0;">١٨٧</div>
-          <div style="display:flex;align-items:center;gap:6px;margin-top:2px;">
-            <div style="width:32px;height:32px;border-radius:50%;background:#1A1628;border:1px solid rgba(255,255,255,0.1);display:flex;align-items:center;justify-content:center;">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="rgba(244,240,255,0.25)" stroke-width="2"><line x1="1" y1="1" x2="23" y2="23"/><path d="M9 9v3a3 3 0 005.12 2.12M15 9.34V4a3 3 0 00-5.94-.6"/><path d="M17 16.95A7 7 0 015 12v-2m14 0v2a7 7 0 01-.11 1.23M12 19v3M8 23h8"/></svg>
-            </div>
-            <div style="width:32px;height:32px;border-radius:50%;background:#1A1628;border:1px solid rgba(255,255,255,0.1);display:flex;align-items:center;justify-content:center;">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="rgba(244,240,255,0.25)" stroke-width="2"><line x1="4" y1="21" x2="4" y2="14"/><line x1="4" y1="10" x2="4" y2="3"/><line x1="12" y1="21" x2="12" y2="12"/><line x1="12" y1="8" x2="12" y2="3"/><line x1="20" y1="21" x2="20" y2="16"/><line x1="20" y1="12" x2="20" y2="3"/><line x1="1" y1="14" x2="7" y2="14"/><line x1="9" y1="8" x2="15" y2="8"/><line x1="17" y1="16" x2="23" y2="16"/></svg>
-            </div>
-            <div style="flex:1;background:rgba(30,24,48,0.8);border-radius:100px;height:32px;display:flex;align-items:center;padding:0 5px;gap:5px;border:1px solid rgba(255,255,255,0.06);">
-              <div style="width:24px;height:24px;border-radius:50%;background:rgba(187,134,252,0.1);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
-                <svg width="10" height="10" viewBox="0 0 24 24" fill="rgba(187,134,252,0.3)"><path d="M12 1a3 3 0 00-3 3v8a3 3 0 006 0V4a3 3 0 00-3-3z"/><path d="M19 10v2a7 7 0 01-14 0v-2M12 19v4M8 23h8"/></svg>
-              </div>
-              <span style="font-size:0.44rem;color:rgba(244,240,255,0.2);letter-spacing:0.04em;">waiting for your turn…</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- SCREEN D: Your Turn -->
-        <div id="screenYours" style="position:absolute;inset:0;padding:52px 12px 14px;display:flex;flex-direction:column;opacity:0;pointer-events:none;transition:opacity 0.4s;">
-          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;">
-            <div style="display:flex;align-items:center;gap:7px;">
-              <div style="width:30px;height:30px;border-radius:50%;background:linear-gradient(135deg,#2A2040,#3D2070);border:2px solid #BB86FC;display:flex;align-items:center;justify-content:center;font-size:0.65rem;font-weight:700;color:#BB86FC;flex-shrink:0;">S</div>
-              <div>
-                <div style="font-size:0.65rem;font-weight:700;color:#F4F0FF;">Your Turn</div>
-                <div style="font-size:0.48rem;color:rgba(244,240,255,0.5);">Now you recite! ✨</div>
-              </div>
-            </div>
-            <div style="width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,#4A2D7A,#2A1A50);border:1.5px solid rgba(187,134,252,0.4);display:flex;align-items:center;justify-content:center;">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#BB86FC" stroke-width="1.5"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-            </div>
-          </div>
-          <div style="border:1.5px solid rgba(187,134,252,0.5);border-radius:8px;padding:6px 10px;text-align:center;margin-bottom:10px;position:relative;background:rgba(187,134,252,0.04);">
-            <span style="position:absolute;left:6px;top:50%;transform:translateY(-50%);font-size:0.7rem;color:rgba(187,134,252,0.6);">❧</span>
-            <span style="position:absolute;right:6px;top:50%;transform:translateY(-50%);font-size:0.7rem;color:rgba(187,134,252,0.6);">❧</span>
-            <div style="font-family:'Amiri',serif;font-size:0.9rem;color:#F4F0FF;direction:rtl;">سُورَةُ التَّوْبَة</div>
-          </div>
-          <div style="flex:1;font-family:'Amiri',serif;direction:rtl;text-align:justify;font-size:0.78rem;line-height:2.1;color:rgba(244,240,255,0.85);padding:0 2px;overflow:hidden;">
-            <span style="color:rgba(244,240,255,0.4);">بَرَاءَةٌ مِّنَ اللَّهِ وَرَسُولِهِ إِلَى الَّذِينَ عَاهَدتُّم مِّنَ الْمُشْرِكِينَ ①</span>
-            <span style="color:rgba(244,240,255,0.4);"> فَسِيحُوا فِي الْأَرْضِ أَرْبَعَةَ أَشْهُرٍ وَاعْلَمُوا أَنَّكُمْ غَيْرُ مُعْجِزِي اللَّهِ ②</span>
-            <span style="color:rgba(244,240,255,0.4);"> وَأَذَانٌ مِّنَ اللَّهِ وَرَسُولِهِ إِلَى النَّاسِ يَوْمَ الْحَجِّ الْأَكْبَرِ أَنَّ اللَّهَ بَرِيءٌ مِّنَ الْمُشْرِكِينَ ③</span>
-            <span style="color:#4ADE80;"> فَإِن تُبْتُمْ فَهُوَ خَيْرٌ لَّكُمْ وَإِن تَوَلَّيْتُمْ فَاعْلَمُوا أَنَّكُمْ غَيْرُ مُعْجِزِي اللَّهِ ④</span>
-            <span style="color:rgba(244,240,255,0.4);"> وَبَشِّرِ الَّذِينَ كَفَرُوا بِعَذَابٍ أَلِيمٍ ⑤</span>
-          </div>
-          <div style="text-align:center;font-size:0.48rem;color:rgba(244,240,255,0.3);margin:5px 0;">١٨٧</div>
-          <div style="display:flex;align-items:center;gap:6px;margin-top:2px;">
-            <div style="width:32px;height:32px;border-radius:50%;background:#1A1628;border:1px solid rgba(255,255,255,0.1);display:flex;align-items:center;justify-content:center;">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="rgba(244,240,255,0.4)" stroke-width="2"><line x1="1" y1="1" x2="23" y2="23"/><path d="M9 9v3a3 3 0 005.12 2.12M15 9.34V4a3 3 0 00-5.94-.6"/><path d="M17 16.95A7 7 0 015 12v-2m14 0v2a7 7 0 01-.11 1.23M12 19v3M8 23h8"/></svg>
-            </div>
-            <div style="width:32px;height:32px;border-radius:50%;background:#1A1628;border:1px solid rgba(255,255,255,0.1);display:flex;align-items:center;justify-content:center;">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="rgba(244,240,255,0.4)" stroke-width="2"><line x1="4" y1="21" x2="4" y2="14"/><line x1="4" y1="10" x2="4" y2="3"/><line x1="12" y1="21" x2="12" y2="12"/><line x1="12" y1="8" x2="12" y2="3"/><line x1="20" y1="21" x2="20" y2="16"/><line x1="20" y1="12" x2="20" y2="3"/><line x1="1" y1="14" x2="7" y2="14"/><line x1="9" y1="8" x2="15" y2="8"/><line x1="17" y1="16" x2="23" y2="16"/></svg>
-            </div>
-            <div style="flex:1;background:#2A2040;border-radius:100px;height:32px;display:flex;align-items:center;padding:0 4px;gap:0;border:1px solid rgba(187,134,252,0.25);position:relative;overflow:hidden;">
-              <div id="sliderThumb" style="width:26px;height:26px;border-radius:50%;background:#F4F0FF;display:flex;align-items:center;justify-content:center;flex-shrink:0;z-index:2;transition:transform 1s cubic-bezier(0.4,0,0.2,1);">
-                <svg width="11" height="11" viewBox="0 0 24 24" fill="#0D0A14"><path d="M12 1a3 3 0 00-3 3v8a3 3 0 006 0V4a3 3 0 00-3-3z"/><path d="M19 10v2a7 7 0 01-14 0v-2M12 19v4M8 23h8"/></svg>
-              </div>
-              <span id="sliderLabel" style="font-size:0.44rem;color:rgba(244,240,255,0.4);letter-spacing:0.04em;margin-left:6px;">slide to recite</span>
-            </div>
-          </div>
-        </div>
-
-      <!-- Hand cursor — inside phone, absolute to phone -->
-      <div id="demoCursor" style="position:absolute;width:28px;height:36px;pointer-events:none;z-index:9999;display:none;opacity:0;left:0;top:0;transition:left 0.65s cubic-bezier(0.4,0,0.2,1),top 0.65s cubic-bezier(0.4,0,0.2,1),opacity 0.3s;">
-        <svg id="handSvg" viewBox="0 0 28 36" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;filter:drop-shadow(0 2px 5px rgba(0,0,0,0.6));transition:transform 0.15s ease;">
-          <path d="M10 2C8.3 2 7 3.3 7 5v11.2C6.3 15.5 5.5 15 4.5 15 2.6 15 1 16.6 1 18.5c0 .7.2 1.4.6 2L6 27.5C7.1 29.6 9.4 31 12 31h4c3.3 0 6-2.7 6-6V13c0-1.7-1.3-3-3-3-.4 0-.8.1-1.1.2C17.5 9.1 16.3 8 15 8c-.3 0-.7.1-1 .2C13.6 7 12.4 6 11 6V5c0-1.7-1.3-3-3-3z" fill="#F4F0FF" stroke="rgba(187,134,252,0.7)" stroke-width="0.8"/>
-          <path d="M10 2C8.3 2 7 3.3 7 5v14h3V5c0-1.7-1.3-3-3-3z" fill="#DDD6FF"/>
-        </svg>
-        <div id="tapRipple" style="position:absolute;top:-4px;left:-4px;width:36px;height:36px;border-radius:50%;background:rgba(187,134,252,0.35);transform:scale(0);opacity:0;pointer-events:none;"></div>
-      </div>
-
-      </div><!-- /phone -->
-    </div><!-- /phone-wrap -->
-
-    <!-- Step dots -->
-    <div style="display:flex;gap:8px;align-items:center;">
-      <div id="dot0" style="width:10px;height:10px;border-radius:50%;background:#BB86FC;transition:all 0.3s;"></div>
-      <div id="dot1" style="width:6px;height:6px;border-radius:50%;background:rgba(187,134,252,0.3);transition:all 0.3s;"></div>
-      <div id="dot2" style="width:6px;height:6px;border-radius:50%;background:rgba(187,134,252,0.3);transition:all 0.3s;"></div>
+    <!-- Audio Toast / Notification -->
+    <div id="audioToast" class="audio-toast">
+        <span class="toast-icon">🔊</span>
+        <span id="toastMsg">Playing sample...</span>
     </div>
-    <div id="demoCaption" style="font-size:0.85rem;color:#8A86A0;text-align:center;min-height:1.6em;max-width:340px;transition:opacity 0.3s;">Tap the revision circle to start your halqa</div>
 
-  </div><!-- /column -->
-
-</div>
-
-<!-- HOW IT WORKS -->
-<section class="section" id="how-it-works">
-  <div class="reveal">
-    <p class="section-label">The Experience</p>
-    <h2 class="section-title">Your <span>Halqa</span>, Every Day</h2>
-    <p class="section-sub">A traditional revision circle — now in your pocket, with reciters you've admired your whole life.</p>
-  </div>
-
-  <div class="steps reveal">
-    <div class="step">
-      <div class="step-num">01</div>
-      <div class="step-icon">🎲</div>
-      <h3>Daily Reciters</h3>
-      <p>Every day, 3 world-famous reciters join your circle. Not the same ones — keeps it fresh and alive.</p>
-    </div>
-    <div class="step">
-      <div class="step-num">02</div>
-      <div class="step-icon">🎙️</div>
-      <h3>They Recite First</h3>
-      <p>Your reciter reads a verse or page — beautifully, with full tajweed. You listen, follow along on the Mushaf.</p>
-    </div>
-    <div class="step">
-      <div class="step-num">03</div>
-      <div class="step-icon">📖</div>
-      <h3>Your Turn</h3>
-      <p>Now you recite. The verse is highlighted. Slide the button when you're done. Back and forth, all the way through.</p>
-    </div>
-    <div class="step">
-      <div class="step-num">04</div>
-      <div class="step-icon">🔄</div>
-      <h3>Reshuffle Anytime</h3>
-      <p>Want different reciters today? Watch a short ad and reshuffle your circle whenever you like.</p>
-    </div>
-  </div>
-</section>
-
-<div class="divider" style="max-width:900px;margin:0 auto;"></div>
-
-<!-- FEATURES -->
-<section class="section">
-  <div class="reveal">
-    <p class="section-label">Features</p>
-    <h2 class="section-title">Built for <span>Serious</span> Revision</h2>
-    <p class="section-sub">Everything a hafiz needs. Nothing they don't.</p>
-  </div>
-
-  <div class="features-grid reveal">
-    <div class="feature">
-      <div class="feature-icon">📜</div>
-      <h4>604-Page Mushaf Madani</h4>
-      <p>Pixel-perfect replica of the Madinah Mushaf. The same layout you memorized from.</p>
-    </div>
-    <div class="feature">
-      <div class="feature-icon">✨</div>
-      <h4>Live Verse Highlighting</h4>
-      <p>Each verse lights up as it's recited. Track exactly where you are at all times.</p>
-    </div>
-    <div class="feature">
-      <div class="feature-icon">🎛️</div>
-      <h4>Verse or Page Mode</h4>
-      <p>Choose your pace. Verse by verse for deep focus. Page by page for momentum.</p>
-    </div>
-    <div class="feature">
-      <div class="feature-icon">👆</div>
-      <h4>Slide to Finish</h4>
-      <p>A smooth slider signals the end of your turn. No buttons to fumble with mid-recitation.</p>
-    </div>
-    <div class="feature">
-      <div class="feature-icon">🌍</div>
-      <h4>World-Class Reciters</h4>
-      <p>A growing library of the most beloved Quran reciters from around the world.</p>
-    </div>
-    <div class="feature">
-      <div class="feature-icon">🆓</div>
-      <h4>Completely Free</h4>
-      <p>No subscriptions. No paywalls. Just open the app and start your halqa.</p>
-    </div>
-  </div>
-</section>
-
-<!-- QUOTE -->
-<section class="quote-section">
-  <div class="quote-bg"></div>
-  <div class="reveal">
-    <div class="quote-arabic">﴿ وَمَن يَتَّقِ اللَّهَ يَجْعَل لَّهُ مَخْرَجًا ﴾</div>
-    <p class="quote-translation">"Whoever fears Allah, He will make a way out for them."</p>
-    <p class="quote-source">— Surah At-Talaq, 65:2</p>
-  </div>
-</section>
-
-<!-- CTA -->
-<section class="cta-section">
-  <div class="cta-card reveal">
-    <h2>Your Halqa is <span>Waiting.</span></h2>
-    <p>Download Recitefy free on Google Play. Join thousands of huffaz who never revise alone.</p>
-
-    <a href="https://play.google.com/store/apps/details?id=com.recitefy.app" class="play-badge" target="_blank">
-      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M3.18 23.76c.3.17.64.24.99.2l13.12-11.9L13.7 8.6 3.18 23.76z" fill="#C9A84C"/>
-        <path d="M20.78 12.91c.27-.3.42-.68.42-1.1s-.15-.8-.42-1.1L18.3 9.2l-3.6 3.4 3.6 3.38 2.48-1.07z" fill="#E8C97A"/>
-        <path d="M.3.56C.11.85 0 1.2 0 1.6v20.8c0 .4.11.75.3 1.04L12.6 12 .3.56z" fill="#F5E6B8"/>
-        <path d="M12.22 11.12L3.18.24C2.83.2 2.49.27 2.19.44L13.7 12 12.22 11.12z" fill="#C9A84C" opacity="0.7"/>
-      </svg>
-      <div class="play-badge-text">
-        <span class="small">Get it on</span>
-        <span class="big">Google Play</span>
-      </div>
-    </a>
-
-    <br>
-    <span class="free-tag">✓ Free · No ads on recitation · No subscription</span>
-  </div>
-</section>
-
-<!-- FOOTER -->
-<footer>
-  <div class="footer-logo">Recitefy</div>
-  <p class="footer-text">May Allah accept it from all of us. 🤲</p>
-</footer>
-
-<script>
-  // Scroll reveal
-  const reveals = document.querySelectorAll('.reveal');
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
-  }, { threshold: 0.1 });
-  reveals.forEach(el => observer.observe(el));
-
-  // ── INTRO OVERLAY ORCHESTRATOR ──
-  (function() {
-    const overlay   = document.getElementById('demoIntroOverlay');
-    const bar       = document.getElementById('introBar');
-    const loader    = document.getElementById('introLoader');
-    const sentences = [0,1,2,3].map(i => document.getElementById('introS' + i));
-    const iDots     = [0,1,2,3].map(i => document.getElementById('iDot' + i));
-    const lSteps    = [0,1,2,3].map(i => document.getElementById('ls' + i));
-
-    let currentSentence = 0;
-    const SENTENCE_DURATION = 1900; // ms per sentence
-    const TOTAL_SENTENCES   = 4;
-
-    // Animate the progress bar across all sentences
-    bar.style.transition = `width ${SENTENCE_DURATION * TOTAL_SENTENCES}ms linear`;
-    setTimeout(() => { bar.style.width = '100%'; }, 60);
-
-    function showSentence(idx) {
-      sentences.forEach((s, i) => s.classList.toggle('active', i === idx));
-      iDots.forEach((d, i) => d.classList.toggle('active', i === idx));
-    }
-
-    // Step through sentences
-    let sentenceTimer = setInterval(() => {
-      currentSentence++;
-      if (currentSentence < TOTAL_SENTENCES) {
-        showSentence(currentSentence);
-      } else {
-        clearInterval(sentenceTimer);
-        // Transition to loading phase
-        sentences.forEach(s => { s.style.opacity = '0'; s.style.transition = 'opacity 0.4s'; });
-        iDots.forEach(d => d.style.opacity = '0');
-        setTimeout(() => {
-          loader.classList.add('visible');
-          runLoaderSteps();
-        }, 450);
-      }
-    }, SENTENCE_DURATION);
-
-    // Loading steps then dismiss
-    function runLoaderSteps() {
-      const stepDuration = 520;
-      lSteps[0].classList.add('active');
-      let si = 0;
-      const stepTimer = setInterval(() => {
-        lSteps[si].classList.remove('active');
-        lSteps[si].classList.add('done');
-        si++;
-        if (si < lSteps.length) {
-          lSteps[si].classList.add('active');
-        } else {
-          clearInterval(stepTimer);
-          // Fade out overlay and start demo
-          setTimeout(() => {
-            overlay.style.transition = 'opacity 0.6s ease';
-            overlay.style.opacity = '0';
-            setTimeout(() => {
-              overlay.style.display = 'none';
-              // Kick off the demo
-              showScreen(0);
-              setTimeout(runDemo, 800);
-            }, 620);
-          }, 400);
-        }
-      }, stepDuration);
-    }
-  })();
-
-  // ── Orbiting reciter avatars ──
-  const reciters = [
-    { label: 'Sudais',      color: '#BB86FC', bg: 'rgba(187,134,252,0.22)' },
-    { label: 'Mishary',     color: '#C09AFC', bg: 'rgba(192,154,252,0.22)' },
-    { label: 'Al-Afasy',    color: '#A070E0', bg: 'rgba(160,112,224,0.22)' },
-  ];
-
-  function buildOrbit(containerId, pulseId, radius, avSize, fontSize) {
-    const container = document.getElementById(containerId);
-    const pulse     = document.getElementById(pulseId);
-    if (!container) return null;
-    const avatars = reciters.map((r, i) => {
-      const wrap = document.createElement('div');
-      wrap.style.cssText = 'position:absolute;display:flex;flex-direction:column;align-items:center;pointer-events:none;';
-      const av = document.createElement('div');
-      av.style.cssText = `width:${avSize}px;height:${avSize}px;border-radius:50%;background:${r.bg};border:1.5px solid rgba(255,255,255,0.15);display:flex;align-items:center;justify-content:center;font-size:${fontSize}px;font-weight:700;color:${r.color};`;
-      av.textContent = r.label.substring(0, 2);
-      const nm = document.createElement('div');
-      nm.style.cssText = `font-size:${Math.max(6,fontSize-2)}px;color:rgba(244,240,255,0.55);margin-top:2px;text-align:center;white-space:nowrap;`;
-      nm.textContent = r.label;
-      wrap.appendChild(av); wrap.appendChild(nm);
-      container.appendChild(wrap);
-      return wrap;
-    });
-    return { avatars, pulse };
-  }
-
-  const phoneC = buildOrbit('phoneCircle', 'phonePulse', 40, 24, 7);
-
-  let ang = 0;
-  function animateOrbit() {
-    ang += 0.005;
-    const pScale = 1 + 0.07 * Math.sin(ang * 3);
-    if (phoneC) {
-      phoneC.avatars.forEach((w, i) => {
-        const a = ang + (i / reciters.length) * 2 * Math.PI;
-        const x = 55 + 40 * Math.cos(a) - 12;
-        const y = 55 + 40 * Math.sin(a) - 12;
-        w.style.left = x + 'px'; w.style.top = y + 'px';
-      });
-      if (phoneC.pulse) phoneC.pulse.style.transform = `translate(-50%,-50%) scale(${pScale})`;
-    }
-    requestAnimationFrame(animateOrbit);
-  }
-  animateOrbit();
-
-  // ── Interactive Demo Orchestrator ──
-  // Screens: 0=Home, 1=Setup, 2=Reciter, 3=YourTurn
-  const screens  = ['screenHome', 'screenSetup', 'screenReciter', 'screenYours'];
-  const dots     = [document.getElementById('dot0'), document.getElementById('dot1'), document.getElementById('dot2')];
-  const captions = [
-    'Tap the revision circle to start your halqa',
-    'Choose your mode — Musaffa, Tarteel, or Listen',
-    'Al-Afasy is reciting verse ③ — follow along on the Mushaf',
-    'Now it\'s your turn — slide to finish your recitation',
-  ];
-  const cursor   = document.getElementById('demoCursor');
-  const handSvg  = document.getElementById('handSvg');
-  const tapRipple = document.getElementById('tapRipple');
-  const caption  = document.getElementById('demoCaption');
-
-  let step = 0;
-  let demoTimer;
-
-  // dots only have 3 indicators — map 4 screens onto 3
-  const dotMap = [0, 1, 1, 2];
-
-  function showScreen(idx) {
-    screens.forEach((id, i) => {
-      const el = document.getElementById(id);
-      if (!el) return;
-      el.style.opacity = i === idx ? '1' : '0';
-      el.style.pointerEvents = i === idx ? 'auto' : 'none';
-    });
-    const di = dotMap[idx];
-    dots.forEach((d, i) => {
-      if (!d) return;
-      d.style.width  = i === di ? '10px' : '6px';
-      d.style.height = i === di ? '10px' : '6px';
-      d.style.background = i === di ? '#BB86FC' : 'rgba(187,134,252,0.3)';
-    });
-    if (caption) {
-      caption.style.opacity = '0';
-      setTimeout(() => { caption.textContent = captions[idx]; caption.style.opacity = '1'; }, 200);
-    }
-  }
-
-  function moveCursorTo(x, y, cb, duration) {
-    cursor.style.display = 'block';
-    cursor.style.transitionDuration = (duration || 600) + 'ms';
-    cursor.getBoundingClientRect();
-    cursor.style.opacity = '1';
-    cursor.style.left = x + 'px';
-    cursor.style.top  = y + 'px';
-    setTimeout(cb, (duration || 600) + 60);
-  }
-
-  function showCursorAt(x, y) {
-    cursor.style.display = 'block';
-    cursor.style.transitionDuration = '0ms';
-    cursor.style.opacity = '0';
-    cursor.style.left = x + 'px';
-    cursor.style.top  = y + 'px';
-    cursor.getBoundingClientRect();
-    cursor.style.transitionDuration = '300ms';
-    cursor.style.opacity = '1';
-  }
-
-  function doTap(cb) {
-    if (handSvg) handSvg.style.transform = 'scale(0.82) translateY(4px)';
-    tapRipple.style.transition = 'none';
-    tapRipple.style.transform = 'scale(0)';
-    tapRipple.style.opacity = '0.8';
-    tapRipple.getBoundingClientRect();
-    tapRipple.style.transition = 'transform 0.4s ease, opacity 0.4s ease';
-    tapRipple.style.transform = 'scale(2.5)';
-    tapRipple.style.opacity = '0';
-    setTimeout(() => {
-      if (handSvg) handSvg.style.transform = 'scale(1) translateY(0)';
-      setTimeout(cb, 150);
-    }, 200);
-  }
-
-  function hideCursor(cb) {
-    cursor.style.opacity = '0';
-    setTimeout(() => { cursor.style.display = 'none'; if (cb) cb(); }, 350);
-  }
-
-  function doDrag(x1, y1, x2, y2, dragMs, cb) {
-    const sliderEl = document.getElementById('sliderThumb');
-    const label    = document.getElementById('sliderLabel');
-    const maxSlide = 118;
-    cursor.style.transitionDuration = dragMs + 'ms';
-    cursor.style.left = x2 + 'px';
-    cursor.style.top  = y2 + 'px';
-    const start = performance.now();
-    function tick(now) {
-      const t = Math.min((now - start) / dragMs, 1);
-      const ease = t < 0.5 ? 2*t*t : -1+(4-2*t)*t;
-      if (sliderEl) sliderEl.style.transform = `translateX(${ease * maxSlide}px)`;
-      if (label) label.style.opacity = String(1 - ease);
-      if (t < 1) requestAnimationFrame(tick);
-      else setTimeout(cb, 100);
-    }
-    requestAnimationFrame(tick);
-  }
-
-  function resetSlider() {
-    const sliderEl = document.getElementById('sliderThumb');
-    const label    = document.getElementById('sliderLabel');
-    if (sliderEl) sliderEl.style.transform = 'translateX(0)';
-    if (label) label.style.opacity = '1';
-  }
-
-  function runDemo() {
-    const phoneWrap = document.getElementById('demoPhoneWrap');
-    if (!phoneWrap) { scheduleNext(); return; }
-    const pw = phoneWrap.offsetWidth;
-    const ph = phoneWrap.offsetHeight;
-
-    if (step === 0) {
-      // Tap the revision circle play button
-      const tx = pw * 0.50, ty = ph * 0.415;
-      showCursorAt(pw * 0.82, ty + 40);
-      setTimeout(() => {
-        moveCursorTo(tx, ty, () => {
-          doTap(() => {
-            hideCursor(() => { step = 1; showScreen(1); scheduleNext(3200); });
-          });
-        }, 650);
-      }, 100);
-
-    } else if (step === 1) {
-      // Tap "Start Reciting" button near bottom of Setup screen
-      const tx = pw * 0.50, ty = ph * 0.875;
-      showCursorAt(pw * 0.80, ty + 20);
-      setTimeout(() => {
-        moveCursorTo(tx, ty, () => {
-          doTap(() => {
-            hideCursor(() => { step = 2; showScreen(2); scheduleNext(3500); });
-          });
-        }, 600);
-      }, 100);
-
-    } else if (step === 3) {
-      // Drag slider to finish recitation
-      const sliderStartX = pw * 0.17;
-      const sliderStartY = ph * 0.875;
-      const sliderEndX   = pw * 0.78;
-      showCursorAt(sliderStartX - 20, sliderStartY + 30);
-      setTimeout(() => {
-        moveCursorTo(sliderStartX, sliderStartY, () => {
-          doTap(() => {
-            doDrag(sliderStartX, sliderStartY, sliderEndX, sliderStartY, 900, () => {
-              hideCursor(() => {
-                resetSlider();
-                step = 0; showScreen(0); scheduleNext(2200);
-              });
-            });
-          });
-        }, 500);
-      }, 100);
-    }
-  }
-
-  function scheduleNext(delay) {
-    clearTimeout(demoTimer);
-    demoTimer = setTimeout(() => {
-      if (step === 2) { step = 3; showScreen(3); runDemo(); }
-      else { runDemo(); }
-    }, delay || 2200);
-  }
-
-  // Start — triggered by intro overlay after it completes
-  // (showScreen(0) and runDemo called from intro orchestrator)
-
-  // Manual tap on phone to advance
-  const demoPhone = document.querySelector('.phone-wrap .phone');
-  if (demoPhone) {
-    demoPhone.addEventListener('click', () => {
-      clearTimeout(demoTimer);
-      cursor.style.display = 'none';
-      resetSlider();
-      step = (step + 1) % 4;
-      showScreen(step);
-      const delays = [2200, 3200, 3500, 800];
-      scheduleNext(delays[step]);
-    });
-  }
-</script>
+    <!-- Scripts -->
+    <script src="script.js"></script>
 </body>
 </html>
